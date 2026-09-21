@@ -1,0 +1,293 @@
+{
+ "planned_episodes": 24,
+ "attempted": 24,
+ "valid": 24,
+ "model_invocations": 24,
+ "stop_conditions": "none: all planned episodes attempted",
+ "conditions": {
+  "direct": {
+   "correct": 12,
+   "of_planned_cases": 12,
+   "outcome_counts": {
+    "correct": 12
+   },
+   "abs_error_m_per_s2": {
+    "n_parseable_with_units": 12,
+    "median": 0.00010606060606066503,
+    "max": 0.00045454545454548523
+   },
+   "tool_requested": 0,
+   "tool_executions": 0,
+   "model_calls": 12,
+   "median_reported_output_tokens": 482.0
+  },
+  "workflow": {
+   "correct": 12,
+   "of_planned_cases": 12,
+   "outcome_counts": {
+    "correct": 12
+   },
+   "abs_error_m_per_s2": {
+    "n_parseable_with_units": 12,
+    "median": 0.0002121212121215521,
+    "max": 0.001454545454545375
+   },
+   "tool_requested": 0,
+   "tool_executions": 0,
+   "model_calls": 12,
+   "median_reported_output_tokens": 475.5
+  }
+ },
+ "paired_workflow_vs_direct": {
+  "workflow_only_correct": 0,
+  "direct_only_correct": 0,
+  "ties": 12
+ },
+ "deterministic_solver": {
+  "correct": 12,
+  "of_planned_cases": 12,
+  "max_abs_error": 0.0
+ },
+ "episodes": [
+  {
+   "case_id": "s-01",
+   "condition": "direct",
+   "status": "correct",
+   "answer": -0.9653,
+   "a_ref": -0.9653333333333334,
+   "abs_error": 3.333333333332966e-05,
+   "tool_requested": false,
+   "episode_id": "s-01-direct-claude-2026-09-21T193135"
+  },
+  {
+   "case_id": "s-01",
+   "condition": "workflow",
+   "status": "correct",
+   "answer": -0.965,
+   "a_ref": -0.9653333333333334,
+   "abs_error": 0.00033333333333340764,
+   "tool_requested": false,
+   "episode_id": "s-01-workflow-claude-2026-09-21T193142"
+  },
+  {
+   "case_id": "s-02",
+   "condition": "direct",
+   "status": "correct",
+   "answer": 2.108,
+   "a_ref": 2.108,
+   "abs_error": 0.0,
+   "tool_requested": false,
+   "episode_id": "s-02-direct-claude-2026-09-21T193151"
+  },
+  {
+   "case_id": "s-02",
+   "condition": "workflow",
+   "status": "correct",
+   "answer": 2.108,
+   "a_ref": 2.108,
+   "abs_error": 0.0,
+   "tool_requested": false,
+   "episode_id": "s-02-workflow-claude-2026-09-21T193158"
+  },
+  {
+   "case_id": "s-03",
+   "condition": "direct",
+   "status": "correct",
+   "answer": -2.658,
+   "a_ref": -2.65830303030303,
+   "abs_error": 0.0003030303030300274,
+   "tool_requested": false,
+   "episode_id": "s-03-direct-claude-2026-09-21T193213"
+  },
+  {
+   "case_id": "s-03",
+   "condition": "workflow",
+   "status": "correct",
+   "answer": -2.658,
+   "a_ref": -2.65830303030303,
+   "abs_error": 0.0003030303030300274,
+   "tool_requested": false,
+   "episode_id": "s-03-workflow-claude-2026-09-21T193205"
+  },
+  {
+   "case_id": "s-04",
+   "condition": "direct",
+   "status": "correct",
+   "answer": 4.436,
+   "a_ref": 4.436363636363636,
+   "abs_error": 0.00036363636363567764,
+   "tool_requested": false,
+   "episode_id": "s-04-direct-claude-2026-09-21T193229"
+  },
+  {
+   "case_id": "s-04",
+   "condition": "workflow",
+   "status": "correct",
+   "answer": 4.436,
+   "a_ref": 4.436363636363636,
+   "abs_error": 0.00036363636363567764,
+   "tool_requested": false,
+   "episode_id": "s-04-workflow-claude-2026-09-21T193222"
+  },
+  {
+   "case_id": "s-05",
+   "condition": "direct",
+   "status": "correct",
+   "answer": -3.231,
+   "a_ref": -3.231272727272728,
+   "abs_error": 0.0002727272727280905,
+   "tool_requested": false,
+   "episode_id": "s-05-direct-claude-2026-09-21T193235"
+  },
+  {
+   "case_id": "s-05",
+   "condition": "workflow",
+   "status": "correct",
+   "answer": -3.231,
+   "a_ref": -3.231272727272728,
+   "abs_error": 0.0002727272727280905,
+   "tool_requested": false,
+   "episode_id": "s-05-workflow-claude-2026-09-21T193241"
+  },
+  {
+   "case_id": "s-06",
+   "condition": "direct",
+   "status": "correct",
+   "answer": 1.885,
+   "a_ref": 1.885090909090909,
+   "abs_error": 9.090909090891941e-05,
+   "tool_requested": false,
+   "episode_id": "s-06-direct-claude-2026-09-21T193250"
+  },
+  {
+   "case_id": "s-06",
+   "condition": "workflow",
+   "status": "correct",
+   "answer": 1.885,
+   "a_ref": 1.885090909090909,
+   "abs_error": 9.090909090891941e-05,
+   "tool_requested": false,
+   "episode_id": "s-06-workflow-claude-2026-09-21T193257"
+  },
+  {
+   "case_id": "s-07",
+   "condition": "direct",
+   "status": "correct",
+   "answer": -3.6015,
+   "a_ref": -3.6014545454545455,
+   "abs_error": 4.545454545468175e-05,
+   "tool_requested": false,
+   "episode_id": "s-07-direct-claude-2026-09-21T193312"
+  },
+  {
+   "case_id": "s-07",
+   "condition": "workflow",
+   "status": "correct",
+   "answer": -3.6,
+   "a_ref": -3.6014545454545455,
+   "abs_error": 0.001454545454545375,
+   "tool_requested": false,
+   "episode_id": "s-07-workflow-claude-2026-09-21T193305"
+  },
+  {
+   "case_id": "s-08",
+   "condition": "direct",
+   "status": "correct",
+   "answer": 1.921,
+   "a_ref": 1.9210909090909092,
+   "abs_error": 9.090909090914145e-05,
+   "tool_requested": false,
+   "episode_id": "s-08-direct-claude-2026-09-21T193327"
+  },
+  {
+   "case_id": "s-08",
+   "condition": "workflow",
+   "status": "correct",
+   "answer": 1.921,
+   "a_ref": 1.9210909090909092,
+   "abs_error": 9.090909090914145e-05,
+   "tool_requested": false,
+   "episode_id": "s-08-workflow-claude-2026-09-21T193320"
+  },
+  {
+   "case_id": "s-09",
+   "condition": "direct",
+   "status": "correct",
+   "answer": -1.803,
+   "a_ref": -1.803151515151515,
+   "abs_error": 0.0001515151515150137,
+   "tool_requested": false,
+   "episode_id": "s-09-direct-claude-2026-09-21T193334"
+  },
+  {
+   "case_id": "s-09",
+   "condition": "workflow",
+   "status": "correct",
+   "answer": -1.803,
+   "a_ref": -1.803151515151515,
+   "abs_error": 0.0001515151515150137,
+   "tool_requested": false,
+   "episode_id": "s-09-workflow-claude-2026-09-21T193342"
+  },
+  {
+   "case_id": "s-10",
+   "condition": "direct",
+   "status": "correct",
+   "answer": 1.924,
+   "a_ref": 1.9241212121212121,
+   "abs_error": 0.0001212121212121886,
+   "tool_requested": false,
+   "episode_id": "s-10-direct-claude-2026-09-21T193350"
+  },
+  {
+   "case_id": "s-10",
+   "condition": "workflow",
+   "status": "correct",
+   "answer": 1.924,
+   "a_ref": 1.9241212121212121,
+   "abs_error": 0.0001212121212121886,
+   "tool_requested": false,
+   "episode_id": "s-10-workflow-claude-2026-09-21T193400"
+  },
+  {
+   "case_id": "s-11",
+   "condition": "direct",
+   "status": "correct",
+   "answer": -1.515,
+   "a_ref": -1.5149090909090912,
+   "abs_error": 9.090909090869737e-05,
+   "tool_requested": false,
+   "episode_id": "s-11-direct-claude-2026-09-21T193415"
+  },
+  {
+   "case_id": "s-11",
+   "condition": "workflow",
+   "status": "correct",
+   "answer": -1.515,
+   "a_ref": -1.5149090909090912,
+   "abs_error": 9.090909090869737e-05,
+   "tool_requested": false,
+   "episode_id": "s-11-workflow-claude-2026-09-21T193409"
+  },
+  {
+   "case_id": "s-12",
+   "condition": "direct",
+   "status": "correct",
+   "answer": 2.607,
+   "a_ref": 2.6065454545454547,
+   "abs_error": 0.00045454545454548523,
+   "tool_requested": false,
+   "episode_id": "s-12-direct-claude-2026-09-21T193430"
+  },
+  {
+   "case_id": "s-12",
+   "condition": "workflow",
+   "status": "correct",
+   "answer": 2.607,
+   "a_ref": 2.6065454545454547,
+   "abs_error": 0.00045454545454548523,
+   "tool_requested": false,
+   "episode_id": "s-12-workflow-claude-2026-09-21T193422"
+  }
+ ]
+}

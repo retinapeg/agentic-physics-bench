@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 400" width="760" height="400" role="img" aria-labelledby="t d" font-family="system-ui, -apple-system, Segoe UI, sans-serif">
+<title id="t">Absolute error per scored case, direct vs tool workflow</title>
+<desc id="d">All 24 answers were correct. Largest absolute error 0.0015 m/s^2 against a tolerance of 0.01 m/s^2. The tool was requested in 0 of 12 workflow episodes.</desc>
+<style>
+:root{--surface:#fcfcfb;--ink:#0b0b0b;--ink2:#52514e;--grid:#e4e3df;--s1:#2a78d6;--s2:#eb6834}
+@media (prefers-color-scheme: dark){:root{--surface:#1a1a19;--ink:#ffffff;--ink2:#c3c2b7;--grid:#3a3a37;--s1:#3987e5;--s2:#d95926}}
+text{fill:var(--ink2);font-size:12px}.h{fill:var(--ink);font-size:16px;font-weight:600}
+.sub{font-size:12.5px}.g{stroke:var(--grid);stroke-width:1}.tol{stroke:var(--ink2);stroke-width:1.5;stroke-dasharray:5 4}.d{fill:var(--s1);stroke:var(--surface);stroke-width:2}.w{fill:var(--s2);stroke:var(--surface);stroke-width:2}
+</style>
+<rect width="760" height="400" fill="var(--surface)"/>
+<text class="h" x="64" y="28">All 24 scored answers were correct, far inside the tolerance</text>
+<text class="sub" x="64" y="48">|answer − reference slope| per case (×10⁻³ m/s²), Claude Code CLI, claude-opus-5.</text>
+<text class="sub" x="64" y="66">Direct 12/12 and workflow 12/12 correct; the optional tool was requested 0/12 times.</text>
+<text class="sub" x="64" y="84">A deterministic least-squares solver scores 12/12 with zero error.</text>
+<line class="g" x1="64" x2="736" y1="344.0" y2="344.0"/>
+<text x="56" y="348.0" text-anchor="end">0</text>
+<line class="g" x1="64" x2="736" y1="305.3" y2="305.3"/>
+<text x="56" y="309.3" text-anchor="end">2</text>
+<line class="g" x1="64" x2="736" y1="266.7" y2="266.7"/>
+<text x="56" y="270.7" text-anchor="end">4</text>
+<line class="g" x1="64" x2="736" y1="228.0" y2="228.0"/>
+<text x="56" y="232.0" text-anchor="end">6</text>
+<line class="g" x1="64" x2="736" y1="189.3" y2="189.3"/>
+<text x="56" y="193.3" text-anchor="end">8</text>
+<line class="g" x1="64" x2="736" y1="150.7" y2="150.7"/>
+<text x="56" y="154.7" text-anchor="end">10</text>
+<line class="g" x1="64" x2="736" y1="112.0" y2="112.0"/>
+<text x="56" y="116.0" text-anchor="end">12</text>
+<line class="tol" x1="64" x2="736" y1="150.7" y2="150.7"/>
+<text x="736" y="144.7" text-anchor="end" style="fill:var(--ink)">tolerance 0.01 m/s² (10 × 10⁻³)</text>
+<text x="92.0" y="364" text-anchor="middle">s-01</text>
+<text x="148.0" y="364" text-anchor="middle">s-02</text>
+<text x="204.0" y="364" text-anchor="middle">s-03</text>
+<text x="260.0" y="364" text-anchor="middle">s-04</text>
+<text x="316.0" y="364" text-anchor="middle">s-05</text>
+<text x="372.0" y="364" text-anchor="middle">s-06</text>
+<text x="428.0" y="364" text-anchor="middle">s-07</text>
+<text x="484.0" y="364" text-anchor="middle">s-08</text>
+<text x="540.0" y="364" text-anchor="middle">s-09</text>
+<text x="596.0" y="364" text-anchor="middle">s-10</text>
+<text x="652.0" y="364" text-anchor="middle">s-11</text>
+<text x="708.0" y="364" text-anchor="middle">s-12</text>
+<circle class="d" cx="86.0" cy="343.4" r="5"><title>s-01 direct: answer -0.9653, reference -0.965333, |error| 3.33e-05 m/s² (correct)</title></circle>
+<path class="w" d="M98.0 331.6L104.0 337.6L98.0 343.6L92.0 337.6Z"><title>s-01 workflow: answer -0.965, reference -0.965333, |error| 3.33e-04 m/s² (correct)</title></path>
+<circle class="d" cx="142.0" cy="344.0" r="5"><title>s-02 direct: answer 2.108, reference 2.108000, |error| 0.00e+00 m/s² (correct)</title></circle>
+<path class="w" d="M154.0 338.0L160.0 344.0L154.0 350.0L148.0 344.0Z"><title>s-02 workflow: answer 2.108, reference 2.108000, |error| 0.00e+00 m/s² (correct)</title></path>
+<circle class="d" cx="198.0" cy="338.1" r="5"><title>s-03 direct: answer -2.658, reference -2.658303, |error| 3.03e-04 m/s² (correct)</title></circle>
+<path class="w" d="M210.0 332.1L216.0 338.1L210.0 344.1L204.0 338.1Z"><title>s-03 workflow: answer -2.658, reference -2.658303, |error| 3.03e-04 m/s² (correct)</title></path>
+<circle class="d" cx="254.0" cy="337.0" r="5"><title>s-04 direct: answer 4.436, reference 4.436364, |error| 3.64e-04 m/s² (correct)</title></circle>
+<path class="w" d="M266.0 331.0L272.0 337.0L266.0 343.0L260.0 337.0Z"><title>s-04 workflow: answer 4.436, reference 4.436364, |error| 3.64e-04 m/s² (correct)</title></path>
+<circle class="d" cx="310.0" cy="338.7" r="5"><title>s-05 direct: answer -3.231, reference -3.231273, |error| 2.73e-04 m/s² (correct)</title></circle>
+<path class="w" d="M322.0 332.7L328.0 338.7L322.0 344.7L316.0 338.7Z"><title>s-05 workflow: answer -3.231, reference -3.231273, |error| 2.73e-04 m/s² (correct)</title></path>
+<circle class="d" cx="366.0" cy="342.2" r="5"><title>s-06 direct: answer 1.885, reference 1.885091, |error| 9.09e-05 m/s² (correct)</title></circle>
+<path class="w" d="M378.0 336.2L384.0 342.2L378.0 348.2L372.0 342.2Z"><title>s-06 workflow: answer 1.885, reference 1.885091, |error| 9.09e-05 m/s² (correct)</title></path>
+<circle class="d" cx="422.0" cy="343.1" r="5"><title>s-07 direct: answer -3.6015, reference -3.601455, |error| 4.55e-05 m/s² (correct)</title></circle>
+<path class="w" d="M434.0 309.9L440.0 315.9L434.0 321.9L428.0 315.9Z"><title>s-07 workflow: answer -3.6, reference -3.601455, |error| 1.45e-03 m/s² (correct)</title></path>
+<circle class="d" cx="478.0" cy="342.2" r="5"><title>s-08 direct: answer 1.921, reference 1.921091, |error| 9.09e-05 m/s² (correct)</title></circle>
+<path class="w" d="M490.0 336.2L496.0 342.2L490.0 348.2L484.0 342.2Z"><title>s-08 workflow: answer 1.921, reference 1.921091, |error| 9.09e-05 m/s² (correct)</title></path>
+<circle class="d" cx="534.0" cy="341.1" r="5"><title>s-09 direct: answer -1.803, reference -1.803152, |error| 1.52e-04 m/s² (correct)</title></circle>
+<path class="w" d="M546.0 335.1L552.0 341.1L546.0 347.1L540.0 341.1Z"><title>s-09 workflow: answer -1.803, reference -1.803152, |error| 1.52e-04 m/s² (correct)</title></path>
+<circle class="d" cx="590.0" cy="341.7" r="5"><title>s-10 direct: answer 1.924, reference 1.924121, |error| 1.21e-04 m/s² (correct)</title></circle>
+<path class="w" d="M602.0 335.7L608.0 341.7L602.0 347.7L596.0 341.7Z"><title>s-10 workflow: answer 1.924, reference 1.924121, |error| 1.21e-04 m/s² (correct)</title></path>
+<circle class="d" cx="646.0" cy="342.2" r="5"><title>s-11 direct: answer -1.515, reference -1.514909, |error| 9.09e-05 m/s² (correct)</title></circle>
+<path class="w" d="M658.0 336.2L664.0 342.2L658.0 348.2L652.0 342.2Z"><title>s-11 workflow: answer -1.515, reference -1.514909, |error| 9.09e-05 m/s² (correct)</title></path>
+<circle class="d" cx="702.0" cy="335.2" r="5"><title>s-12 direct: answer 2.607, reference 2.606545, |error| 4.55e-04 m/s² (correct)</title></circle>
+<path class="w" d="M714.0 329.2L720.0 335.2L714.0 341.2L708.0 335.2Z"><title>s-12 workflow: answer 2.607, reference 2.606545, |error| 4.55e-04 m/s² (correct)</title></path>
+<circle class="d" cx="522" cy="172.7" r="5"/>
+<text x="532" y="176.7">direct answer</text>
+<path class="w" d="M626 166.7L632 172.7L626 178.7L620 172.7Z"/>
+<text x="638" y="176.7">tool workflow</text>
+<text x="16" y="102">×10⁻³</text>
+<text x="400" y="388" text-anchor="middle">scored case</text>
+</svg>

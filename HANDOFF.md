@@ -1,4 +1,4 @@
-# Claude handoff — 2026-09-21 (last updated 19:31 BST)
+# Claude handoff — 2026-09-21 (last updated 19:38 BST)
 
 Agentic Physics Bench is an AI engineering and research pilot. Leo is the research lead and decision maker; Claude writes the code and checks at his direction; Codex is the independent reviewer. Keep the project bounded: no extra agents or frameworks. Follow `CLAUDE.md` (its later standing instructions take precedence) and `WORKMODE.md`.
 
@@ -13,7 +13,7 @@ Agentic Physics Bench is an AI engineering and research pilot. Leo is the resear
 ## Current state
 
 - Repo: private (checked with `gh repo view`: `PRIVATE`). Checkpoint 1b is `94499d0`; checkpoint 2 is the next commit (see `git log`).
-- Protocol: `EXPERIMENT.md` is DRAFT and not frozen. σ = 0.5 m/s is provisional for development. Still open: final σ, tolerance, |a_true| floor or redraw rule, and sections 5–7.
+- Protocol: `EXPERIMENT.md` is **FROZEN** (19:30), commit `f504c57`, tag `v0-protocol-freeze`, with `data/freeze_manifest.json`. D1–D10 were approved with Leo's amendments.
 - Code, all written by Claude at Leo's direction:
   - `src/tasks.py`: reference slope and dev cases.
   - `src/models.py`: Claude CLI adapter.
@@ -22,15 +22,16 @@ Agentic Physics Bench is an AI engineering and research pilot. Leo is the resear
   - `src/agent.py`: the bounded loop (≤ 2 calls, ≤ 1 tool execution).
   - `src/run.py`: runs a direct or workflow dev episode and saves the trace (schema 2).
   - `prompts/`: direct, workflow turn-1 and workflow turn-2 templates.
-- Tests: `tests/test_ls_slope.py`, `test_tasks.py`, `test_evaluate.py` and `test_agent.py`, written by Claude. 19 tests pass.
+- Tests: six test files, written by Claude, including regression tests for both defects Codex reproduced. 36 tests pass.
+- Analysis: `src/analyze.py` produces `results/summary.json` and `.md`; `src/chart.py` produces `results/chart.svg`.
 - Data: `data/dev_cases.jsonl` (what a model sees) and `data/dev_keys.jsonl` (answer key).
   - `dev_cases.jsonl` SHA-256 `07c79eb37ae2cfe0e45cbd6003aa1a049d4c30b02491bf5695604682fe8e4ef7`
   - `dev_keys.jsonl` SHA-256 `dfa56e5ab44f5be5fee284786f9bf128a57ee4d9049dd8e3e83ab141c3261059`
-  - Scored cases are not generated.
+  - Scored cases: `data/scored_cases.jsonl`, `scored_keys.jsonl` and `scored_plan.json` (seed 202; hashes in the manifest).
 - Episodes (dev-01, Claude, both correct), saved in `results/episodes_dev.jsonl`; raw output in `results/raw/`, which is gitignored:
   - direct: −1.9458 vs a_ref −1.945818 m/s²;
   - workflow: −1.946, answered **without requesting the tool** (1 call, 0 tool executions).
-  - No scored cases or scores.
+- **Scored pilot (19:31–19:35):** 24/24 episodes valid and correct; the tool was requested 0/12 times; 24 invocations. See `README.md`, `results/summary.md` and `results/chart.svg`.
 - Research docs: `RESEARCH_ROADMAP.md`; `EXPERIMENT.md` section 11 (harness architecture) and section 12 (deterministic reference point).
 - Publication: no public repo, release, or X post.
 
@@ -74,6 +75,9 @@ All times are BST. Sources:
 | 29 | 19:26–19:29 (session) | 4 | Fixes plus regression tests; 34 offline tests OK. The regression tests fail on the old code: TypeError reproduced; old runner gave `controls_ok=False` and `correct=True` | Claude | unittest output; scratch run on `HEAD` code | VERIFIED |
 | 30 | 19:27 (session) | 4 | Unplanned model call: `--effort bogus` was not rejected (stderr warning, default used, call made). Raw output not saved | Claude | stderr text in RESEARCH_LOG | OBSERVED |
 | 31 | 19:30 (session) | 4 | Scored cases generated and validated; freeze manifest written; `EXPERIMENT.md` marked FROZEN; committed, tagged `v0-protocol-freeze` and pushed before any scored call | Claude, directed by Leo | `data/freeze_manifest.json`; tag | VERIFIED |
+| 32 | 19:31 (git) | 4 | Freeze committed as `f504c57`, tagged `v0-protocol-freeze` and pushed | Claude, directed by Leo | `git log`; tag | VERIFIED |
+| 33 | 19:31:35–19:34:38 (session) | 5 | Scored matrix: 24/24 valid and correct; tool requested 0/12; 24 invocations; stop reason `completed` | Claude, authorised by Leo | `results/episodes_scored.jsonl` | VERIFIED |
+| 34 | 19:35–19:38 (session) | 5 | Analysis, chart, README and docs; 36 offline tests OK; freeze re-verified; checkpoint 5 committed and pushed | Claude, directed by Leo | `results/`; `README.md` | OBSERVED |
 
 ## Verified setup
 
@@ -89,12 +93,10 @@ The raw smoke traces are gitignored because they contain session and machine met
 
 ## Open decisions and blockers
 
-1. Final σ and the tolerance rule: can a least-squares fit be told apart from shortcuts such as the endpoint slope within the tolerance?
-2. A minimum |a_true| or a redraw rule, decided before scored generation.
-3. The remaining decisions are collected as D1–D10 in `EXPERIMENT.md` section 13 for one approval: σ, tolerance, near-zero redraw, workflow wording, transport failures, effort level, run order, systems, sign order and invalid tool requests.
-4. (Settled at 19:15: tool arguments are injected by case ID; turn 2 is a fresh call; no retries.)
-5. Claude CLI control: episodes run in an empty temporary directory with `--tools "" --safe-mode --strict-mcp-config --no-session-persistence`. The runner logs the command line and prompt. The init line still lists built-in skill names; whether they reach the model's context is unverified. The effort level is not pinned.
-6. Codex: a read-only sandbox does not remove the shell tool. Choose prevention or detection; detection is a weaker control and must be labelled as such. This blocks Codex episodes only.
+Items 1–4 from earlier versions (σ, tolerance, near-zero rule, workflow settings) were settled by the approval of D1–D10 (rows 24 and 28).
+5. Claude CLI control: `--tools "" --safe-mode --strict-mcp-config --no-session-persistence --effort high`, in an empty temporary directory, with enforced checks (`src/run.py`). The init line still lists built-in skill names; whether they reach the model's context is unverified. The effort level is confirmed only by the absence of the fallback warning.
+6. Codex/GPT: a read-only sandbox does not remove the shell tool. Choose prevention or detection (detection is weaker and must be labelled). Needs its own verification and approval before any GPT run.
+7. H1 was not testable in V0 (tool requested 0/12, both conditions at ceiling). The next experiment needs a harder task or a design that separates tool choice from tool use (`RESEARCH_ROADMAP.md`).
 
 ## Release preparation (before making the repo public)
 
@@ -105,20 +107,21 @@ The raw smoke traces are gitignored because they contain session and machine met
 
 The 18:45 stop (row 22) was superseded at 19:15 (row 24).
 
-**Next action:** Leo approves or edits decisions D1–D10 in `EXPERIMENT.md` section 13, in one pass. Then Claude:
-1. implements any changes (e.g. the near-zero redraw) and confirms by hash that the dev files are unchanged;
-2. generates the 12 scored cases (seed 202), fills in the freeze record and commits it;
-3. runs the 24 scored episodes on Claude (at most 36 CLI calls);
-4. analyses the saved results.
-No scored inference before that approval.
+**Next action (Leo's decisions, release):**
+1. Review `README.md` and the results.
+2. Decide whether `LEARNING_REVIEW.md` must be removed from git history before the repo goes public; that needs a history rewrite.
+3. Decide whether `CLAUDE.md`, `WORKMODE.md` and `AGENTS.md` stay public.
+4. Make the repo public and post on X, if and when Leo chooses. A factual X draft is in the local `LEARNING_REVIEW.md` (Interview preparation). Nothing has been published.
+
+Deferred: GPT/Codex, pending verified controls; follow-ups in `RESEARCH_ROADMAP.md`.
 
 Delivery sequence (Leo, 2026-09-21):
 1. A checked reference function and one reproducible dev case. **Done: rows 14 and 17.**
 2. One real episode saved with its input, output, metadata and grade. **Done: rows 19–21.**
 3. A bounded tool workflow on the same dev case. **Done: rows 25–26** (the model didn't request the tool).
-4. A frozen protocol and scored dataset.
-5. Direct and workflow runs on the same 12 scored cases.
-6. Analysis, one chart and a factual README.
+4. A frozen protocol and scored dataset. **Done: rows 28–32.**
+5. Direct and workflow runs on the same 12 scored cases. **Done: row 33.**
+6. Analysis, one chart and a factual README. **Done: row 34.**
 
 Claude first; add GPT once its controls are verified. No paid API calls or overage.
 

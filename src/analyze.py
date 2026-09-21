@@ -1,0 +1,112 @@
+"""Deterministic analysis of the saved scored episodes (no model calls).
+
+Usage (repo root): python3 src/analyze.py
+Writes results/summary.json and results/summary.md (the table view). Written by Claude at Leo's direction (2026-09-21).
+Every count is computed from results/episodes_scored.jsonl against the frozen
+plan, so unattempted and invalid episodes stay visible in the denominators.
+"""
+import json
+import statistics
+from pathlib import Path
+
+from tasks import ls_slope
+
+ROOT = Path(__file__).resolve().parents[1]
+CONDITIONS = ("direct", "workflow")
+
+
+def load():
+    plan = json.loads((ROOT / "data" / "scored_plan.json").read_text())
+    keys = {k["id"]: k for k in map(json.loads, (ROOT / "data" / "scored_keys.jsonl").read_text().splitlines())}
+    cases = {c["id"]: c for c in map(json.loads, (ROOT / "data" / "scored_cases.jsonl").read_text().splitlines())}
+    path = ROOT / "results" / "episodes_scored.jsonl"
+    episodes = [json.loads(l) for l in path.read_text().splitlines()] if path.exists() else []
+    return plan, keys, cases, episodes
+
+
+def summarize(plan, keys, cases, episodes):
+    by = {(e["case_id"], e["condition"]): e for e in episodes}
+    planned = [(p["case_id"], c) for p in plan for c in CONDITIONS]
+    status = {}
+    for cell in planned:
+        e = by.get(cell)
+        status[cell] = "not_attempted" if e is None else ("invalid_run" if not e["valid"] else e["grade"]["outcome"])
+
+    out = {"planned_episodes": len(planned), "attempted": sum(cell in by for cell in planned),
+           "valid": sum(1 for e in episodes if e["valid"]),
+           "model_invocations": sum(e["model_calls"] for e in episodes),
+           "stop_conditions": "none: all planned episodes attempted" if len(by) == len(planned) else "see not_attempted",
+           "conditions": {}}
+    n_cases = len(plan)
+    for cond in CONDITIONS:
+        cells = [(p["case_id"], cond) for p in plan]
+        outcomes = [status[c] for c in cells]
+        errs = [by[c]["grade"]["abs_error"] for c in cells
+                if c in by and by[c]["valid"] and by[c]["grade"]["abs_error"] is not None
+                and by[c]["grade"]["outcome"] != "wrong_units"]
+        out["conditions"][cond] = {
+            "correct": outcomes.count("correct"), "of_planned_cases": n_cases,
+            "outcome_counts": {o: outcomes.count(o) for o in sorted(set(outcomes))},
+            "abs_error_m_per_s2": {"n_parseable_with_units": len(errs),
+                                   "median": statistics.median(errs) if errs else None,
+                                   "max": max(errs) if errs else None},
+            "tool_requested": sum(1 for c in cells if c in by and by[c]["tool"] is not None),
+            "tool_executions": sum(by[c]["tool_executions"] for c in cells if c in by),
+            "model_calls": sum(by[c]["model_calls"] for c in cells if c in by),
+            "median_reported_output_tokens": statistics.median(
+                [t["cli"]["result"]["output_tokens"] for c in cells if c in by for t in by[c]["turns"]
+                 if t["cli"]["result"]]) if any(c in by for c in cells) else None,
+        }
+
+    wins = losses = ties = 0
+    paired = []
+    for p in plan:
+        d, w = status[(p["case_id"], "direct")], status[(p["case_id"], "workflow")]
+        dc, wc = d == "correct", w == "correct"
+        wins += wc and not dc
+        losses += dc and not wc
+        ties += dc == wc
+        paired.append({"case_id": p["case_id"], "direct": d, "workflow": w})
+    out["paired_workflow_vs_direct"] = {"workflow_only_correct": wins, "direct_only_correct": losses,
+                                        "ties": ties}
+
+    # Deterministic reference point: the least-squares function applied to each displayed table.
+    det = [abs(ls_slope([float(x) for x in cases[i]["t_s"]], [float(x) for x in cases[i]["v_m_per_s"]])
+               - keys[i]["a_ref"]) for i in keys]
+    out["deterministic_solver"] = {"correct": sum(e <= 0.01 for e in det), "of_planned_cases": n_cases,
+                                   "max_abs_error": max(det)}
+
+    # Per-episode rows for the chart and failure review.
+    out["episodes"] = [{"case_id": c, "condition": cond, "status": status[(c, cond)],
+                        "answer": (by[(c, cond)]["parsed"] or {}).get("acceleration") if (c, cond) in by else None,
+                        "a_ref": keys[c]["a_ref"],
+                        "abs_error": by[(c, cond)]["grade"]["abs_error"] if (c, cond) in by else None,
+                        "tool_requested": (c, cond) in by and by[(c, cond)]["tool"] is not None,
+                        "episode_id": by[(c, cond)]["episode_id"] if (c, cond) in by else None}
+                       for c, cond in planned]
+    return out
+
+
+def table(summary):
+    rows = {(r["case_id"], r["condition"]): r for r in summary["episodes"]}
+    lines = ["# Scored results: table view", "",
+             "Generated by `src/analyze.py` from `results/episodes_scored.jsonl`. Units: m/s².", "",
+             "| Case | Reference a_ref | Direct answer | Direct | Workflow answer | Workflow | Tool requested |",
+             "|---|---|---|---|---|---|---|"]
+    for case_id in sorted({r["case_id"] for r in summary["episodes"]}):
+        d, w = rows[(case_id, "direct")], rows[(case_id, "workflow")]
+        lines.append(f"| {case_id} | {d['a_ref']:.6f} | {d['answer']} | {d['status']} | {w['answer']} | "
+                     f"{w['status']} | {'yes' if w['tool_requested'] else 'no'} |")
+    c = summary["conditions"]
+    lines += ["", f"Direct {c['direct']['correct']}/12 correct; workflow {c['workflow']['correct']}/12 correct; "
+              f"tool requested in {c['workflow']['tool_requested']}/12 workflow episodes; "
+              f"{summary['model_invocations']} model invocations for {summary['attempted']}/{summary['planned_episodes']} "
+              "planned episodes."]
+    return "\n".join(lines) + "\n"
+
+
+if __name__ == "__main__":
+    summary = summarize(*load())
+    (ROOT / "results" / "summary.json").write_text(json.dumps(summary, indent=1) + "\n")
+    (ROOT / "results" / "summary.md").write_text(table(summary))
+    print(json.dumps({k: v for k, v in summary.items() if k != "episodes"}, indent=1))

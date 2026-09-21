@@ -146,6 +146,19 @@ Keep ordinary entries to five to eight lines; combine fields when possible.
 - Lesson (Leo): TODO
 - Status: VERIFIED (offline checks, regression reproduction, hashes). No scored inference before the freeze commit.
 
+## 2026-09-21 | 5 Scored pilot | 24/24 correct; the optional tool was never requested
+- Authorship: Claude ran the approved, frozen matrix (19:31:35–19:34:38 BST) and wrote `src/analyze.py`, `src/chart.py`, `tests/test_analyze.py` and `README.md` at Leo's direction.
+- Observed:
+  - All 24 planned episodes were attempted and valid, using 24 invocations (cap 36). No stderr, overage or control violations. Model `claude-opus-5`, CLI 2.1.278 throughout; all rate-limit statuses "allowed".
+  - Direct 12/12 and workflow 12/12 correct; paired: 12 ties. The tool was requested 0/12 times.
+  - Absolute error, median / max: direct 1.1e-4 / 4.5e-4; workflow 2.1e-4 / 1.5e-3 m/s². Every answer equals `a_ref` rounded to between 1 and 6 decimals.
+  - The deterministic solver scores 12/12 with zero error.
+- Failure review: no model errors. The failures examined are the two harness defects found in review (checkpoint 4) and the ignored `--effort` value. The closest scored case is s-07 workflow (−3.6 vs −3.601455).
+- Interpretation: a ceiling result. The pilot shows the system reproduces a least-squares slope to within rounding on this task. It cannot show a tool effect, because the tool was never used. No claim of significance, ranking or tool benefit is made.
+- Evidence: `results/episodes_scored.jsonl`, `results/summary.json` and `.md`, `results/chart.svg`; 36 offline tests OK; the freeze manifest was verified before and after the run.
+- Lesson (Leo): TODO
+- Status: VERIFIED (deterministic recount matches; frozen files unchanged).
+
 ## Topics to capture as they occur
 
 Model vs agent vs pretrained weights; API/SDK vs model identity; benchmarks vs evals; reference validation; data leakage; prompts and configuration hashes; structured-output failures; tool dispatch and stopping; retries and missing denominators; retrieval vs generation errors; unsupported claims vs numerical mistakes; RAG vs fine-tuning; paired analysis; reproducibility; what I implemented vs delegated.

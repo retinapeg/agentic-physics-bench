@@ -1,6 +1,6 @@
 # Research roadmap
 
-Status as of 2026-09-21, after checkpoint 3 (bounded tool workflow). Written by Claude at Leo's direction from a research addendum that Codex drafted in chat. Leo supplied the addendum and directed its adoption (2026-09-21). Leo sets priorities. Nothing below is claimed as a result unless it appears under "Demonstrated".
+Status as of 2026-09-21, after the V0 scored pilot (checkpoint 5). Written by Claude at Leo's direction from a research addendum that Codex drafted in chat. Leo supplied the addendum and directed its adoption (2026-09-21). Leo sets priorities. Nothing below is claimed as a result unless it appears under "Demonstrated".
 
 ## Demonstrated (with evidence)
 
@@ -8,27 +8,33 @@ Status as of 2026-09-21, after checkpoint 3 (bounded tool workflow). Written by 
 - A working path from prompt to model, parser, grader and saved trace: `src/run.py`, `src/models.py`, `src/evaluate.py`.
 - One correct direct-answer development episode on Claude (dev-01): `results/episodes_dev.jsonl`.
 - A bounded tool workflow (`src/agent.py`, `src/tools.py`), tested offline on scripted replies. One real dev-01 workflow episode: the model answered without requesting the tool (correct, 1 call, 0 tool executions).
-- 19 offline checks pass: `python3 -m unittest tests.test_ls_slope tests.test_tasks tests.test_evaluate tests.test_agent`.
+- **V0 scored pilot** (frozen protocol, tag `v0-protocol-freeze`; 12 cases × 2 conditions; Claude Code CLI 2.1.278, `claude-opus-5`, effort `high`):
+  - direct 12/12 and workflow 12/12 correct; 12 paired ties;
+  - tool requested in **0/12** workflow episodes;
+  - all 24 answers equal the reference rounded to between 1 and 6 decimals;
+  - 24 valid episodes, 24 invocations; no invalid runs or missing outputs.
+  See `README.md` and `results/summary.md`.
+- 36 offline checks pass, including regression tests for the two defects Codex reproduced.
 
 ## Not demonstrated
 
-- That tool access improves accuracy or reliability.
+- That tool access improves accuracy or reliability. In V0 the optional tool was never requested, so no tool effect could be measured.
 - That any harness architecture is better than another.
 - Any accuracy estimate: one development case only checks that the pipeline works.
-- Anything about GPT/Codex, local models, or scored cases.
+- Anything about GPT/Codex or local models, or about harder tasks.
 
 ## V0: remaining work (the current priority)
 
 1. ~~A bounded `fit_line` tool workflow on dev-01.~~ Built; see `EXPERIMENT.md` sections 5–6.
-2. Approve `EXPERIMENT.md` section 13, freeze the protocol and generate the 12 scored cases.
-3. Run direct and tool-workflow conditions on the same 12 cases with Claude; add GPT once its controls are verified.
-4. Analysis from saved results: complete denominators, paired outcomes, failure review, one chart, a factual README with reproduction steps.
+2. ~~Approve the decisions, freeze the protocol and generate the 12 scored cases.~~ Done.
+3. ~~Run both conditions on the same 12 cases with Claude.~~ Done. GPT is deferred until its controls are verified.
+4. ~~Analysis, chart and README.~~ Done. Release decisions remain with Leo.
 
 **Deterministic reference point.** `ls_slope` computes the answer exactly, so the task does not need a language model. V0 measures how reliably an LLM system performs a specified calculation: instruction following, output format, numerical accuracy and, in the tool condition, orchestration of a permitted tool. It cannot show that an LLM is necessary for least-squares regression. It also says nothing about long-horizon reasoning, self-improvement or novel architecture.
 
 ## Hypotheses (not results)
 
-- **H1, tested by V0:** access to `fit_line` increases the number of correct answers compared with a direct answer. This is confounded: the workflow also gets an extra model turn (see follow-up 1).
+- **H1, tested by V0:** access to `fit_line` increases the number of correct answers compared with a direct answer. **Outcome: not testable in V0.** Both conditions scored 12/12 and the optional tool was never requested (ceiling). A useful test needs a task where direct answers fail, or a design that separates tool choice from tool use. The extra-turn confound (follow-up 1) remains.
 - **H2, later extension, not tested:** harness components can become unnecessary, or even harmful, as models change ("harness debt"). Testing it means repeating a well-defined comparison across model versions while treating capability, task difficulty and inference budget carefully. Novelty is not established; a focused literature review comes first.
 
 ## Follow-up experiments (deferred until V0 is complete)
