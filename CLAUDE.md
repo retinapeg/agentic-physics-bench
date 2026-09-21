@@ -42,6 +42,7 @@ Standing instruction from Leo (2026-09-21, 18:31): Claude owns verification and 
 - For a mistake in Leo's implementation, show the smallest relevant explanation and correction. Leo applies it unless he says otherwise; record who applied it.
 - Reuse evidence already collected. Rerun checks when code changes or a specific uncertainty remains.
 - Mark missing implementation as PENDING. A verified assistant-written example is never recorded as Leo's completed implementation.
-- Comprehension questions go in LEARNING_REVIEW.md. In chat, give Leo one coding task at a time and handle the surrounding commands, checks and documentation.
+- LEARNING_REVIEW.md is Leo's workbook for later review, not for build sessions. Add comprehension questions there. Add a catch-up task whenever an assistant does work Leo would otherwise have done.
+- In chat, give Leo one coding task at a time and handle the surrounding commands, checks and documentation.
 
 Initial response: no full-day lecture. Begin checkpoint 0 and wait for Leo's environment output.

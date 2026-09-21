@@ -1,4 +1,4 @@
-# Claude handoff — 2026-09-21 (last updated 18:35 BST)
+# Claude handoff — 2026-09-21 (last updated 18:45 BST)
 
 Leo owns the Agentic Physics Bench implementation. Follow `CLAUDE.md` and `WORKMODE.md`; Codex is the independent reviewer. This is still setup work, not a completed benchmark. Keep the project bounded; Leo's instruction applies even when multi-agent modes are available.
 
@@ -33,7 +33,8 @@ All times are BST. Sources: "(mtime)" = file modification time, which is when th
 | 12 | 18:25 (session) | 1a | Checkpoint 1a docs committed and pushed: CLAUDE, EXPERIMENT, HANDOFF, LEARNING_REVIEW, RESEARCH_LOG. Scan for paths, emails and keys found nothing; traces not staged | Claude, directed by Leo | `git log`; `gh repo view` | OBSERVED |
 | 13 | 18:31 (session) | Process | Leo hands verification and routine housekeeping to Claude; standing rule added to `CLAUDE.md` | Leo decided; Claude recorded | `CLAUDE.md` | OBSERVED |
 | 14 | 18:34 (session) | 1b | `tests/test_ls_slope.py` written (4 tests, 6 bad-input cases). The tests were checked on scratch copies outside the repo: correct worked solution → `OK`; endpoint slope → 2 failures; `sum/len` mean → 1 failure (equal times with inexact mean). Against the repo now: import error, `src/tasks.py` missing | Claude | `python3 -m unittest tests.test_ls_slope` | OBSERVED: checks validated; implementation PENDING |
-| 15 | — | 1b | Leo writes `ls_slope(t, v)` in `src/tasks.py`; Claude runs the tests and records the result | Leo; Claude checks | — | PENDING |
+| 15 | 18:45 (session) | Process | Leo clarified that `LEARNING_REVIEW.md` is his workbook for later review and catch-up. It was restructured with catch-up tasks C1–C8 (work done by assistants or skipped), then the questions, walkthroughs and marking scheme, with tutor notes last | Leo decided; Claude restructured | `LEARNING_REVIEW.md` | OBSERVED |
+| 16 | — | 1b | Leo writes `ls_slope(t, v)` in `src/tasks.py`; Claude runs the tests and records the result | Leo; Claude checks | — | PENDING |
 
 ## Verified setup
 
@@ -58,7 +59,7 @@ The raw smoke traces are gitignored because they contain session and machine met
 
 ## Next single action
 
-Leo writes `ls_slope(t, v)` in `src/tasks.py`, ideally without opening `LEARNING_REVIEW.md` section 6.
+Leo writes `ls_slope(t, v)` in `src/tasks.py`, ideally without opening the Worked solutions in `LEARNING_REVIEW.md`.
 
 Claude then:
 1. runs `python3 -m unittest -v tests.test_ls_slope`;
