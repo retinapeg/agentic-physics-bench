@@ -56,7 +56,7 @@ class PromptTests(unittest.TestCase):
 
     def test_scored_ids_refused(self):
         with self.assertRaises(SystemExit):
-            run.run_direct("s-01")
+            run.run_episode("direct", "s-01")
 
 
 if __name__ == "__main__":

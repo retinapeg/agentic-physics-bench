@@ -37,3 +37,17 @@ def grade(answer, error, a_ref, tol=DEV_TOLERANCE):
         return {"correct": False, "outcome": "wrong_units", "abs_error": abs_error}
     ok = abs_error <= tol
     return {"correct": ok, "outcome": "correct" if ok else "wrong_value", "abs_error": abs_error}
+
+
+def parse_response(text):
+    """Workflow turn. Return ("final", answer, None), ("tool", request, None) or (None, None, error)."""
+    if text is None or not text.strip():
+        return None, None, "missing_output"
+    try:
+        obj = json.loads(text.strip())
+    except json.JSONDecodeError:
+        return None, None, "malformed_json"
+    if isinstance(obj, dict) and obj.get("type") == "tool":
+        return "tool", obj, None
+    answer, error = parse_final(text)
+    return ("final", answer, None) if error is None else (None, None, error)

@@ -56,9 +56,11 @@ Accepted unit strings: `m/s^2`, `m/s²`, `m s^-2` (Leo, 2026-09-21). Anything el
 
 Direct-condition prompt: `prompts/direct.txt` (approved by Leo, 2026-09-21; template SHA-256 `701dcfe4f6af1ff87680060436e8dffdc918770122a26e135f5af7d1b696e7f8`). It asks explicitly for the least-squares slope and shows only the displayed table.
 
-Workflow tool request: `{"type": "tool", "name": "fit_line", "arguments": {...}}`. `fit_line` is the only allowlisted tool; it returns slope and intercept.
+Workflow tool request: `{"type": "tool", "name": "fit_line", "arguments": {"case_id": "<current case>"}}`. `fit_line` is the only allowlisted tool. It returns the slope and intercept of the least-squares line.
 
-- DECIDE: does the model copy the (t, v) data into `arguments`, or does the harness inject the case data by ID? Copying tests transcription; injection does not.
+- Decided (Leo, 2026-09-21): the model names the current case ID, and the harness supplies that case's displayed measurements, never the answer key.
+- A request with another case ID, another tool name or other arguments is not executed. The episode ends with `invalid_tool_request`, scored incorrect (Claude's implementation choice; for approval in section 13).
+- Workflow prompts: `prompts/workflow_turn1.txt` (SHA-256 `b8f6ce40b8a8d00de25fb1562918451c05c0b65dd3bbd297f634d1588d0c0caf`) and `prompts/workflow_turn2.txt` (SHA-256 `e5582c10a5fd0f9a05e2d582fead3b69c287271daf80a3bc1d3ff71ff59b0e86`), drafted by Claude.
 
 Parsing: exactly one JSON object in the response; no repair, no retry on malformed output. Malformed output is recorded and scored incorrect.
 
@@ -77,9 +79,9 @@ Claude CLI invocation used for development episodes (`src/models.py`):
 - The prompt goes on stdin; each episode runs in a fresh empty temporary directory.
 - Effort level is the CLI default and is not pinned. DECIDE before freeze.
 
-Second turn mechanics: DECIDE between (a) a new CLI invocation whose prompt contains the full first-turn exchange plus the tool result, or (b) resuming the CLI session. Record which, since they differ in what context the model sees.
+Second turn mechanics, decided (Leo, 2026-09-21): a fresh CLI invocation whose prompt contains three things: the original task, the model's previous public JSON reply (not its hidden reasoning), and the tool result. Implemented in `src/agent.py`.
 
-If turn 1 of the workflow returns a final answer, the episode ends (0 tool calls). If turn 2 requests another tool, it is recorded as a limit violation and scored incorrect.
+Limits (Leo): at most 2 model calls and 1 tool execution per episode, with no retries. If turn 1 returns a final answer, the episode ends after 1 call and 0 tool executions, and is graded as usual. If turn 2 requests another tool, the outcome is `tool_limit_exceeded`, scored incorrect.
 
 Transport failures (rate limit, timeout, CLI crash): retry policy DECIDE (proposed: at most 1 retry, every attempt logged). Final failure = missing output, scored incorrect, kept in the denominator.
 
@@ -110,6 +112,8 @@ Order: complete a valid paired run (12 cases × 2 conditions) on one system befo
 - The two CLIs are different agent systems with different wrappers and their own instructions, whose content is unverified; any cross-system difference is a system comparison, not a raw-model comparison.
 - The workflow gets up to one extra model turn and extra context. An apparent tool benefit can't be separated from the extra-turn effect.
 - 12 cases is a pilot: no significance claims, no general ranking.
+- `fit_line` computes exactly `a_ref`. A workflow episode that uses the tool is therefore correct if the model reports the returned value in the required format. The workflow measures whether the system chooses the tool and relays its result faithfully, not whether it can calculate.
+- The CLI's reported input-token totals don't track prompt length: 3,862 for the direct prompt, 3,863 for the nearly twice-as-long workflow prompt, and 4,570 for a one-word probe. They are not used as a measure of prompt size.
 
 ## 10. Freeze record (fill in, then commit before any scored run)
 
@@ -143,3 +147,20 @@ flowchart LR
 ## 12. Deterministic reference point
 
 `ls_slope` in `src/tasks.py` computes the answer exactly, so the task does not need a language model. The write-up reports this reference alongside the model conditions. V0 measures how reliably an LLM system follows a specified numerical instruction: format, units, accuracy and, in the tool condition, requesting and using a permitted calculation. It cannot show that an LLM is necessary for regression. It makes no claim about long-horizon reasoning, self-improvement or novel architecture. Follow-up work is in `RESEARCH_ROADMAP.md`.
+
+## 13. Decisions for one approval before scored inference
+
+Proposed by Claude, 2026-09-21. Leo approves or edits these once. After that: implement any changes, generate the scored cases, fill in the freeze record (section 10), commit, then run.
+
+| # | Decision | Recommendation | Reason |
+|---|---|---|---|
+| D1 | Final σ | 0.5 m/s (unchanged) | The endpoint shortcut differs from the least-squares slope by SD ≈ 0.112 m/s², so it lands within ±0.01 only about 7% of the time |
+| D2 | Scored tolerance | Absolute ±0.01 m/s² (same as dev) | Allows a 2-decimal answer; separates a real fit from the shortcut |
+| D3 | Near-zero accelerations | Redraw \|a_true\| while it is below 0.5 m/s² | At σ = 0.5 the chance of a sign flip is then about 3 × 10⁻⁶. The existing dev draws are all ≥ 2 m/s², so dev files should be unchanged (to verify by hash) |
+| D4 | Workflow turn-1 wording | Keep it optional ("You may use one tool"); report the tool-request rate as a secondary outcome | The question includes whether the system chooses the tool. On dev-01 (n = 1) the model answered without it. Requiring the tool would instead measure faithful relaying of a value that equals the key |
+| D5 | Transport failures | No retries. A failed call is `missing_output`, scored incorrect and kept in the denominator. If a rate-limit status is not "allowed", stop the batch, resume later and record the delay | Matches the no-retry rule; nothing is dropped |
+| D6 | Effort level | Pin it explicitly, e.g. `--effort high`, for both conditions | Defaults can change between CLI versions; dev episodes used the unpinned default |
+| D7 | Run order | For each case, run both conditions back to back, alternating which goes first. One CLI version (2.1.278), no upgrades mid-run | Limits drift over time and differences between versions |
+| D8 | Systems | Claude only for the scored run. GPT/Codex after its controls are verified, with a separate approval | Codex's read-only sandbox doesn't remove its shell |
+| D9 | Scored sign order | Interleave −/+ across s-01…s-12 (6 each), as in dev | Keeps sign balanced over time |
+| D10 | Invalid tool requests | End the episode, scored incorrect (as implemented) | Keeps the 2-call / 1-tool bound simple |

@@ -1,13 +1,14 @@
 # Research roadmap
 
-Status as of 2026-09-21 (commit `a9af5b1`). Drafted by Claude at Leo's direction, from a brief Leo supplied on 2026-09-21; the brief's drafter is not recorded here. Leo sets priorities. Nothing below is claimed as a result unless it appears under "Demonstrated".
+Status as of 2026-09-21, after checkpoint 3 (bounded tool workflow). Written by Claude at Leo's direction from a research addendum that Codex drafted in chat. Leo supplied the addendum and directed its adoption (2026-09-21). Leo sets priorities. Nothing below is claimed as a result unless it appears under "Demonstrated".
 
 ## Demonstrated (with evidence)
 
 - Reproducible development data with checked reference answers: `src/tasks.py`, `data/dev_*.jsonl`, `tests/test_tasks.py`. SHA-256 values are in `HANDOFF.md`.
 - A working path from prompt to model, parser, grader and saved trace: `src/run.py`, `src/models.py`, `src/evaluate.py`.
 - One correct direct-answer development episode on Claude (dev-01): `results/episodes_dev.jsonl`.
-- 13 offline checks pass: `python3 -m unittest tests.test_ls_slope tests.test_tasks tests.test_evaluate`.
+- A bounded tool workflow (`src/agent.py`, `src/tools.py`), tested offline on scripted replies. One real dev-01 workflow episode: the model answered without requesting the tool (correct, 1 call, 0 tool executions).
+- 19 offline checks pass: `python3 -m unittest tests.test_ls_slope tests.test_tasks tests.test_evaluate tests.test_agent`.
 
 ## Not demonstrated
 
@@ -18,8 +19,8 @@ Status as of 2026-09-21 (commit `a9af5b1`). Drafted by Claude at Leo's direction
 
 ## V0: remaining work (the current priority)
 
-1. A bounded `fit_line` tool workflow on dev-01.
-2. Freeze the protocol and generate the 12 scored cases.
+1. ~~A bounded `fit_line` tool workflow on dev-01.~~ Built; see `EXPERIMENT.md` sections 5–6.
+2. Approve `EXPERIMENT.md` section 13, freeze the protocol and generate the 12 scored cases.
 3. Run direct and tool-workflow conditions on the same 12 cases with Claude; add GPT once its controls are verified.
 4. Analysis from saved results: complete denominators, paired outcomes, failure review, one chart, a factual README with reproduction steps.
 

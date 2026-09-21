@@ -1,0 +1,10 @@
+$original_task
+
+Your previous reply:
+$previous_response
+
+Tool result (fit_line):
+$tool_result
+
+No further tool use is available. Reply with exactly one JSON object and nothing else:
+{"type": "final", "acceleration": <number>, "units": "m/s^2"}

@@ -1,0 +1,11 @@
+Velocity measurements of an object moving in a straight line (case $case_id):
+t (s): $t
+v (m/s): $v
+Report the acceleration as the least-squares slope of v against t.
+
+You may use one tool before answering:
+- fit_line: computes the least-squares line through this case's measurements and returns the slope and intercept.
+To request it, reply with exactly: {"type": "tool", "name": "fit_line", "arguments": {"case_id": "$case_id"}}
+
+Reply with exactly one JSON object and nothing else: either that tool request, or your final answer:
+{"type": "final", "acceleration": <number>, "units": "m/s^2"}

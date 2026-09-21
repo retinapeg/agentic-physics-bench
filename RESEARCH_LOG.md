@@ -110,6 +110,24 @@ Keep ordinary entries to five to eight lines; combine fields when possible.
 - Scope: V0 is unchanged (4 dev cases, 12 scored cases). Follow-ups 1–3 and "harness debt" are deferred; novelty is not established. Nothing has been reproduced.
 - Status: OBSERVED (documentation only; no model calls).
 
+## 2026-09-21 | Correction | Drafter of the research addendum
+- Recorded 19:18 BST by Claude at Leo's direction. The roadmap entry above said the brief's drafter was "not recorded". In fact Codex drafted the research addendum in chat, and Leo supplied it and directed its adoption. `RESEARCH_ROADMAP.md` and `HANDOFF.md` row 23 now say so.
+- Status: VERIFIED against Leo's statement in chat.
+
+## 2026-09-21 | 3 Tool workflow | Bounded fit_line workflow built; the model did not request the tool
+- Authorship:
+  - Leo decided the design: the model names the case ID and the harness injects the displayed data; turn 2 is a fresh call with the original task, the previous public reply and the tool result; at most 2 model calls and 1 tool execution; no retries.
+  - Claude wrote `src/tools.py`, `src/agent.py`, the workflow prompts, the runner changes and `tests/test_agent.py`. Ending on an invalid tool request was Claude's choice (for approval).
+- Offline: 19 tests OK. Scripted replies cover tool then answer; answer without the tool; three invalid requests, none executed; a second tool request (`tool_limit_exceeded`); and malformed or missing replies. They also check that the turn-2 prompt holds the task, the previous reply and the tool result, and no template variables.
+- Real episode, dev-01 workflow (19:17:01, 1 call, no rerun):
+  - The model answered directly: `{"type": "final", "acceleration": -1.946, "units": "m/s^2"}`.
+  - Absolute error 1.8 × 10⁻⁴ m/s²; **correct**; 0 tool executions.
+  - Controls OK; 477 output tokens reported.
+- Measurement limit: reported input-token totals don't track prompt length (direct 3,862; workflow 3,863 with a prompt about twice as long; probe 4,570). Unexplained; not used as evidence.
+- Design consequence: `fit_line` returns exactly `a_ref`, so tool use plus faithful relaying guarantees a correct answer. With optional wording, the workflow tests whether the system chooses the tool. This is decision D4 in `EXPERIMENT.md` section 13.
+- Lesson (Leo): TODO
+- Status: VERIFIED for the workflow's control logic (offline) and one dev episode (n = 1, tool not used). No tool benefit is demonstrated.
+
 ## Topics to capture as they occur
 
 Model vs agent vs pretrained weights; API/SDK vs model identity; benchmarks vs evals; reference validation; data leakage; prompts and configuration hashes; structured-output failures; tool dispatch and stopping; retries and missing denominators; retrieval vs generation errors; unsupported claims vs numerical mistakes; RAG vs fine-tuning; paired analysis; reproducibility; what I implemented vs delegated.
