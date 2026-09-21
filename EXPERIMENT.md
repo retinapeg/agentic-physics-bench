@@ -52,7 +52,9 @@ Independent check before scoring: compute `a_ref` for every case two ways (hand-
 
 Final answer, both conditions: `{"type": "final", "acceleration": <number>, "units": "m/s^2"}`
 
-Accepted unit strings: DECIDE (proposed: `m/s^2`, `m/s²`, `m s^-2`). Anything else is a units failure.
+Accepted unit strings: `m/s^2`, `m/s²`, `m s^-2` (Leo, 2026-09-21). Anything else is a units failure.
+
+Direct-condition prompt: `prompts/direct.txt` (approved by Leo, 2026-09-21; template SHA-256 `701dcfe4f6af1ff87680060436e8dffdc918770122a26e135f5af7d1b696e7f8`). It asks explicitly for the least-squares slope and shows only the displayed table.
 
 Workflow tool request: `{"type": "tool", "name": "fit_line", "arguments": {...}}`. `fit_line` is the only allowlisted tool; it returns slope and intercept.
 
@@ -70,6 +72,11 @@ Parsing: exactly one JSON object in the response; no repair, no retry on malform
 | Session state | fresh per episode | fresh per episode |
 | Working directory | empty temp dir, no data/keys/code | same |
 
+Claude CLI invocation used for development episodes (`src/models.py`):
+- Command: `claude --print --model claude-opus-5 --tools "" --safe-mode --strict-mcp-config --no-session-persistence --output-format stream-json --verbose`.
+- The prompt goes on stdin; each episode runs in a fresh empty temporary directory.
+- Effort level is the CLI default and is not pinned. DECIDE before freeze.
+
 Second turn mechanics: DECIDE between (a) a new CLI invocation whose prompt contains the full first-turn exchange plus the tool result, or (b) resuming the CLI session. Record which, since they differ in what context the model sees.
 
 If turn 1 of the workflow returns a final answer, the episode ends (0 tool calls). If turn 2 requests another tool, it is recorded as a limit violation and scored incorrect.
@@ -80,7 +87,9 @@ Transport failures (rate limit, timeout, CLI crash): retry policy DECIDE (propos
 
 Correct iff: output parses, units accepted, and `|answer − a_ref| ≤ tol`.
 
-Tolerance rule: DECIDE — absolute, relative, or `max(abs_floor, rel·|a_ref|)`. Write the justification here, including why it is not so loose that answering `a_true` or a rounded guess passes.
+Development tolerance: absolute 0.01 m/s², PROVISIONAL (Leo, 2026-09-21).
+
+Scored tolerance rule: DECIDE — absolute, relative, or `max(abs_floor, rel·|a_ref|)`. Write the justification here, including why it is not so loose that answering `a_true` or a rounded guess passes.
 
 Primary result per system × condition: correct / 12 (all planned cases).
 

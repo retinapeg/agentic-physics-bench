@@ -87,6 +87,22 @@ Keep ordinary entries to five to eight lines; combine fields when possible.
 - Lesson (Leo): TODO
 - Status: VERIFIED by the named checks. σ is still provisional; scored cases have not been generated.
 
+## 2026-09-21 | 2 Episode | One real direct episode on dev-01, saved and graded
+- Authorship: Claude wrote `prompts/direct.txt`, `src/models.py`, `src/evaluate.py`, `src/run.py` and `tests/test_evaluate.py` at Leo's direction. Leo approved the prompt wording, the provisional dev tolerance (±0.01 m/s²) and the accepted units ("go"). Claude made both CLI calls with Leo's authorisation.
+- Isolation probe (18:44:57, 1 call, answer "ok"):
+  - With `--safe-mode --tools ""`, the init line shows `tools: []` and `mcp_servers: []`.
+  - It still lists 21 skill names, 1 plugin (`pyright-lsp`) and 5 built-in agents, but none of the user's own skill folders.
+  - With no tools these can't be invoked. Whether their names reach the model's context is unverified.
+  - Reported input tokens: 4,570.
+- Episode dev-01 direct (18:45:26, 1 call, no retry):
+  - Response `{"type": "final", "acceleration": -1.9458, "units": "m/s^2"}`. a_ref = −1.945818 m/s²; absolute error 1.8 × 10⁻⁵; **correct** at the provisional tolerance.
+  - Init `tools: []`, 0 tool-use blocks, 1 turn, 8.3 s.
+  - Reported 3,862 input and 507 output tokens; a `thinking` block came before the text.
+  - Overage was rejected and not used.
+- Evidence: `results/episodes_dev.jsonl` (reviewed summary, committed); `results/raw/` (full CLI output, local, gitignored). 13 offline tests OK. Prompt SHA-256 `c4e2f47f…74f3`.
+- Lesson (Leo): TODO
+- Status: VERIFIED for one development episode. This is not an accuracy estimate. The effort level isn't pinned. Why the probe and the episode report different input-token totals (4,570 vs 3,862) is unexplained.
+
 ## Topics to capture as they occur
 
 Model vs agent vs pretrained weights; API/SDK vs model identity; benchmarks vs evals; reference validation; data leakage; prompts and configuration hashes; structured-output failures; tool dispatch and stopping; retries and missing denominators; retrieval vs generation errors; unsupported claims vs numerical mistakes; RAG vs fine-tuning; paired analysis; reproducibility; what I implemented vs delegated.

@@ -1,23 +1,28 @@
-# Claude handoff — 2026-09-21 (last updated 18:38 BST)
+# Claude handoff — 2026-09-21 (last updated 18:48 BST)
 
 Agentic Physics Bench is an AI engineering and research pilot. Leo is the research lead and decision maker; Claude writes the code and checks at his direction; Codex is the independent reviewer. Keep the project bounded: no extra agents or frameworks. Follow `CLAUDE.md` (its later standing instructions take precedence) and `WORKMODE.md`.
 
 **Standing rules (Leo, 2026-09-21)**
 - At the end of every checkpoint, update this file's timeline, current state and next action, and add a dated entry to `RESEARCH_LOG.md`. Cite evidence and say who did the work.
 - Claude writes the functions and checks, runs them, and records actual results. Research decisions stay with Leo.
-- Learning material lives only in the local, gitignored `LEARNING_REVIEW.md`. Leo will work through it on another day.
+- Learning material lives only in the local, gitignored `LEARNING_REVIEW.md`, with one consolidated entry per completed checkpoint. Leo will work through it on another day.
 
 ## Current state
 
-- Repo: private (checked with `gh repo view`: `PRIVATE`). Last pushed commit before this update: `ce07160`.
+- Repo: private (checked with `gh repo view`: `PRIVATE`). Checkpoint 1b is `94499d0`; checkpoint 2 is the next commit (see `git log`).
 - Protocol: `EXPERIMENT.md` is DRAFT and not frozen. σ = 0.5 m/s is provisional for development. Still open: final σ, tolerance, |a_true| floor or redraw rule, and sections 5–7.
-- Code: `src/tasks.py` (`ls_slope`, `make_case`, `make_dev_cases`), written by Claude at Leo's direction.
-- Tests: `tests/test_ls_slope.py` and `tests/test_tasks.py`, written by Claude. 9 tests pass.
+- Code, all written by Claude at Leo's direction:
+  - `src/tasks.py`: reference slope and dev cases.
+  - `src/models.py`: Claude CLI adapter.
+  - `src/evaluate.py`: parser and grader.
+  - `src/run.py`: runs one direct episode and saves its trace.
+  - `prompts/direct.txt`: the direct-condition prompt template.
+- Tests: `tests/test_ls_slope.py`, `tests/test_tasks.py` and `tests/test_evaluate.py`, written by Claude. 13 tests pass.
 - Data: `data/dev_cases.jsonl` (what a model sees) and `data/dev_keys.jsonl` (answer key).
   - `dev_cases.jsonl` SHA-256 `07c79eb37ae2cfe0e45cbd6003aa1a049d4c30b02491bf5695604682fe8e4ef7`
   - `dev_keys.jsonl` SHA-256 `dfa56e5ab44f5be5fee284786f9bf128a57ee4d9049dd8e3e83ab141c3261059`
   - Scored cases are not generated.
-- Episodes: none run. No scores.
+- Episodes: one development episode, dev-01 direct on Claude: **correct** (−1.9458 vs a_ref −1.945818 m/s²). Saved in `results/episodes_dev.jsonl`; raw output in `results/raw/`, which is gitignored. No scored cases or scores.
 - Publication: no public repo, release, or X post.
 
 ## Chronological timeline
@@ -47,7 +52,10 @@ All times are BST. Sources:
 | 16 | 18:34–18:36 (session) | Process | Leo: "You write the functions"; learning deferred to another day | Leo decided; Claude recorded | `CLAUDE.md` | OBSERVED |
 | 17 | 18:36 (session) | 1b | `src/tasks.py` and `tests/test_tasks.py` written; dev files generated. 9/9 tests OK; regenerating gives identical SHA-256s. dev-01 a_ref = −1.9458 m/s² (a_true −2.0942) | Claude, directed by Leo | unittest output; `shasum -a 256 data/*.jsonl`; RESEARCH_LOG 1b entry | VERIFIED |
 | 18 | 18:36 (session) | Process | All learning material kept in one local doc, gitignored and untracked with `git rm --cached`. The repo is framed as an AI engineering and research project | Leo decided; Claude applied | `.gitignore` | OBSERVED |
-| 19 | — | 2 | One real Claude episode on dev-01, direct condition, saved with input, output, metadata and grade | Claude runs; Leo approves the decisions below | — | PLANNED |
+| 19 | 18:40–18:44 (session) | 2 | Leo approved the prompt, the ±0.01 m/s² dev tolerance and the units ('go'). Claude wrote the prompt file, adapter, parser/grader and runner; 13 offline tests OK | Leo decided; Claude built | unittest output | OBSERVED |
+| 20 | 18:44:57 (session) | 2 | Isolation probe (1 CLI call, answer 'ok'): `tools: []`, `mcp_servers: []`; still lists 21 skill names, 1 plugin, 5 built-in agents, but not the user's own skills; 4,570 reported input tokens | Claude, authorised by Leo | `results/raw/probe-isolation-*.json` (local) | OBSERVED |
+| 21 | 18:45:26 (session) | 2 | dev-01 direct episode (1 CLI call, no retry): answer −1.9458 m/s², a_ref −1.945818, absolute error 1.8e-5 → correct; 0 tool uses; 3,862 in / 507 out reported tokens | Claude, authorised by Leo | `results/episodes_dev.jsonl` | VERIFIED (one dev episode) |
+| 22 | 18:46–18:48 (session) | 2 | Leo set a firm stopping point. Rule changed to one learning entry per checkpoint. Docs updated; checkpoint 2 committed and pushed | Leo decided; Claude applied | this commit | OBSERVED |
 
 ## Verified setup
 
@@ -65,13 +73,9 @@ The raw smoke traces are gitignored because they contain session and machine met
 
 1. Final σ and the tolerance rule: can a least-squares fit be told apart from shortcuts such as the endpoint slope within the tolerance?
 2. A minimum |a_true| or a redraw rule, decided before scored generation.
-3. For the first episode:
-   - the direct-condition prompt text;
-   - a provisional dev tolerance;
-   - which unit strings to accept;
-   - whether the tool's arguments are copied by the model or injected by the harness (needed for step 3).
+3. For the tool workflow: whether the tool's arguments are copied by the model or injected by the harness.
 4. Section 6 decisions: how the second turn works, and the retry policy.
-5. Claude CLI control: every episode runs from an empty temporary directory with `--tools ""`. It is UNTESTED whether user-level settings or memory still load there; check before the first episode. The runner must log the full command line and the prompt text.
+5. Claude CLI control: episodes run in an empty temporary directory with `--tools "" --safe-mode --strict-mcp-config --no-session-persistence`. The runner logs the command line and prompt. The init line still lists built-in skill names; whether they reach the model's context is unverified. The effort level is not pinned.
 6. Codex: a read-only sandbox does not remove the shell tool. Choose prevention or detection; detection is a weaker control and must be labelled as such. This blocks Codex episodes only.
 
 ## Release preparation (before making the repo public)
@@ -81,11 +85,13 @@ The raw smoke traces are gitignored because they contain session and machine met
 
 ## Next single action
 
-Leo approves or edits the proposed prompt, dev tolerance and unit strings. Claude then writes the episode runner, checks the CLI isolation (item 5), runs one direct-condition dev-01 episode through the Claude subscription CLI, and saves and grades the trace.
+This session is stopped (Leo, 18:45). Deferred to a later session: the tool workflow, additional models and the scored benchmark.
+
+**Next action (next session):** Leo decides the two tool-workflow settings, open decision 3 (arguments copied or injected) and open decision 4 (second-turn mechanics). Then Claude builds the bounded `fit_line` workflow on dev-01.
 
 Delivery sequence (Leo, 2026-09-21):
 1. A checked reference function and one reproducible dev case. **Done: rows 14 and 17.**
-2. One real episode saved with its input, output, metadata and grade.
+2. One real episode saved with its input, output, metadata and grade. **Done: rows 19–21.**
 3. A bounded tool workflow on the same dev case.
 4. A frozen protocol and scored dataset.
 5. Direct and workflow runs on the same 12 scored cases.

@@ -42,13 +42,14 @@ Standing instruction from Leo (2026-09-21, 18:31): Claude owns verification and 
 - For a mistake in Leo's implementation, show the smallest relevant explanation and correction. Leo applies it unless he says otherwise; record who applied it.
 - Reuse evidence already collected. Rerun checks when code changes or a specific uncertainty remains.
 - Mark missing implementation as PENDING. A verified assistant-written example is never recorded as Leo's completed implementation.
-- LEARNING_REVIEW.md is Leo's workbook for later review, not for build sessions. Add comprehension questions there. Add a catch-up task whenever an assistant does work Leo would otherwise have done.
+- LEARNING_REVIEW.md is Leo's workbook for later review, not for build sessions. It gets one consolidated entry per completed checkpoint (see the later instruction below).
 - In chat, give Leo one coding task at a time and handle the surrounding commands, checks and documentation.
 
 Standing instruction from Leo (2026-09-21, about 18:35). This supersedes the teaching-contract rules above that Leo writes the core code:
 - Claude writes the functions and the surrounding checks. Leo is the research decision maker and has deferred the learning tasks to a later day.
 - Label all code accurately as written by Claude at Leo's direction.
-- Keep all learning material (catch-up tasks, questions, walkthroughs, marking scheme) in one local doc, `LEARNING_REVIEW.md`. It is gitignored. Add a catch-up task there for each function Claude writes.
+- Keep all learning material (catch-up tasks, questions, walkthroughs, marking scheme) in one local doc, `LEARNING_REVIEW.md`. It is gitignored.
+- Add one consolidated entry per completed checkpoint there, not a task per function (Leo, 18:45). Each entry has a short explanation linked to the actual files, at most two exam-style questions with answers in the separate marking scheme, accurate authorship and the observed result.
 - The GitHub repo is an AI engineering and research project. Keep tracked files focused on the experiment, code, data, results and their provenance.
 - Research decisions (protocol values, tolerance, prompts, what to publish) remain Leo's. Propose defaults and ask.
 
