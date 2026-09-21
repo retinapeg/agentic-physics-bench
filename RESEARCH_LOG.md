@@ -172,6 +172,11 @@ Keep ordinary entries to five to eight lines; combine fields when possible.
 - Observed: the example's references checked two ways. The closed form vs a central finite difference agree to 8 × 10⁻¹² (v(0.37 s) = −0.4093 m/s). The symbolic derivative vs finite differences at 25 random points gives worst scaled error 2.8 × 10⁻¹⁰.
 - Status: PLANNED (study). No new model calls in this project.
 
+## 2026-09-22 | Consolidation | One canonical repository; research branch
+- Decision (Leo, relayed by Codex, ~00:37): "I don't want multiple repos having multiple versions of a project." All work continues in `retinapeg/agentic-physics-bench`. V1 stays the immutable tag `v1.0.0` on `main`; the study goes on the branch `research/analytical-physics`.
+- Done by Claude (00:38): the branch starts from commit `955b3b2`, fetched from the now-superseded separate repository, so the lineage/proposal commit keeps its hash and authorship. Its parent is exactly `v1.0.0` (`8d336d8`), and the tag was not moved. The separate repository and folder are preserved, not deleted or rewritten, and no longer used. The local workbooks were compared: the canonical copy was a strict subset, with no attempts in either. Both were backed up and the newest merged into the canonical folder.
+- Status: VERIFIED (`git rev-parse`; `git check-ignore`). No model calls, installs or research actions.
+
 ## Topics to capture as they occur
 
 Model vs agent vs pretrained weights; API/SDK vs model identity; benchmarks vs evals; reference validation; data leakage; prompts and configuration hashes; structured-output failures; tool dispatch and stopping; retries and missing denominators; retrieval vs generation errors; unsupported claims vs numerical mistakes; RAG vs fine-tuning; paired analysis; reproducibility; what I implemented vs delegated.

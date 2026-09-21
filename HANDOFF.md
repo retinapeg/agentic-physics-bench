@@ -1,25 +1,35 @@
-# Handoff: Agentic Physics Bench Analytic (derived project), 2026-09-21 (last updated 19:51 BST)
+# Handoff: research branch `research/analytical-physics` (last updated 00:38 BST, 2026-09-22)
 
-Derived from V1 (`retinapeg/agentic-physics-bench`, tag `v1.0.0`, commit `8d336d8`); see `LINEAGE.md`. Leo is the research lead and decision maker; Claude writes code and checks at his direction; Codex is the independent reviewer. The V1 standing rules carry over: logging, authorship, enforced controls, freeze before scoring, subscription routes only, and the local gitignored `LEARNING_REVIEW.md`.
+**Canonical paths (Leo's one-repo decision, 2026-09-22 ~00:37):**
+- Repository: https://github.com/retinapeg/agentic-physics-bench. Local folder: `~/Desktop/agentic-physics-bench`.
+- V1: tag `v1.0.0` (`8d336d8`) on `main`, immutable.
+- Study work: the branch `research/analytical-physics`.
+- The separate repository `retinapeg/agentic-physics-bench-analytic` and its folder are **superseded**: preserved, not deleted, not rewritten, not used. See `LINEAGE.md`.
+
+Leo is the research lead and decision maker; Claude writes code and documentation at his direction; Codex is the independent reviewer and, overnight on 2026-09-22, the coordinator and tutor, with Leo's authorisation. The V1 standing rules carry over.
 
 ## Current state
 
-- Repository: private, created from the V1 release commit with full history. The `parent` remote is fetch-only.
-- Proposal: `PROPOSAL.md` gives one concrete matched task example, a grading rubric, a budget of ≤ 80 CLI calls and decisions P1–P8. It **awaits Leo's research approval.**
-- Code: V1's code, unchanged. No new tools, tasks or runs yet.
+- Branch `research/analytical-physics`: starts at `v1.0.0`. It contains commit `955b3b2` (lineage and proposal, originally pushed to the superseded repository) and the consolidation and documentation commits after it.
+- Proposal: `PROPOSAL.md` gives the matched example, the rubric, a budget of ≤ 80 CLI calls and decisions P1–P8. It **awaits Leo's research approval.** Recommended revisions are in `RESEARCH_ROADMAP.md` and are recommendations only.
+- Code: V1's, unchanged. No new tools, tasks, installs or model calls.
+- Learning workbook: the local, gitignored `LEARNING_REVIEW.md` in the canonical folder. It holds the newest merged content; there are no attempts recorded in either copy.
 
-## Timeline (derived project)
+## Timeline (research branch)
 
 | # | Time | Event | Done by | Evidence | Status |
 |---|---|---|---|---|---|
-| D1 | ~19:45 (session) | Leo: after V1 ships, create a derived project for numerical vs analytical performance with a bounded math-tool harness | Leo decided | chat | OBSERVED |
-| D2 | 19:51 (session) | Cloned from GitHub at `v1.0.0`; history and tags kept; `parent` remote made fetch-only; the learning doc copied locally (gitignored) | Claude, directed by Leo | `git log`; `LINEAGE.md` | VERIFIED |
-| D3 | 19:51 (session) | `PROPOSAL.md` written. Example references checked: closed form vs finite differences 8 × 10⁻¹²; symbolic reference vs finite differences at 25 points ≤ 2.8 × 10⁻¹⁰ | Claude | `PROPOSAL.md` | OBSERVED |
-| D4 | 19:51 (session) | New private GitHub repository created and pushed | Claude, directed by Leo | `git remote -v` | OBSERVED |
+| D1 | ~19:45 (09-21, session) | Leo: after V1 ships, start a follow-up study on numerical vs analytical performance with a bounded math-tool harness | Leo decided | chat | OBSERVED |
+| D2 | 19:50 (09-21, session) | Separate repository cloned from `v1.0.0`, with history and tags kept; the workbook copied locally | Claude, directed by Leo | superseded repo; `LINEAGE.md` | VERIFIED |
+| D3 | 19:51 (09-21, session) | `PROPOSAL.md` written. Example references checked: closed form vs finite differences 8 × 10⁻¹²; symbolic reference vs finite differences at 25 points ≤ 2.8 × 10⁻¹⁰ | Claude | `PROPOSAL.md` | OBSERVED |
+| D4 | 19:52 (09-21, session) | Commit `955b3b2` pushed to the separate private repository | Claude, directed by Leo | `git log` | OBSERVED |
+| D5 | 00:35–00:37 (09-22, session) | Overnight documentation pack started in the separate folder (START HERE and chronology in the local workbook). Codex coordinated, on Leo's authorisation | Claude | local workbook | OBSERVED |
+| D6 | ~00:37 (09-22) | Leo's one-repo decision, relayed by Codex; the separate repository superseded | Leo decided | chat | OBSERVED |
+| D7 | 00:37–00:39 (09-22, session) | Both folders inspected (clean, no stashes, no attempts). Both workbooks backed up. Branch created in the canonical repo from `955b3b2`, which sits directly on `v1.0.0`. The newest workbook merged into the canonical folder. Lineage, README, CLAUDE.md and this file updated | Claude | `git log research/analytical-physics` | VERIFIED |
 
 ## Next action
 
-Leo approves or edits P1–P8 in `PROPOSAL.md`, including whether to install SymPy (P6). Claude then implements the tools and grader with offline tests, runs the development gate (≤ 16 calls), reports back if the gate fails, and otherwise freezes and runs the scored study (≤ 64 calls).
+Leo approves or edits P1–P8 in `PROPOSAL.md`, including whether to install SymPy (P6), and reads the recommendations in `RESEARCH_ROADMAP.md` first. Nothing needing approval is started before then.
 
 ---
 

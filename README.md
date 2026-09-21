@@ -1,10 +1,10 @@
-# Agentic Physics Bench: Analytic (derived project)
+# Agentic Physics Bench: research branch `research/analytical-physics`
 
-**Status:** research proposal awaiting approval ([`PROPOSAL.md`](PROPOSAL.md)). No new experiment has been run.
+**Status:** research proposal awaiting approval ([`PROPOSAL.md`](PROPOSAL.md)). No new experiment has been run. This branch is in the canonical repository. The released V1 is the tag `v1.0.0` on `main` and is unchanged.
 
 **Question:** on matched physics problems, how does numerical performance relate to analytical formulation and derivation? Does a bounded mathematical-tool harness improve the weaker capability without degrading the stronger?
 
-**Derived from** Agentic Physics Bench V1, [`retinapeg/agentic-physics-bench`](https://github.com/retinapeg/agentic-physics-bench), tag `v1.0.0`, commit `8d336d8`. See [`LINEAGE.md`](LINEAGE.md). Everything below this point is the **inherited V1 README**. It describes the parent study and its results, not results of this project.
+**Builds on** Agentic Physics Bench V1: tag `v1.0.0`, commit `8d336d8`, in this repository. See [`LINEAGE.md`](LINEAGE.md), which also records a separate repository created briefly on 2026-09-21 and now superseded. Everything below this point is the **inherited V1 README**. It describes V1 and its results, not results of the pending study.
 
 ---
 

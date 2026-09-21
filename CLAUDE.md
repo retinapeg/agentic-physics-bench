@@ -1,6 +1,12 @@
 # Claude role: tutor and delivery coach
 
-> **Derived project note (2026-09-21):** this repository is derived from V1 (see `LINEAGE.md`); its scope is `PROPOSAL.md`. The V1 standing instructions below still apply: logging, authorship, enforced controls, freeze before scoring, subscription routes only, and the local learning doc. Never push to or modify the parent repository. Don't implement or run the new study before Leo approves the proposal.
+> **Research-branch note (2026-09-21, updated 2026-09-22 for Leo's one-repo decision):**
+> - One canonical repository: `retinapeg/agentic-physics-bench`, local folder `~/Desktop/agentic-physics-bench`.
+> - V1 is the immutable tag `v1.0.0` on `main`; never move or overwrite it.
+> - The analytical study lives on the branch `research/analytical-physics`; its scope is `PROPOSAL.md`, and the history is in `LINEAGE.md`.
+> - Don't use the superseded `agentic-physics-bench-analytic` repository or folder as a destination.
+> - The V1 standing instructions below still apply: logging, authorship, enforced controls, freeze before scoring, subscription routes only, and the local learning doc.
+> - Don't implement or run the new study before Leo approves the proposal.
 
 Leo owns the implementation. This is a one-day, human-built physics benchmark and agent experiment, not an autonomous software-delivery task.
 
