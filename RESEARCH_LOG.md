@@ -177,6 +177,13 @@ Keep ordinary entries to five to eight lines; combine fields when possible.
 - Done by Claude (00:38): the branch starts from commit `955b3b2`, fetched from the now-superseded separate repository, so the lineage/proposal commit keeps its hash and authorship. Its parent is exactly `v1.0.0` (`8d336d8`), and the tag was not moved. The separate repository and folder are preserved, not deleted or rewritten, and no longer used. The local workbooks were compared: the canonical copy was a strict subset, with no attempts in either. Both were backed up and the newest merged into the canonical folder.
 - Status: VERIFIED (`git rev-parse`; `git check-ignore`). No model calls, installs or research actions.
 
+## 2026-09-22 | Documentation | Overnight learning and research-documentation pack
+- Authorship: Leo authorised the pack; Codex coordinated it overnight and relayed Leo's instructions; Claude wrote it and ran offline checks only. No model calls, installs, experiments or publishing.
+- Tracked: `RESEARCH_ROADMAP.md` now has the pending-study notes (the two questions; supplied-function differentiation vs deriving dynamics from a Lagrangian; symbolic vs sample-point equivalence; the extra-turn confound) and recommendations R1–R5, *awaiting approval*. `HANDOFF.md` is updated.
+- Clarification of earlier wording: "the system reproduced/reproduces the least-squares slope to within rounding" (V1 README; checkpoint 5 entry above) describes the **output values only**. The saved evidence doesn't establish the internal method. V1 shows that *offering* the tool gave no accuracy gain on these cases; the benefit of *executing* it is untested (0 executions). Earlier entries are left as written.
+- Local (gitignored): `LEARNING_REVIEW.md` in the canonical folder. It has a START HERE route, the evidence-linked chronology, findings with uncertainty (12/12 → accuracy ≥ 0.735 at 95%, exact two-sided), the architecture and file map, questions consolidated to at most two per checkpoint (nothing deleted), and interview accounts. An earlier interview line that overclaimed the internal method was corrected.
+- Status: OBSERVED (documentation). The offline commands in the workbook were re-run at 00:41.
+
 ## Topics to capture as they occur
 
 Model vs agent vs pretrained weights; API/SDK vs model identity; benchmarks vs evals; reference validation; data leakage; prompts and configuration hashes; structured-output failures; tool dispatch and stopping; retries and missing denominators; retrieval vs generation errors; unsupported claims vs numerical mistakes; RAG vs fine-tuning; paired analysis; reproducibility; what I implemented vs delegated.

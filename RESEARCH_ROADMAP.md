@@ -2,6 +2,8 @@
 
 > Release note (2026-09-21): the pilot called "V0" below shipped as **V1** (tag `v1.0.0`). Leo chose the next extension: a derived project on numerical vs analytical performance with a bounded mathematical-tool harness, in a separate repository created from the V1 release. Follow-ups 1–3 below remain deferred.
 
+> Update (2026-09-22): Leo's one-repo decision. The study now lives on the branch `research/analytical-physics` of this repository; the separate repository is superseded (see `LINEAGE.md`).
+
 Status as of 2026-09-21, after the V0 scored pilot (checkpoint 5). Written by Claude at Leo's direction from a research addendum that Codex drafted in chat. Leo supplied the addendum and directed its adoption (2026-09-21). Leo sets priorities. Nothing below is claimed as a result unless it appears under "Demonstrated".
 
 ## Demonstrated (with evidence)
@@ -37,6 +39,7 @@ Status as of 2026-09-21, after the V0 scored pilot (checkpoint 5). Written by Cl
 ## Hypotheses (not results)
 
 - **H1, tested by V0:** access to `fit_line` increases the number of correct answers compared with a direct answer. **Outcome: not testable in V0.** Both conditions scored 12/12 and the optional tool was never requested (ceiling). A useful test needs a task where direct answers fail, or a design that separates tool choice from tool use. The extra-turn confound (follow-up 1) remains.
+  - *Clarification (2026-09-22):* V1 shows that **offering** the tool gave no accuracy gain on these 12 cases. The benefit of **executing** it is untested: there were 0 executions. The answers match the least-squares slope to within rounding, but this doesn't show which internal method the model used. The only evidence of tool execution is the harness record (`tool_executions`), never the model's own text.
 - **H2, later extension, not tested:** harness components can become unnecessary, or even harmful, as models change ("harness debt"). Testing it means repeating a well-defined comparison across model versions while treating capability, task difficulty and inference budget carefully. Novelty is not established; a focused literature review comes first.
 
 ## Follow-up experiments (deferred until V0 is complete)
@@ -47,9 +50,36 @@ Status as of 2026-09-21, after the V0 scored pilot (checkpoint 5). Written by Cl
 | 2 | Does structured checkpointing help recovery? | On a genuinely multi-step scientific task, inject the same interruption, then compare restarting with resuming from a structured checkpoint | Identical interruption point; idempotency (no duplicated side effects); a task where state actually matters |
 | 3 | When does memory help, and when does it go stale? | Tasks where an earlier calibration or constraint matters and sometimes changes: no memory vs structured facts vs retrieved history | Separate retrieval success from correct use; stale-fact cases; cost of memory operations. Needs a new task design, because line fitting has no memory dependence |
 
+## Pending study on `research/analytical-physics`: notes and recommended revisions (awaiting approval)
+
+Nothing in this section is approved. `PROPOSAL.md` (P1–P8) is the text Leo will approve or edit; the items below are Claude's recommendations, written for the overnight documentation pack (2026-09-22) that Codex coordinated.
+
+**The two questions:**
+1. On matched physics problems (the same quantity asked for as a number and as an expression), how does numerical performance relate to analytical formulation and derivation?
+2. Does a bounded mathematical-tool harness (restricted numerical calculation, symbolic differentiation) improve the weaker capability without degrading the stronger?
+
+**Differentiating a supplied function vs deriving dynamics:**
+- The proposal's worked example gives x(t) and asks for v = dx/dt. That is calculus on a *supplied* function, and a `differentiate` tool can do the whole item in one call.
+- *Deriving dynamics* starts from a physical description or a Lagrangian L = T − V. You choose the coordinates and apply the Euler–Lagrange equation to reach the equation of motion. That is the *formulation* skill that question 1 names.
+- These are different constructs; mixing them without labels would blur the result.
+
+**Symbolic equivalence vs agreement at sample points:**
+- *Symbolic:* an algebraic identity, e.g. `simplify(a − b) == 0`. It is proof-like, but it can fail to simplify expressions that are in fact equal, and it depends on domain and branch assumptions.
+- *Sample points:* agreement at random points gives high confidence for smooth functions but is not a proof. Expressions that agree only on the sampled domain, or near singularities and branch cuts, can mislead.
+- P4 already proposes both checks; disagreements should be reported, not resolved silently.
+
+**The extra-turn confound:** the tool condition can use more model calls and more context. An improvement could therefore come from a second look rather than from the tool, as in V1 H1 and follow-up 1.
+
+**Recommended revisions (awaiting Leo's approval; not implemented):**
+- **R1.** Add *formulation* items (a physical description or a Lagrangian → the equation of motion, graded after solving for the highest derivative) alongside supplied-function items, and label the two item types separately.
+- **R2.** Report items where one tool call can complete the task separately from items where tools can only assist.
+- **R3.** Control the extra turn: add a no-tool condition with the same call budget, or equalise budgets and report actual usage. If the budget doesn't allow either, state the confound explicitly.
+- **R4.** For P4, define sample domains that avoid singularities and branch cuts, record both equivalence checks, and report any disagreement.
+- **R5.** Keep the development gate. V1 hit a ceiling and the tool went unused, so check both before freezing.
+
 ## Sources
 
-Read by Claude on 2026-09-21. For the preprints, only the arXiv abstract pages were read, not the full papers. We have not reproduced any of these findings.
+Read by Claude on 2026-09-21. For the preprints, only the arXiv abstract pages were read, not the full papers. We have not reproduced any of these findings. No new sources were added on 2026-09-22; the Euler–Lagrange equation above is standard textbook physics, not a new citation.
 
 **1. Martin, Cemaj & Cohen, "Scaling Managed Agents: Decoupling the brain from the hands." Anthropic Engineering blog, 8 April 2026.** Engineering account, not peer-reviewed. https://www.anthropic.com/engineering/managed-agents
 - Claim: harnesses encode assumptions that go stale as models improve. Context resets added for one model became unnecessary with a later model. The authors separate the model-plus-harness, the tools and sandboxes, and durable session logs, so each can be changed independently.

@@ -1,4 +1,4 @@
-# Handoff: research branch `research/analytical-physics` (last updated 00:38 BST, 2026-09-22)
+# Handoff: research branch `research/analytical-physics` (last updated 00:42 BST, 2026-09-22)
 
 **Canonical paths (Leo's one-repo decision, 2026-09-22 ~00:37):**
 - Repository: https://github.com/retinapeg/agentic-physics-bench. Local folder: `~/Desktop/agentic-physics-bench`.
@@ -13,7 +13,7 @@ Leo is the research lead and decision maker; Claude writes code and documentatio
 - Branch `research/analytical-physics`: starts at `v1.0.0`. It contains commit `955b3b2` (lineage and proposal, originally pushed to the superseded repository) and the consolidation and documentation commits after it.
 - Proposal: `PROPOSAL.md` gives the matched example, the rubric, a budget of ≤ 80 CLI calls and decisions P1–P8. It **awaits Leo's research approval.** Recommended revisions are in `RESEARCH_ROADMAP.md` and are recommendations only.
 - Code: V1's, unchanged. No new tools, tasks, installs or model calls.
-- Learning workbook: the local, gitignored `LEARNING_REVIEW.md` in the canonical folder. It holds the newest merged content; there are no attempts recorded in either copy.
+- Learning workbook: the local, gitignored `LEARNING_REVIEW.md` in the canonical folder. It is the single continuing workbook; start with its **START HERE** section. It holds the newest merged content, and no attempts are recorded yet.
 
 ## Timeline (research branch)
 
@@ -26,6 +26,7 @@ Leo is the research lead and decision maker; Claude writes code and documentatio
 | D5 | 00:35–00:37 (09-22, session) | Overnight documentation pack started in the separate folder (START HERE and chronology in the local workbook). Codex coordinated, on Leo's authorisation | Claude | local workbook | OBSERVED |
 | D6 | ~00:37 (09-22) | Leo's one-repo decision, relayed by Codex; the separate repository superseded | Leo decided | chat | OBSERVED |
 | D7 | 00:37–00:39 (09-22, session) | Both folders inspected (clean, no stashes, no attempts). Both workbooks backed up. Branch created in the canonical repo from `955b3b2`, which sits directly on `v1.0.0`. The newest workbook merged into the canonical folder. Lineage, README, CLAUDE.md and this file updated | Claude | `git log research/analytical-physics` | VERIFIED |
+| D8 | 00:39–00:42 (09-22, session) | Overnight documentation pack in the canonical folder. Local workbook: START HERE, chronology, findings and limits, architecture, pending study, questions capped at two per checkpoint, interview accounts. Tracked: `RESEARCH_ROADMAP.md` pending-study notes and R1–R5 (recommendations only), a clarification entry in `RESEARCH_LOG.md`, this row. Offline checks only | Claude; coordinated by Codex; authorised by Leo | branch commits; local workbook | OBSERVED |
 
 ## Next action
 
