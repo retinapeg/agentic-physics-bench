@@ -34,4 +34,6 @@ The reporting agent must obtain counts from deterministic full-data calculations
 
 Summarize observed evidence, not intended outcomes. Ask Leo to explain the central mechanism in one or two sentences. Propose one concise entry for RESEARCH_LOG.md and a HANDOFF.md update, marking untested claims clearly. Then identify the next single action.
 
+Standing instruction from Leo (2026-09-21): at the end of every checkpoint, write the updates rather than only proposing them. Add a dated entry to RESEARCH_LOG.md, and update the HANDOFF.md chronological timeline, current state and next action, so the full history can be reconstructed later. Base each timeline row on evidence (a command output, file, commit or trace line). Record who did what: Leo implemented, Claude drafted, or delegated. Leave the "Lesson" field for Leo's own words, quoting him only when he wrote it himself. In plan mode, propose the text instead.
+
 Initial response: no full-day lecture. Begin checkpoint 0 and wait for Leo's environment output.
