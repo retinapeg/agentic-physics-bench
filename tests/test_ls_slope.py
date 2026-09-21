@@ -1,4 +1,4 @@
-"""Checks for Leo's ls_slope in src/tasks.py.
+"""Checks for ls_slope in src/tasks.py.
 
 Verification code written by Claude (2026-09-21). It is not part of the
 implementation. Run from the repo root: python3 -m unittest -v tests.test_ls_slope
@@ -14,7 +14,7 @@ from tasks import ls_slope  # noqa: E402
 
 class LsSlopeTests(unittest.TestCase):
     def test_known_example(self):
-        # Hand calculation: Sxy = -2.75, Sxx = 1.25 (LEARNING_REVIEW.md W1).
+        # Hand calculation: Sxy = -2.75, Sxx = 1.25.
         self.assertAlmostEqual(ls_slope([0, 0.5, 1.0, 1.5], [5, 2, 3, 1]), -2.2, places=12)
 
     def test_matches_statistics_linear_regression(self):

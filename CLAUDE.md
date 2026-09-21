@@ -45,4 +45,11 @@ Standing instruction from Leo (2026-09-21, 18:31): Claude owns verification and 
 - LEARNING_REVIEW.md is Leo's workbook for later review, not for build sessions. Add comprehension questions there. Add a catch-up task whenever an assistant does work Leo would otherwise have done.
 - In chat, give Leo one coding task at a time and handle the surrounding commands, checks and documentation.
 
+Standing instruction from Leo (2026-09-21, about 18:35). This supersedes the teaching-contract rules above that Leo writes the core code:
+- Claude writes the functions and the surrounding checks. Leo is the research decision maker and has deferred the learning tasks to a later day.
+- Label all code accurately as written by Claude at Leo's direction.
+- Keep all learning material (catch-up tasks, questions, walkthroughs, marking scheme) in one local doc, `LEARNING_REVIEW.md`. It is gitignored. Add a catch-up task there for each function Claude writes.
+- The GitHub repo is an AI engineering and research project. Keep tracked files focused on the experiment, code, data, results and their provenance.
+- Research decisions (protocol values, tolerance, prompts, what to publish) remain Leo's. Propose defaults and ask.
+
 Initial response: no full-day lecture. Begin checkpoint 0 and wait for Leo's environment output.

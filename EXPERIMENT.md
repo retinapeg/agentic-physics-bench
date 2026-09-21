@@ -32,6 +32,12 @@ For each case: draw a true acceleration `a_true` and initial velocity `v0`; set 
 
 Provenance: Leo made these decisions in chat. Claude entered them here at Leo's direction on 2026-09-21. Sxx = 20.625 s² was supplied by Codex and rechecked by Claude with python3.
 
+Implementation: `src/tasks.py`, written by Claude at Leo's direction. It uses one `random.Random(seed)` per split and runs on Python 3.11.5.
+- Draw order per case: |a_true| = 5·(1 − random()), which lies in (0, 5]; v0 = −10 + 20·random(); then one `gauss(0, σ)` per time point.
+- Development sign order: dev-01 −, dev-02 +, dev-03 −, dev-04 +.
+- Cases hold only the displayed strings. Keys are in a separate file.
+- Development files are regenerated whenever σ changes. Scored cases are not generated until the freeze.
+
 ## 4. Reference answer
 
 Reference = ordinary least-squares slope of the **displayed (rounded)** velocities against the displayed times:
@@ -92,7 +98,7 @@ Order: complete a valid paired run (12 cases × 2 conditions) on one system befo
 
 ## 9. Known confounders and limits (declared before running)
 
-- The two CLIs are different agent systems with different wrappers and hidden system prompts; any cross-system difference is a system comparison, not a raw-model comparison.
+- The two CLIs are different agent systems with different wrappers and their own instructions, whose content is unverified; any cross-system difference is a system comparison, not a raw-model comparison.
 - The workflow gets up to one extra model turn and extra context. An apparent tool benefit can't be separated from the extra-turn effect.
 - 12 cases is a pilot: no significance claims, no general ranking.
 
