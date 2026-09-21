@@ -1,6 +1,8 @@
-# Claude handoff — 2026-09-21 (last updated 19:38 BST)
+# Claude handoff — 2026-09-21 (last updated 19:48 BST)
 
 Agentic Physics Bench is an AI engineering and research pilot. Leo is the research lead and decision maker; Claude writes the code and checks at his direction; Codex is the independent reviewer. Keep the project bounded: no extra agents or frameworks. Follow `CLAUDE.md` (its later standing instructions take precedence) and `WORKMODE.md`.
+
+**Release naming (Leo, 19:45):** the pilot called "V0" in this file ships as **V1**, tag `v1.0.0`. Earlier rows keep their original wording.
 
 **Active plan (Leo, 19:15):** resume implementation within the original five-hour work budget, without restarting the clock. This supersedes the stopping instruction of 18:45, which remains recorded in row 22. Continue through the delivery plan. Bring the remaining research decisions together for one protocol approval before any scored inference (`EXPERIMENT.md` section 13).
 
@@ -78,6 +80,8 @@ All times are BST. Sources:
 | 32 | 19:31 (git) | 4 | Freeze committed as `f504c57`, tagged `v0-protocol-freeze` and pushed | Claude, directed by Leo | `git log`; tag | VERIFIED |
 | 33 | 19:31:35–19:34:38 (session) | 5 | Scored matrix: 24/24 valid and correct; tool requested 0/12; 24 invocations; stop reason `completed` | Claude, authorised by Leo | `results/episodes_scored.jsonl` | VERIFIED |
 | 34 | 19:35–19:38 (session) | 5 | Analysis, chart, README and docs; 36 offline tests OK; freeze re-verified; checkpoint 5 committed and pushed | Claude, directed by Leo | `results/`; `README.md` | OBSERVED |
+| 35 | ~19:45 (session) | Release | Leo: finish and ship V1 (the "V0" pilot) as `v1.0.0`, then create a derived project for numerical vs analytical performance | Leo decided | chat | OBSERVED |
+| 36 | 19:48–19:48 (session) | Release | Clean-clone audit passed (36 tests; data and analysis reproduce byte for byte; freeze verified). README wording fix (where the CLI version is checked); V1 labels added. Committed, tagged `v1.0.0` and pushed | Claude, directed by Leo | `git show v1.0.0` | VERIFIED |
 
 ## Verified setup
 
@@ -107,11 +111,9 @@ Items 1–4 from earlier versions (σ, tolerance, near-zero rule, workflow setti
 
 The 18:45 stop (row 22) was superseded at 19:15 (row 24).
 
-**Next action (Leo's decisions, release):**
-1. Review `README.md` and the results.
-2. Decide whether `LEARNING_REVIEW.md` must be removed from git history before the repo goes public; that needs a history rewrite.
-3. Decide whether `CLAUDE.md`, `WORKMODE.md` and `AGENTS.md` stay public.
-4. Make the repo public and post on X, if and when Leo chooses. A factual X draft is in the local `LEARNING_REVIEW.md` (Interview preparation). Nothing has been published.
+**Next action:** Phase 2. Create the derived project from the exact `v1.0.0` commit as a separate private repository. Write one matched numerical/analytical task example, a grading rubric and a small budget for Leo's research approval. Implement and run only after that approval.
+
+**Release decisions (Leo, separate):** repository visibility; whether `LEARNING_REVIEW.md` must be removed from git history first; whether the assistant-instruction files stay public; any X post (draft kept locally).
 
 Deferred: GPT/Codex, pending verified controls; follow-ups in `RESEARCH_ROADMAP.md`.
 

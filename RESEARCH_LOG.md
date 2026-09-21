@@ -159,6 +159,13 @@ Keep ordinary entries to five to eight lines; combine fields when possible.
 - Lesson (Leo): TODO
 - Status: VERIFIED (deterministic recount matches; frozen files unchanged).
 
+## 2026-09-21 | Release | V1 shipped as v1.0.0
+- Naming: per Leo, the finished pilot (called "V0" in the entries above) is released as **V1**, tag `v1.0.0`. The earlier entries are unchanged.
+- Release audit (19:48 BST, by Claude): on a fresh clone from GitHub, 36 offline checks pass; regenerating the data leaves every file unchanged; `analyze.py` and `chart.py` reproduce the committed results byte for byte; `verify_freeze` passes.
+- Documentation fix before tagging: the README said the CLI version is checked per call. It is checked once before the batch (freeze verification); per call, only its presence is checked. No code change; frozen files untouched.
+- Scope: unchanged from checkpoint 5. No RAG, memory, symbolic tools, other task families or other models.
+- Status: VERIFIED (release audit). Repo visibility and social posting are Leo's separate decisions; nothing published.
+
 ## Topics to capture as they occur
 
 Model vs agent vs pretrained weights; API/SDK vs model identity; benchmarks vs evals; reference validation; data leakage; prompts and configuration hashes; structured-output failures; tool dispatch and stopping; retries and missing denominators; retrieval vs generation errors; unsupported claims vs numerical mistakes; RAG vs fine-tuning; paired analysis; reproducibility; what I implemented vs delegated.

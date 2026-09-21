@@ -1,5 +1,7 @@
 # EXPERIMENT.md — FROZEN for the V0 scored pilot (2026-09-21)
 
+> Release note (added at release, 2026-09-21): this frozen protocol is released as **V1** (tag `v1.0.0`). "V0" below is the development-time name and is kept unchanged.
+
 Status: frozen at 19:30 BST on 2026-09-21, after Leo approved D1–D10 with amendments (section 13). The frozen files and settings are fixed by `data/freeze_manifest.json`, which the runner checks before any scored call. Earlier text below keeps its development-stage notes for the record; where it conflicts with section 13, section 13 governs.
 
 ## 1. Question (V0)

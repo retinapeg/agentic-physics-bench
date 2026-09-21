@@ -1,4 +1,6 @@
-# Agentic Physics Bench: V0 pilot
+# Agentic Physics Bench: V1 (release v1.0.0)
+
+> Release naming: this is the pilot that the development log calls "V0". Leo named the finished release **V1** (git tag `v1.0.0`) on 2026-09-21. Earlier log entries keep their original wording.
 
 A small, reproducible evaluation of one question: **on synthetic velocity–time measurements, how does a bounded line-fit tool workflow compare with a direct answer for estimating signed acceleration?** The system tested is Claude (`claude-opus-5`) through the Claude Code CLI 2.1.278, on 12 held-out cases. It is a pilot, so it supports no statistical significance claims and no model ranking.
 
@@ -46,8 +48,17 @@ Table view: [`results/summary.md`](results/summary.md). Computed by [`src/analyz
 - **Conditions:**
   - *Direct:* one model call, answering in strict JSON.
   - *Workflow:* the model may request `fit_line` by case ID. The harness validates the request and supplies that case's displayed data, never the key. A fresh second call gets the task, the previous reply and the tool result. At most 2 calls and 1 tool execution, no retries.
-- **Controls, enforced per call:** no native tools or MCP servers, safe mode, empty temporary working directory, expected model and CLI version, no tool use, no overage, no stderr. Any violation invalidates the episode and stops the batch.
+- **Controls, enforced per call:**
+  - no native tools or MCP servers; safe mode; an empty temporary working directory;
+  - the expected model ID, with the CLI version present in the initialization metadata;
+  - no tool use, no overage, no stderr output.
+
+  Any violation invalidates the episode and stops the batch. The exact CLI version, the CLI arguments and the hashes of the frozen files are checked once, before the batch starts (`verify_freeze` in `src/run.py`).
 - **Freeze:** the protocol, prompts, data, code hashes and run order were committed and tagged `v0-protocol-freeze` before any scored call. See [`EXPERIMENT.md`](EXPERIMENT.md) and [`data/freeze_manifest.json`](data/freeze_manifest.json).
+
+## Scope of V1
+
+V1 contains one task family (4 development and 12 scored cases), the Claude CLI adapter, the direct vs optional-`fit_line` conditions, the bounded loop with request validation and enforced controls, deterministic grading, saved traces, offline checks, failure reporting, and analysis from saved results. It has no RAG, memory, symbolic tools, other task families or other model integrations. GPT/Codex was deferred because its controls were not verified.
 
 ## Limitations
 
@@ -60,7 +71,13 @@ Table view: [`results/summary.md`](results/summary.md). Computed by [`src/analyz
 
 ## Reproduce
 
-Needs Python 3.11 (standard library only). Scored inference also needs a Claude subscription with Claude Code 2.1.278.
+Check out the release with `git checkout v1.0.0`. Needs Python 3.11, standard library only. Scored inference also needs a Claude subscription with Claude Code 2.1.278.
+
+Release audit (2026-09-21), on a fresh clone from GitHub:
+- all 36 offline checks pass;
+- regenerating the data leaves every file unchanged;
+- `src/analyze.py` and `src/chart.py` reproduce `results/summary.json`, `summary.md` and `chart.svg` byte for byte;
+- `verify_freeze` passes.
 
 ```bash
 python3 -m unittest tests.test_ls_slope tests.test_tasks tests.test_evaluate tests.test_agent tests.test_controls tests.test_analyze
