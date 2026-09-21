@@ -1,4 +1,4 @@
-# Handoff: research branch `research/analytical-physics` (last updated 00:42 BST, 2026-09-22)
+# Handoff: research branch `research/analytical-physics` (last updated 00:48 BST, 2026-09-22)
 
 **Canonical paths (Leo's one-repo decision, 2026-09-22 ~00:37):**
 - Repository: https://github.com/retinapeg/agentic-physics-bench. Local folder: `~/Desktop/agentic-physics-bench`.
@@ -27,6 +27,7 @@ Leo is the research lead and decision maker; Claude writes code and documentatio
 | D6 | ~00:37 (09-22) | Leo's one-repo decision, relayed by Codex; the separate repository superseded | Leo decided | chat | OBSERVED |
 | D7 | 00:37–00:39 (09-22, session) | Both folders inspected (clean, no stashes, no attempts). Both workbooks backed up. Branch created in the canonical repo from `955b3b2`, which sits directly on `v1.0.0`. The newest workbook merged into the canonical folder. Lineage, README, CLAUDE.md and this file updated | Claude | `git log research/analytical-physics` | VERIFIED |
 | D8 | 00:39–00:42 (09-22, session) | Overnight documentation pack in the canonical folder. Local workbook: START HERE, chronology, findings and limits, architecture, pending study, questions capped at two per checkpoint, interview accounts. Tracked: `RESEARCH_ROADMAP.md` pending-study notes and R1–R5 (recommendations only), a clarification entry in `RESEARCH_LOG.md`, this row. Offline checks only | Claude; coordinated by Codex; authorised by Leo | branch commits; local workbook | OBSERVED |
+| D9 | 00:48 (09-22, session) | Four wording corrections from Codex's documentation verification: attribution in the interview scripts; qualified binomial intervals (0.265 is a two-sided endpoint; one-sided 0.221); the stale roadmap line and historical headings; derivation vs formulation. Documentation only | Claude; issues found by Codex | `RESEARCH_LOG.md` correction entry | OBSERVED |
 
 ## Next action
 

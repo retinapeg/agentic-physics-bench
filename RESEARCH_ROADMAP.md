@@ -24,10 +24,10 @@ Status as of 2026-09-21, after the V0 scored pilot (checkpoint 5). Written by Cl
 
 - That tool access improves accuracy or reliability. In V0 the optional tool was never requested, so no tool effect could be measured.
 - That any harness architecture is better than another.
-- Any accuracy estimate: one development case only checks that the pipeline works.
+- Any broad or general accuracy estimate, or a ranking across models. The observed accuracy on the fixed 12-case scored set is reported (12/12 in each condition), but it comes from one wrapped system, a small synthetic set and one run per case.
 - Anything about GPT/Codex or local models, or about harder tasks.
 
-## V0: remaining work (the current priority)
+## V0 (released as V1): remaining work — completed (historical; kept as it was on 2026-09-21)
 
 1. ~~A bounded `fit_line` tool workflow on dev-01.~~ Built; see `EXPERIMENT.md` sections 5–6.
 2. ~~Approve the decisions, freeze the protocol and generate the 12 scored cases.~~ Done.
@@ -42,7 +42,7 @@ Status as of 2026-09-21, after the V0 scored pilot (checkpoint 5). Written by Cl
   - *Clarification (2026-09-22):* V1 shows that **offering** the tool gave no accuracy gain on these 12 cases. The benefit of **executing** it is untested: there were 0 executions. The answers match the least-squares slope to within rounding, but this doesn't show which internal method the model used. The only evidence of tool execution is the harness record (`tool_executions`), never the model's own text.
 - **H2, later extension, not tested:** harness components can become unnecessary, or even harmful, as models change ("harness debt"). Testing it means repeating a well-defined comparison across model versions while treating capability, task difficulty and inference budget carefully. Novelty is not established; a focused literature review comes first.
 
-## Follow-up experiments (deferred until V0 is complete)
+## Follow-up experiments (deferred; V1 is complete; not scheduled)
 
 | # | Question | Smallest useful comparison | What must be controlled |
 |---|---|---|---|
@@ -60,8 +60,9 @@ Nothing in this section is approved. `PROPOSAL.md` (P1–P8) is the text Leo wil
 
 **Differentiating a supplied function vs deriving dynamics:**
 - The proposal's worked example gives x(t) and asks for v = dx/dt. That is calculus on a *supplied* function, and a `differentiate` tool can do the whole item in one call.
-- *Deriving dynamics* starts from a physical description or a Lagrangian L = T − V. You choose the coordinates and apply the Euler–Lagrange equation to reach the equation of motion. That is the *formulation* skill that question 1 names.
-- These are different constructs; mixing them without labels would blur the result.
+- *Derivation from a supplied Lagrangian:* given L = T − V, apply the Euler–Lagrange equation to reach the equation of motion. This tests **derivation**.
+- *Formulation from a physical description:* choose the coordinates and modelling assumptions and **construct** the Lagrangian (or the forces), then derive. This tests **formulation**.
+- Question 1 names both formulation and derivation. These are different constructs, and supplied-function differentiation is a third; mixing them without labels would blur the result.
 
 **Symbolic equivalence vs agreement at sample points:**
 - *Symbolic:* an algebraic identity, e.g. `simplify(a − b) == 0`. It is proof-like, but it can fail to simplify expressions that are in fact equal, and it depends on domain and branch assumptions.
@@ -71,7 +72,7 @@ Nothing in this section is approved. `PROPOSAL.md` (P1–P8) is the text Leo wil
 **The extra-turn confound:** the tool condition can use more model calls and more context. An improvement could therefore come from a second look rather than from the tool, as in V1 H1 and follow-up 1.
 
 **Recommended revisions (awaiting Leo's approval; not implemented):**
-- **R1.** Add *formulation* items (a physical description or a Lagrangian → the equation of motion, graded after solving for the highest derivative) alongside supplied-function items, and label the two item types separately.
+- **R1.** Alongside supplied-function items, add *derivation* items (a supplied Lagrangian → the equation of motion) and, separately, *formulation* items (a physical description → coordinates, assumptions and the Lagrangian, then the equation of motion). Grade after solving for the highest derivative, and label the three item types separately.
 - **R2.** Report items where one tool call can complete the task separately from items where tools can only assist.
 - **R3.** Control the extra turn: add a no-tool condition with the same call budget, or equalise budgets and report actual usage. If the budget doesn't allow either, state the confound explicitly.
 - **R4.** For P4, define sample domains that avoid singularities and branch cuts, record both equivalence checks, and report any disagreement.
