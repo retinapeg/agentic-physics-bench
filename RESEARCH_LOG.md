@@ -166,6 +166,12 @@ Keep ordinary entries to five to eight lines; combine fields when possible.
 - Scope: unchanged from checkpoint 5. No RAG, memory, symbolic tools, other task families or other models.
 - Status: VERIFIED (release audit). Repo visibility and social posting are Leo's separate decisions; nothing published.
 
+## 2026-09-21 | Derived project | Created from V1 v1.0.0; proposal awaiting approval
+- Authorship: Leo decided to create the derived project and set its questions. Claude created the repository and wrote `LINEAGE.md` and `PROPOSAL.md`.
+- Lineage: parent `retinapeg/agentic-physics-bench`, tag `v1.0.0`, commit `8d336d8302ecf76b6bcabf7afc37ab817a0630ea`. The history and tags are kept, and the parent remote is fetch-only.
+- Observed: the example's references checked two ways. The closed form vs a central finite difference agree to 8 × 10⁻¹² (v(0.37 s) = −0.4093 m/s). The symbolic derivative vs finite differences at 25 random points gives worst scaled error 2.8 × 10⁻¹⁰.
+- Status: PLANNED (study). No new model calls in this project.
+
 ## Topics to capture as they occur
 
 Model vs agent vs pretrained weights; API/SDK vs model identity; benchmarks vs evals; reference validation; data leakage; prompts and configuration hashes; structured-output failures; tool dispatch and stopping; retries and missing denominators; retrieval vs generation errors; unsupported claims vs numerical mistakes; RAG vs fine-tuning; paired analysis; reproducibility; what I implemented vs delegated.

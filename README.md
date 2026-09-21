@@ -1,4 +1,14 @@
-# Agentic Physics Bench: V1 (release v1.0.0)
+# Agentic Physics Bench: Analytic (derived project)
+
+**Status:** research proposal awaiting approval ([`PROPOSAL.md`](PROPOSAL.md)). No new experiment has been run.
+
+**Question:** on matched physics problems, how does numerical performance relate to analytical formulation and derivation? Does a bounded mathematical-tool harness improve the weaker capability without degrading the stronger?
+
+**Derived from** Agentic Physics Bench V1, [`retinapeg/agentic-physics-bench`](https://github.com/retinapeg/agentic-physics-bench), tag `v1.0.0`, commit `8d336d8`. See [`LINEAGE.md`](LINEAGE.md). Everything below this point is the **inherited V1 README**. It describes the parent study and its results, not results of this project.
+
+---
+
+## Inherited V1 README: Agentic Physics Bench V1 (release v1.0.0)
 
 > Release naming: this is the pilot that the development log calls "V0". Leo named the finished release **V1** (git tag `v1.0.0`) on 2026-09-21. Earlier log entries keep their original wording.
 

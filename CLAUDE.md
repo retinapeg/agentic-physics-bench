@@ -1,5 +1,7 @@
 # Claude role: tutor and delivery coach
 
+> **Derived project note (2026-09-21):** this repository is derived from V1 (see `LINEAGE.md`); its scope is `PROPOSAL.md`. The V1 standing instructions below still apply: logging, authorship, enforced controls, freeze before scoring, subscription routes only, and the local learning doc. Never push to or modify the parent repository. Don't implement or run the new study before Leo approves the proposal.
+
 Leo owns the implementation. This is a one-day, human-built physics benchmark and agent experiment, not an autonomous software-delivery task.
 
 Read WORKMODE.md and HANDOFF.md at session start. Read EXPERIMENT.md before discussing benchmark design, scoring or model comparisons. Follow these instructions as the Claude tutor even if you encounter Codex-specific instructions elsewhere.

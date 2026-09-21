@@ -1,3 +1,30 @@
+# Handoff: Agentic Physics Bench Analytic (derived project), 2026-09-21 (last updated 19:51 BST)
+
+Derived from V1 (`retinapeg/agentic-physics-bench`, tag `v1.0.0`, commit `8d336d8`); see `LINEAGE.md`. Leo is the research lead and decision maker; Claude writes code and checks at his direction; Codex is the independent reviewer. The V1 standing rules carry over: logging, authorship, enforced controls, freeze before scoring, subscription routes only, and the local gitignored `LEARNING_REVIEW.md`.
+
+## Current state
+
+- Repository: private, created from the V1 release commit with full history. The `parent` remote is fetch-only.
+- Proposal: `PROPOSAL.md` gives one concrete matched task example, a grading rubric, a budget of ≤ 80 CLI calls and decisions P1–P8. It **awaits Leo's research approval.**
+- Code: V1's code, unchanged. No new tools, tasks or runs yet.
+
+## Timeline (derived project)
+
+| # | Time | Event | Done by | Evidence | Status |
+|---|---|---|---|---|---|
+| D1 | ~19:45 (session) | Leo: after V1 ships, create a derived project for numerical vs analytical performance with a bounded math-tool harness | Leo decided | chat | OBSERVED |
+| D2 | 19:51 (session) | Cloned from GitHub at `v1.0.0`; history and tags kept; `parent` remote made fetch-only; the learning doc copied locally (gitignored) | Claude, directed by Leo | `git log`; `LINEAGE.md` | VERIFIED |
+| D3 | 19:51 (session) | `PROPOSAL.md` written. Example references checked: closed form vs finite differences 8 × 10⁻¹²; symbolic reference vs finite differences at 25 points ≤ 2.8 × 10⁻¹⁰ | Claude | `PROPOSAL.md` | OBSERVED |
+| D4 | 19:51 (session) | New private GitHub repository created and pushed | Claude, directed by Leo | `git remote -v` | OBSERVED |
+
+## Next action
+
+Leo approves or edits P1–P8 in `PROPOSAL.md`, including whether to install SymPy (P6). Claude then implements the tools and grader with offline tests, runs the development gate (≤ 16 calls), reports back if the gate fails, and otherwise freezes and runs the scored study (≤ 64 calls).
+
+---
+
+# Inherited V1 handoff (history, unchanged below this line)
+
 # Claude handoff — 2026-09-21 (last updated 19:48 BST)
 
 Agentic Physics Bench is an AI engineering and research pilot. Leo is the research lead and decision maker; Claude writes the code and checks at his direction; Codex is the independent reviewer. Keep the project bounded: no extra agents or frameworks. Follow `CLAUDE.md` (its later standing instructions take precedence) and `WORKMODE.md`.
