@@ -1,4 +1,4 @@
-# Claude handoff — 2026-09-21 (last updated 18:25 BST)
+# Claude handoff — 2026-09-21 (last updated 18:35 BST)
 
 Leo owns the Agentic Physics Bench implementation. Follow `CLAUDE.md` and `WORKMODE.md`; Codex is the independent reviewer. This is still setup work, not a completed benchmark. Keep the project bounded; Leo's instruction applies even when multi-agent modes are available.
 
@@ -6,9 +6,11 @@ Leo owns the Agentic Physics Bench implementation. Follow `CLAUDE.md` and `WORKM
 
 ## Current state
 
-- Repo: private (checked with `gh repo view`: `PRIVATE`). The checkpoint 1a docs are committed and pushed to `main` in the commit "Checkpoint 1a: draft protocol, learning review, corrected logs"; see `git log`.
+- Repo: private (checked with `gh repo view`: `PRIVATE`). Checkpoint 1a docs are in `60fe171`, pushed. The `ls_slope` checks and process updates are in the next commit; see `git log`.
+- Roles (Leo, 18:31): Leo writes the core code. Claude runs all checks, records actual results, fixes test commands, and does routine housekeeping (see `CLAUDE.md`).
 - Protocol: `EXPERIMENT.md` is DRAFT and not frozen. The section 3 values are recorded, with σ = 0.5 m/s provisional for development. Still open: final σ, the |a_true| floor or redraw rule, and sections 5–7.
-- Code and data: no `src/`, `data/`, `tests/`, or virtual environment yet. No cases generated, no episodes run, no scores.
+- Code: `src/tasks.py` with `ls_slope` is PENDING (Leo). `tests/test_ls_slope.py` (verification, written by Claude) exists and currently errors with a missing module, because `src/tasks.py` doesn't exist yet.
+- Data and results: no `data/`, no virtual environment, no cases generated, no episodes run, no scores.
 - Publication: no public repo, release, or X post.
 
 ## Chronological timeline
@@ -29,7 +31,9 @@ All times are BST. Sources: "(mtime)" = file modification time, which is when th
 | 10 | 18:14 (session) | Process | Attribution, timestamp-label and "reported input tokens" corrections; `LEARNING_REVIEW.md` created | Claude, directed by Leo | RESEARCH_LOG correction entry; new file | OBSERVED |
 | 11 | 18:20 (session) | 1b | Walkthrough W1 (formula → `ls_slope`) added to `LEARNING_REVIEW.md`, labelled GUIDANCE. Worked solution tested in a scratch directory outside the repo: `-2.2` plus four `ValueError`s | Outline by Leo; text and solution drafted by Claude | `LEARNING_REVIEW.md` sections 5–6 | OBSERVED: guidance, not Leo's implementation |
 | 12 | 18:25 (session) | 1a | Checkpoint 1a docs committed and pushed: CLAUDE, EXPERIMENT, HANDOFF, LEARNING_REVIEW, RESEARCH_LOG. Scan for paths, emails and keys found nothing; traces not staged | Claude, directed by Leo | `git log`; `gh repo view` | OBSERVED |
-| 13 | — | 1b | Leo writes `ls_slope(t, v)` in `src/tasks.py` and runs both checks; then the dev-01 generator | Leo | — | PLANNED |
+| 13 | 18:31 (session) | Process | Leo hands verification and routine housekeeping to Claude; standing rule added to `CLAUDE.md` | Leo decided; Claude recorded | `CLAUDE.md` | OBSERVED |
+| 14 | 18:34 (session) | 1b | `tests/test_ls_slope.py` written (4 tests, 6 bad-input cases). The tests were checked on scratch copies outside the repo: correct worked solution → `OK`; endpoint slope → 2 failures; `sum/len` mean → 1 failure (equal times with inexact mean). Against the repo now: import error, `src/tasks.py` missing | Claude | `python3 -m unittest tests.test_ls_slope` | OBSERVED: checks validated; implementation PENDING |
+| 15 | — | 1b | Leo writes `ls_slope(t, v)` in `src/tasks.py`; Claude runs the tests and records the result | Leo; Claude checks | — | PENDING |
 
 ## Verified setup
 
@@ -54,11 +58,13 @@ The raw smoke traces are gitignored because they contain session and machine met
 
 ## Next single action
 
-Leo writes `ls_slope(t, v)` in `src/tasks.py` without opening `LEARNING_REVIEW.md` section 6, and runs the two checks:
-- t = [0, 0.5, 1.0, 1.5] s, v = [5, 2, 3, 1] m/s should give −2.2 m/s² (confirmed with `statistics.linear_regression`).
-- Four bad inputs should each raise `ValueError`.
+Leo writes `ls_slope(t, v)` in `src/tasks.py`, ideally without opening `LEARNING_REVIEW.md` section 6.
 
-Claude then reviews the code against the W1 checklist and commits it as the first part of checkpoint 1b.
+Claude then:
+1. runs `python3 -m unittest -v tests.test_ls_slope`;
+2. reviews the code against the W1 checklist;
+3. records the actual output here and in `RESEARCH_LOG.md`;
+4. commits it as the first part of checkpoint 1b.
 
 Delivery sequence (Leo, 2026-09-21):
 1. A checked reference function and one reproducible dev case.

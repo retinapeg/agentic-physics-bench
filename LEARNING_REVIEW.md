@@ -64,6 +64,11 @@ Leo: answer before opening section 4. Attempt each walkthrough exercise in secti
 
 (b) [3] What makes a hand calculation from the printed table independent where the stdlib check is not? How does this carry over to validating an eval's answer key?
 
+### Q10 · Checkpoint 1b · Ask when: `ls_slope` passes `tests/test_ls_slope.py` · [5 marks]
+(a) [2] Before trusting a new thermometer, you might check it in ice water and in boiling water. Why is checking it only at room temperature not enough?
+
+(b) [3] Before your code existed, the checks in `tests/test_ls_slope.py` were run against one correct and two deliberately wrong versions of `ls_slope`: an endpoint slope, and a `sum/len` mean. Why test the tests? What did each wrong version reveal about which checks matter?
+
 ## 3. Attempt record
 
 | Date | Q | Marks | Hints used | Unaided / assistant-assisted | Tutor note |
@@ -107,13 +112,17 @@ Leo: answer before opening section 4. Attempt each walkthrough exercise in secti
 - (a) 1 each, max 2: fitting unrounded floats instead of the display strings; passing (v, t) swapped to both; the wrong case or column; the wrong time unit. 1: agreement checks the arithmetic, not the inputs.
 - (b) 1: the hand check starts from the printed table, the artifact the model sees, by a different route. 1: independence means not sharing inputs or assumptions, not merely different code. 1: validate an eval key by an independent route from the displayed task, e.g. a second calculation that reads only the prompt file.
 
+**Q10 (5)**
+- (a) 1: a check must be able to fail, so test at points where a faulty instrument would disagree. 1: one point can't distinguish offset from gain errors, or a stuck reading from a working one.
+- (b) 1: a check that passes on wrong code gives false confidence, so each check must fail on at least one plausible bug. 1: the endpoint version failed only the known-example and stdlib-comparison checks; on a perfect line it would have passed. 1: the `sum/len` version failed only the equal-times case with an inexact mean, showing that the zero-spread guard depends on how the mean is computed.
+
 **W1 code review checklist (tutor; used when inspecting Leo's `ls_slope`)**
 - Validation happens before any arithmetic. Each of the four failures raises `ValueError` with a message that names the rule.
 - Finiteness is checked for both t and v.
 - Means come from `statistics.mean`, or the tutor asks why not (see section 5, hint 3).
 - Sxx is checked for zero before dividing. Sxy uses paired values.
 - It returns a plain `float`. No rounding, printing or modification of the inputs.
-- Both checkpoint commands give the expected output. Record the actual output in HANDOFF.md.
+- `python3 -m unittest -v tests.test_ls_slope` passes. Record the actual output in HANDOFF.md.
 
 ## 5. Walkthrough W1: from the least-squares formula to `ls_slope` [GUIDANCE]
 

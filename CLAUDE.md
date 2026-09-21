@@ -36,4 +36,12 @@ Summarize observed evidence, not intended outcomes. Ask Leo to explain the centr
 
 Standing instruction from Leo (2026-09-21): at the end of every checkpoint, write the updates rather than only proposing them. Add a dated entry to RESEARCH_LOG.md, and update the HANDOFF.md chronological timeline, current state and next action, so the full history can be reconstructed later. Base each timeline row on evidence (a command output, file, commit or trace line). Record who did what: Leo implemented, Claude drafted, or delegated. Leave the "Lesson" field for Leo's own words, quoting him only when he wrote it himself. In plan mode, propose the text instead.
 
+Standing instruction from Leo (2026-09-21, 18:31): Claude owns verification and routine housekeeping.
+- When Leo's code exists, Claude runs the checks, inspects failures and records the actual output in RESEARCH_LOG.md and HANDOFF.md.
+- Claude fixes problems in test commands and test files itself.
+- For a mistake in Leo's implementation, show the smallest relevant explanation and correction. Leo applies it unless he says otherwise; record who applied it.
+- Reuse evidence already collected. Rerun checks when code changes or a specific uncertainty remains.
+- Mark missing implementation as PENDING. A verified assistant-written example is never recorded as Leo's completed implementation.
+- Comprehension questions go in LEARNING_REVIEW.md. In chat, give Leo one coding task at a time and handle the surrounding commands, checks and documentation.
+
 Initial response: no full-day lecture. Begin checkpoint 0 and wait for Leo's environment output.

@@ -1,1 +1,2 @@
 results/checkpoint0-*.jsonl
+__pycache__/
