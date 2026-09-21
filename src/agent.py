@@ -40,8 +40,13 @@ def run_workflow(case, turn1_prompt, turn2_template, call_model):
         out["tool"] = {"request": obj, "executed": False, "error": problem}
         out["error"] = "invalid_tool_request"
         return out
-    result = tools.TOOLS[obj["name"]](case)
     out["tool_executions"] = 1
+    try:
+        result = tools.TOOLS[obj["name"]](case)
+    except Exception as exc:  # recorded as an outcome, never retried
+        out["tool"] = {"request": obj, "executed": False, "error": f"tool_error:{type(exc).__name__}"}
+        out["error"] = "tool_error"
+        return out
     out["tool"] = {"request": obj, "executed": True, "error": None, "result": result}
 
     turn2_prompt = Template(turn2_template).substitute(

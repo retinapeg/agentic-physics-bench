@@ -1,0 +1,63 @@
+{
+ "frozen_at": "2026-09-21T19:30:22+01:00",
+ "approved_by": "Leo (D1-D10 with amendments to D3, D6, D7/D9), 2026-09-21",
+ "sha256": {
+  "prompts/direct.txt": "701dcfe4f6af1ff87680060436e8dffdc918770122a26e135f5af7d1b696e7f8",
+  "prompts/workflow_turn1.txt": "b8f6ce40b8a8d00de25fb1562918451c05c0b65dd3bbd297f634d1588d0c0caf",
+  "prompts/workflow_turn2.txt": "e5582c10a5fd0f9a05e2d582fead3b69c287271daf80a3bc1d3ff71ff59b0e86",
+  "data/dev_cases.jsonl": "07c79eb37ae2cfe0e45cbd6003aa1a049d4c30b02491bf5695604682fe8e4ef7",
+  "data/dev_keys.jsonl": "dfa56e5ab44f5be5fee284786f9bf128a57ee4d9049dd8e3e83ab141c3261059",
+  "data/scored_cases.jsonl": "5049fd02995d078ba060bd73eea40395ad3f1ad9533bfe8eaa22b33df2e0b7fe",
+  "data/scored_keys.jsonl": "46ecd601c0e1d2d9dc93fcd331cac7ad393a17052a69c456869a6b7cdcac25eb",
+  "data/scored_plan.json": "d436cf4cff418ff83e552466247172f7c14eef7fcc0af49028fe828d6f7a5958",
+  "src/tasks.py": "e4acdb6df7c7027099e71e88bfaffc8417e510c139e44b47a2556cafcf5296ed",
+  "src/tools.py": "f2cbb0674445e3d4551cbb2f078753f57efc1d4de67a66f28c1f846986420e12",
+  "src/agent.py": "49fbc57c4c7cd4ac92bc862108d888268fc68d787f89dbf2b31eff8022349fb0",
+  "src/evaluate.py": "ba3c9a49e1d27840d4610e31ee8d175514cf7b61dab4950d949c519d2ab550f1",
+  "src/models.py": "a70323709feee5417bc08b4c88b1b7030a6e0fa966499dbec0197efe5a0bb79e",
+  "src/run.py": "1b83a2898711d9858aff6d0bb6839d3c2ac792822b28df7a0e4a40225a202c80"
+ },
+ "claude_code_version": "2.1.278",
+ "claude_argv": [
+  "claude",
+  "--print",
+  "--model",
+  "claude-opus-5",
+  "--effort",
+  "high",
+  "--tools",
+  "",
+  "--safe-mode",
+  "--strict-mcp-config",
+  "--no-session-persistence",
+  "--output-format",
+  "stream-json",
+  "--verbose"
+ ],
+ "model": "claude-opus-5",
+ "effort": "high",
+ "python": "3.11.5",
+ "seeds": {
+  "dev": 101,
+  "scored": 202
+ },
+ "sigma_m_per_s": 0.5,
+ "tolerance_m_per_s2": 0.01,
+ "accepted_units": [
+  "m/s^2",
+  "m/s\u00b2",
+  "m s^-2"
+ ],
+ "limits": {
+  "direct": {
+   "model_calls": 1,
+   "tool_executions": 0
+  },
+  "workflow": {
+   "model_calls": 2,
+   "tool_executions": 1
+  },
+  "retries": 0,
+  "max_scored_invocations": 36
+ }
+}

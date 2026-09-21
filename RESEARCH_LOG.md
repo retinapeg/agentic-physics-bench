@@ -128,6 +128,24 @@ Keep ordinary entries to five to eight lines; combine fields when possible.
 - Lesson (Leo): TODO
 - Status: VERIFIED for the workflow's control logic (offline) and one dev episode (n = 1, tool not used). No tool benefit is demonstrated.
 
+## 2026-09-21 | 4 Review and freeze | Two reproduced defects fixed; protocol frozen
+- Authorship: Codex independently reproduced both defects. Leo approved D1–D10 with amendments (D3: no floor or redraw; D6: verify and pin effort; D7/D9: 3 + 3 condition order within each sign group). Claude implemented and verified the fixes and the freeze.
+- Defect 1: a tool request with `"name": []` crashed `validate_request` (TypeError: unhashable type). The fix checks field types before the allowlist lookup; tool exceptions also become a recorded `tool_error`. The regression test raises the same TypeError on the previous commit's code and passes on the fix.
+- Defect 2: the old runner could record `controls_ok = false` together with `grade.correct = true`; reproduced with a scripted call listing a native `Bash` tool. The new runner validates:
+  - required initialization metadata;
+  - `tools: []` and `mcp_servers: []`;
+  - the model ID;
+  - no native tool use, no overage, no stderr output.
+
+  Any violation makes the episode `invalid_run`: it is not graded, its evidence is preserved, and the batch stops. 34 offline tests pass.
+- Effort check (19:27): `--effort bogus` was **not** rejected. The CLI warned on stderr, used the default and made a model call. That was one unplanned invocation outside the matrix; its raw output was not saved. `high` is pinned and stderr is now a control.
+- Freeze (19:30):
+  - 12 scored cases (seed 202). References validated by `statistics.linear_regression` and exact fractions; byte-identical on regeneration.
+  - Signs −+ interleaved, 6/6. No `a_ref`/`a_true` sign disagreements. Smallest |a_ref| 0.965 m/s².
+  - `data/freeze_manifest.json` hashes 14 files and records the CLI version and arguments. The runner refuses scored inference if any of these differ.
+- Lesson (Leo): TODO
+- Status: VERIFIED (offline checks, regression reproduction, hashes). No scored inference before the freeze commit.
+
 ## Topics to capture as they occur
 
 Model vs agent vs pretrained weights; API/SDK vs model identity; benchmarks vs evals; reference validation; data leakage; prompts and configuration hashes; structured-output failures; tool dispatch and stopping; retries and missing denominators; retrieval vs generation errors; unsupported claims vs numerical mistakes; RAG vs fine-tuning; paired analysis; reproducibility; what I implemented vs delegated.

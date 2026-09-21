@@ -62,6 +62,31 @@ class WorkflowTests(unittest.TestCase):
             self.assertEqual((out["model_calls"], out["tool_executions"]), (1, 0), reply)
             self.assertEqual((out["error"], out["tool"]["error"]), ("invalid_tool_request", code))
 
+    def test_malformed_request_fields_are_recorded_not_crashes(self):
+        # Regression: Codex reproduced a TypeError for "name": [] (unhashable in the allowlist lookup).
+        for reply, code in [
+            ('{"type": "tool", "name": [], "arguments": {"case_id": "dev-01"}}', "bad_tool_name"),
+            ('{"type": "tool", "name": {}, "arguments": {"case_id": "dev-01"}}', "bad_tool_name"),
+            ('{"type": "tool", "arguments": {"case_id": "dev-01"}}', "bad_tool_name"),
+            ('{"type": "tool", "name": "fit_line", "arguments": ["dev-01"]}', "bad_arguments"),
+            ('{"type": "tool", "name": "fit_line", "arguments": {"case_id": ["dev-01"]}}', "bad_arguments"),
+            ('{"type": "tool", "name": "fit_line"}', "bad_arguments"),
+        ]:
+            out, _ = self.episode(reply)
+            self.assertEqual((out["model_calls"], out["tool_executions"]), (1, 0), reply)
+            self.assertEqual((out["error"], out["tool"]["error"], out["tool"]["executed"]),
+                             ("invalid_tool_request", code, False), reply)
+
+    def test_tool_exception_is_a_recorded_outcome(self):
+        original = tools.TOOLS["fit_line"]
+        tools.TOOLS["fit_line"] = lambda case: 1 / 0
+        try:
+            out, prompts = self.episode(TOOL_REQ, FINAL)
+        finally:
+            tools.TOOLS["fit_line"] = original
+        self.assertEqual((out["error"], out["model_calls"], len(prompts)), ("tool_error", 1, 1))
+        self.assertFalse(out["tool"]["executed"])
+
     def test_second_tool_request_exceeds_limit(self):
         out, _ = self.episode(TOOL_REQ, TOOL_REQ)
         self.assertEqual((out["model_calls"], out["tool_executions"], out["error"]),

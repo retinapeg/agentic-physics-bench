@@ -1,0 +1,98 @@
+[
+ {
+  "case_id": "s-01",
+  "generating_sign": -1,
+  "order": [
+   "direct",
+   "workflow"
+  ]
+ },
+ {
+  "case_id": "s-02",
+  "generating_sign": 1,
+  "order": [
+   "direct",
+   "workflow"
+  ]
+ },
+ {
+  "case_id": "s-03",
+  "generating_sign": -1,
+  "order": [
+   "workflow",
+   "direct"
+  ]
+ },
+ {
+  "case_id": "s-04",
+  "generating_sign": 1,
+  "order": [
+   "workflow",
+   "direct"
+  ]
+ },
+ {
+  "case_id": "s-05",
+  "generating_sign": -1,
+  "order": [
+   "direct",
+   "workflow"
+  ]
+ },
+ {
+  "case_id": "s-06",
+  "generating_sign": 1,
+  "order": [
+   "direct",
+   "workflow"
+  ]
+ },
+ {
+  "case_id": "s-07",
+  "generating_sign": -1,
+  "order": [
+   "workflow",
+   "direct"
+  ]
+ },
+ {
+  "case_id": "s-08",
+  "generating_sign": 1,
+  "order": [
+   "workflow",
+   "direct"
+  ]
+ },
+ {
+  "case_id": "s-09",
+  "generating_sign": -1,
+  "order": [
+   "direct",
+   "workflow"
+  ]
+ },
+ {
+  "case_id": "s-10",
+  "generating_sign": 1,
+  "order": [
+   "direct",
+   "workflow"
+  ]
+ },
+ {
+  "case_id": "s-11",
+  "generating_sign": -1,
+  "order": [
+   "workflow",
+   "direct"
+  ]
+ },
+ {
+  "case_id": "s-12",
+  "generating_sign": 1,
+  "order": [
+   "workflow",
+   "direct"
+  ]
+ }
+]

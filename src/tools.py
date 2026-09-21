@@ -23,11 +23,18 @@ TOOLS = {"fit_line": fit_line}
 
 
 def validate_request(request, case_id):
-    """Return None if the request may execute, otherwise an error code."""
-    if request.get("name") not in TOOLS:
+    """Return None if the request may execute, otherwise an error code.
+
+    Field types are checked before any lookup, so malformed requests (e.g. a
+    list as the tool name) become recorded outcomes instead of crashes.
+    """
+    name = request.get("name")
+    if not isinstance(name, str):
+        return "bad_tool_name"
+    if name not in TOOLS:
         return "unknown_tool"
     args = request.get("arguments")
-    if not isinstance(args, dict) or set(args) != {"case_id"}:
+    if not isinstance(args, dict) or set(args) != {"case_id"} or not isinstance(args["case_id"], str):
         return "bad_arguments"
     if args["case_id"] != case_id:
         return "wrong_case_id"

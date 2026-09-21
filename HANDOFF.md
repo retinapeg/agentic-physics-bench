@@ -1,4 +1,4 @@
-# Claude handoff — 2026-09-21 (last updated 19:18 BST)
+# Claude handoff — 2026-09-21 (last updated 19:31 BST)
 
 Agentic Physics Bench is an AI engineering and research pilot. Leo is the research lead and decision maker; Claude writes the code and checks at his direction; Codex is the independent reviewer. Keep the project bounded: no extra agents or frameworks. Follow `CLAUDE.md` (its later standing instructions take precedence) and `WORKMODE.md`.
 
@@ -69,7 +69,11 @@ All times are BST. Sources:
 | 24 | 19:15 (session) | Process | Leo resumed implementation within the original five-hour budget, superseding the 18:45 stop (row 22). He set the tool-workflow design: case-ID request with harness-injected data, fresh-call turn 2, ≤ 2 calls, ≤ 1 tool execution, no retries | Leo decided | chat | OBSERVED |
 | 25 | 19:15–19:17 (session) | 3 | `src/tools.py`, `src/agent.py`, workflow prompts, runner schema 2 and `tests/test_agent.py` written; 19/19 offline tests OK | Claude, directed by Leo | unittest output | VERIFIED (offline) |
 | 26 | 19:17:01 (session) | 3 | dev-01 workflow episode (1 CLI call, no rerun): the model answered directly with −1.946 m/s² → correct; tool not requested; 0 tool executions | Claude, authorised by Leo | `results/episodes_dev.jsonl` line 2 | VERIFIED (one dev episode) |
-| 27 | 19:18–19:18 (session) | 3 | Docs updated. `EXPERIMENT.md` section 13 now lists decisions D1–D10 for one approval. Checkpoint 3 committed and pushed | Claude, directed by Leo | `git log` | OBSERVED |
+| 27 | 19:18 (session) | 3 | Docs updated. `EXPERIMENT.md` section 13 now lists decisions D1–D10 for one approval. Checkpoint 3 committed and pushed as `224f18a` | Claude, directed by Leo | `git log` | OBSERVED |
+| 28 | ~19:22 (session) | 4 | Leo approved D1–D10 with amendments (D3 no floor or redraw; D6 verify and pin effort; D7/D9 3 + 3 order within each sign group). Codex had reproduced two defects: a TypeError on `"name": []`, and `controls_ok=false` with `correct=true` | Leo decided; Codex reviewed | chat | OBSERVED |
+| 29 | 19:26–19:29 (session) | 4 | Fixes plus regression tests; 34 offline tests OK. The regression tests fail on the old code: TypeError reproduced; old runner gave `controls_ok=False` and `correct=True` | Claude | unittest output; scratch run on `HEAD` code | VERIFIED |
+| 30 | 19:27 (session) | 4 | Unplanned model call: `--effort bogus` was not rejected (stderr warning, default used, call made). Raw output not saved | Claude | stderr text in RESEARCH_LOG | OBSERVED |
+| 31 | 19:30 (session) | 4 | Scored cases generated and validated; freeze manifest written; `EXPERIMENT.md` marked FROZEN; committed, tagged `v0-protocol-freeze` and pushed before any scored call | Claude, directed by Leo | `data/freeze_manifest.json`; tag | VERIFIED |
 
 ## Verified setup
 

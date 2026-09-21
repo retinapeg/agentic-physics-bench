@@ -65,5 +65,47 @@ class DevCaseTests(unittest.TestCase):
             self.assertAlmostEqual(key["a_ref"], float(exact_slope(case["t_s"], case["v_m_per_s"])), places=12)
 
 
+class ScoredCaseTests(unittest.TestCase):
+    def setUp(self):
+        self.cases, self.keys = tasks.make_scored_cases()
+        self.plan = tasks.run_plan([c["id"] for c in self.cases], tasks.SCORED_SIGNS)
+
+    def test_reproducible_and_separate_from_dev(self):
+        self.assertEqual((self.cases, self.keys), tasks.make_scored_cases())
+        dev_cases, _ = tasks.make_dev_cases()
+        self.assertFalse({tuple(c["v_m_per_s"]) for c in dev_cases} & {tuple(c["v_m_per_s"]) for c in self.cases})
+
+    def test_twelve_cases_six_of_each_generating_sign(self):
+        self.assertEqual([c["id"] for c in self.cases], [f"s-{i:02d}" for i in range(1, 13)])
+        signs = [1 if k["a_true"] > 0 else -1 for k in self.keys]
+        self.assertEqual(signs, list(tasks.SCORED_SIGNS))
+        self.assertEqual((signs.count(-1), signs.count(1)), (6, 6))
+        for case in self.cases:
+            self.assertEqual(set(case), {"id", "t_s", "v_m_per_s"})
+
+    def test_condition_order_three_each_within_each_sign_group(self):
+        for sign in (-1, 1):
+            firsts = [p["order"][0] for p in self.plan if p["generating_sign"] == sign]
+            self.assertEqual(sorted(firsts), ["direct"] * 3 + ["workflow"] * 3)
+        for p in self.plan:
+            self.assertEqual(sorted(p["order"]), ["direct", "workflow"])
+
+    def test_reference_matches_independent_calculations(self):
+        for case, key in zip(self.cases, self.keys):
+            t = [float(x) for x in case["t_s"]]
+            v = [float(x) for x in case["v_m_per_s"]]
+            self.assertAlmostEqual(key["a_ref"], statistics.linear_regression(t, v).slope, places=12)
+            self.assertAlmostEqual(key["a_ref"], float(exact_slope(case["t_s"], case["v_m_per_s"])), places=12)
+
+    def test_saved_scored_files_match_generator(self):
+        files = {"scored_cases.jsonl": tasks.to_jsonl(self.cases), "scored_keys.jsonl": tasks.to_jsonl(self.keys),
+                 "scored_plan.json": json.dumps(self.plan, indent=1) + "\n"}
+        for name, text in files.items():
+            path = ROOT / "data" / name
+            if not path.exists():
+                self.skipTest(f"{name} not written yet")
+            self.assertEqual(path.read_text(), text)
+
+
 if __name__ == "__main__":
     unittest.main()

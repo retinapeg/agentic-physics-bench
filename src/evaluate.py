@@ -7,7 +7,8 @@ import json
 import math
 
 ACCEPTED_UNITS = ("m/s^2", "m/s²", "m s^-2")
-DEV_TOLERANCE = 0.01  # m/s^2, absolute, PROVISIONAL (development only)
+TOLERANCE = 0.01  # m/s^2, absolute; frozen for the V0 scored pilot (D2)
+DEV_TOLERANCE = TOLERANCE
 
 
 def parse_final(text):
@@ -28,7 +29,7 @@ def parse_final(text):
     return {"acceleration": float(a), "units": obj.get("units")}, None
 
 
-def grade(answer, error, a_ref, tol=DEV_TOLERANCE):
+def grade(answer, error, a_ref, tol=TOLERANCE):
     """Outcome is one of: correct, wrong_value, wrong_units, or the parse error code."""
     if error:
         return {"correct": False, "outcome": error, "abs_error": None}

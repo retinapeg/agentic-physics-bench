@@ -1,11 +1,11 @@
 """Synthetic velocity-time cases and their reference answers.
 
 Written by Claude at Leo's direction (2026-09-21). Parameters follow
-EXPERIMENT.md section 3, which is still DRAFT; sigma is provisional.
-Scored cases (seed 202) are not generated until the protocol is frozen.
+EXPERIMENT.md section 3 (approved D1-D10 with Leo's amendments).
 
-Run from the repo root to (re)write the development files:
-    python3 src/tasks.py
+Run from the repo root to (re)write the data files:
+    python3 src/tasks.py          # development cases
+    python3 src/tasks.py scored   # scored cases and run plan (at freeze)
 """
 import hashlib
 import json
@@ -20,7 +20,10 @@ A_MAX = 5.0  # m/s^2; |a_true| is drawn from (0, A_MAX]
 V0_MIN, V0_MAX = -10.0, 10.0  # m/s
 DEV_SEED = 101
 DEV_SIGNS = (-1, +1, -1, +1)  # dev-01..dev-04: two negative, two positive
-SIGMA_DEV = 0.5  # m/s, PROVISIONAL (development only)
+SCORED_SEED = 202
+SCORED_SIGNS = (-1, +1) * 6  # s-01..s-12: generating signs interleaved, six of each (D9)
+SIGMA = 0.5  # m/s (D1)
+SIGMA_DEV = SIGMA
 
 DATA_DIR = Path(__file__).resolve().parents[1] / "data"
 
@@ -66,24 +69,62 @@ def make_case(rng, case_id, sign, sigma):
     return case, key
 
 
-def make_dev_cases(seed=DEV_SEED, sigma=SIGMA_DEV):
-    """Return (cases, keys) for dev-01..dev-04 from one seeded generator."""
+def make_cases(prefix, seed, signs, sigma=SIGMA):
+    """Return (cases, keys) from one seeded generator. No magnitude floor or redraw (D3)."""
     rng = random.Random(seed)
-    pairs = [make_case(rng, f"dev-{i:02d}", sign, sigma)
-             for i, sign in enumerate(DEV_SIGNS, start=1)]
+    pairs = [make_case(rng, f"{prefix}-{i:02d}", sign, sigma)
+             for i, sign in enumerate(signs, start=1)]
     return [case for case, _ in pairs], [key for _, key in pairs]
+
+
+def make_dev_cases(seed=DEV_SEED, sigma=SIGMA):
+    """dev-01..dev-04."""
+    return make_cases("dev", seed, DEV_SIGNS, sigma)
+
+
+def make_scored_cases(seed=SCORED_SEED, sigma=SIGMA):
+    """s-01..s-12."""
+    return make_cases("s", seed, SCORED_SIGNS, sigma)
+
+
+def run_plan(case_ids, signs):
+    """Fixed condition order (D7, amended by Leo).
+
+    Within each generating-sign group, taken in case order, the 1st, 3rd and 5th
+    cases run direct first and the 2nd, 4th and 6th run workflow first. So each
+    sign group has three of each, and condition order is not tied to sign.
+    """
+    rank = {-1: 0, +1: 0}
+    plan = []
+    for case_id, sign in zip(case_ids, signs):
+        first = "direct" if rank[sign] % 2 == 0 else "workflow"
+        rank[sign] += 1
+        order = [first, "workflow" if first == "direct" else "direct"]
+        plan.append({"case_id": case_id, "generating_sign": sign, "order": order})
+    return plan
 
 
 def to_jsonl(rows):
     return "".join(json.dumps(row, sort_keys=True) + "\n" for row in rows)
 
 
+def write(name, text):
+    (DATA_DIR / name).write_text(text)
+    print(f"{name}  sha256={hashlib.sha256(text.encode()).hexdigest()}")
+
+
 if __name__ == "__main__":
+    import sys
     DATA_DIR.mkdir(exist_ok=True)
-    cases, keys = make_dev_cases()
-    for name, rows in (("dev_cases.jsonl", cases), ("dev_keys.jsonl", keys)):
-        text = to_jsonl(rows)
-        (DATA_DIR / name).write_text(text)
-        print(f"{name}  sha256={hashlib.sha256(text.encode()).hexdigest()}")
-    for key in keys:
-        print(f"{key['id']}  a_ref={key['a_ref']:+.4f}  a_true={key['a_true']:+.4f} m/s^2")
+    if sys.argv[1:] == ["scored"]:
+        cases, keys = make_scored_cases()
+        write("scored_cases.jsonl", to_jsonl(cases))
+        write("scored_keys.jsonl", to_jsonl(keys))
+        plan = run_plan([c["id"] for c in cases], SCORED_SIGNS)
+        write("scored_plan.json", json.dumps(plan, indent=1) + "\n")
+    else:
+        cases, keys = make_dev_cases()
+        write("dev_cases.jsonl", to_jsonl(cases))
+        write("dev_keys.jsonl", to_jsonl(keys))
+        for key in keys:
+            print(f"{key['id']}  a_ref={key['a_ref']:+.4f}  a_true={key['a_true']:+.4f} m/s^2")

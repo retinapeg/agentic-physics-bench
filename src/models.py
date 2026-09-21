@@ -10,9 +10,11 @@ import tempfile
 import time
 
 CLAUDE_MODEL = "claude-opus-5"
+EFFORT = "high"  # D6. The CLI ignores unknown values with a stderr warning, so stderr is a control check.
 CLAUDE_ARGV = [
     "claude", "--print",
     "--model", CLAUDE_MODEL,
+    "--effort", EFFORT,
     "--tools", "",
     "--safe-mode",
     "--strict-mcp-config",

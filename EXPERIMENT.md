@@ -1,6 +1,6 @@
-# EXPERIMENT.md — DRAFT, NOT FROZEN
+# EXPERIMENT.md — FROZEN for the V0 scored pilot (2026-09-21)
 
-Status: draft for Leo's review. Nothing here is frozen until the "Freeze record" at the bottom is filled in and committed **before** any scored response is viewed. Every `DECIDE` is Leo's call; the "proposed" value is only a starting point.
+Status: frozen at 19:30 BST on 2026-09-21, after Leo approved D1–D10 with amendments (section 13). The frozen files and settings are fixed by `data/freeze_manifest.json`, which the runner checks before any scored call. Earlier text below keeps its development-stage notes for the record; where it conflicts with section 13, section 13 governs.
 
 ## 1. Question (V0)
 
@@ -25,9 +25,9 @@ For each case: draw a true acceleration `a_true` and initial velocity `v0`; set 
 | Seed (dev / scored) | two different integers | 101 (dev) / 202 (scored) |
 | Points per case N | 8–12 | 10 |
 | Time grid | uniform, t = 0…(N−1)·Δt, Δt = 0.5 s | t = 0, 0.5, …, 4.5 s; the same for every case |
-| `a_true` range | uniform on [−5, 5] m/s², not rounded to a "nice" value; include negative cases in both splits | Continuous in ±(0, 5] m/s², not rounded. Sign-balanced by sampling within each sign: 2 positive / 2 negative dev, 6 / 6 scored. Minimum \|a_true\| or redraw rule: DECIDE |
+| `a_true` range | uniform on [−5, 5] m/s², not rounded to a "nice" value; include negative cases in both splits | Continuous in ±(0, 5] m/s², not rounded. Sign-balanced by sampling within each sign: 2 positive / 2 negative dev, 6 / 6 scored. No magnitude floor or redraw rule (Leo, D3 amendment). Generating signs are balanced; the fitted reference need not share the sign |
 | `v0` range | uniform on [−10, 10] m/s | Uniform on [−10, 10] m/s (nonzero intercept allowed) |
-| Noise σ | set with tolerance (section 7) | 0.5 m/s, PROVISIONAL, development only. Final value: DECIDE before freeze. At 0.5 m/s, SD(a_ref about a_true) = σ/√20.625 s² ≈ 0.11 m/s² |
+| Noise σ | set with tolerance (section 7) | 0.5 m/s, final (D1). At 0.5 m/s, SD(a_ref about a_true) = σ/√20.625 s² ≈ 0.11 m/s² |
 | Displayed velocity precision | 2 decimals | 2 decimals; the reference is computed from exactly the displayed values |
 
 Provenance: Leo made these decisions in chat. Claude entered them here at Leo's direction on 2026-09-21. Sxx = 20.625 s² was supplied by Codex and rechecked by Claude with python3.
@@ -77,21 +77,23 @@ Parsing: exactly one JSON object in the response; no repair, no retry on malform
 Claude CLI invocation used for development episodes (`src/models.py`):
 - Command: `claude --print --model claude-opus-5 --tools "" --safe-mode --strict-mcp-config --no-session-persistence --output-format stream-json --verbose`.
 - The prompt goes on stdin; each episode runs in a fresh empty temporary directory.
-- Effort level is the CLI default and is not pinned. DECIDE before freeze.
+- Effort: development episodes used the CLI default. From the freeze on, `--effort high` is pinned (D6). The installed CLI lists `high` as a valid value. An invalid value is **not** rejected: the CLI prints a stderr warning, falls back to the default and still calls the model (observed 19:27 with `bogus`). So the runner treats any stderr output as a control violation. The trace doesn't echo the effort level, so the setting can't be confirmed from traces, only the absence of the warning.
 
 Second turn mechanics, decided (Leo, 2026-09-21): a fresh CLI invocation whose prompt contains three things: the original task, the model's previous public JSON reply (not its hidden reasoning), and the tool result. Implemented in `src/agent.py`.
 
 Limits (Leo): at most 2 model calls and 1 tool execution per episode, with no retries. If turn 1 returns a final answer, the episode ends after 1 call and 0 tool executions, and is graded as usual. If turn 2 requests another tool, the outcome is `tool_limit_exceeded`, scored incorrect.
 
-Transport failures (rate limit, timeout, CLI crash): retry policy DECIDE (proposed: at most 1 retry, every attempt logged). Final failure = missing output, scored incorrect, kept in the denominator.
+Transport failures: no retries (D5). A call that returns no usable output is `missing_output`, scored incorrect and kept in the denominator. If a rate-limit status is not "allowed", the batch stops; the remaining episodes stay unattempted and are listed as such.
+
+Control enforcement (added after Codex's review, before freeze): a call whose initialization metadata is missing or unexpected (model, `tools: []`, `mcp_servers: []`, CLI version), or that shows native tool use, overage or any stderr output, makes the episode `invalid_run`. It is not graded, stays in the denominator as not correct, and is categorised as a harness/control failure, distinct from a wrong answer. It also stops the batch.
 
 ## 7. Scoring
 
 Correct iff: output parses, units accepted, and `|answer − a_ref| ≤ tol`.
 
-Development tolerance: absolute 0.01 m/s², PROVISIONAL (Leo, 2026-09-21).
+Development tolerance: absolute 0.01 m/s², set provisionally (Leo, 2026-09-21) and frozen unchanged for scored runs (D2).
 
-Scored tolerance rule: DECIDE — absolute, relative, or `max(abs_floor, rel·|a_ref|)`. Write the justification here, including why it is not so loose that answering `a_true` or a rounded guess passes.
+Scored tolerance: absolute ±0.01 m/s² (D2). It allows a 2-decimal answer. The endpoint shortcut differs from the least-squares slope by SD ≈ 0.112 m/s² at σ = 0.5, so it passes only about 7% of the time.
 
 Primary result per system × condition: correct / 12 (all planned cases).
 
@@ -115,15 +117,28 @@ Order: complete a valid paired run (12 cases × 2 conditions) on one system befo
 - `fit_line` computes exactly `a_ref`. A workflow episode that uses the tool is therefore correct if the model reports the returned value in the required format. The workflow measures whether the system chooses the tool and relays its result faithfully, not whether it can calculate.
 - The CLI's reported input-token totals don't track prompt length: 3,862 for the direct prompt, 3,863 for the nearly twice-as-long workflow prompt, and 4,570 for a one-word probe. They are not used as a measure of prompt size.
 
-## 10. Freeze record (fill in, then commit before any scored run)
+## 10. Freeze record
 
-- Commit hash of this file:
-- Seeds:
-- Prompt files + SHA-256:
-- Reference-check evidence (command + output):
-- Tolerance and justification:
-- Episode limits, retry policy, second-turn mechanics:
-- Date/time frozen:
+- **Freeze commit:** git tag `v0-protocol-freeze`, the first commit containing this record and `data/freeze_manifest.json`. No scored inference happened before it.
+- **Date/time frozen:** 2026-09-21T19:30:22+01:00.
+- **Seeds:** dev 101, scored 202. σ = 0.5 m/s. Python 3.11.5. Claude Code 2.1.278. Model `claude-opus-5`, effort `high`.
+- **Prompt SHA-256:**
+  - `direct.txt` `701dcfe4f6af1ff87680060436e8dffdc918770122a26e135f5af7d1b696e7f8`
+  - `workflow_turn1.txt` `b8f6ce40b8a8d00de25fb1562918451c05c0b65dd3bbd297f634d1588d0c0caf`
+  - `workflow_turn2.txt` `e5582c10a5fd0f9a05e2d582fead3b69c287271daf80a3bc1d3ff71ff59b0e86`
+- **Data SHA-256:**
+  - `scored_cases.jsonl` `5049fd02995d078ba060bd73eea40395ad3f1ad9533bfe8eaa22b33df2e0b7fe`
+  - `scored_keys.jsonl` `46ecd601c0e1d2d9dc93fcd331cac7ad393a17052a69c456869a6b7cdcac25eb`
+  - `scored_plan.json` `d436cf4cff418ff83e552466247172f7c14eef7fcc0af49028fe828d6f7a5958`
+  - Dev files are unchanged from checkpoint 1b.
+- **Reference check:** `python3 -m unittest tests.test_tasks` → OK. For all 12 scored cases, `a_ref` matches `statistics.linear_regression` and an exact fraction calculation from the displayed strings, to 12 decimal places. Two generation runs are byte-identical. Generating signs are −+−+…, six of each. No case has `a_ref` and `a_true` of opposite sign (informational; not required by D3). The smallest |a_ref| is 0.965 m/s².
+- **Tolerance:** absolute ±0.01 m/s² (see section 7).
+- **Limits:**
+  - direct: 1 model call;
+  - workflow: ≤ 2 model calls and ≤ 1 tool execution;
+  - no retries; at most 36 scored invocations in total.
+- **Second turn:** a fresh CLI call with the original task, the previous public reply and the tool result.
+- **Condition order:** `data/scored_plan.json`. Within each generating-sign group, in case order, cases 1, 3 and 5 run direct first and cases 2, 4 and 6 run workflow first: s-01 D, s-02 D, s-03 W, s-04 W, s-05 D, s-06 D, s-07 W, s-08 W, s-09 D, s-10 D, s-11 W, s-12 W.
 
 ## 11. Harness architecture
 
@@ -150,7 +165,11 @@ flowchart LR
 
 ## 13. Decisions for one approval before scored inference
 
-Proposed by Claude, 2026-09-21. Leo approves or edits these once. After that: implement any changes, generate the scored cases, fill in the freeze record (section 10), commit, then run.
+Proposed by Claude. **Approved by Leo on 2026-09-21, with these amendments:**
+- **D3:** keep the original acceleration distribution, with no magnitude floor or redraw. Balance the generating signs; the fitted reference need not share the sign.
+- **D6:** verify that the installed CLI supports the explicit setting, then use it consistently. Done: `high` is pinned, and the stderr check is enforced (section 6).
+- **D7/D9:** within each six-case generating-sign group, three cases run direct first and three workflow first, by a fixed, recorded procedure (section 10).
+All other rows were approved as recommended. The D3 recommendation in the table below was **not** adopted.
 
 | # | Decision | Recommendation | Reason |
 |---|---|---|---|
