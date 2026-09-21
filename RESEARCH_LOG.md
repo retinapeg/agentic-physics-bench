@@ -103,6 +103,13 @@ Keep ordinary entries to five to eight lines; combine fields when possible.
 - Lesson (Leo): TODO
 - Status: VERIFIED for one development episode. This is not an accuracy estimate. The effort level isn't pinned. Why the probe and the episode report different input-token totals (4,570 vs 3,862) is unexplained.
 
+## 2026-09-21 | Roadmap | Research direction recorded; no new experiment
+- Authorship: Leo supplied a brief adding a research-informed learning strand; its drafter is not recorded here. Claude wrote `RESEARCH_ROADMAP.md` and `EXPERIMENT.md` sections 11–12 at Leo's direction.
+- Did: read the three suggested sources: one Anthropic engineering post, and two arXiv abstract pages (not the full papers). Recorded each source's claim, what it actually evaluated, a limitation and its relevance. Confirmed titles, authors and dates from the arXiv pages.
+- Correction to the brief: the harness-evolution abstract names neither the fixed model nor any effect sizes. The roadmap says so.
+- Scope: V0 is unchanged (4 dev cases, 12 scored cases). Follow-ups 1–3 and "harness debt" are deferred; novelty is not established. Nothing has been reproduced.
+- Status: OBSERVED (documentation only; no model calls).
+
 ## Topics to capture as they occur
 
 Model vs agent vs pretrained weights; API/SDK vs model identity; benchmarks vs evals; reference validation; data leakage; prompts and configuration hashes; structured-output failures; tool dispatch and stopping; retries and missing denominators; retrieval vs generation errors; unsupported claims vs numerical mistakes; RAG vs fine-tuning; paired analysis; reproducibility; what I implemented vs delegated.

@@ -53,4 +53,12 @@ Standing instruction from Leo (2026-09-21, about 18:35). This supersedes the tea
 - The GitHub repo is an AI engineering and research project. Keep tracked files focused on the experiment, code, data, results and their provenance.
 - Research decisions (protocol values, tolerance, prompts, what to publish) remain Leo's. Propose defaults and ask.
 
+Standing instruction from Leo (2026-09-21, 19:01): a research-informed learning strand, added without changing the V0 scope (4 dev cases, 12 scored cases). Keep CareerOps separate.
+- `RESEARCH_ROADMAP.md` (tracked) records demonstrated results, hypotheses, deferred work, three follow-up experiments and source notes. Don't implement follow-ups before V0 is complete.
+- Engineering architecture and research methods go in project docs (`EXPERIMENT.md` sections 11–12, the roadmap). Personal teaching, exam questions and interview preparation stay in the local `LEARNING_REVIEW.md`.
+- After each completed checkpoint, add one learning entry: concept → actual code → evidence → limitation → interview explanation. Keep the limit of two exam questions, with answers in the separate marking scheme.
+- Link a research source only when it is relevant. Record its version, the claim, what was actually evaluated, a limitation and its relevance. Mark preprints and engineering accounts as such, and never imply we reproduced them.
+- When Leo engages, teach one concept at a time, drawing on his physics background. Start with model vs harness, proposed action vs execution, and what an eval measures. Introduce RAG, embeddings, memory and recovery only when the project makes them relevant.
+- The write-up includes the deterministic solver as a reference point. Never claim long-horizon reasoning, self-improvement or novel architecture from this pilot.
+
 Initial response: no full-day lecture. Begin checkpoint 0 and wait for Leo's environment output.

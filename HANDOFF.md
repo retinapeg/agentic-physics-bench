@@ -1,11 +1,12 @@
-# Claude handoff — 2026-09-21 (last updated 18:48 BST)
+# Claude handoff — 2026-09-21 (last updated 19:12 BST)
 
 Agentic Physics Bench is an AI engineering and research pilot. Leo is the research lead and decision maker; Claude writes the code and checks at his direction; Codex is the independent reviewer. Keep the project bounded: no extra agents or frameworks. Follow `CLAUDE.md` (its later standing instructions take precedence) and `WORKMODE.md`.
 
 **Standing rules (Leo, 2026-09-21)**
 - At the end of every checkpoint, update this file's timeline, current state and next action, and add a dated entry to `RESEARCH_LOG.md`. Cite evidence and say who did the work.
 - Claude writes the functions and checks, runs them, and records actual results. Research decisions stay with Leo.
-- Learning material lives only in the local, gitignored `LEARNING_REVIEW.md`, with one consolidated entry per completed checkpoint. Leo will work through it on another day.
+- Learning material lives only in the local, gitignored `LEARNING_REVIEW.md`, with one entry per completed checkpoint: concept → code → evidence → limitation → interview explanation. Leo will work through it on another day.
+- The research direction is in `RESEARCH_ROADMAP.md`, which holds demonstrated results, hypotheses, three deferred follow-ups and source notes. It adds nothing to the V0 scope.
 
 ## Current state
 
@@ -23,6 +24,7 @@ Agentic Physics Bench is an AI engineering and research pilot. Leo is the resear
   - `dev_keys.jsonl` SHA-256 `dfa56e5ab44f5be5fee284786f9bf128a57ee4d9049dd8e3e83ab141c3261059`
   - Scored cases are not generated.
 - Episodes: one development episode, dev-01 direct on Claude: **correct** (−1.9458 vs a_ref −1.945818 m/s²). Saved in `results/episodes_dev.jsonl`; raw output in `results/raw/`, which is gitignored. No scored cases or scores.
+- Research docs: `RESEARCH_ROADMAP.md`; `EXPERIMENT.md` section 11 (harness architecture) and section 12 (deterministic reference point).
 - Publication: no public repo, release, or X post.
 
 ## Chronological timeline
@@ -55,7 +57,8 @@ All times are BST. Sources:
 | 19 | 18:40–18:44 (session) | 2 | Leo approved the prompt, the ±0.01 m/s² dev tolerance and the units ('go'). Claude wrote the prompt file, adapter, parser/grader and runner; 13 offline tests OK | Leo decided; Claude built | unittest output | OBSERVED |
 | 20 | 18:44:57 (session) | 2 | Isolation probe (1 CLI call, answer 'ok'): `tools: []`, `mcp_servers: []`; still lists 21 skill names, 1 plugin, 5 built-in agents, but not the user's own skills; 4,570 reported input tokens | Claude, authorised by Leo | `results/raw/probe-isolation-*.json` (local) | OBSERVED |
 | 21 | 18:45:26 (session) | 2 | dev-01 direct episode (1 CLI call, no retry): answer −1.9458 m/s², a_ref −1.945818, absolute error 1.8e-5 → correct; 0 tool uses; 3,862 in / 507 out reported tokens | Claude, authorised by Leo | `results/episodes_dev.jsonl` | VERIFIED (one dev episode) |
-| 22 | 18:46–18:48 (session) | 2 | Leo set a firm stopping point. Rule changed to one learning entry per checkpoint. Docs updated; checkpoint 2 committed and pushed | Leo decided; Claude applied | this commit | OBSERVED |
+| 22 | 18:46–18:48 (session) | 2 | Leo set a firm stopping point. Rule changed to one learning entry per checkpoint. Docs updated; checkpoint 2 committed and pushed as `a9af5b1` | Leo decided; Claude applied | `git log` | OBSERVED |
+| 23 | 19:01–19:12 (session) | Roadmap | Leo added a research-informed learning strand (brief drafter not recorded). Claude read 3 sources (abstract pages only for the preprints) and wrote `RESEARCH_ROADMAP.md`, `EXPERIMENT.md` sections 11–12 and the local learning sections. No model calls | Leo decided; Claude wrote | this commit | OBSERVED |
 
 ## Verified setup
 

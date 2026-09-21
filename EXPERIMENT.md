@@ -120,3 +120,26 @@ Order: complete a valid paired run (12 cases × 2 conditions) on one system befo
 - Tolerance and justification:
 - Episode limits, retry policy, second-turn mechanics:
 - Date/time frozen:
+
+## 11. Harness architecture
+
+The harness is the Python program around the model. It controls what information the model receives, which actions can execute, when a run stops and what is recorded. The tool branch below is planned, not built.
+
+```mermaid
+flowchart LR
+    D[Displayed measurements] --> H[Python harness: src/run.py]
+    H --> C[Claude CLI wrapper and model: src/models.py]
+    C -->|Response or proposed action| H
+    H -->|Validated request| T[fit_line — planned]
+    T -->|Calculated result| H
+    H --> G[Parser and grader: src/evaluate.py]
+    K[Separate reference answer: data/dev_keys.jsonl] --> G
+    H --> L[Saved trace: results/]
+```
+
+- **Proposal vs execution:** the model can only *propose* an action as JSON text. The harness validates it against the allowlist and executes it. This is an application protocol, not native provider function calling.
+- **Two software layers:** our harness, and the Claude CLI's own wrapper, whose instructions are unverified. Results describe this system, not the bare model. `claude_code_version` is logged in every trace.
+
+## 12. Deterministic reference point
+
+`ls_slope` in `src/tasks.py` computes the answer exactly, so the task does not need a language model. The write-up reports this reference alongside the model conditions. V0 measures how reliably an LLM system follows a specified numerical instruction: format, units, accuracy and, in the tool condition, requesting and using a permitted calculation. It cannot show that an LLM is necessary for regression. It makes no claim about long-horizon reasoning, self-improvement or novel architecture. Follow-up work is in `RESEARCH_ROADMAP.md`.
