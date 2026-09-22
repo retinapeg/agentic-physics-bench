@@ -192,6 +192,22 @@ Keep ordinary entries to five to eight lines; combine fields when possible.
   4. **Derivation vs formulation:** starting from a supplied Lagrangian tests derivation. Choosing coordinates and assumptions and constructing the Lagrangian from a physical description tests formulation. These are separated in the roadmap (including R1) and workbook section D; they remain recommendations awaiting approval.
 - Status: OBSERVED (documentation). Paragraphs re-read after editing.
 
+## 2026-09-22 | Release | Repository made public after a pre-publication audit
+
+- Decision (Leo, 19:2x BST): "let's make the work public on github first of all. This is fine to be public." Two follow-up decisions were put to him after the audit and he chose both recommendations: publish with `LEARNING_REVIEW.md` left in history, and publish both branches.
+- Pre-publication audit, run by Claude before any visibility change (read-only, all refs and all history):
+  - Tracked at HEAD: 36 files on `main`, plus `LINEAGE.md` and `PROPOSAL.md` on the research branch. `git diff --stat v1.0.0 HEAD -- src tests data results` is empty, so the published code, data and results are exactly V1's.
+  - Secret and identifier scan across every blob in `git rev-list --all`: no matches for `sk-ant`, `api_key`, `API_KEY`, `Bearer`, `session_id`, `uuid`, `@gmail`, the user name, or any absolute path (`/Users/`, `/home/`). No medical or personal-health terms. The words "employer", "interview" and "CareerOps" appear only as policy text in the instruction files and log ("No medical details, private messages, credentials or employer data belong in the public log"), not as data.
+  - Tracked episode traces were checked field by field: they carry model ID, CLI version, token counts, prompt text and hashes, control flags and grades. No session identifiers, working directories or machine metadata. `raw_trace` holds a relative path to the gitignored `results/raw/`.
+  - `git stash list` and `git fsck --lost-found` are both empty. Origin holds two branches and the two tags.
+  - **Found and accepted:** `LEARNING_REVIEW.md` survives in history in three versions (16,596 / 17,728 / 20,227 bytes, commits `60fe171`, `d7e500a`, `ce07160`) from before it was untracked at `94499d0`. Its content is tutoring material only: catch-up tasks, ten exam questions, a marking scheme, worked solutions and an empty attempts table. Purging it would rewrite every commit after `60fe171`, including `8d336d8` (`v1.0.0`) and `f504c57` (`v0-protocol-freeze`), which would break the immutable-tag rule and invalidate the hashes cited in `LINEAGE.md`, `HANDOFF.md` and this log. Leo chose to publish as-is.
+- Action: `gh repo edit retinapeg/agentic-physics-bench --visibility public --accept-visibility-change-consequences`, run by Claude at Leo's direction.
+- Result: `gh repo view --json visibility` returns **`PUBLIC`** for `retinapeg/agentic-physics-bench` (default branch `main`). The superseded `retinapeg/agentic-physics-bench-analytic` was re-checked and remains **`PRIVATE`**.
+- Known cosmetic consequences, not defects: `raw_trace` fields point at gitignored files, so those paths dangle for a public reader; `LINEAGE.md` and `HANDOFF.md` name the superseded private repository, which will 404 for readers; the inherited V1 section of `HANDOFF.md` still reads "Repo: private", correct as history and superseded by the current-state section.
+- README re-read as a public reader: it leads with the result table but states in the same screen that both conditions sat at the ceiling, that the tool was never exercised, and that the pilot cannot measure a tool benefit. No wording change was needed.
+- Status: VERIFIED (visibility confirmed by `gh` after the change; audit commands run in session). No model calls, installs or experiments.
+- Lesson: TODO (Leo)
+
 ## Topics to capture as they occur
 
 Model vs agent vs pretrained weights; API/SDK vs model identity; benchmarks vs evals; reference validation; data leakage; prompts and configuration hashes; structured-output failures; tool dispatch and stopping; retries and missing denominators; retrieval vs generation errors; unsupported claims vs numerical mistakes; RAG vs fine-tuning; paired analysis; reproducibility; what I implemented vs delegated.

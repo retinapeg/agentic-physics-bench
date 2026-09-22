@@ -1,4 +1,4 @@
-# Handoff: research branch `research/analytical-physics` (last updated 00:48 BST, 2026-09-22)
+# Handoff: research branch `research/analytical-physics` (last updated 19:35 BST, 2026-09-22)
 
 **Canonical paths (Leo's one-repo decision, 2026-09-22 ~00:37):**
 - Repository: https://github.com/retinapeg/agentic-physics-bench. Local folder: `~/Desktop/agentic-physics-bench`.
@@ -13,6 +13,7 @@ Leo is the research lead and decision maker; Claude writes code and documentatio
 - Branch `research/analytical-physics`: starts at `v1.0.0`. It contains commit `955b3b2` (lineage and proposal, originally pushed to the superseded repository) and the consolidation and documentation commits after it.
 - Proposal: `PROPOSAL.md` gives the matched example, the rubric, a budget of ≤ 80 CLI calls and decisions P1–P8. It **awaits Leo's research approval.** Recommended revisions are in `RESEARCH_ROADMAP.md` and are recommendations only.
 - Code: V1's, unchanged. No new tools, tasks, installs or model calls.
+- **Visibility: the repository is PUBLIC** since 19:33 BST on 2026-09-22 (Leo's decision, after a pre-publication audit; see row D10 and the release entry in `RESEARCH_LOG.md`). Both `main` and `research/analytical-physics` are visible, with the tags `v1.0.0` and `v0-protocol-freeze`. The superseded `retinapeg/agentic-physics-bench-analytic` stays private. The "Repo: private" line in the inherited V1 section below is history and is superseded by this line.
 - Learning workbook: the local, gitignored `LEARNING_REVIEW.md` in the canonical folder. It is the single continuing workbook; start with its **START HERE** section. It holds the newest merged content, and no attempts are recorded yet.
 
 ## Timeline (research branch)
@@ -28,6 +29,7 @@ Leo is the research lead and decision maker; Claude writes code and documentatio
 | D7 | 00:37–00:39 (09-22, session) | Both folders inspected (clean, no stashes, no attempts). Both workbooks backed up. Branch created in the canonical repo from `955b3b2`, which sits directly on `v1.0.0`. The newest workbook merged into the canonical folder. Lineage, README, CLAUDE.md and this file updated | Claude | `git log research/analytical-physics` | VERIFIED |
 | D8 | 00:39–00:42 (09-22, session) | Overnight documentation pack in the canonical folder. Local workbook: START HERE, chronology, findings and limits, architecture, pending study, questions capped at two per checkpoint, interview accounts. Tracked: `RESEARCH_ROADMAP.md` pending-study notes and R1–R5 (recommendations only), a clarification entry in `RESEARCH_LOG.md`, this row. Offline checks only | Claude; coordinated by Codex; authorised by Leo | branch commits; local workbook | OBSERVED |
 | D9 | 00:48 (09-22, session) | Four wording corrections from Codex's documentation verification: attribution in the interview scripts; qualified binomial intervals (0.265 is a two-sided endpoint; one-sided 0.221); the stale roadmap line and historical headings; derivation vs formulation. Documentation only | Claude; issues found by Codex | `RESEARCH_LOG.md` correction entry | OBSERVED |
+| D10 | 19:20–19:33 (09-22, session) | Pre-publication audit of every ref and all history: no credentials, identifiers, absolute paths or machine metadata; traces sanitised; no stashes or dangling objects; `git diff v1.0.0 HEAD -- src tests data results` empty. `LEARNING_REVIEW.md` found in history in three versions and accepted, because purging it would rewrite `v1.0.0` and `v0-protocol-freeze`. Leo chose publish-as-is and both branches. `gh repo edit --visibility public` run; `gh repo view` confirms `PUBLIC` | Audit and action by Claude; both decisions by Leo | `RESEARCH_LOG.md` release entry; `gh repo view --json visibility` | VERIFIED |
 
 ## Next action
 
@@ -35,6 +37,8 @@ Leo is the research lead and decision maker; Claude writes code and documentatio
 2. Leo approves or edits P1–P8 in `PROPOSAL.md`, including whether to install SymPy (P6), and reads the recommendations in `RESEARCH_ROADMAP.md` first. Nothing needing approval is started before then.
 
 The analytical branch continues in parallel, but item 1 belongs to V1 and doesn't wait on it.
+
+**Release decisions: visibility is now settled (public, 19:33 BST 2026-09-22).** Still open and still Leo's: whether the assistant-instruction files (`CLAUDE.md`, `WORKMODE.md`, `AGENTS.md`) stay published as a record of how the project was built or get trimmed; and whether to make any public post. The history question is closed: `LEARNING_REVIEW.md` stays in history, because removing it would rewrite the release tags.
 
 ---
 
