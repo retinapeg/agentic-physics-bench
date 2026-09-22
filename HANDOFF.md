@@ -31,7 +31,10 @@ Leo is the research lead and decision maker; Claude writes code and documentatio
 
 ## Next action
 
-Leo approves or edits P1–P8 in `PROPOSAL.md`, including whether to install SymPy (P6), and reads the recommendations in `RESEARCH_ROADMAP.md` first. Nothing needing approval is started before then.
+1. **V1's results still need Leo's own reading (2026-09-22).** The engineering is released and tagged, but the research interpretation is *not* finished: Leo has yet to go through the saved results and decide whether anything in them is an interesting AI-research finding. Until he has, "V1 is done" means the build shipped, not that the pilot has been interpreted. Evidence to read: `results/summary.md`, `results/episodes_scored.jsonl`, `results/chart.svg`, and the failure review in `README.md`.
+2. Leo approves or edits P1–P8 in `PROPOSAL.md`, including whether to install SymPy (P6), and reads the recommendations in `RESEARCH_ROADMAP.md` first. Nothing needing approval is started before then.
+
+The analytical branch continues in parallel, but item 1 belongs to V1 and doesn't wait on it.
 
 ---
 

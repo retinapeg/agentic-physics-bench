@@ -2,6 +2,8 @@
 
 > Release note (2026-09-21): the pilot called "V0" below shipped as **V1** (tag `v1.0.0`). Leo chose the next extension: a derived project on numerical vs analytical performance with a bounded mathematical-tool harness, in a separate repository created from the V1 release. Follow-ups 1–3 below remain deferred.
 
+> Status note (2026-09-22): V1's engineering shipped as `v1.0.0`, but **Leo's own reading of the results is still outstanding** — whether the pilot contains an interesting AI-research finding has not been decided. "Released" is not "interpreted".
+
 > Update (2026-09-22): Leo's one-repo decision. The study now lives on the branch `research/analytical-physics` of this repository; the separate repository is superseded (see `LINEAGE.md`).
 
 Status as of 2026-09-21, after the V0 scored pilot (checkpoint 5). Written by Claude at Leo's direction from a research addendum that Codex drafted in chat. Leo supplied the addendum and directed its adoption (2026-09-21). Leo sets priorities. Nothing below is claimed as a result unless it appears under "Demonstrated".
