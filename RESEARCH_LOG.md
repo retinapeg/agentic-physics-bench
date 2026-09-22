@@ -194,7 +194,7 @@ Keep ordinary entries to five to eight lines; combine fields when possible.
 
 ## 2026-09-22 | Release | Repository made public after a pre-publication audit
 
-- Decision (Leo, 19:2x BST): "let's make the work public on github first of all. This is fine to be public." Two follow-up decisions were put to him after the audit and he chose both recommendations: publish with `LEARNING_REVIEW.md` left in history, and publish both branches.
+- Decision (Leo, ~19:20 BST, session): "let's make the work public on github first of all. This is fine to be public." Two follow-up decisions were put to him after the audit and he chose both recommendations: publish with `LEARNING_REVIEW.md` left in history, and publish both branches.
 - Pre-publication audit, run by Claude before any visibility change (read-only, all refs and all history):
   - Tracked at HEAD: 36 files on `main`, plus `LINEAGE.md` and `PROPOSAL.md` on the research branch. `git diff --stat v1.0.0 HEAD -- src tests data results` is empty, so the published code, data and results are exactly V1's.
   - Secret and identifier scan across every blob in `git rev-list --all`: no matches for `sk-ant`, `api_key`, `API_KEY`, `Bearer`, `session_id`, `uuid`, `@gmail`, the user name, or any absolute path (`/Users/`, `/home/`). No medical or personal-health terms. The words "employer", "interview" and "CareerOps" appear only as policy text in the instruction files and log ("No medical details, private messages, credentials or employer data belong in the public log"), not as data.
@@ -205,7 +205,8 @@ Keep ordinary entries to five to eight lines; combine fields when possible.
 - Result: `gh repo view --json visibility` returns **`PUBLIC`** for `retinapeg/agentic-physics-bench` (default branch `main`). The superseded `retinapeg/agentic-physics-bench-analytic` was re-checked and remains **`PRIVATE`**.
 - Known cosmetic consequences, not defects: `raw_trace` fields point at gitignored files, so those paths dangle for a public reader; `LINEAGE.md` and `HANDOFF.md` name the superseded private repository, which will 404 for readers; the inherited V1 section of `HANDOFF.md` still reads "Repo: private", correct as history and superseded by the current-state section.
 - README re-read as a public reader: it leads with the result table but states in the same screen that both conditions sat at the ceiling, that the tool was never exercised, and that the pilot cannot measure a tool benefit. No wording change was needed.
-- Status: VERIFIED (visibility confirmed by `gh` after the change; audit commands run in session). No model calls, installs or experiments.
+- Anonymous check (unauthenticated `curl`, so it does not rely on the signed-in `gh` session): the repository page returns HTTP 200 and `raw.githubusercontent.com/.../main/README.md` returns HTTP 200; the superseded analytic repository returns HTTP 404, as expected while private.
+- Status: VERIFIED (visibility confirmed by `gh` and by unauthenticated `curl` after the change; audit commands run in session). No model calls, installs or experiments.
 - Lesson: TODO (Leo)
 
 ## Topics to capture as they occur
