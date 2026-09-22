@@ -31,6 +31,30 @@ Leo is the research lead and decision maker; Claude writes code and documentatio
 | D9 | 00:48 (09-22, session) | Four wording corrections from Codex's documentation verification: attribution in the interview scripts; qualified binomial intervals (0.265 is a two-sided endpoint; one-sided 0.221); the stale roadmap line and historical headings; derivation vs formulation. Documentation only | Claude; issues found by Codex | `RESEARCH_LOG.md` correction entry | OBSERVED |
 | D10 | 19:20–19:33 (09-22, session) | Pre-publication audit of every ref and all history: no credentials, identifiers, absolute paths or machine metadata; traces sanitised; no stashes or dangling objects; `git diff v1.0.0 HEAD -- src tests data results` empty. `LEARNING_REVIEW.md` found in history in three versions and accepted, because purging it would rewrite `v1.0.0` and `v0-protocol-freeze`. Leo chose publish-as-is and both branches. `gh repo edit --visibility public` run; `gh repo view` confirms `PUBLIC` | Audit and action by Claude; both decisions by Leo | `RESEARCH_LOG.md` release entry; `gh repo view --json visibility` | VERIFIED |
 
+## Open review request for Codex (2026-09-22)
+
+Read-only independent review of V1 (released) and the state of the `research/analytical-physics` branch. Written by Claude at Leo's request so both assistants work from the same brief. Use the AGENTS.md output format, cap at **three findings**, and add the extra section named in item D.
+
+**Scope:** commits `8d336d8` (tag `v1.0.0`) and the branch through its latest commit. Read-only: no model calls, no new experiments, no edits to tracked files, no approval of P1–P8 (Leo's decision alone).
+
+**Offline commands available to you (none call a model):**
+- `python3 -m unittest tests.test_ls_slope tests.test_tasks tests.test_evaluate tests.test_agent tests.test_controls tests.test_analyze`
+- `python3 src/tasks.py && python3 src/tasks.py scored && git status --short data/` (expect no changes)
+- `python3 src/analyze.py && python3 src/chart.py && git status --short results/` (expect no changes)
+- `python3 -c "import sys; sys.path.insert(0,'src'); import run; run.verify_freeze()"`
+
+**A. Claim audit.** Does every quantitative claim in `README.md`, `RESEARCH_LOG.md` and `RESEARCH_ROADMAP.md` follow from `results/episodes_scored.jsonl` and `results/summary.json`? Check in particular: 12/12 in each condition; tool requested 0/12; "every answer equals the reference rounded to 1–6 decimals"; 24 invocations; the byte-identical reproduction claims.
+
+**B. Validity of the harness as an eval.** Is there any path where a control violation, a missing output or an unattempted episode could still be graded correct or silently leave the denominator? Check `control_violations`, `make_model_caller`, `run_batch` and `summarize`. Is the strict-JSON, no-repair rule actually enforced? Can an answer key reach the model through the prompt, the tool or the working directory?
+
+**C. Freeze integrity.** Was anything covered by `data/freeze_manifest.json` modified after the freeze commit `f504c57`? Does the tag still resolve to `8d336d8`? Does `verify_freeze` cover what the README says it covers (it checks the CLI version once before a batch, not per call)?
+
+**D. Extra section: research reading.** Leo's open question is whether the saved results contain a defensible AI-research finding or only a ceiling artefact. Name **at most two** candidate findings. For each: the exact evidence, the strongest reason it might be an artefact of this design, and the smallest additional check that would separate the two. Do not propose a new study.
+
+**E. Statistical wording.** Tonight's docs describe the 12/12 and 0-discordant intervals as illustrative exact binomial intervals with stated assumptions (see the correction entry in `RESEARCH_LOG.md`). Is that stated correctly and consistently, and is any unconditional accuracy claim left anywhere?
+
+**F. State of the branch.** Is `LINEAGE.md` accurate about the superseded repository? Is authorship recorded correctly throughout (Leo decided, Claude implemented, Codex reviewed)? Does `PROPOSAL.md` overclaim anything, given it is unapproved?
+
 ## Next action
 
 1. **V1's results still need Leo's own reading (2026-09-22).** The engineering is released and tagged, but the research interpretation is *not* finished: Leo has yet to go through the saved results and decide whether anything in them is an interesting AI-research finding. Until he has, "V1 is done" means the build shipped, not that the pilot has been interpreted. Evidence to read: `results/summary.md`, `results/episodes_scored.jsonl`, `results/chart.svg`, and the failure review in `README.md`.
