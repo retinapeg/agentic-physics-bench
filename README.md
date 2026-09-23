@@ -160,7 +160,7 @@ Protocol: [`EXPERIMENT_V2.md`](EXPERIMENT_V2.md), frozen as run `v2-run-1` ([`da
 | | V1 | V2 | Why |
 |---|---|---|---|
 | Difficulty | one group | easy = V1's generator with a new seed; moderate = 24 points on an irregular grid (t = 0.5·i + U(0, 0.4) s), σ 1.0; hard = 40 points, irregular, σ 2.0 | make the unaided answer harder for a reason other than an arbitrary tolerance |
-| Tolerance | ±0.01 m/s² | ±0.01 m/s², every group | same rule, harder data; a simulation shows the cheap shortcuts fail in every group (`EXPERIMENT_V2.md` section 5) |
+| Tolerance | ±0.01 m/s² | ±0.01 m/s², every group | same rule, harder data; a simulation shows that named shortcuts (endpoint slope, split-halves slope, a 10-point subsample, ignoring the time jitter) rarely pass in the harder groups; it does not exclude other approximate methods (`EXPERIMENT_V2.md` section 5) |
 | Conditions | direct (1 call) vs optional tool (≤ 2 calls) | no tool, optional tool, required tool; **2 calls each**, ≤ 1 tool execution | the no-tool control gets the same chance to revise, so a tool effect is not confounded with an extra turn; the required condition tests the mechanism and relay fidelity |
 | Repetitions | 1 | 3 | within-task variation; task-level paired analysis with a cluster bootstrap over tasks |
 | Run plan | fixed alternation | seeded blocks; resume never repeats an episode | interruption leaves whole blocks complete |
@@ -172,7 +172,7 @@ V2 is not a replication of V1: the CLI version, the two-turn design and the prom
 
 ![Development calibration: proportion of episodes correct by difficulty group and condition; one episode per task and condition](results/v2/chart_dev.svg)
 
-*What to notice: with the final prompts every bar is full, so the development set does not separate the conditions; it establishes that the mechanism works (the optional tool was requested and executed 6/6, required-tool compliance 6/6, every returned slope relayed exactly) and that the unaided model can do the 40-point regression when told explicitly that no tools exist. Six tasks support no statistical claim.*
+*What to notice: with the final prompts every bar is full, so the development set does not separate the conditions; it establishes that the mechanism works (the optional tool was requested and executed 6/6, required-tool compliance 6/6, every returned slope relayed exactly) and that the unaided system returned answers inside tolerance on the 40-point tasks when told explicitly that no tools exist. How it produced them is not observed: the CLI redacts the model's reasoning, so only the returned values and token counts are recorded. Six tasks support no statistical claim.*
 
 | Group (points) | No tool, final wording | No tool, earlier wording (stage 3) | Optional tool (requested) | Required tool (compliant) |
 |---|---|---|---|---|
@@ -182,7 +182,7 @@ V2 is not a replication of V1: the CLI version, the two-turn design and the prom
 
 Two development observations shaped the frozen protocol and are kept as findings:
 
-- **Prompt sensitivity of the no-tool condition.** Under the earlier wording, every moderate and hard first reply was an attempt to run code the system does not have (a fenced bash block or tool-call syntax), and the second-turn numbers were outside tolerance on 3 of 4. With the explicit sentence "No tools or code execution are available. Compute the answer from the table." the model computed every task itself (median thinking tokens per call 642 / 2,130 / 6,368 by group). The scored no-tool baseline uses the explicit sentence, chosen before the freeze; the earlier stage is archived in [`results/v2/dev_stage3/`](results/v2/dev_stage3/). Grader, tolerance and tasks were not changed on any development outcome.
+- **Prompt sensitivity of the no-tool condition.** Under the earlier wording, every moderate and hard first reply was an attempt to run code the system does not have (a fenced bash block or tool-call syntax), and the second-turn numbers were outside tolerance on 3 of 4. With the explicit sentence "No tools or code execution are available. Compute the answer from the table." the system returned every answer inside tolerance without a tool (median thinking tokens per call 642 / 2,130 / 6,368 by group); whether it performed the full regression, used an approximation that lands inside ±0.01, or something else is not observable from the traces. The scored no-tool baseline uses the explicit sentence, chosen before the freeze; the earlier stage is archived in [`results/v2/dev_stage3/`](results/v2/dev_stage3/). Grader, tolerance and tasks were not changed on any development outcome.
 - **The second-model contamination** described above (stages 1–2).
 
 Table view with errors, latency, thinking tokens and the failure taxonomy: [`results/v2/summary_dev.md`](results/v2/summary_dev.md).

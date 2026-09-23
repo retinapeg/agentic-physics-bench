@@ -82,7 +82,9 @@ group (V1's D2). Same rule, harder data. Justification by V1's method, simulatin
 slope passes 7.3 % / 6.9 % / 5.7 % (easy / moderate / hard), the split-halves slope 12.4 % / 22.6 % / 26.0 %, a
 10-point subsample 100 % / 13.3 % / 8.4 %, and ignoring the time jitter (rounding times to the 0.5 s grid) — /
 43.2 % / 66.2 %; rounding the exact slope to 2 decimals passes 100 %, and rounding the velocities to 1 decimal
-88.8 % / 100 % / 100 %. The tolerance therefore separates a real fit from the cheap shortcuts in every group
+88.8 % / 100 % / 100 %. The tolerance therefore rejects these named shortcuts in most draws in every group (on the
+easy uniform grid a 10-point subsample is the full fit, so it passes by construction). It does not exclude every
+approximate method, and an answer inside ±0.01 does not by itself show that a full least-squares fit was carried out
 without demanding more precision than a 2-decimal answer. Continuous |error| is reported alongside.
 
 Secondary: the turn-1 answer, when it is a final answer, is graded with the same rule (the V1-style
@@ -176,8 +178,10 @@ Every development episode stays in `results/v2/episodes_dev.jsonl`, including an
   the twelve tool-condition records carried over from stage 3 unchanged. **Outcome:** `no_tool` correct 6/6 (2/2,
   2/2, 2/2), every turn-1 reply a well-formed number, max |error| 2.8e-04 m/s²; median thinking tokens per
   call 642 / 2130 / 6368 and median 10 / 25 / 62 s per call (easy / moderate / hard; hard max 94 s).
-  Under the explicit constraint the model computes the 40-point irregular-grid slope itself, so **difficulty is at
-  the ceiling in the no-tool condition on these six development tasks**. Per Leo's instruction, grader, tolerance
+  Under the explicit constraint the system returned every no-tool answer inside tolerance, so **the no-tool
+  condition is at the ceiling on these six development tasks**. How the answers were produced is not observed: the
+  CLI redacts the model's reasoning, so the record holds only the returned values and the thinking-token counts;
+  "computed the regression itself" is an inference from those, not an observation. Per Leo's instruction, grader, tolerance
   and tasks are not altered on this outcome; the scored run measures whether that holds on 18 held-out tasks with
   three repetitions, and a ceiling there is a publishable result.
 - *Development calls consumed on 2026-09-23:* 1 smoke check + 36 (stage 1) + 12 (stage 2) + 1 advisor probe +
@@ -205,7 +209,7 @@ effort `high`, V1's argv, `CLAUDE_CODE_DISABLE_ADVISOR_TOOL=1`. Confirmed by met
 `model` = `claude-opus-5`, `claude_code_version` = 2.1.280, `modelUsage` = `claude-opus-5` only, no server-side
 tool, `apiKeySource` none, overage rejected. Requested but not confirmable from traces: effort `high` (as in V1;
 only the absence of the fallback warning is checked). Scored run: 162 episodes, exactly 324 calls (the cap), with
-no further development calls; 86 development calls were used today. The final development set (stage 3's
+no further development calls; 98 development calls were used today (section 9). The final development set (stage 3's
 tool-condition records plus stage 4's no-tool records, 36 calls) used 128,418 reported input tokens (mostly cache
 reads) and 37,946 output tokens in 574 s; scaled ×9, the scored run is about 1.2 M reported input tokens,
 342 k output tokens and 1.4 h, most of it in the hard no-tool episodes (62–94 s per call). Usage windows

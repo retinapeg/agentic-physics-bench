@@ -240,6 +240,13 @@ Keep ordinary entries to five to eight lines; combine fields when possible.
 - Evidence: `results/v2/episodes_dev.jsonl` (18 records: 12 carried over, 6 new), `results/v2/summary_dev.md`, `chart_dev.svg`; stage 3 archived in `results/v2/dev_stage3/`.
 - Status: OBSERVED (development, not scored).
 
+## 2026-09-23 | Correction | Development-call count and two qualified claims (Leo's request before the scored run)
+- Count: `EXPERIMENT_V2.md` section 11 still said 86 development calls; the correct total is **98** (smoke 1 + stage 1 36 + stage 2 12 + advisor probe 1 + stage 3 36 + stage 4 12), as section 9 already recorded. Fixed in place.
+- Internal method: the stage-4 entry above says the model "carried out the 40-point irregular-grid regression in its hidden reasoning". That is an inference. The evidence is that every no-tool answer fell inside ±0.01 m/s² and that thinking-token counts rose with difficulty (642 / 2,130 / 6,368 per call); the CLI redacts the reasoning, so how the answers were produced is not observed. `EXPERIMENT_V2.md` section 9 and the README now say so; the earlier entry is left as written.
+- Shortcut exclusion: the tolerance simulation (section 5) shows that the *named* shortcuts (endpoint, split-halves, 10-point subsample, ignoring the jitter) rarely pass in the moderate and hard groups. It does not exclude every approximate method (rounding the velocities to 1 dp passes 100 % in those groups), and an answer inside tolerance does not by itself show that a full least-squares fit was performed. Wording qualified in `EXPERIMENT_V2.md` section 5 and the README.
+- Frozen files untouched (`verify_freeze` passes); no task, prompt, grader, tolerance, code or analysis-plan change.
+- Status: VERIFIED (text re-read after editing).
+
 ## Topics to capture as they occur
 
 Model vs agent vs pretrained weights; API/SDK vs model identity; benchmarks vs evals; reference validation; data leakage; prompts and configuration hashes; structured-output failures; tool dispatch and stopping; retries and missing denominators; retrieval vs generation errors; unsupported claims vs numerical mistakes; RAG vs fine-tuning; paired analysis; reproducibility; what I implemented vs delegated.
