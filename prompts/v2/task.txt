@@ -1,0 +1,4 @@
+Velocity measurements of an object moving in a straight line (case $case_id):
+t (s): $t
+v (m/s): $v
+Report the acceleration as the least-squares slope of v against t.

@@ -1,0 +1,3 @@
+$task
+Reply with exactly one JSON object and nothing else (no code fences, no other text):
+{"type": "final", "acceleration": <number>, "units": "m/s^2"}

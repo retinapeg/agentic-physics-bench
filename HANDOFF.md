@@ -1,4 +1,50 @@
-# Handoff: research branch `research/analytical-physics` (last updated 19:35 BST, 2026-09-22)
+# Handoff: branch `v2/tool-policy` (last updated 2026-09-23; see the V2 section below, then the inherited sections)
+
+**Canonical paths (Leo's one-repo decision, 2026-09-22):** repository https://github.com/retinapeg/agentic-physics-bench, local folder `~/Desktop/agentic-physics-bench`. V1 = tag `v1.0.0` (`8d336d8`) on `main`, immutable. The analytical proposal stays on `research/analytical-physics` (unapproved, unrun). **V2 (difficulty × tool policy) is on `v2/tool-policy`**, created from `9d12562`.
+
+Leo is the research lead and decision maker; Claude writes code, checks and documentation at his direction; Codex is the independent reviewer.
+
+## V2 current state (2026-09-23)
+
+- **V1: verified complete** (2026-09-23) in an isolated worktree of `v1.0.0`; the only present-day limitation is the installed CLI 2.1.280 vs the frozen 2.1.278. No V1 file changed. Entry: `RESEARCH_LOG.md` "V1 verification".
+- **V2 implemented and development-calibrated; scored run NOT started.** Protocol draft `EXPERIMENT_V2.md` (decisions V2-1…V2-8 await Leo). Code `src/tasks_v2.py`, `agent_v2.py`, `run_v2.py`, `analyze_v2.py`, `chart_v2.py`; prompts `prompts/v2/`; data `data/v2/` (18 scored tasks in three groups, 162-episode seeded plan; 6 development tasks). V1's frozen files untouched (`git diff v1.0.0 -- src/tasks.py … data/` empty). 90 offline checks pass; CI workflow added.
+- **Development stage 3 (clean):** no tool 2/2, 1/2, 0/2 (easy, moderate, hard); optional tool requested and executed 6/6, correct 6/6; required compliant 6/6, correct 6/6. `results/v2/summary_dev.md`, `chart_dev.svg`.
+- **Control failure found and fixed:** CLI 2.1.280 ran a server-side "advisor" (consulting `claude-fable-5-1`) inside 31/48 stage-1/2 calls under `--tools ""`. Stages 1–2 archived and void (`results/v2/dev_stage1/`, `dev_stage2/`, with audits); advisor disabled by `CLAUDE_CODE_DISABLE_ADVISOR_TOOL=1`; three new per-call violations. V1's 24 scored traces are unaffected (only `claude-opus-5`).
+- **Reviews:** Codex (read-only, `gpt-6-astra`) found 3 executable defects; a 59-agent Claude review confirmed 14 findings (13 refuted). All fixed with regression tests. `results/raw/` remains gitignored; the tracked episode files are redacted of paths and identifiers at write time.
+- **Codex as second evaluated system: deferred** (no tool-removal flag; live web search in config; served model not exposed).
+- Local files (gitignored): `LEARNING_REVIEW.md` (one consolidated V2 entry, Q20–Q21), `APPLICATION_EVIDENCE.md` (for CV preparation).
+
+## V2 timeline (2026-09-23; times BST, session clock)
+
+| # | Time | Event | Done by | Evidence | Status |
+|---|---|---|---|---|---|
+| V1 | 11:36–11:52 | V1 audited in an isolated worktree of `v1.0.0`: 36 tests OK; data/analysis/chart byte-identical; 14 hashes match; `verify_freeze` fails on CLI version only (2.1.280 vs 2.1.278); saved episodes recounted and regraded; dispatch branch driven end to end with scripted replies; 1 live smoke call (controls hold; 7-day usage 20 %) | Claude, at Leo's direction | `RESEARCH_LOG.md` V1 verification entry; scratch worktree | VERIFIED |
+| V2-1 | 11:47–11:57 | Branch `v2/tool-policy` from `9d12562`; groups designed with a shortcut simulation (4,000 draws per group); `tasks_v2.py`, prompts, `agent_v2.py`, `run_v2.py`, `analyze_v2.py`, `chart_v2.py`, 4 test files (73 checks with V1's); `EXPERIMENT_V2.md` with the development gate declared before any call | Claude | commit on the branch | VERIFIED (offline) |
+| V2-2 | 11:58–12:24 | Development stage 1: 18 episodes, 36 calls, all valid under V1's controls; 18/18 correct; optional requests 0/2, 1/2, 2/2 by group; one fenced-JSON reply. Escalation to 60 points applied and wording revised (later reverted/kept, see V2-5) | Claude ran; pre-declared gate | `results/v2/dev_stage1/` | OBSERVED, later VOID for the gate |
+| V2-3 | 12:04 | Codex review (`gpt-6-astra`; `gpt-6-sol` rejected on the ChatGPT account): 3 executable defects (resume replay, timeout hiding violations, integer overflow) | Codex found; Claude fixed with tests | `RESEARCH_LOG.md` stage-1 entry | VERIFIED |
+| V2-4 | 12:26–12:40 | Development stage 2: six hard episodes at 60 points; 6/6 correct; optional requests 2/2 | Claude ran | `results/v2/dev_stage2/` | OBSERVED, later VOID |
+| V2-5 | 12:40–12:48 | Multi-agent review completes: server-side advisor found in the raw traces (31/48 calls used `claude-fable-5-1`). Audits written; stages 1–2 declared void; escalation reverted (hard = 40); `CLAUDE_CODE_DISABLE_ADVISOR_TOOL=1` plus three new per-call violations; probe confirms only `claude-opus-5` runs; ten further review findings fixed | Review found; Claude fixed | `advisor_audit.json` in both stage folders; `RESEARCH_LOG.md` control-failure entry | VERIFIED |
+| V2-6 | 12:48–12:56 | Development stage 3 (clean): 36/36 calls `claude-opus-5` only; no tool 2/2, 1/2, 0/2; optional requested 6/6; required compliant 6/6; escalation not triggered | Claude ran | `results/v2/episodes_dev.jsonl`, `summary_dev.md`, `chart_dev.svg` | OBSERVED |
+| V2-7 | 12:56–13:10 | Path redaction at write time (one stage-3 reply had quoted the CLI scratchpad path; file sanitised once); turn-1 reply classifier; 90 checks OK; README, protocol, logs, handoff, local workbook and evidence note updated; branch pushed; PR opened to `main` | Claude | this file; PR | OBSERVED |
+
+## V2 next action
+
+**One decision for Leo (the approval request):** approve or amend `EXPERIMENT_V2.md` section 11 (V2-1…V2-8, including the new V2-4b on the no-tool prompt). The scored run is 18 tasks × 3 conditions × 3 repetitions = 162 episodes, exactly 324 calls (the cap), one system: `claude-opus-5` via Claude Code 2.1.280, effort `high` (requested; unconfirmable from traces), advisor disabled. Model and CLI version were confirmed by init metadata and `modelUsage` on 36/36 stage-3 calls. From the stage-3 records, the run needs about 1.2 M reported input tokens (mostly cache reads), 70 k output tokens and roughly 0.8 h at stage-3 rates, up to about 3 h if the hard no-tool calls think for a minute each; the usage windows after stage 3 were five-hour 40 % and seven-day 30 %. Fallback: repetition block 1 only (54 episodes, 108 calls, `--max-episodes 54`). Then, in this order:
+
+```bash
+python3 src/run_v2.py freeze v2-run-1
+```
+
+```bash
+python3 src/run_v2.py scored-batch
+```
+
+The batch resumes after an interruption without repeating an episode and stops on any control violation, rate limit or three consecutive timeouts. After it: `python3 src/analyze_v2.py scored && python3 src/chart_v2.py scored`, fill the README's scored section, and merge the PR. Nothing in `main` changes until Leo merges.
+
+---
+
+# Inherited handoff: research branch `research/analytical-physics` (history, unchanged below this line)
+
 
 **Canonical paths (Leo's one-repo decision, 2026-09-22 ~00:37):**
 - Repository: https://github.com/retinapeg/agentic-physics-bench. Local folder: `~/Desktop/agentic-physics-bench`.

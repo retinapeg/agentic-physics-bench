@@ -1,0 +1,8 @@
+{"episode_id": "d3-01-no_tool-r1-claude-2026-09-23T122604", "started_at": "2026-09-23T12:26:04+01:00", "split": "dev", "task_id": "d3-01", "condition": "no_tool", "rep": 1, "run_id": "dev", "reserved_calls": 2}
+{"episode_id": "d3-01-required_tool-r1-claude-2026-09-23T123130", "started_at": "2026-09-23T12:31:30+01:00", "split": "dev", "task_id": "d3-01", "condition": "required_tool", "rep": 1, "run_id": "dev", "reserved_calls": 2}
+{"episode_id": "d3-01-optional_tool-r1-claude-2026-09-23T123209", "started_at": "2026-09-23T12:32:09+01:00", "split": "dev", "task_id": "d3-01", "condition": "optional_tool", "rep": 1, "run_id": "dev", "reserved_calls": 2}
+{"episode_id": "d3-02-no_tool-r1-claude-2026-09-23T123248", "started_at": "2026-09-23T12:32:48+01:00", "split": "dev", "task_id": "d3-02", "condition": "no_tool", "rep": 1, "run_id": "dev", "reserved_calls": 2}
+{"episode_id": "d1-01-no_tool-r1-claude-2026-09-23T123252", "started_at": "2026-09-23T12:32:52+01:00", "split": "dev", "task_id": "d1-01", "condition": "no_tool", "rep": 1, "run_id": "p", "reserved_calls": 2}
+{"episode_id": "d1-01-no_tool-r1-claude-2026-09-23T123311", "started_at": "2026-09-23T12:33:11+01:00", "split": "dev", "task_id": "d1-01", "condition": "no_tool", "rep": 1, "run_id": "p", "reserved_calls": 2}
+{"episode_id": "d3-02-optional_tool-r1-claude-2026-09-23T123635", "started_at": "2026-09-23T12:36:35+01:00", "split": "dev", "task_id": "d3-02", "condition": "optional_tool", "rep": 1, "run_id": "dev", "reserved_calls": 2}
+{"episode_id": "d3-02-required_tool-r1-claude-2026-09-23T123653", "started_at": "2026-09-23T12:36:53+01:00", "split": "dev", "task_id": "d3-02", "condition": "required_tool", "rep": 1, "run_id": "dev", "reserved_calls": 2}
