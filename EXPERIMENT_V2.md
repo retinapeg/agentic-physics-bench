@@ -1,6 +1,6 @@
 # EXPERIMENT_V2.md — V2 protocol: task difficulty × tool policy
 
-Status: **DRAFT for one approval (2026-09-23).** Written by Claude at Leo's direction. Nothing in this document
+Status: **FROZEN as `v2-run-1` (14:06 BST) and RUN (15:11–16:35 BST, 2026-09-23).** Run record: section 12. Written by Claude at Leo's direction. Nothing in this document
 is frozen until `data/v2/freeze_manifest.json` exists; the scored batch refuses to run without it. The
 development gate (section 9) runs before the freeze; the scored batch runs only after Leo's approval
 (section 11). V1 (`EXPERIMENT.md`, tag `v1.0.0`) is unchanged, and every V1 file in its freeze manifest is
@@ -228,3 +228,7 @@ server-side tool or a second model), a rate-limit status other than allowed, or 
 | V2-6 | Timeout, environment and stop rules | 600 s per call; `CLAUDE_CODE_DISABLE_ADVISOR_TOOL=1`; stop on invalid run (including any server-side tool or second model), rate limit or 3 consecutive timeouts; cap 324 |
 | V2-7 | Second system | Deferred (section 6); optional later approval |
 | V2-8 | Publication | Merge the branch to `main` after the run; V1 files and results untouched |
+
+## 12. Run record (2026-09-23)
+
+Leo's go at ~15:05 BST after the corrections of section 11's count and two qualified claims. Availability probe before starting: status allowed, five-hour window 64 %, seven-day 36 % (one minimal call). The batch ran in two resumable chunks with the frozen runner (`--max-episodes 39`, then the remainder) to stay clear of a quota stop mid-episode; resume repeated nothing. Attempted 162/162, valid 162, invalid 0, interrupted 0, calls 324 of the cap 324, timeouts 0, stop reason `completed`; every call `claude-opus-5` only, no server-side tool. Usage windows after the last call: five-hour 11 %, seven-day 42 %. Results: `results/v2/episodes_scored.jsonl`, `summary_scored.{json,md}`, `chart_scored.svg`; interpretation in the README and `RESEARCH_LOG.md`. No file in the manifest changed (`verify_freeze` passes after the run).

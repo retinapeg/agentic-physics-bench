@@ -1,20 +1,20 @@
 # Agentic Physics Bench
 
-A reproducible evaluation of when a frontier model uses an available numerical tool, when it solves the task unaided, and how tool policy and task difficulty affect reliability. The system under test is Claude (`claude-opus-5`) behind the Claude Code CLI with its native tools switched off; the only tool is a bounded, allowlisted line-fit function dispatched by a Python harness. Every episode is saved, every reported number is recomputed from the saved episodes, and the protocol is hashed and frozen before any scored call.
+A reproducible evaluation of when a frontier model uses an available numerical tool, when it solves the task unaided, and how tool policy and task difficulty affect reliability. The system under test is Claude (`claude-opus-5`) behind the Claude Code CLI with its native tools switched off; the only tool is a bounded, allowlisted line-fit function dispatched by a Python harness. Every episode is saved, every reported number is recomputed from the saved episodes, and the protocol is hashed and frozen before any scored call. Both V1 and V2 have run.
 
 > **V1 finding.** On 12 held-out tasks the system answered 12/12 correctly with no tool and 12/12 correctly with an optional exact line-fit tool available, and it requested that tool in **0/12** tool-enabled episodes. Every V1 task was solved without electing to use an available exact numerical tool. Both conditions hit the scoring ceiling, and why the tool went unrequested is not established. V2 turns that ceiling into the next experiment: make the tasks harder, give every condition the same two-turn budget, and separate no-tool, optional-tool and required-tool behaviour.
 
-**Status (2026-09-23).** V1 released as tag `v1.0.0` and re-verified. V2 protocol frozen (`v2-run-1`); its 162-episode scored run has **not** been started. No number on this page is a scored V2 result.
+**Status (2026-09-23).** V1 released as tag `v1.0.0` and re-verified. V2 protocol frozen (`v2-run-1`) and its scored run **completed**: 162/162 episodes attempted, 162 valid, 324 model calls. Results below are held-out V2 results; development calibration is labelled as such.
 
 ## Reviewer quick path
 
 - **60 seconds:** the finding above, the [V1 → V2 table](#v1--v2-at-a-glance) and the two diagrams below it.
-- **5 minutes:** the [V1 result](#v1-what-was-observed-release-v100), the [evaluation-integrity finding](#evaluation-integrity-when-one-model-was-actually-two) and the [V2 design](#v2-task-difficulty--tool-policy-frozen-scored-run-pending).
+- **5 minutes:** the [V1 result](#v1-what-was-observed-release-v100), the [V2 scored run](#the-v2-scored-run-completed-2026-09-23), the [evaluation-integrity finding](#evaluation-integrity-when-one-model-was-actually-two) and the [V2 design](#v2-task-difficulty--tool-policy-frozen-run-complete).
 - **Run offline (no model calls, standard library only):**
   ```bash
   python3 -m unittest tests.test_ls_slope tests.test_tasks tests.test_evaluate tests.test_agent tests.test_controls tests.test_analyze tests.test_v2_tasks tests.test_v2_agent tests.test_v2_run tests.test_v2_analyze tests.test_v2_pipeline && python3 src/analyze.py && python3 src/chart.py && python3 src/analyze_v2.py dev && python3 src/chart_v2.py dev
   ```
-- **Raw evidence:** V1 [`results/episodes_scored.jsonl`](results/episodes_scored.jsonl) and [`results/summary.md`](results/summary.md); V2 development [`results/v2/episodes_dev.jsonl`](results/v2/episodes_dev.jsonl) and [`results/v2/summary_dev.md`](results/v2/summary_dev.md); archived development stages with audits under [`results/v2/`](results/v2/).
+- **Raw evidence:** V1 [`results/episodes_scored.jsonl`](results/episodes_scored.jsonl) and [`results/summary.md`](results/summary.md); V2 scored [`results/v2/episodes_scored.jsonl`](results/v2/episodes_scored.jsonl) and [`results/v2/summary_scored.md`](results/v2/summary_scored.md); V2 development [`results/v2/episodes_dev.jsonl`](results/v2/episodes_dev.jsonl) and [`results/v2/summary_dev.md`](results/v2/summary_dev.md); archived development stages with audits under [`results/v2/`](results/v2/).
 - **Protocols:** [`EXPERIMENT.md`](EXPERIMENT.md) (V1, frozen) and [`EXPERIMENT_V2.md`](EXPERIMENT_V2.md) (V2, frozen as `v2-run-1`).
 
 ## V1 → V2 at a glance
@@ -22,7 +22,7 @@ A reproducible evaluation of when a frontier model uses an available numerical t
 | Version | Question | Design | Observed / current status |
 |---|---|---|---|
 | **V1** (released `v1.0.0`) | On easy velocity–time tasks, does a bounded line-fit tool workflow change what the model gets right, and does the model choose to use it? | 12 held-out tasks (10 points, uniform grid); direct answer (1 call) vs optional `fit_line` (≤ 2 calls); ±0.01 m/s² of the least-squares slope; 24 scored episodes | **12/12 direct, 12/12 optional-tool, 0/12 optional-tool requests.** Ceiling; the reason for zero uptake is open |
-| **V2** (frozen, on this branch) | As the same tasks get harder, how do no-tool, optional-tool and required-tool workflows affect correctness, tool uptake, relay fidelity and failure modes? | 18 held-out tasks in three difficulty levels (10 / 24 / 40 points; uniform / irregular grid; σ 0.5 / 1 / 2); no tool / optional / required, two calls in every condition; 3 repetitions; 162 scored episodes, 324 calls | **Scored result pending.** Development calibration (6 tasks) below is not held-out evidence |
+| **V2** (frozen and run, on this branch) | As the same tasks get harder, how do no-tool, optional-tool and required-tool workflows affect correctness, tool uptake, relay fidelity and failure modes? | 18 held-out tasks in three difficulty levels (10 / 24 / 40 points; uniform / irregular grid; σ 0.5 / 1 / 2); no tool / optional / required, two calls in every condition; 3 repetitions; 162 scored episodes, 324 calls | **54/54 no tool, 54/54 optional tool, 54/54 required tool; optional tool requested 54/54; required compliance 54/54.** Ceiling in every cell |
 
 Development calibration is kept strictly apart from the scored set: different seeds, its own files, and no claim beyond "the mechanism works".
 
@@ -57,7 +57,7 @@ flowchart LR
         b --> c["optional tool requested 0/12"]
         c --> d["ceiling; zero uptake unexplained"]
     end
-    subgraph V2["V2: difficulty x tool policy (frozen; scored run pending)"]
+    subgraph V2["V2: difficulty x tool policy (frozen; run complete)"]
         direction TB
         e["harder tasks<br/>10 / 24 / 40 points, irregular grid, more noise"] --> f["equal two-turn budget<br/>in every condition"]
         f --> g["no tool / optional / required"]
@@ -69,24 +69,30 @@ flowchart LR
 
 V2 separates five things V1 could not: whether the harness executes the tool correctly (required condition), whether the model voluntarily requests it (optional condition), whether access to or use of the tool improves correctness as tasks get harder (required and optional vs no tool), whether the model uses the returned result correctly (relay fidelity), and how sensitive all of this is to difficulty and to prompt wording (three groups; a documented wording change during development).
 
-## Next experiment
+## The V2 scored run (completed 2026-09-23)
 
-**Next:** run the frozen V2 held-out evaluation: 18 tasks × 3 conditions × 3 repetitions = 162 episodes / 324 bounded model calls.
+The frozen held-out evaluation ran as planned: 18 tasks × 3 conditions × 3 repetitions = 162 episodes, 324 bounded model calls (15:11–16:35 BST, in two resumable chunks), 162 valid episodes, 0 invalid runs, 0 timeouts, every call reporting `claude-opus-5` only. The predefined outputs are in [`results/v2/summary_scored.md`](results/v2/summary_scored.md); the scored tasks, answer keys, prompts, run plan and analysis rules were frozen before inference and were not changed afterwards.
 
-Predefined outputs (`src/analyze_v2.py`, fixed before inference):
+| Group (points) | No tool | Optional tool (requested / executed) | Required tool (compliant) |
+|---|---|---|---|
+| easy (10) | 18/18 | 18/18 (18 / 18) | 18/18 (18/18) |
+| moderate (24) | 18/18 | 18/18 (18 / 18) | 18/18 (18/18) |
+| hard (40) | 18/18 | 18/18 (18 / 18) | 18/18 (18/18) |
 
-- correctness by difficulty × tool policy;
-- voluntary tool-request rate;
-- valid tool-execution rate;
-- required-tool compliance;
-- relay fidelity (final answer vs the tool's slope);
-- numerical error;
-- failure modes (invalid requests, execution failures, unparseable or wrong answers after execution, code-seeking replies, timeouts, invalid runs);
-- within-task stochastic variation across repetitions;
-- task-level paired comparisons and a task-clustered bootstrap for uncertainty;
-- latency and actual model-call usage.
+![V2 scored results: proportion of episodes correct by difficulty group and condition, 18 episodes per cell](results/v2/chart_scored.svg)
 
-The scored tasks, answer keys, prompts, run plan and analysis rules are frozen before inference. If the result is another ceiling or the optional tool again goes unused, that result will be reported rather than redesigned away.
+*What to notice: Every planned episode was correct in every group and condition, so the scored run is a ceiling result: it does not separate the conditions on correctness. The optional tool was requested in 54 of 54 valid optional-tool episodes and executed 54 times; every executed result was relayed within tolerance (108/108). Median thinking tokens per call, no tool: 621 / 2298 / 5314 by group; optional tool: 0 / 0 / 0.*
+
+- **Correctness, paired by task** (per-task proportion over 3 repetitions; cluster bootstrap over the 18 tasks): optional − no tool +0.000 (tasks favouring first / second / tied 0 / 0 / 18; bootstrap 95 % [+0.000, +0.000]); required − no tool +0.000 (tasks favouring first / second / tied 0 / 0 / 18; bootstrap 95 % [+0.000, +0.000]); required − optional +0.000 (tasks favouring first / second / tied 0 / 0 / 18; bootstrap 95 % [+0.000, +0.000]).
+- **Tool behaviour:** voluntary request rate 54/54; valid execution 54/54 of requests; required-tool compliance 54/54; relay fidelity: max |final − tool slope| 3.1e-16 m/s².
+- **Numerical error (median / max, parseable answers):** no tool 2.1e-05 / 1.8e-03 (n = 54); optional 0.0e+00 / 3.1e-16 (n = 54); required 0.0e+00 / 0.0e+00 (n = 54).
+- **Failure modes:** invalid requests 0, execution failures 0, executed then unparseable 0, executed then wrong units 0, executed then wrong value 0, required noncompliant 0; turn-1 code-seeking replies in the no-tool condition 0; invalid runs 0.
+- **Within-task variation across repetitions:** tasks with mixed outcomes: no tool 0, optional 0, required 0 of 18.
+- **Latency and usage:** median seconds per call no tool 10 s / 26 s / 55 s by group, optional 5 s, required 5 s; 324 calls, 1,155,800 reported input tokens (mostly cache reads), 346,562 output tokens of which 335,162 thinking; 82 min of call time.
+
+**Reading.** On these 18 held-out tasks, with the explicit no-tool sentence, the unaided system stayed at the ceiling even on 40-point irregular-grid tasks, so the tool conditions could not show a correctness benefit. What did change with tool access is behaviour: given the optional tool the model requested it every time and answered with the returned value; without it, it produced answers inside tolerance at the cost of far more hidden reasoning and time. How those unaided answers were produced is not observed (the reasoning is redacted). The second turn mattered once: one no-tool first-turn answer (g3-04, repetition 1) was 0.31 m/s² off and was corrected at turn 2, and 16 of 54 no-tool episodes changed their number between turns (4 / 4 / 8 by group), against 0 of 108 tool episodes. The tool-request contrast with V1 (0/12 there) is still not attributable to any single cause: the CLI version, the two-turn design, the prompt wording and the advisor state all differ.
+
+**What remains open.** Whether a task exists in this family where the unaided system's correctness actually drops under the explicit no-tool wording (the development stage with the earlier wording suggests the failure mode is prompt-sensitive rather than arithmetic); and whether the 0/12 → 54/54 change in optional-tool uptake is due to the prompt, the CLI version or the two-turn design, which only a controlled comparison could separate. Neither is pursued here.
 
 ## V1: what was observed (release `v1.0.0`)
 
@@ -153,7 +159,7 @@ As of v1.0.0, `src/tasks.py` writes seeded synthetic cases, and their reference 
 
 This is a harness and control finding about what "no tools" must be verified against, not a claim about the provider's intent. Details: `RESEARCH_LOG.md`, entries "Control failure found" and "V2 development gate, stage 3".
 
-## V2: task difficulty × tool policy (frozen; scored run pending)
+## V2: task difficulty × tool policy (frozen; run complete)
 
 Protocol: [`EXPERIMENT_V2.md`](EXPERIMENT_V2.md), frozen as run `v2-run-1` ([`data/v2/freeze_manifest.json`](data/v2/freeze_manifest.json): 21 hashed files, CLI 2.1.280, effort high, 600 s timeout, advisor disabled). Code: `src/tasks_v2.py`, `src/agent_v2.py`, `src/run_v2.py`, `src/analyze_v2.py`, `src/chart_v2.py`; prompts `prompts/v2/`; data `data/v2/`. V1's frozen files are untouched: V2 imports V1's reference function, tool, parser, grader, CLI adapter and control checks.
 
@@ -198,7 +204,7 @@ Python 3.11, standard library only. The command in the reviewer quick path runs 
 | `EXPERIMENT.md`, `data/freeze_manifest.json` | V1 frozen protocol and manifest |
 | `EXPERIMENT_V2.md`, `data/v2/freeze_manifest.json` | V2 protocol, development gate record, decisions, and the `v2-run-1` freeze |
 | `src/tasks.py`, `tools.py`, `evaluate.py`, `models.py`, `agent.py`, `run.py`, `analyze.py`, `chart.py` | V1 (frozen) |
-| `src/*_v2.py`, `prompts/v2/`, `data/v2/`, `results/v2/` | V2; `results/v2/dev_stage1/`–`dev_stage3/` are archived development snapshots (stages 1–2 with advisor audits) |
+| `src/*_v2.py`, `prompts/v2/`, `data/v2/`, `results/v2/` | V2: scored episodes, summaries and chart; `results/v2/dev_stage1/`–`dev_stage3/` are archived development snapshots (stages 1–2 with advisor audits) |
 | `results/episodes_scored.jsonl`, `results/summary.*`, `results/chart.svg` | V1 evidence and analysis outputs |
 | `tests/` | 90 offline checks, including an end-to-end pipeline test (task → model choice → tool request → validated execution → returned result → final answer → deterministic score) and regression tests for every defect found in review |
 | `RESEARCH_LOG.md`, `HANDOFF.md`, `RESEARCH_ROADMAP.md` | chronology, evidence and follow-ups |
