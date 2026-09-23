@@ -25,7 +25,7 @@ Leo is the research lead and decision maker; Claude writes code, checks and docu
 | V2-4 | 12:26–12:40 | Development stage 2: six hard episodes at 60 points; 6/6 correct; optional requests 2/2 | Claude ran | `results/v2/dev_stage2/` | OBSERVED, later VOID |
 | V2-5 | 12:40–12:48 | Multi-agent review completes: server-side advisor found in the raw traces (31/48 calls used `claude-fable-5-1`). Audits written; stages 1–2 declared void; escalation reverted (hard = 40); `CLAUDE_CODE_DISABLE_ADVISOR_TOOL=1` plus three new per-call violations; probe confirms only `claude-opus-5` runs; ten further review findings fixed | Review found; Claude fixed | `advisor_audit.json` in both stage folders; `RESEARCH_LOG.md` control-failure entry | VERIFIED |
 | V2-6 | 12:48–12:56 | Development stage 3 (clean): 36/36 calls `claude-opus-5` only; no tool 2/2, 1/2, 0/2; optional requested 6/6; required compliant 6/6; escalation not triggered | Claude ran | `results/v2/episodes_dev.jsonl`, `summary_dev.md`, `chart_dev.svg` | OBSERVED |
-| V2-7 | 12:56–13:10 | Path redaction at write time (one stage-3 reply had quoted the CLI scratchpad path; file sanitised once); turn-1 reply classifier; 90 checks OK; README, protocol, logs, handoff, local workbook and evidence note updated; branch pushed; PR opened to `main` | Claude | this file; PR | OBSERVED |
+| V2-7 | 12:56–13:25 | Path redaction at write time (one stage-3 reply had quoted the CLI scratchpad path; file sanitised once); turn-1 reply classifier; end-to-end pipeline test; advisor-requested corrections (stage-1 archive note, gate outcome, tolerance simulation from the shipped generator, evidence-based approval request, decision V2-4b, V1 traces scanned for server-side tools); 90 checks OK; single squashed commit `0e4656f` pushed; PR #1 opened to `main` (https://github.com/retinapeg/agentic-physics-bench/pull/1) at 13:25 | Claude | this file; PR #1 | VERIFIED (push and PR URL) |
 
 ## V2 next action
 
@@ -39,7 +39,7 @@ python3 src/run_v2.py freeze v2-run-1
 python3 src/run_v2.py scored-batch
 ```
 
-The batch resumes after an interruption without repeating an episode and stops on any control violation, rate limit or three consecutive timeouts. After it: `python3 src/analyze_v2.py scored && python3 src/chart_v2.py scored`, fill the README's scored section, and merge the PR. Nothing in `main` changes until Leo merges.
+The batch resumes after an interruption without repeating an episode and stops on any control violation, rate limit or three consecutive timeouts. After it: `python3 src/analyze_v2.py scored && python3 src/chart_v2.py scored`, fill the README's scored section, and merge the PR. Nothing in `main` changes until Leo merges PR #1 (https://github.com/retinapeg/agentic-physics-bench/pull/1).
 
 ---
 
