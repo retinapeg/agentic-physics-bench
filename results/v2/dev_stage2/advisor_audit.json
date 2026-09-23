@@ -1,0 +1,478 @@
+{
+ "note": "Retroactive audit (2026-09-23) of the raw CLI traces: a server-side 'advisor' tool consulted claude-fable-5-1 inside these calls under --tools \"\". Under the amended V2 controls (server_tool_use, unexpected_model_usage, unexpected_iteration; src/run_v2.py v2_control_violations) these episodes are invalid_run. The records are unchanged; this file classifies them. This stage is not evidence about claude-opus-5 alone.",
+ "episodes_invalid_under_amended_controls": 16,
+ "of_episodes": 18,
+ "calls_with_advisor": 25,
+ "of_calls": 36,
+ "episodes": [
+  {
+   "episode_id": "d1-02-optional_tool-r1-claude-2026-09-23T115834",
+   "task_id": "d1-02",
+   "condition": "optional_tool",
+   "calls": [
+    {
+     "turn": 1,
+     "server_tool_uses": [
+      "advisor"
+     ],
+     "models_used": [
+      "claude-fable-5-1",
+      "claude-opus-5"
+     ]
+    },
+    {
+     "turn": 2,
+     "server_tool_uses": [
+      "advisor"
+     ],
+     "models_used": [
+      "claude-fable-5-1",
+      "claude-opus-5"
+     ]
+    }
+   ],
+   "invalid_under_amended_controls": true
+  },
+  {
+   "episode_id": "d1-02-required_tool-r1-claude-2026-09-23T115952",
+   "task_id": "d1-02",
+   "condition": "required_tool",
+   "calls": [
+    {
+     "turn": 1,
+     "server_tool_uses": [],
+     "models_used": [
+      "claude-opus-5"
+     ]
+    },
+    {
+     "turn": 2,
+     "server_tool_uses": [
+      "advisor"
+     ],
+     "models_used": [
+      "claude-fable-5-1",
+      "claude-opus-5"
+     ]
+    }
+   ],
+   "invalid_under_amended_controls": true
+  },
+  {
+   "episode_id": "d1-02-no_tool-r1-claude-2026-09-23T120025",
+   "task_id": "d1-02",
+   "condition": "no_tool",
+   "calls": [
+    {
+     "turn": 1,
+     "server_tool_uses": [
+      "advisor"
+     ],
+     "models_used": [
+      "claude-fable-5-1",
+      "claude-opus-5"
+     ]
+    },
+    {
+     "turn": 2,
+     "server_tool_uses": [
+      "advisor"
+     ],
+     "models_used": [
+      "claude-fable-5-1",
+      "claude-opus-5"
+     ]
+    }
+   ],
+   "invalid_under_amended_controls": true
+  },
+  {
+   "episode_id": "d1-01-optional_tool-r1-claude-2026-09-23T120123",
+   "task_id": "d1-01",
+   "condition": "optional_tool",
+   "calls": [
+    {
+     "turn": 1,
+     "server_tool_uses": [
+      "advisor"
+     ],
+     "models_used": [
+      "claude-fable-5-1",
+      "claude-opus-5"
+     ]
+    },
+    {
+     "turn": 2,
+     "server_tool_uses": [
+      "advisor"
+     ],
+     "models_used": [
+      "claude-fable-5-1",
+      "claude-opus-5"
+     ]
+    }
+   ],
+   "invalid_under_amended_controls": true
+  },
+  {
+   "episode_id": "d1-01-required_tool-r1-claude-2026-09-23T120235",
+   "task_id": "d1-01",
+   "condition": "required_tool",
+   "calls": [
+    {
+     "turn": 1,
+     "server_tool_uses": [],
+     "models_used": [
+      "claude-opus-5"
+     ]
+    },
+    {
+     "turn": 2,
+     "server_tool_uses": [],
+     "models_used": [
+      "claude-opus-5"
+     ]
+    }
+   ],
+   "invalid_under_amended_controls": false
+  },
+  {
+   "episode_id": "d1-01-no_tool-r1-claude-2026-09-23T120254",
+   "task_id": "d1-01",
+   "condition": "no_tool",
+   "calls": [
+    {
+     "turn": 1,
+     "server_tool_uses": [
+      "advisor"
+     ],
+     "models_used": [
+      "claude-fable-5-1",
+      "claude-opus-5"
+     ]
+    },
+    {
+     "turn": 2,
+     "server_tool_uses": [
+      "advisor"
+     ],
+     "models_used": [
+      "claude-fable-5-1",
+      "claude-opus-5"
+     ]
+    }
+   ],
+   "invalid_under_amended_controls": true
+  },
+  {
+   "episode_id": "d2-02-required_tool-r1-claude-2026-09-23T120346",
+   "task_id": "d2-02",
+   "condition": "required_tool",
+   "calls": [
+    {
+     "turn": 1,
+     "server_tool_uses": [],
+     "models_used": [
+      "claude-opus-5"
+     ]
+    },
+    {
+     "turn": 2,
+     "server_tool_uses": [
+      "advisor"
+     ],
+     "models_used": [
+      "claude-fable-5-1",
+      "claude-opus-5"
+     ]
+    }
+   ],
+   "invalid_under_amended_controls": true
+  },
+  {
+   "episode_id": "d2-02-optional_tool-r1-claude-2026-09-23T120430",
+   "task_id": "d2-02",
+   "condition": "optional_tool",
+   "calls": [
+    {
+     "turn": 1,
+     "server_tool_uses": [
+      "advisor"
+     ],
+     "models_used": [
+      "claude-fable-5-1",
+      "claude-opus-5"
+     ]
+    },
+    {
+     "turn": 2,
+     "server_tool_uses": [
+      "advisor"
+     ],
+     "models_used": [
+      "claude-fable-5-1",
+      "claude-opus-5"
+     ]
+    }
+   ],
+   "invalid_under_amended_controls": true
+  },
+  {
+   "episode_id": "d2-02-no_tool-r1-claude-2026-09-23T120650",
+   "task_id": "d2-02",
+   "condition": "no_tool",
+   "calls": [
+    {
+     "turn": 1,
+     "server_tool_uses": [
+      "advisor"
+     ],
+     "models_used": [
+      "claude-fable-5-1",
+      "claude-opus-5"
+     ]
+    },
+    {
+     "turn": 2,
+     "server_tool_uses": [
+      "advisor"
+     ],
+     "models_used": [
+      "claude-fable-5-1",
+      "claude-opus-5"
+     ]
+    }
+   ],
+   "invalid_under_amended_controls": true
+  },
+  {
+   "episode_id": "d2-01-no_tool-r1-claude-2026-09-23T121921",
+   "task_id": "d2-01",
+   "condition": "no_tool",
+   "calls": [
+    {
+     "turn": 1,
+     "server_tool_uses": [
+      "advisor"
+     ],
+     "models_used": [
+      "claude-fable-5-1",
+      "claude-opus-5"
+     ]
+    },
+    {
+     "turn": 2,
+     "server_tool_uses": [
+      "advisor"
+     ],
+     "models_used": [
+      "claude-fable-5-1",
+      "claude-opus-5"
+     ]
+    }
+   ],
+   "invalid_under_amended_controls": true
+  },
+  {
+   "episode_id": "d2-01-optional_tool-r1-claude-2026-09-23T122116",
+   "task_id": "d2-01",
+   "condition": "optional_tool",
+   "calls": [
+    {
+     "turn": 1,
+     "server_tool_uses": [
+      "advisor"
+     ],
+     "models_used": [
+      "claude-fable-5-1",
+      "claude-opus-5"
+     ]
+    },
+    {
+     "turn": 2,
+     "server_tool_uses": [],
+     "models_used": [
+      "claude-opus-5"
+     ]
+    }
+   ],
+   "invalid_under_amended_controls": true
+  },
+  {
+   "episode_id": "d2-01-required_tool-r1-claude-2026-09-23T122229",
+   "task_id": "d2-01",
+   "condition": "required_tool",
+   "calls": [
+    {
+     "turn": 1,
+     "server_tool_uses": [],
+     "models_used": [
+      "claude-opus-5"
+     ]
+    },
+    {
+     "turn": 2,
+     "server_tool_uses": [
+      "advisor"
+     ],
+     "models_used": [
+      "claude-fable-5-1",
+      "claude-opus-5"
+     ]
+    }
+   ],
+   "invalid_under_amended_controls": true
+  },
+  {
+   "episode_id": "d3-01-no_tool-r1-claude-2026-09-23T122604",
+   "task_id": "d3-01",
+   "condition": "no_tool",
+   "calls": [
+    {
+     "turn": 1,
+     "server_tool_uses": [
+      "advisor"
+     ],
+     "models_used": [
+      "claude-fable-5-1",
+      "claude-opus-5"
+     ]
+    },
+    {
+     "turn": 2,
+     "server_tool_uses": [
+      "advisor"
+     ],
+     "models_used": [
+      "claude-fable-5-1",
+      "claude-opus-5"
+     ]
+    }
+   ],
+   "invalid_under_amended_controls": true
+  },
+  {
+   "episode_id": "d3-01-required_tool-r1-claude-2026-09-23T123130",
+   "task_id": "d3-01",
+   "condition": "required_tool",
+   "calls": [
+    {
+     "turn": 1,
+     "server_tool_uses": [],
+     "models_used": [
+      "claude-opus-5"
+     ]
+    },
+    {
+     "turn": 2,
+     "server_tool_uses": [
+      "advisor"
+     ],
+     "models_used": [
+      "claude-fable-5-1",
+      "claude-opus-5"
+     ]
+    }
+   ],
+   "invalid_under_amended_controls": true
+  },
+  {
+   "episode_id": "d3-01-optional_tool-r1-claude-2026-09-23T123209",
+   "task_id": "d3-01",
+   "condition": "optional_tool",
+   "calls": [
+    {
+     "turn": 1,
+     "server_tool_uses": [
+      "advisor"
+     ],
+     "models_used": [
+      "claude-fable-5-1",
+      "claude-opus-5"
+     ]
+    },
+    {
+     "turn": 2,
+     "server_tool_uses": [],
+     "models_used": [
+      "claude-opus-5"
+     ]
+    }
+   ],
+   "invalid_under_amended_controls": true
+  },
+  {
+   "episode_id": "d3-02-no_tool-r1-claude-2026-09-23T123248",
+   "task_id": "d3-02",
+   "condition": "no_tool",
+   "calls": [
+    {
+     "turn": 1,
+     "server_tool_uses": [
+      "advisor"
+     ],
+     "models_used": [
+      "claude-fable-5-1",
+      "claude-opus-5"
+     ]
+    },
+    {
+     "turn": 2,
+     "server_tool_uses": [
+      "advisor"
+     ],
+     "models_used": [
+      "claude-opus-5"
+     ]
+    }
+   ],
+   "invalid_under_amended_controls": true
+  },
+  {
+   "episode_id": "d3-02-optional_tool-r1-claude-2026-09-23T123635",
+   "task_id": "d3-02",
+   "condition": "optional_tool",
+   "calls": [
+    {
+     "turn": 1,
+     "server_tool_uses": [
+      "advisor"
+     ],
+     "models_used": [
+      "claude-opus-5"
+     ]
+    },
+    {
+     "turn": 2,
+     "server_tool_uses": [],
+     "models_used": [
+      "claude-opus-5"
+     ]
+    }
+   ],
+   "invalid_under_amended_controls": true
+  },
+  {
+   "episode_id": "d3-02-required_tool-r1-claude-2026-09-23T123653",
+   "task_id": "d3-02",
+   "condition": "required_tool",
+   "calls": [
+    {
+     "turn": 1,
+     "server_tool_uses": [],
+     "models_used": [
+      "claude-opus-5"
+     ]
+    },
+    {
+     "turn": 2,
+     "server_tool_uses": [],
+     "models_used": [
+      "claude-opus-5"
+     ]
+    }
+   ],
+   "invalid_under_amended_controls": false
+  }
+ ]
+}

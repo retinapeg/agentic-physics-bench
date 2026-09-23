@@ -1,0 +1,110 @@
+{
+ "run_id": "v2-run-1",
+ "frozen_at": "2026-09-23T14:06:28+01:00",
+ "sha256": {
+  "src/tasks.py": "e4acdb6df7c7027099e71e88bfaffc8417e510c139e44b47a2556cafcf5296ed",
+  "src/tools.py": "f2cbb0674445e3d4551cbb2f078753f57efc1d4de67a66f28c1f846986420e12",
+  "src/evaluate.py": "ba3c9a49e1d27840d4610e31ee8d175514cf7b61dab4950d949c519d2ab550f1",
+  "src/models.py": "a70323709feee5417bc08b4c88b1b7030a6e0fa966499dbec0197efe5a0bb79e",
+  "src/run.py": "1b83a2898711d9858aff6d0bb6839d3c2ac792822b28df7a0e4a40225a202c80",
+  "src/tasks_v2.py": "1cfb9feabe262a4f25395f1603c3e7069096993dba3a143d2f7fd608ffd045c1",
+  "src/agent_v2.py": "255a4e080bcd3ffb92893e22382ddc675c35f6666b3a53d51fb2040e00248ff1",
+  "src/run_v2.py": "dad7719aecc232d8dabc561097170081655ee8593a03e2ad4539a73ca8fee513",
+  "src/analyze_v2.py": "67fe6294b8c8b1cb1c19421f8795efe17e4bf2f3ac5db0f4dc046901041c8123",
+  "src/chart_v2.py": "805ae74041037ebbe1e5fcc8973aeb54253b0c3a96a6284cc00310bb630b8d05",
+  "prompts/v2/task.txt": "4ab0aae249fd0e0bae0a678c195ed5bd2df9b39b019484eea502978b135cb007",
+  "prompts/v2/no_tool_turn1.txt": "707bb94594e8be95425fbb0c351ec46a883e16925faa43932579ac1308454acf",
+  "prompts/v2/optional_tool_turn1.txt": "3a6fc9baffa7578b9f20a583c9c04e6cf8229976065312d9e67588c5aff7e318",
+  "prompts/v2/required_tool_turn1.txt": "cddc2684a54c8182b566fcbace485821ee99ea1e78b92af5fd6ab872df4f4000",
+  "prompts/v2/turn2.txt": "5e9f580f2b909cae2cf9ee47e05a2c53a069ddad2593a54dda8b516d062177d8",
+  "data/v2/scored_tasks.jsonl": "201e8d39d05b612345e9f9e72c7c834ae85911116e5b906ef0867b4d9b1d4574",
+  "data/v2/scored_keys.jsonl": "4c0189e1fcb718dd9cf9c0434864fa90492201976132dfc6c0bb2fe92afb04f5",
+  "data/v2/scored_plan.json": "80da06fa6a2dfe8cea04d67fbe52b114ec65c017a27b1b2208c732b1e6917ce4",
+  "data/v2/dev_tasks.jsonl": "2d24409d700c1541dcd6b1c200d498f25e039fd299a57927be1ac9dd7b21a54f",
+  "data/v2/dev_keys.jsonl": "a3fe8449fa3eefebe8b71f069ce30aa48eb15bd7b8e3efe86c3f80977766fc15",
+  "data/v2/dev_plan.json": "a6ab432a7f5145fc39bcd129e3c60badb994a7f90b85d084c83f9d921be69577"
+ },
+ "claude_code_version": "2.1.280",
+ "claude_argv": [
+  "claude",
+  "--print",
+  "--model",
+  "claude-opus-5",
+  "--effort",
+  "high",
+  "--tools",
+  "",
+  "--safe-mode",
+  "--strict-mcp-config",
+  "--no-session-persistence",
+  "--output-format",
+  "stream-json",
+  "--verbose"
+ ],
+ "model": "claude-opus-5",
+ "effort": "high",
+ "timeout_s": 600,
+ "env_controls": {
+  "CLAUDE_CODE_DISABLE_ADVISOR_TOOL": "1"
+ },
+ "python": "3.11.5",
+ "groups": {
+  "easy": {
+   "n": 10,
+   "dt": 0.5,
+   "jitter": 0.0,
+   "t_dp": 1,
+   "v_dp": 2,
+   "sigma": 0.5
+  },
+  "moderate": {
+   "n": 24,
+   "dt": 0.5,
+   "jitter": 0.2,
+   "t_dp": 2,
+   "v_dp": 2,
+   "sigma": 1.0
+  },
+  "hard": {
+   "n": 40,
+   "dt": 0.5,
+   "jitter": 0.2,
+   "t_dp": 2,
+   "v_dp": 2,
+   "sigma": 2.0
+  }
+ },
+ "seeds": {
+  "dev": {
+   "easy": 1101,
+   "moderate": 1102,
+   "hard": 1103
+  },
+  "scored": {
+   "easy": 2201,
+   "moderate": 2202,
+   "hard": 2203
+  }
+ },
+ "plan_seed": 3303,
+ "conditions": [
+  "no_tool",
+  "optional_tool",
+  "required_tool"
+ ],
+ "reps": 3,
+ "tolerance_m_per_s2": 0.01,
+ "accepted_units": [
+  "m/s^2",
+  "m/s\u00b2",
+  "m s^-2"
+ ],
+ "limits": {
+  "model_calls_per_episode": 2,
+  "tool_executions_per_episode": 1,
+  "retries": 0,
+  "planned_episodes": 162,
+  "max_scored_invocations": 324,
+  "max_consecutive_timeouts": 3
+ }
+}

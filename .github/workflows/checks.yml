@@ -1,0 +1,38 @@
+name: offline checks
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: V1 and V2 offline checks (standard library only; no model calls)
+        run: >
+          python3 -m unittest
+          tests.test_ls_slope tests.test_tasks tests.test_evaluate tests.test_agent tests.test_controls tests.test_analyze
+          tests.test_v2_tasks tests.test_v2_agent tests.test_v2_run tests.test_v2_analyze tests.test_v2_pipeline
+      - name: Regenerated data and analysis match the committed files
+        run: |
+          python3 src/tasks.py && python3 src/tasks.py scored
+          python3 src/tasks_v2.py && python3 src/tasks_v2.py scored
+          python3 src/analyze.py && python3 src/chart.py
+          python3 src/analyze_v2.py dev && python3 src/chart_v2.py dev
+          if [ -f results/v2/episodes_scored.jsonl ]; then python3 src/analyze_v2.py scored && python3 src/chart_v2.py scored; fi
+          git status --short data/ results/
+          test -z "$(git status --short data/ results/)"
+      - name: V1 freeze manifest hashes (the CLI version check needs the CLI, so hashes only)
+        run: |
+          python3 - <<'PY'
+          import json, hashlib
+          from pathlib import Path
+          m = json.loads(Path('data/freeze_manifest.json').read_text())
+          bad = [r for r, d in m['sha256'].items() if hashlib.sha256(Path(r).read_text().encode()).hexdigest() != d]
+          assert not bad, bad
+          print(f"{len(m['sha256'])} frozen V1 files unchanged")
+          PY

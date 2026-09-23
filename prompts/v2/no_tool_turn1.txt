@@ -1,0 +1,4 @@
+$task
+No tools or code execution are available. Compute the answer from the table.
+Reply with exactly one JSON object and nothing else (no code fences, no other text):
+{"type": "final", "acceleration": <number>, "units": "m/s^2"}

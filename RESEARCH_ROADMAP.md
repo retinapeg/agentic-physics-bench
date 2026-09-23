@@ -1,5 +1,7 @@
 # Research roadmap
 
+> Update (2026-09-23): V1 was re-verified in an isolated checkout and recorded as complete (`RESEARCH_LOG.md`, "V1 verification"). **V2 (task difficulty × optional/required tool policy) is implemented on the branch `v2/tool-policy`** (`EXPERIMENT_V2.md`), development-calibrated, and awaiting Leo's approval for its 162-episode scored run. It supersedes follow-up 1 below (the extra-turn ablation is built into V2's design: two calls in every condition). A separate analytical study is proposed on the branch `research/analytical-physics` (its `PROPOSAL.md`); unapproved and unrun, not part of this branch. A control gap found in V2 development, a server-side CLI "advisor" consulting a second model, is documented in `EXPERIMENT_V2.md` section 6 and is now enforced against.
+
 > Release note (2026-09-21): the pilot called "V0" below shipped as **V1** (tag `v1.0.0`). Leo chose the next extension: a derived project on numerical vs analytical performance with a bounded mathematical-tool harness, in a separate repository created from the V1 release. Follow-ups 1–3 below remain deferred.
 
 Status as of 2026-09-21, after the V0 scored pilot (checkpoint 5). Written by Claude at Leo's direction from a research addendum that Codex drafted in chat. Leo supplied the addendum and directed its adoption (2026-09-21). Leo sets priorities. Nothing below is claimed as a result unless it appears under "Demonstrated".

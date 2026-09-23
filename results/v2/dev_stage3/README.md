@@ -1,0 +1,5 @@
+# Development stage 3 (2026-09-23, 12:48–12:56 BST): archived snapshot, superseded for the no-tool condition only
+
+The first clean development run: 18 episodes, 36 calls, advisor disabled (`CLAUDE_CODE_DISABLE_ADVISOR_TOOL=1`), amended controls enforced per call, every call `claude-opus-5` only. Outcome: no tool 2/2, 1/2, 0/2 by group (every moderate and hard turn-1 reply was an attempt to run code the system does not have); optional tool requested and executed 6/6; required compliant 6/6.
+
+Leo's decision V2-4b (2026-09-23) then fixed the no-tool baseline wording: "No tools or code execution are available. Compute the answer from the table." The code-seeking behaviour under the earlier prompt stays documented here and in `RESEARCH_LOG.md` as a harness/system finding. Stage 4 reruns only the six `no_tool` episodes with the new wording; the twelve `optional_tool` and `required_tool` records were carried over unchanged into `results/v2/episodes_dev.jsonl` (their prompts did not change). Grader, tolerance and tasks are unchanged. The summary and chart here are a snapshot of stage 3, not a CI target.
