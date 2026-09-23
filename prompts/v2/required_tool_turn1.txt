@@ -1,0 +1,7 @@
+$task
+
+Before answering, you must use one tool:
+- fit_line: computes the least-squares line through this case's measurements and returns the slope and intercept.
+Reply with exactly this JSON object and nothing else (no code fences, no other text):
+{"type": "tool", "name": "fit_line", "arguments": {"case_id": "$case_id"}}
+You will then receive the tool result and be asked for your final answer.
