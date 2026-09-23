@@ -1,0 +1,40 @@
+%% Architecture of agentic-physics-bench at commit 8d336d8
+%% Sources: src/run.py, src/models.py, src/agent.py, src/tools.py, src/tasks.py, src/evaluate.py, src/analyze.py, src/chart.py, prompts/direct.txt, prompts/workflow_turn1.txt, prompts/workflow_turn2.txt, data/freeze_manifest.json
+%% Render: npx @mermaid-js/mermaid-cli -i docs/architecture.mmd -o docs/images/architecture.svg -b white
+flowchart TD
+    H["Leo<br/>approves protocol freeze,<br/>rules on invalid runs"]
+    GEN["src/tasks.py<br/>seeded synthetic cases,<br/>least-squares reference"]
+    DATA[("data/ + prompts/<br/>cases, hidden keys, plan,<br/>templates, freeze manifest")]
+    RUN["src/run.py runner<br/>freeze check, batch cap,<br/>per-call controls"]
+    LOOP["src/agent.py + tools.py<br/>bounded loop: 2 calls max,<br/>optional fit_line, 1 max"]
+    LLM["Claude Code CLI (live)<br/>claude-opus-5 via models.py<br/>native tools off, safe mode"]
+    GRADE["src/evaluate.py<br/>strict JSON parse,<br/>grade within 0.01 m/s²"]
+    EP[("results/episodes_*.jsonl<br/>append-only traces")]
+    AN["src/analyze.py + chart.py<br/>offline, no model calls:<br/>summary, chart.svg"]
+
+    H -->|approves freeze| DATA
+    GEN -->|writes| DATA
+    DATA -->|displayed t, v| RUN
+    RUN <-->|direct: 1 call| LLM
+    RUN -->|workflow| LOOP
+    LOOP <-->|2 calls max| LLM
+    RUN -->|answer| GRADE
+    DATA -->|hidden keys| GRADE
+    GRADE -->|grade| EP
+    RUN -->|trace| EP
+    RUN -->|invalid run: halt| H
+    EP --> AN
+
+    class H human;
+    class GEN,RUN,LOOP det;
+    class LLM ai;
+    class GRADE,AN eval;
+    class DATA,EP store;
+
+    classDef ai fill:#efe7fb,stroke:#6a4c93,stroke-width:2px,color:#2b1d45;
+    classDef det fill:#eef3f8,stroke:#2f5d8a,stroke-width:1.5px,color:#172c37;
+    classDef human fill:#e8f0ec,stroke:#285b48,stroke-width:1.5px,color:#173f32;
+    classDef eval fill:#f7efdf,stroke:#8b6330,stroke-width:1.5px,color:#4a3413;
+    classDef store fill:#f3f4f1,stroke:#65757b,stroke-width:1.5px,color:#172c37;
+    classDef ext fill:#ffffff,stroke:#2f5d8a,stroke-width:1.5px,stroke-dasharray:4 3,color:#172c37;
+    classDef mock fill:#ffffff,stroke:#9aa5a8,stroke-width:1.5px,stroke-dasharray:6 4,color:#65757b;
