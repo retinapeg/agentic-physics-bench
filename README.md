@@ -1,6 +1,6 @@
 # Agentic Physics Bench
 
-A reproducible evaluation of when a frontier model uses an available numerical tool, when it solves the task unaided, and how tool policy and task difficulty affect reliability. The system under test is Claude (`claude-opus-5`) behind the Claude Code CLI with its native tools switched off; the only tool is a bounded, allowlisted line-fit function dispatched by a Python harness. Every episode is saved, every reported number is recomputed from the saved episodes, and the protocol is hashed and frozen before any scored call. Both versions have run: V1 is released as `v1.0.0` and V2 as `v2.0.0`.
+A reproducible evaluation of when a frontier model uses an available numerical tool, when it solves the task unaided, and how tool policy and task difficulty affect reliability. The system under test is Claude (`claude-opus-5`) behind the Claude Code CLI with its native tools switched off; the only tool is a bounded, allowlisted line-fit function dispatched by a Python harness. Every episode is saved, every reported number is recomputed from the saved episodes, and the protocol is hashed and frozen before any scored call. Both versions have run: V1 is tagged `v1.0.0` and V2 `v2.0.0` (annotated git tags).
 
 ## Results: V1 → V2
 

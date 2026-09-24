@@ -1,5 +1,7 @@
 # Workmode: LEARN_AND_SHIP
 
+> **Superseded (2026-09-21, 18:35 BST).** Leo handed the implementation to Claude. Claude Code wrote all code, tests and documentation at Leo's direction; Leo set the research questions, made the design and protocol decisions, approved each freeze and published. The "human-owned implementation" line, the role allocation and the multi-model scope below are historical. Current provenance: [README](README.md#provenance) and [CLAUDE.md](CLAUDE.md).
+
 ## Outcome
 
 Publish a small, reproducible physics-tool-use pilot and understand its central implementation. The public result is a completed experiment, not a collection of planned features.
