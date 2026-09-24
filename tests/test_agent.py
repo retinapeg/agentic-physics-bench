@@ -1,6 +1,5 @@
 """Checks for the bounded tool workflow, using scripted model replies (no model calls).
 
-Verification code written by Claude (2026-09-21).
 Run from the repo root: python3 -m unittest -v tests.test_agent
 """
 import json
@@ -63,7 +62,7 @@ class WorkflowTests(unittest.TestCase):
             self.assertEqual((out["error"], out["tool"]["error"]), ("invalid_tool_request", code))
 
     def test_malformed_request_fields_are_recorded_not_crashes(self):
-        # Regression: Codex reproduced a TypeError for "name": [] (unhashable in the allowlist lookup).
+        # Regression: review reproduced a TypeError for "name": [] (unhashable in the allowlist lookup).
         for reply, code in [
             ('{"type": "tool", "name": [], "arguments": {"case_id": "dev-01"}}', "bad_tool_name"),
             ('{"type": "tool", "name": {}, "arguments": {"case_id": "dev-01"}}', "bad_tool_name"),

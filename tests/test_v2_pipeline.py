@@ -1,4 +1,4 @@
-"""End-to-end V2 pipeline with a scripted CLI (no model calls). Verification code written by Claude (2026-09-23).
+"""End-to-end V2 pipeline with a scripted CLI (no model calls).
 
 One test per condition walks the whole chain and checks each stage's record:
     task -> model choice (turn 1) -> tool request -> validated execution -> returned result

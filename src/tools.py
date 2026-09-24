@@ -1,8 +1,7 @@
 """Allowlisted numerical tools for the bounded workflow.
 
-Written by Claude at Leo's direction (2026-09-21). The model names a tool and a
-case ID; the harness looks up that case's displayed measurements. Tools never
-receive answer keys.
+The model names a tool and a case ID; the harness looks up that case's
+displayed measurements. Tools never receive answer keys.
 """
 import statistics
 

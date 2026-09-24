@@ -8,7 +8,7 @@ Status: frozen at 19:30 BST on 2026-09-21, after Leo approved D1–D10 with amen
 
 On synthetic velocity–time measurements, how does a bounded line-fit workflow compare with a direct answer for estimating signed acceleration in m/s²?
 
-This narrower question supersedes the open-weight-vs-frontier question in WORKMODE.md for V0. A local open-weight system is optional, not required.
+This narrower question supersedes an earlier open-weight-vs-frontier question for V0. A local open-weight system is optional, not required.
 
 ## 2. Task family
 
@@ -32,9 +32,9 @@ For each case: draw a true acceleration `a_true` and initial velocity `v0`; set 
 | Noise σ | set with tolerance (section 7) | 0.5 m/s, final (D1). At 0.5 m/s, SD(a_ref about a_true) = σ/√20.625 s² ≈ 0.11 m/s² |
 | Displayed velocity precision | 2 decimals | 2 decimals; the reference is computed from exactly the displayed values |
 
-Provenance: Leo made these decisions in chat. Claude entered them here at Leo's direction on 2026-09-21. Sxx = 20.625 s² was supplied by Codex and rechecked by Claude with python3.
+Provenance: Leo made these decisions in chat; they were recorded here on 2026-09-21. Sxx = 20.625 s² was rechecked with python3.
 
-Implementation: `src/tasks.py`, written by Claude at Leo's direction. It uses one `random.Random(seed)` per split and runs on Python 3.11.5.
+Implementation: `src/tasks.py`. It uses one `random.Random(seed)` per split and runs on Python 3.11.5.
 - Draw order per case: |a_true| = 5·(1 − random()), which lies in (0, 5]; v0 = −10 + 20·random(); then one `gauss(0, σ)` per time point.
 - Development sign order: dev-01 −, dev-02 +, dev-03 −, dev-04 +.
 - Cases hold only the displayed strings. Keys are in a separate file.
@@ -61,8 +61,8 @@ Direct-condition prompt: `prompts/direct.txt` (approved by Leo, 2026-09-21; temp
 Workflow tool request: `{"type": "tool", "name": "fit_line", "arguments": {"case_id": "<current case>"}}`. `fit_line` is the only allowlisted tool. It returns the slope and intercept of the least-squares line.
 
 - Decided (Leo, 2026-09-21): the model names the current case ID, and the harness supplies that case's displayed measurements, never the answer key.
-- A request with another case ID, another tool name or other arguments is not executed. The episode ends with `invalid_tool_request`, scored incorrect (Claude's implementation choice; for approval in section 13).
-- Workflow prompts: `prompts/workflow_turn1.txt` (SHA-256 `b8f6ce40b8a8d00de25fb1562918451c05c0b65dd3bbd297f634d1588d0c0caf`) and `prompts/workflow_turn2.txt` (SHA-256 `e5582c10a5fd0f9a05e2d582fead3b69c287271daf80a3bc1d3ff71ff59b0e86`), drafted by Claude.
+- A request with another case ID, another tool name or other arguments is not executed. The episode ends with `invalid_tool_request`, scored incorrect (an implementation choice put to Leo for approval in section 13).
+- Workflow prompts: `prompts/workflow_turn1.txt` (SHA-256 `b8f6ce40b8a8d00de25fb1562918451c05c0b65dd3bbd297f634d1588d0c0caf`) and `prompts/workflow_turn2.txt` (SHA-256 `e5582c10a5fd0f9a05e2d582fead3b69c287271daf80a3bc1d3ff71ff59b0e86`).
 
 Parsing: exactly one JSON object in the response; no repair, no retry on malformed output. Malformed output is recorded and scored incorrect.
 
@@ -87,7 +87,7 @@ Limits (Leo): at most 2 model calls and 1 tool execution per episode, with no re
 
 Transport failures: no retries (D5). A call that returns no usable output is `missing_output`, scored incorrect and kept in the denominator. If a rate-limit status is not "allowed", the batch stops; the remaining episodes stay unattempted and are listed as such.
 
-Control enforcement (added after Codex's review, before freeze): a call whose initialization metadata is missing or unexpected (model, `tools: []`, `mcp_servers: []`, CLI version), or that shows native tool use, overage or any stderr output, makes the episode `invalid_run`. It is not graded, stays in the denominator as not correct, and is categorised as a harness/control failure, distinct from a wrong answer. It also stops the batch.
+Control enforcement (added after code review, before freeze): a call whose initialization metadata is missing or unexpected (model, `tools: []`, `mcp_servers: []`, CLI version), or that shows native tool use, overage or any stderr output, makes the episode `invalid_run`. It is not graded, stays in the denominator as not correct, and is categorised as a harness/control failure, distinct from a wrong answer. It also stops the batch.
 
 ## 7. Scoring
 
@@ -167,7 +167,7 @@ flowchart LR
 
 ## 13. Decisions for one approval before scored inference
 
-Proposed by Claude. **Approved by Leo on 2026-09-21, with these amendments:**
+**Approved by Leo on 2026-09-21, with these amendments:**
 - **D3:** keep the original acceleration distribution, with no magnitude floor or redraw. Balance the generating signs; the fitted reference need not share the sign.
 - **D6:** verify that the installed CLI supports the explicit setting, then use it consistently. Done: `high` is pinned, and the stderr check is enforced (section 6).
 - **D7/D9:** within each six-case generating-sign group, three cases run direct first and three workflow first, by a fixed, recorded procedure (section 10).

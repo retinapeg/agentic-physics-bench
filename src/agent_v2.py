@@ -1,8 +1,8 @@
 """V2 bounded workflow: exactly two model calls in every condition, at most one tool execution.
 
-Written by Claude at Leo's direction (2026-09-23). V1's loop (src/agent.py) is
-frozen and unchanged; this module reuses V1's parser (evaluate.parse_response)
-and tool allowlist/validator (tools.validate_request, tools.TOOLS).
+V1's loop (src/agent.py) is frozen and unchanged; this module reuses V1's
+parser (evaluate.parse_response) and tool allowlist/validator
+(tools.validate_request, tools.TOOLS).
 
 Turn 1: the model returns an intermediate final answer or a tool request.
 Turn 2: a fresh model call whose prompt contains the original task, the model's

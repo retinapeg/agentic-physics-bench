@@ -1,7 +1,7 @@
 """Control enforcement and batch stopping (no model calls).
 
-Verification code written by Claude (2026-09-21). Regression for a defect Codex
-reproduced: the runner could record controls_ok=false alongside grade.correct=true.
+Regression for a defect reproduced in review: the runner could record
+controls_ok=false alongside grade.correct=true.
 Run from the repo root: python3 -m unittest -v tests.test_controls
 """
 import json

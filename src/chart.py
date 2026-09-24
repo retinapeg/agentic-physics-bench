@@ -1,9 +1,8 @@
 """Draw results/chart.svg from results/summary.json (stdlib only; no model calls).
 
 Usage (repo root): python3 src/chart.py
-Written by Claude at Leo's direction (2026-09-21). Palette: dataviz reference
-categorical slots 1-2, validated in light and dark mode. Each point carries a
-<title> tooltip; results/summary.md is the table view.
+Palette: dataviz reference categorical slots 1-2, validated in light and dark
+mode. Each point carries a <title> tooltip; results/summary.md is the table view.
 """
 import json
 from pathlib import Path

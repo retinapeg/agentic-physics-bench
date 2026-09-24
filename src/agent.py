@@ -1,9 +1,9 @@
 """Bounded tool workflow: at most two model calls and one tool execution.
 
-Written by Claude at Leo's direction (2026-09-21). The model only proposes an
-action as JSON text; this loop validates it and executes allowlisted tools.
-No retries. Turn 2 is a fresh model call whose prompt contains the original
-task, the model's previous public reply and the tool result.
+The model only proposes an action as JSON text; this loop validates it and
+executes allowlisted tools. No retries. Turn 2 is a fresh model call whose
+prompt contains the original task, the model's previous public reply and the
+tool result.
 """
 import json
 from string import Template

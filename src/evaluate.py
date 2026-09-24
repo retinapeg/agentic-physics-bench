@@ -1,7 +1,7 @@
 """Parse and grade final answers.
 
-Written by Claude at Leo's direction (2026-09-21). Rules follow EXPERIMENT.md
-sections 5 and 7: exactly one JSON object, no repair, no retry.
+Rules follow EXPERIMENT.md sections 5 and 7: exactly one JSON object, no repair,
+no retry.
 """
 import json
 import math

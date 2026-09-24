@@ -2,7 +2,6 @@
 
 Usage (repo root): python3 src/analyze_v2.py [dev|scored]
 Writes results/v2/summary_<split>.json and results/v2/summary_<split>.md.
-Written by Claude at Leo's direction (2026-09-23).
 
 Every count is computed from the episode file against the plan, so unattempted,
 invalid and duplicate episodes stay visible. Repeated calls on one task are

@@ -1,5 +1,5 @@
 """V2 runner: control enforcement, timeouts, resume/dedup, caps and the freeze check (no model calls).
-Verification code written by Claude (2026-09-23). Run from the repo root: python3 -m unittest -v tests.test_v2_run
+Run from the repo root: python3 -m unittest -v tests.test_v2_run
 """
 import json
 import sys
@@ -162,7 +162,7 @@ class EpisodeTests(unittest.TestCase):
                          (True, 2, 1, "missing_output"))
 
     def test_timeout_with_positively_observed_violations_is_invalid(self):
-        # Regression (Codex review, 2026-09-23): a partial trace before the timeout showed native tool use and
+        # Regression (code review, 2026-09-23): a partial trace before the timeout showed native tool use and
         # overage, but the timeout branch replaced every control check with an empty list.
         partial = dict(fake_call(FINAL, tool_use=True, overage=True), returncode=None, stderr="timeout after 600 s")
         rec, n = self.episode("no_tool", partial)
@@ -178,7 +178,7 @@ class EpisodeTests(unittest.TestCase):
         self.assertEqual((rec["valid"], rec["grade"]["outcome"]), (True, "missing_output"))
 
     def test_interrupted_episode_leaves_an_attempt_record_and_is_never_replayed(self):
-        # Regression (Codex review, 2026-09-23): the record was written only after both calls, so an interrupt
+        # Regression (code review, 2026-09-23): the record was written only after both calls, so an interrupt
         # during turn 2 left no trace, and resume repeated the episode and its turn-1 call.
         with mock.patch.object(models, "call_claude", side_effect=[fake_call(FINAL), KeyboardInterrupt()]) as fake:
             with self.assertRaises(KeyboardInterrupt):

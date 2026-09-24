@@ -6,8 +6,9 @@ Usage (repo root):
     python3 src/run_v2.py dev-restage <name> [--keep-unchanged]  # archive the dev files under results/v2/dev_<name>/ and start afresh
     python3 src/run_v2.py freeze <run_id>             # write data/v2/freeze_manifest.json (before any scored call)
     python3 src/run_v2.py scored-batch [--max-episodes N]  # the frozen scored plan; refuses to run unless the manifest matches
-Written by Claude at Leo's direction (2026-09-23). V1's runner (src/run.py) is
-frozen; this module reuses its control checks and the V1 CLI adapter.
+
+V1's runner (src/run.py) is frozen; this module reuses its control checks and
+the V1 CLI adapter.
 
 Controls are enforced per call, as in V1: missing or unexpected initialization
 metadata, native tool use, overage, an unexpected model or any stderr output

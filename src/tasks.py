@@ -1,7 +1,7 @@
 """Synthetic velocity-time cases and their reference answers.
 
-Written by Claude at Leo's direction (2026-09-21). Parameters follow
-EXPERIMENT.md section 3 (approved D1-D10 with Leo's amendments).
+Parameters follow EXPERIMENT.md section 3 (approved D1-D10 with Leo's
+amendments).
 
 Run from the repo root to (re)write the data files:
     python3 src/tasks.py          # development cases

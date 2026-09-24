@@ -4,11 +4,11 @@
 
 > Release note (2026-09-21): the pilot called "V0" below shipped as **V1** (tag `v1.0.0`). Leo chose the next extension: a derived project on numerical vs analytical performance with a bounded mathematical-tool harness, in a separate repository created from the V1 release. Follow-ups 1–3 below remain deferred.
 
-Status as of 2026-09-21, after the V0 scored pilot (checkpoint 5). Written by Claude at Leo's direction from a research addendum that Codex drafted in chat. Leo supplied the addendum and directed its adoption (2026-09-21). Leo sets priorities. Nothing below is claimed as a result unless it appears under "Demonstrated".
+Status as of 2026-09-21, after the V0 scored pilot (checkpoint 5). Based on a research addendum that Leo supplied and adopted on 2026-09-21 (he did not draft it). Leo sets priorities. Nothing below is claimed as a result unless it appears under "Demonstrated".
 
 ## Demonstrated (with evidence)
 
-- Reproducible development data with checked reference answers: `src/tasks.py`, `data/dev_*.jsonl`, `tests/test_tasks.py`. SHA-256 values are in `HANDOFF.md`.
+- Reproducible development data with checked reference answers: `src/tasks.py`, `data/dev_*.jsonl`, `tests/test_tasks.py`. SHA-256 values are in `data/freeze_manifest.json`.
 - A working path from prompt to model, parser, grader and saved trace: `src/run.py`, `src/models.py`, `src/evaluate.py`.
 - One correct direct-answer development episode on Claude (dev-01): `results/episodes_dev.jsonl`.
 - A bounded tool workflow (`src/agent.py`, `src/tools.py`), tested offline on scripted replies. One real dev-01 workflow episode: the model answered without requesting the tool (correct, 1 call, 0 tool executions).
@@ -18,7 +18,7 @@ Status as of 2026-09-21, after the V0 scored pilot (checkpoint 5). Written by Cl
   - all 24 answers equal the reference rounded to between 1 and 6 decimals;
   - 24 valid episodes, 24 invocations; no invalid runs or missing outputs.
   See `README.md` and `results/summary.md`.
-- 36 offline checks pass, including regression tests for the two defects Codex reproduced.
+- 36 offline checks pass, including regression tests for the two defects reproduced in review.
 
 ## Not demonstrated
 
@@ -51,7 +51,7 @@ Status as of 2026-09-21, after the V0 scored pilot (checkpoint 5). Written by Cl
 
 ## Sources
 
-Read by Claude on 2026-09-21. For the preprints, only the arXiv abstract pages were read, not the full papers. We have not reproduced any of these findings.
+Read on 2026-09-21. For the preprints, only the arXiv abstract pages were read, not the full papers. We have not reproduced any of these findings.
 
 **1. Martin, Cemaj & Cohen, "Scaling Managed Agents: Decoupling the brain from the hands." Anthropic Engineering blog, 8 April 2026.** Engineering account, not peer-reviewed. https://www.anthropic.com/engineering/managed-agents
 - Claim: harnesses encode assumptions that go stale as models improve. Context resets added for one model became unnecessary with a later model. The authors separate the model-plus-harness, the tools and sandboxes, and durable session logs, so each can be changed independently.

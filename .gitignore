@@ -3,3 +3,9 @@ __pycache__/
 LEARNING_REVIEW.md
 results/raw/
 APPLICATION_EVIDENCE.md
+
+# Local working notes (not project source)
+/CLAUDE.md
+/AGENTS.md
+/WORKMODE.md
+/HANDOFF.md

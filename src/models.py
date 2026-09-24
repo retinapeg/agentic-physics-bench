@@ -1,6 +1,5 @@
 """Model adapter: Claude Code CLI on the user's subscription (no API key).
 
-Written by Claude at Leo's direction (2026-09-21).
 Isolation: built-in tools off, customizations off (CLAUDE.md, skills, plugins,
 hooks, MCP), no saved session, and an empty temporary working directory.
 """

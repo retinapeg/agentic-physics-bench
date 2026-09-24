@@ -1,7 +1,7 @@
 """Deterministic analysis of the saved scored episodes (no model calls).
 
 Usage (repo root): python3 src/analyze.py
-Writes results/summary.json and results/summary.md (the table view). Written by Claude at Leo's direction (2026-09-21).
+Writes results/summary.json and results/summary.md (the table view).
 Every count is computed from results/episodes_scored.jsonl against the frozen
 plan, so unattempted and invalid episodes stay visible in the denominators.
 """

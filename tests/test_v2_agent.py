@@ -1,4 +1,4 @@
-"""Checks for the V2 two-turn loop, using scripted replies (no model calls). Verification code written by Claude (2026-09-23).
+"""Checks for the V2 two-turn loop, using scripted replies (no model calls).
 Run from the repo root: python3 -m unittest -v tests.test_v2_agent
 """
 import json
@@ -118,7 +118,7 @@ class PolicyTests(unittest.TestCase):
         self.assertEqual((out["model_calls"], out["error"]), (2, "missing_output"))
 
     def test_numeric_overflow_is_a_recorded_outcome_not_a_crash(self):
-        # Regression (Codex review, 2026-09-23): 10**400 as a JSON integer raised OverflowError in the inherited parser.
+        # Regression (code review, 2026-09-23): 10**400 as a JSON integer raised OverflowError in the inherited parser.
         huge = json.dumps({"type": "final", "acceleration": 10 ** 400, "units": "m/s^2"})
         out, prompts = episode("no_tool", huge, FINAL)
         self.assertEqual((out["model_calls"], out["turn1"]["error"], out["error"]), (2, "bad_acceleration", None))

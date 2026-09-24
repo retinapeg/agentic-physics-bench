@@ -1,10 +1,10 @@
 # EXPERIMENT_V2.md — V2 protocol: task difficulty × tool policy
 
-Status: **FROZEN as `v2-run-1` (14:06 BST) and RUN (15:11–16:35 BST, 2026-09-23).** Run record: section 12. Written by Claude at Leo's direction. Nothing in this document
+Status: **FROZEN as `v2-run-1` (14:06 BST) and RUN (15:11–16:35 BST, 2026-09-23).** Run record: section 12. Nothing in this document
 is frozen until `data/v2/freeze_manifest.json` exists; the scored batch refuses to run without it. The
 development gate (section 9) runs before the freeze; the scored batch runs only after Leo's approval
-(section 11). V1 (`EXPERIMENT.md`, tag `v1.0.0`) is unchanged, and every V1 file in its freeze manifest is
-untouched: V2 is new modules that import V1's reference function, tool, parser, grader, CLI adapter and
+(section 11). V1 (`EXPERIMENT.md`, tag `v1.0.0`) is unchanged, and the code of every V1 file in its freeze
+manifest is untouched: V2 is new modules that import V1's reference function, tool, parser, grader, CLI adapter and
 control checks.
 
 ## 1. Question

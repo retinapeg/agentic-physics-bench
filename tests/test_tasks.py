@@ -1,6 +1,5 @@
 """Checks for the development cases in src/tasks.py.
 
-Verification code written by Claude (2026-09-21).
 Run from the repo root: python3 -m unittest -v tests.test_tasks
 """
 import json

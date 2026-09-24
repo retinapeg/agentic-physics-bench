@@ -1,12 +1,12 @@
 """Draw results/v2/chart_<split>.svg from results/v2/summary_<split>.json (stdlib only; no model calls).
 
 Usage (repo root): python3 src/chart_v2.py [dev|scored]
-Written by Claude at Leo's direction (2026-09-23). Grouped bars: proportion of
-episodes correct per difficulty group and condition, with the count on every
-bar and the tool-request / compliance counts under the tool conditions. Palette:
-dataviz reference categorical slots 1-3 (validated all-pairs in light and dark
-mode); slot 3 sits below 3:1 on the light surface, so every bar carries a
-visible label. results/v2/summary_<split>.md is the table view.
+Grouped bars: proportion of episodes correct per difficulty group and
+condition, with the count on every bar and the tool-request / compliance counts
+under the tool conditions. Palette: dataviz reference categorical slots 1-3
+(validated all-pairs in light and dark mode); slot 3 sits below 3:1 on the light
+surface, so every bar carries a visible label. results/v2/summary_<split>.md is
+the table view.
 """
 import json
 import sys

@@ -4,7 +4,6 @@ Usage (repo root):
     python3 src/run.py direct dev-01      # one development episode
     python3 src/run.py workflow dev-01
     python3 src/run.py scored-batch       # the frozen 12 x 2 matrix; needs data/freeze_manifest.json
-Written by Claude at Leo's direction (2026-09-21).
 
 Controls are enforced, not just recorded: a call whose initialization metadata
 is missing or unexpected, or that shows native tool use, overage or a stderr

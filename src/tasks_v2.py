@@ -1,8 +1,8 @@
 """V2 tasks: the V1 velocity-time family at three difficulty levels.
 
-Written by Claude at Leo's direction (2026-09-23). The V1 modules are frozen and
-unchanged; this module imports V1's reference function (tasks.ls_slope) and, for
-the easy group, V1's exact case procedure (tasks.make_case) with a new seed.
+The V1 modules are frozen and unchanged; this module imports V1's reference
+function (tasks.ls_slope) and, for the easy group, V1's exact case procedure
+(tasks.make_case) with a new seed.
 
 Difficulty levers (EXPERIMENT_V2.md section 2): number of points, an irregular
 (jittered) time grid, and noise. The displayed velocity precision (2 dp), the

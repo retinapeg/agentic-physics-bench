@@ -9,6 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # the freeze check reads the release tags
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
@@ -26,13 +28,34 @@ jobs:
           if [ -f results/v2/episodes_scored.jsonl ]; then python3 src/analyze_v2.py scored && python3 src/chart_v2.py scored; fi
           git status --short data/ results/
           test -z "$(git status --short data/ results/)"
-      - name: V1 freeze manifest hashes (the CLI version check needs the CLI, so hashes only)
+      - name: Freeze manifests (the CLI version check needs the CLI, so hashes only)
+        # Each manifest must match its release tag byte for byte. At HEAD, frozen prompts and data must be
+        # byte-identical to the tag, and frozen modules must have the same code (module docstrings may differ).
         run: |
           python3 - <<'PY'
-          import json, hashlib
+          import ast, hashlib, json, subprocess
           from pathlib import Path
-          m = json.loads(Path('data/freeze_manifest.json').read_text())
-          bad = [r for r, d in m['sha256'].items() if hashlib.sha256(Path(r).read_text().encode()).hexdigest() != d]
-          assert not bad, bad
-          print(f"{len(m['sha256'])} frozen V1 files unchanged")
+
+          def code(src):
+              tree = ast.parse(src)
+              for node in ast.walk(tree):
+                  body = getattr(node, "body", None)
+                  if isinstance(node, (ast.Module, ast.ClassDef, ast.FunctionDef, ast.AsyncFunctionDef)) and body \
+                          and isinstance(body[0], ast.Expr) and isinstance(body[0].value, ast.Constant) \
+                          and isinstance(body[0].value.value, str):
+                      node.body = body[1:]
+              return ast.dump(tree)
+
+          for manifest, tag in (("data/freeze_manifest.json", "v1.0.0"), ("data/v2/freeze_manifest.json", "v2.0.0")):
+              m = json.loads(Path(manifest).read_text())
+              bad = []
+              for rel, digest in m["sha256"].items():
+                  frozen = subprocess.run(["git", "show", f"{tag}:{rel}"], capture_output=True, check=True).stdout
+                  head = Path(rel).read_bytes()
+                  if hashlib.sha256(frozen).hexdigest() != digest:
+                      bad.append(f"{tag}:{rel}")
+                  if head != frozen and not (rel.endswith(".py") and code(head) == code(frozen)):
+                      bad.append(rel)
+              assert not bad, bad
+              print(f"{manifest}: {len(m['sha256'])} files match {tag}; frozen code unchanged at HEAD")
           PY

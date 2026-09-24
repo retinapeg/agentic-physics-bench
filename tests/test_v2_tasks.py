@@ -1,4 +1,4 @@
-"""Checks for the V2 task groups (no model calls). Verification code written by Claude (2026-09-23).
+"""Checks for the V2 task groups (no model calls).
 Run from the repo root: python3 -m unittest -v tests.test_v2_tasks
 """
 import json

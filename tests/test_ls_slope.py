@@ -1,7 +1,6 @@
-"""Checks for ls_slope in src/tasks.py.
+"""Checks for ls_slope in src/tasks.py. These checks are not part of the implementation.
 
-Verification code written by Claude (2026-09-21). It is not part of the
-implementation. Run from the repo root: python3 -m unittest -v tests.test_ls_slope
+Run from the repo root: python3 -m unittest -v tests.test_ls_slope
 """
 import statistics
 import sys

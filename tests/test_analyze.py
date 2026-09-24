@@ -1,6 +1,5 @@
 """Checks for the deterministic analysis (no model calls).
 
-Verification code written by Claude (2026-09-21).
 Run from the repo root: python3 -m unittest -v tests.test_analyze
 """
 import sys
