@@ -19,6 +19,9 @@ jobs:
           python3 -m unittest
           tests.test_ls_slope tests.test_tasks tests.test_evaluate tests.test_agent tests.test_controls tests.test_analyze
           tests.test_v2_tasks tests.test_v2_agent tests.test_v2_run tests.test_v2_analyze tests.test_v2_pipeline
+          tests.test_headline_results
+      - name: Published headline numbers match the committed result files (raw traces are not in CI)
+        run: python3 src/headline_results.py
       - name: Regenerated data and analysis match the committed files
         run: |
           python3 src/tasks.py && python3 src/tasks.py scored
