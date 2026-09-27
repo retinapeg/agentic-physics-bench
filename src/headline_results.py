@@ -41,6 +41,8 @@ CLAIMS = [
     ("v2_optional", "V2 correct, optional tool", "54/54", "results/v2/episodes_scored.jsonl"),
     ("v2_required", "V2 correct, required tool", "54/54", "results/v2/episodes_scored.jsonl"),
     ("v2_requested", "V2 optional tool requested", "54/54", "results/v2/episodes_scored.jsonl"),
+    ("v2_requested_by_group", "V2 optional tool requested by group (easy, moderate, hard)", "18/18, 18/18, 18/18",
+     "results/v2/episodes_scored.jsonl"),
     ("v2_compliant", "V2 required-tool compliance", "54/54", "results/v2/episodes_scored.jsonl"),
     ("v2_relay", "V2 executed tool results relayed within tolerance", "108/108", "results/v2/episodes_scored.jsonl"),
     ("v2_ties", "V2 tasks tied in each paired comparison (opt-none, req-none, req-opt)", "18/18, 18/18, 18/18",
@@ -68,6 +70,8 @@ CLAIMS = [
     ("dev_stage_counts", "V2 dev stage 1; stage 2 (12 of stage 2's records were carried over from stage 1)",
      "24/36; 25/36", "results/v2/dev_stage{1,2}/advisor_audit.json"),
     ("dev_stage1_correct", "V2 dev stage 1 (void: second model present), correct over all conditions", "18/18",
+     "results/v2/dev_stage1/episodes_dev.jsonl"),
+    ("dev_stage1_no_tool", "V2 dev stage 1 (void: second model present), no tool correct", "6/6",
      "results/v2/dev_stage1/episodes_dev.jsonl"),
     ("dev_clean", "V2 dev stages 3-4: calls with claude-opus-5 only, no server-side tool", "48/48",
      "results/v2/dev_stage3/episodes_dev.jsonl, results/v2/episodes_dev.jsonl"),
@@ -154,6 +158,8 @@ def committed():
     for key, cond in (("v2_no_tool", "no_tool"), ("v2_optional", "optional_tool"), ("v2_required", "required_tool")):
         got[key] = f"{c[cond]['correct']}/{c[cond]['of_planned']}"
     got["v2_requested"] = f"{c['optional_tool']['tool']['requested']}/{c['optional_tool']['valid']}"
+    got["v2_requested_by_group"] = ", ".join(f"{g['optional_tool']['tool']['requested']}/{g['optional_tool']['valid']}"
+                                             for g in (s["groups"][x]["conditions"] for x in analyze_v2.GROUPS))
     got["v2_compliant"] = f"{c['required_tool']['required_compliant']}/{c['required_tool']['valid']}"
     relay = [c[k]["tool"]["relay"] for k in ("optional_tool", "required_tool")]
     got["v2_relay"] = f"{sum(r['faithful_within_tol'] for r in relay)}/{sum(c[k]['tool']['executed'] for k in ('optional_tool', 'required_tool'))}"
@@ -182,8 +188,9 @@ def committed():
     episodes = {eid for eid, _ in audit}
     got["dev_second_model_eps"] = f"{sum(any(audit[k] for k in audit if k[0] == e) for e in episodes)}/{len(episodes)}"
     got["dev_stage_counts"] = "; ".join(per_stage)
-    st1 = analyze_v2.summarize(*load_dev_stage(STAGE[1]), "dev")["conditions"].values()
-    got["dev_stage1_correct"] = f"{sum(x['correct'] for x in st1)}/{sum(x['of_planned'] for x in st1)}"
+    st1 = analyze_v2.summarize(*load_dev_stage(STAGE[1]), "dev")["conditions"]
+    got["dev_stage1_correct"] = f"{sum(x['correct'] for x in st1.values())}/{sum(x['of_planned'] for x in st1.values())}"
+    got["dev_stage1_no_tool"] = f"{st1['no_tool']['correct']}/{st1['no_tool']['of_planned']}"
     clean = unique_calls(*dev_files[2:])
     got["dev_clean"] = f"{sum(not trace_flags(t['cli']) for t in clean.values())}/{len(clean)}"
     st3 = analyze_v2.summarize(*load_dev_stage(STAGE[3]), "dev")

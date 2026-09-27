@@ -53,7 +53,7 @@ Not part of this study: the branch `research/analytical-physics` (a proposal; un
 | V1 optional `fit_line` requested (`v1_requested`) | 0/12 | `results/summary.json` → `conditions.workflow.tool_requested` |
 | V2 scored episodes valid / planned (`v2_valid`); calls (`v2_calls`) | 162/162; 324 | `results/v2/summary_scored.json` → `valid`, `planned_episodes`, `model_invocations` |
 | V2 correct: no tool / optional / required (`v2_no_tool`, `v2_optional`, `v2_required`) | 54/54 each | `results/v2/summary_scored.json` → `conditions.*.correct` |
-| V2 optional tool requested (`v2_requested`); required compliance (`v2_compliant`) | 54/54; 54/54 | `conditions.optional_tool.tool.requested`; `conditions.required_tool.required_compliant` |
+| V2 optional tool requested (`v2_requested`), by group (`v2_requested_by_group`); required compliance (`v2_compliant`) | 54/54 (18/18 per group); 54/54 | `conditions.optional_tool.tool.requested`, `groups.*.conditions.optional_tool.tool.requested`; `conditions.required_tool.required_compliant` |
 | V2 tool results relayed within tolerance (`v2_relay`) | 108/108 | `conditions.{optional,required}_tool.tool.relay.faithful_within_tol` |
 | V2 tasks tied in every paired comparison (`v2_ties`); mixed outcomes (`v2_mixed`) | 18/18 ×3; 0 | `paired.all_tasks.*.tasks_tied`; `within_task_variation.*.tasks_mixed` |
 | V2 no-tool first-turn answers correct (`v2_turn1`) | 53/54 | `conditions.no_tool.turn1.correct` |
@@ -64,7 +64,7 @@ Not part of this study: the branch `research/analytical-physics` (a proposal; un
 | V2 scored calls with `claude-opus-5` only and no server-side tool (`v2_single_model`) | 324/324 | per-call `cli.models_used`, `cli.server_tool_uses`, `cli.iteration_types` in `results/v2/episodes_scored.jsonl` |
 | V2 development calls (`dev_calls`) | 96 in committed records + 2 outside the repo = **98** | stage files (unique episodes); the smoke call and the advisor probe are recorded in `EXPERIMENT_V2.md` section 9 and `RESEARCH_LOG.md` |
 | **V2 dev stages 1–2: calls in which a second model (`claude-fable-5-1`) ran (`dev_second_model`)** | **31/48 unique calls** (21/24 episodes) | `results/v2/dev_stage1/advisor_audit.json` (24/36) and `dev_stage2/advisor_audit.json` (25/36). Stage 2 carried over 12 of stage 1's records, so the unique total is 48 calls, not 72 |
-| V2 dev stage 1 correct over all conditions, second model present (`dev_stage1_correct`) | 18/18 (void) | `results/v2/dev_stage1/episodes_dev.jsonl` |
+| V2 dev stage 1 correct over all conditions (`dev_stage1_correct`); no tool (`dev_stage1_no_tool`); second model present | 18/18; 6/6 (void) | `results/v2/dev_stage1/episodes_dev.jsonl` |
 | V2 dev stages 3–4 calls with `claude-opus-5` only (`dev_clean`) | 48/48 | per-call fields in `results/v2/dev_stage3/episodes_dev.jsonl` and `results/v2/episodes_dev.jsonl` |
 | V2 dev stage 3 no-tool correct, earlier wording (`dev_stage3_no_tool`); code-seeking turn-1 replies (`dev_stage3_code`) | 2/2, 1/2, 0/2; 4/4 moderate and hard | `results/v2/dev_stage3/episodes_dev.jsonl` |
 | V2 dev stage 4 no-tool correct, final wording (`dev_final_no_tool`) | 6/6 | `results/v2/episodes_dev.jsonl` |

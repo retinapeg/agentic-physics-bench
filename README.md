@@ -13,7 +13,7 @@ An empirical study of how tool availability and tool-use policy affect a languag
 
 ## Why this matters
 
-An agent evaluation reports a score for a declared system: a model, a harness and a set of permitted tools. If the runtime quietly adds capability, such as a hidden tool, a second model or an extra turn, the score measures a different system, and the aggregate gives no sign of it. Here the contaminated development stage looked like a clean ceiling result (18/18 correct). The first run with the second model switched off did not (no tool 3/6). The prompt wording had also changed in between, so that difference is not attributed to the advisor alone. Controls that were adequate for the V1 traces did not look for the signals this feature leaves.
+An agent evaluation reports a score for a declared system: a model, a harness and a set of permitted tools. If the runtime quietly adds capability, such as a hidden tool, a second model or an extra turn, the score measures a different system, and the aggregate gives no sign of it. Here the contaminated development stage looked like a clean ceiling result: no tool 6/6, and 18/18 over all conditions. The first run with the second model switched off did not (no tool 3/6). The prompt wording had also changed in between, so that difference is not attributed to the advisor alone. Controls that were adequate for the V1 traces did not look for the signals this feature leaves.
 
 The project therefore treats each call's trace as primary evidence, not the score. Every call is checked against the declared system:
 
