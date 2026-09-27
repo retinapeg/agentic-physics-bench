@@ -59,9 +59,12 @@ Not part of this study: the branch `research/analytical-physics` (a proposal; un
 | V2 no-tool first-turn answers correct (`v2_turn1`) | 53/54 | `conditions.no_tool.turn1.correct` |
 | V2 no-tool median reported thinking tokens per call by group (`v2_thinking`) | 621 / 2298 / 5314 | `groups.*.conditions.no_tool.calls.median_thinking_tokens` |
 | V2 median seconds per call (`v2_latency`) | no tool 10 / 26 / 55; optional 5; required 5 | `groups.*.conditions.no_tool.calls.median_elapsed_s_per_call`; `conditions.*.calls` |
+| V2 median reported thinking tokens per call, optional; required (`v2_tool_thinking`); timeouts (`v2_timeouts`) | 0; 0; 0 timeouts | `conditions.{optional,required}_tool.calls.median_thinking_tokens`; `conditions.*.calls.timeouts` |
+| Deterministic least-squares solver on the held-out tasks, V1; V2 (`solver`) | 12/12; 18/18 | `results/summary.json`, `results/v2/summary_scored.json` → `deterministic_solver` |
 | V2 scored calls with `claude-opus-5` only and no server-side tool (`v2_single_model`) | 324/324 | per-call `cli.models_used`, `cli.server_tool_uses`, `cli.iteration_types` in `results/v2/episodes_scored.jsonl` |
 | V2 development calls (`dev_calls`) | 96 in committed records + 2 outside the repo = **98** | stage files (unique episodes); the smoke call and the advisor probe are recorded in `EXPERIMENT_V2.md` section 9 and `RESEARCH_LOG.md` |
 | **V2 dev stages 1–2: calls in which a second model (`claude-fable-5-1`) ran (`dev_second_model`)** | **31/48 unique calls** (21/24 episodes) | `results/v2/dev_stage1/advisor_audit.json` (24/36) and `dev_stage2/advisor_audit.json` (25/36). Stage 2 carried over 12 of stage 1's records, so the unique total is 48 calls, not 72 |
+| V2 dev stage 1 correct over all conditions, second model present (`dev_stage1_correct`) | 18/18 (void) | `results/v2/dev_stage1/episodes_dev.jsonl` |
 | V2 dev stages 3–4 calls with `claude-opus-5` only (`dev_clean`) | 48/48 | per-call fields in `results/v2/dev_stage3/episodes_dev.jsonl` and `results/v2/episodes_dev.jsonl` |
 | V2 dev stage 3 no-tool correct, earlier wording (`dev_stage3_no_tool`); code-seeking turn-1 replies (`dev_stage3_code`) | 2/2, 1/2, 0/2; 4/4 moderate and hard | `results/v2/dev_stage3/episodes_dev.jsonl` |
 | V2 dev stage 4 no-tool correct, final wording (`dev_final_no_tool`) | 6/6 | `results/v2/episodes_dev.jsonl` |

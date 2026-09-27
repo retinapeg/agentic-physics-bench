@@ -52,6 +52,11 @@ CLAIMS = [
      "621, 2298, 5314", "results/v2/episodes_scored.jsonl"),
     ("v2_latency", "V2 median s per call: no tool by group (easy, moderate, hard); optional; required",
      "10, 26, 55; 5; 5", "results/v2/episodes_scored.jsonl"),
+    ("v2_tool_thinking", "V2 median reported thinking tokens per call: optional; required", "0; 0",
+     "results/v2/episodes_scored.jsonl"),
+    ("v2_timeouts", "V2 scored calls that timed out", "0", "results/v2/episodes_scored.jsonl"),
+    ("solver", "Deterministic least-squares solver on the held-out tasks: V1; V2", "12/12; 18/18",
+     "data/scored_*.jsonl, data/v2/scored_*.jsonl"),
     ("v2_single_model", "V2 scored calls: claude-opus-5 only, no server-side tool", "324/324",
      "results/v2/episodes_scored.jsonl (per-call cli.models_used, server_tool_uses, iteration_types)"),
     ("dev_calls", "V2 development calls in committed records (stages 1-4, unique); +2 (smoke, probe) outside the repo",
@@ -62,6 +67,8 @@ CLAIMS = [
      "results/v2/dev_stage{1,2}/advisor_audit.json"),
     ("dev_stage_counts", "V2 dev stage 1; stage 2 (12 of stage 2's records were carried over from stage 1)",
      "24/36; 25/36", "results/v2/dev_stage{1,2}/advisor_audit.json"),
+    ("dev_stage1_correct", "V2 dev stage 1 (void: second model present), correct over all conditions", "18/18",
+     "results/v2/dev_stage1/episodes_dev.jsonl"),
     ("dev_clean", "V2 dev stages 3-4: calls with claude-opus-5 only, no server-side tool", "48/48",
      "results/v2/dev_stage3/episodes_dev.jsonl, results/v2/episodes_dev.jsonl"),
     ("dev_stage3_no_tool", "V2 dev stage 3 (earlier wording), no tool correct (easy, moderate, hard)",
@@ -158,6 +165,10 @@ def committed():
     got["v2_thinking"] = ", ".join(f"{g['no_tool']['calls']['median_thinking_tokens']:.0f}" for g in groups)
     got["v2_latency"] = (", ".join(f"{g['no_tool']['calls']['median_elapsed_s_per_call']:.0f}" for g in groups) + "; "
                          + "; ".join(f"{c[k]['calls']['median_elapsed_s_per_call']:.0f}" for k in ("optional_tool", "required_tool")))
+    got["v2_tool_thinking"] = "; ".join(f"{c[k]['calls']['median_thinking_tokens']:.0f}" for k in ("optional_tool", "required_tool"))
+    got["v2_timeouts"] = str(sum(c[k]["calls"]["timeouts"] for k in analyze_v2.CONDITIONS))
+    got["solver"] = "; ".join(f"{x['deterministic_solver']['correct']}/{x['deterministic_solver'][n]}"
+                              for x, n in ((v1, "of_planned_cases"), (s, "of_tasks")))
     scored_calls = unique_calls(V2 / "episodes_scored.jsonl")
     got["v2_single_model"] = f"{sum(not trace_flags(t['cli']) for t in scored_calls.values())}/{len(scored_calls)}"
 
@@ -171,6 +182,8 @@ def committed():
     episodes = {eid for eid, _ in audit}
     got["dev_second_model_eps"] = f"{sum(any(audit[k] for k in audit if k[0] == e) for e in episodes)}/{len(episodes)}"
     got["dev_stage_counts"] = "; ".join(per_stage)
+    st1 = analyze_v2.summarize(*load_dev_stage(STAGE[1]), "dev")["conditions"].values()
+    got["dev_stage1_correct"] = f"{sum(x['correct'] for x in st1)}/{sum(x['of_planned'] for x in st1)}"
     clean = unique_calls(*dev_files[2:])
     got["dev_clean"] = f"{sum(not trace_flags(t['cli']) for t in clean.values())}/{len(clean)}"
     st3 = analyze_v2.summarize(*load_dev_stage(STAGE[3]), "dev")
