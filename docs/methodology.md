@@ -153,4 +153,4 @@ This is a finding about harness controls, not about the provider's intent.
 
 ![Architecture at v1.0.0: seeded synthetic cases feed a runner that calls Claude through the Claude Code CLI, directly or through a bounded fit_line loop; a deterministic grader compares answers with hidden keys, and offline scripts summarise the saved traces](images/architecture.svg)
 
-V2 keeps this structure. It adds a two-turn loop (`src/agent_v2.py`), a runner with the added trace checks and resumable blocks (`src/run_v2.py`), and V2 analysis (`src/analyze_v2.py`). It imports V1's reference function, tool, parser, grader, CLI adapter and control checks unchanged. The V2 episode flow is diagrammed in the [README](../README.md#how-an-episode-runs-v2).
+V2 keeps this structure. It adds a two-turn loop (`src/agent_v2.py`), a runner with the added trace checks and resumable blocks (`src/run_v2.py`), and V2 analysis (`src/analyze_v2.py`). It imports V1's reference function, tool, parser, grader, CLI adapter and control checks unchanged. The V2 episode flow is diagrammed in the [README](GUIDE.md#how-an-episode-runs-v2).
