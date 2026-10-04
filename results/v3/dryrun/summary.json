@@ -1,0 +1,34 @@
+{
+  "attempted": 33,
+  "claude_by_condition": {
+    "A": {
+      "attempted": 8,
+      "correct": 0,
+      "executed": 0,
+      "false_denials": 0
+    },
+    "B": {
+      "attempted": 8,
+      "correct": 0,
+      "executed": 8,
+      "false_denials": 0
+    },
+    "C": {
+      "attempted": 8,
+      "correct": 0,
+      "executed": 1,
+      "false_denials": 1
+    },
+    "D": {
+      "attempted": 8,
+      "correct": 0,
+      "executed": 4,
+      "false_denials": 0
+    }
+  },
+  "codex_stop_reason": "codex_controls_unverified",
+  "invalid": 1,
+  "label": "SYNTHETIC",
+  "planned_dev_episodes": 64,
+  "valid": 32
+}

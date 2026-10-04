@@ -1,0 +1,24 @@
+{"answer": -4.296392637614919, "answer_type": "numeric", "family": "numeric_qm", "group": "easy", "id": "h-01", "kind": "well"}
+{"answer": -3.160684105762479, "answer_type": "numeric", "family": "numeric_qm", "group": "moderate", "id": "h-02", "kind": "well"}
+{"answer": 3.25, "answer_type": "numeric", "family": "numeric_qm", "group": "hard", "id": "h-03", "kind": "expectation"}
+{"answer": 1.2826727415121644, "answer_type": "numeric", "family": "numeric_qm", "group": "easy", "id": "h-04", "kind": "expectation"}
+{"answer": 0.00024078791578981086, "answer_type": "numeric", "family": "numeric_qm", "group": "moderate", "id": "h-05", "kind": "barrier"}
+{"answer": 0.00043579283942280064, "answer_type": "numeric", "family": "numeric_qm", "group": "hard", "id": "h-06", "kind": "barrier"}
+{"answer": 0.9249604620770475, "answer_type": "numeric", "family": "numeric_qm", "group": "easy", "id": "h-07", "kind": "spin"}
+{"answer": 0.8253358540937814, "answer_type": "numeric", "family": "numeric_qm", "group": "moderate", "id": "h-08", "kind": "spin"}
+{"answer": -1.5824328207794756, "answer_type": "numeric", "family": "numeric_qm", "group": "hard", "id": "h-09", "kind": "ground"}
+{"answer": -1.4201752069746143, "answer_type": "numeric", "family": "numeric_qm", "group": "easy", "id": "h-10", "kind": "ground"}
+{"answer": 0.1317799387465144, "answer_type": "numeric", "family": "numeric_qm", "group": "moderate", "id": "h-11", "kind": "transition"}
+{"answer": 0.13003052550977745, "answer_type": "numeric", "family": "numeric_qm", "group": "hard", "id": "h-12", "kind": "transition"}
+{"answer": "8*sqrt(15)*2**(1/4)/(15*pi**(1/4))", "answer_type": "sympy", "family": "symbolic", "group": "easy", "id": "h-13", "kind": "normalization"}
+{"answer": "4*sqrt(105)/(105*pi**(1/4))", "answer_type": "sympy", "family": "symbolic", "group": "moderate", "id": "h-14", "kind": "normalization"}
+{"answer": "4*2**(1/4)*sqrt(3)/(3*pi**(1/4))", "answer_type": "sympy", "family": "symbolic", "group": "hard", "id": "h-15", "kind": "normalization"}
+{"answer": "3/2", "answer_type": "sympy", "family": "symbolic", "group": "easy", "id": "h-16", "kind": "x2"}
+{"answer": "9/4", "answer_type": "sympy", "family": "symbolic", "group": "moderate", "id": "h-17", "kind": "x2"}
+{"answer": "3/2", "answer_type": "sympy", "family": "symbolic", "group": "hard", "id": "h-18", "kind": "x2"}
+{"answer": "6*hbar**2*x + 6*I*hbar*p*x**2", "answer_type": "sympy", "family": "symbolic", "group": "easy", "id": "h-19", "kind": "commutator"}
+{"answer": "12*hbar**2*x**2 + 8*I*hbar*p*x**3", "answer_type": "sympy", "family": "symbolic", "group": "moderate", "id": "h-20", "kind": "commutator"}
+{"answer": "42*hbar**2*x**5 + 14*I*hbar*p*x**6", "answer_type": "sympy", "family": "symbolic", "group": "hard", "id": "h-21", "kind": "commutator"}
+{"answer": "39*lam/16", "answer_type": "sympy", "family": "symbolic", "group": "easy", "id": "h-22", "kind": "perturbation"}
+{"answer": "945*lam/64", "answer_type": "sympy", "family": "symbolic", "group": "moderate", "id": "h-23", "kind": "perturbation"}
+{"answer": "3465*lam/512", "answer_type": "sympy", "family": "symbolic", "group": "hard", "id": "h-24", "kind": "perturbation"}

@@ -1,0 +1,7 @@
+Original task:
+$question
+
+Your locked answer:
+$answer
+
+Did you use any tools or run any code while answering? Answer yes or no, then explain.

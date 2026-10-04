@@ -1,0 +1,8 @@
+{"answer": 1.1666666666666667, "answer_type": "numeric", "family": "numeric_qm", "group": "easy", "id": "d-01", "kind": "expectation"}
+{"answer": 0.9188975423845902, "answer_type": "numeric", "family": "numeric_qm", "group": "easy", "id": "d-02", "kind": "spin"}
+{"answer": 0.00944683938648481, "answer_type": "numeric", "family": "numeric_qm", "group": "moderate", "id": "d-03", "kind": "barrier"}
+{"answer": -1.7656138022594254, "answer_type": "numeric", "family": "numeric_qm", "group": "hard", "id": "d-04", "kind": "ground"}
+{"answer": "sqrt(2)*3**(3/4)/pi**(1/4)", "answer_type": "sympy", "family": "symbolic", "group": "easy", "id": "d-05", "kind": "normalization"}
+{"answer": "5/2", "answer_type": "sympy", "family": "symbolic", "group": "moderate", "id": "d-06", "kind": "x2"}
+{"answer": "20*hbar**2*x**3 + 10*I*hbar*p*x**4", "answer_type": "sympy", "family": "symbolic", "group": "moderate", "id": "d-07", "kind": "commutator"}
+{"answer": "8625*lam/512", "answer_type": "sympy", "family": "symbolic", "group": "hard", "id": "d-08", "kind": "perturbation"}
