@@ -2,13 +2,13 @@
 
 Does giving a model a tool change how it solves a problem, not just whether it gets the answer right? And can the trace prove that the system scored was the system declared?
 
-**Result:** Correctness hit the ceiling in every condition (54/54 with no tool, an optional tool and a required tool), so the score separated nothing. A per-call trace audit then found that during development a server-side advisor in the Claude Code CLI had consulted a second model in 31 of 48 unique calls made with the CLI's tools switched off. Those stages were voided, the pathway was disabled, per-call checks were added, and all 324 held-out calls came back clean.
+**Result:** Correctness hit the ceiling in every condition (54/54 with no tool, an optional tool and a required tool), so the score separated nothing. A per-call trace audit then found that during development a server-side advisor pathway in the Claude Code CLI had been active in 31 of 48 unique calls made with the CLI's tools switched off (a second model, `claude-fable-5-1`, appears in the usage report of 28 of them). Those stages were voided, the pathway was disabled, per-call checks were added, and all 324 held-out calls came back clean.
 
 **Why it matters:** Correct outputs alone did not prove that the declared system was the one being evaluated. The harness's existing controls passed the contaminated calls, because the second model appeared only in usage metadata. Aggregate scoring hid a measurement problem that only the traces exposed.
 
 **Status:** Completed experiment, frozen September 2026. The follow-on work on agent oversight is in [agent_reliability_lab](https://github.com/retinapeg/agent_reliability_lab).
 
-- Claude (`claude-opus-5`, via the Claude Code CLI) fits a line to small physics data tables under three tool policies. Every call's trace is checked against the declared setup: model identities, server-side tools, usage iterations and CLI version.
+- Claude (`claude-opus-5`, via the Claude Code CLI) fits a line to small physics data tables under three tool policies. In V2, every call's trace is checked against the declared setup: model identities, server-side tools, usage iterations and CLI version (V1's per-call checks covered native tool use and message model IDs; its 24 traces were rescanned at the freeze and show `claude-opus-5` alone).
 - Optional-tool use flipped from 0/12 in V1 to 54/54 in V2 with no difference in correctness. The design cannot say why: the CLI version, prompt wording, advisor setting, turn structure and tasks all changed between the runs.
 - One model, one synthetic task family, and tasks too easy to separate the conditions on accuracy. The study measures how reliably an LLM system performs a specified calculation, not whether an LLM is needed for it.
 
@@ -17,7 +17,7 @@ Does giving a model a tool change how it solves a problem, not just whether it g
 | Claim | Where to check |
 |---|---|
 | 54/54 in each of three conditions, 162 episodes, 324 calls, 0 invalid | [`results/v2/summary_scored.md`](results/v2/summary_scored.md), [`results/v2/summary_scored.json`](results/v2/summary_scored.json) |
-| Advisor active in 31 of 48 unique development calls (21 of 24 episodes) | [`results/v2/dev_stage1/`](results/v2/dev_stage1), [`results/v2/dev_stage2/`](results/v2/dev_stage2) (`advisor_audit.json` in each) |
+| Advisor active in 31 of 48 unique development calls (21 of 24 episodes; the two stage audits report 24/36 and 25/36 with 12 calls shared) | [`results/v2/dev_stage1/`](results/v2/dev_stage1), [`results/v2/dev_stage2/`](results/v2/dev_stage2) (`advisor_audit.json` in each) |
 | Per-call checks: model identity, server-side tool blocks, non-message usage iterations, CLI version | `v2_control_violations` in [`src/run_v2.py`](src/run_v2.py); tests in [`tests/test_v2_run.py`](tests/test_v2_run.py) |
 | Advisor disabled for the held-out run | `env_controls` in [`data/v2/freeze_manifest.json`](data/v2/freeze_manifest.json) and in every scored episode record |
 | V1: 12/12 both conditions, tool requested 0/12 | [`results/summary.md`](results/summary.md) |
