@@ -4,7 +4,7 @@ This is the previous README, moved here unchanged apart from link paths, so "thi
 
 An empirical study of how tool availability and tool-use policy affect a language model's correctness and behaviour on numerical physics tasks. Each model call's trace is audited to check that the system evaluated was the system declared.
 
-**Status: completed and frozen (September 2026).** Two experiments, V1 and V2, ran on `claude-opus-5` through the Claude Code CLI. Each protocol was frozen before its scored run, and every number below is recomputed from committed records by `python3 src/headline_results.py`. Follow-on agent-reliability work is planned for a separate repository, `agent_reliability_lab` ([status](HISTORICAL_STATUS.md)).
+**Status: completed and frozen (September 2026).** Two experiments, V1 and V2, ran on `claude-opus-5` through the Claude Code CLI. Each protocol was frozen before its scored run, and every number below is recomputed from committed records by `python3 src/headline_results.py`. Follow-on agent-reliability work continues in a separate repository, [`agent_reliability_lab`](https://github.com/retinapeg/agent_reliability_lab) ([status](HISTORICAL_STATUS.md)).
 
 ## Key findings
 

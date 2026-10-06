@@ -34,7 +34,7 @@ To identify the frozen state, use the release tag rather than a SHA written in t
 
 ## Where further work goes
 
-General agent-reliability experiments will continue in a separate repository, planned as `agent_reliability_lab`. As of 2026-09-27 it has not been created. Those experiments will have their own protocols, freezes and run identities. They will not modify this repository's frozen files or reuse its results as their own.
+General agent-reliability experiments will continue in a separate repository, planned as `agent_reliability_lab`. As of 2026-09-27 it had not been created. *Update 2026-10-06: it exists at [github.com/retinapeg/agent_reliability_lab](https://github.com/retinapeg/agent_reliability_lab), with its first run recorded there.* Those experiments will have their own protocols, freezes and run identities. They will not modify this repository's frozen files or reuse its results as their own.
 
 The lessons that carry over are recorded here and in [`methodology.md`](methodology.md):
 

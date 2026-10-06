@@ -289,6 +289,13 @@ Keep ordinary entries to five to eight lines; combine fields when possible.
 - Pyright was not fixed. It reports 4 errors: 2 in frozen modules (`src/agent.py:45`, `src/agent_v2.py:119`, Optional subscripts) and 2 in test monkeypatches. Pyright is not part of CI, and the modules are hash-frozen.
 - Status: VERIFIED (commands above). Local commits only; nothing pushed, and no tag created.
 
+## 2026-10-06 | Documentation | Recruiter-readability pass; no result, data, prompt or frozen code changed
+- Decision (Leo, standing instruction for an autonomous portfolio pass): make the README answer, within one screen, what was asked, what was built, what happened, why it matters and where the evidence is. Claude drafted and applied the edits.
+- Changed: `README.md` (purpose, result, why it matters, status; evidence table pointing at the committed files; reproduce commands; what the study does not show). `docs/GUIDE.md` line 7, `docs/HISTORICAL_STATUS.md` and `RESEARCH_ROADMAP.md` now record that `agent_reliability_lab` exists (created 2026-10-03). The README no longer says "no-tool" development calls for the 31/48 figure: those 48 calls span all three conditions and were made with the CLI's tools switched off.
+- Wording note: the 31/48 count is "advisor active" (server-side `advisor` tool use or a non-`claude-opus-5` model in the usage report, as `src/headline_results.py` counts it). The 2026-09-23 entry's sentence that all 31 list both models in `modelUsage` is contradicted by 3 calls in the committed audit files, which show the advisor tool but `claude-opus-5` alone in `models_used`. The headline number is unchanged; the safe phrasing is that the advisor pathway was active in 31 of 48 unique calls.
+- Checks (this working tree): `python3 -m unittest discover -s tests` ran 93 tests, OK; `python3 src/headline_results.py` reported 0 mismatches with the raw section included; `git status --short data/ results/ prompts/ src/` empty after the edits.
+- Status: VERIFIED (commands above).
+
 ## Topics to capture as they occur
 
 Model vs agent vs pretrained weights; API/SDK vs model identity; benchmarks vs evals; reference validation; data leakage; prompts and configuration hashes; structured-output failures; tool dispatch and stopping; retries and missing denominators; retrieval vs generation errors; unsupported claims vs numerical mistakes; RAG vs fine-tuning; paired analysis; reproducibility; what I implemented vs delegated.
