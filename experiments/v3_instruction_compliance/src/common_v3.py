@@ -21,7 +21,7 @@ DATA = EXP / "data"
 RESULTS = EXP / "results"
 RAW = RESULTS / "raw"                          # gitignored: full CLI output carries session metadata
 V2_PROMPTS = ROOT / "prompts" / "v2"
-EXPERIMENT_VERSION = "v3.0.0"
+EXPERIMENT_VERSION = "v3.0.1"
 
 
 def sha256_text(text):

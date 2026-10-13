@@ -265,7 +265,7 @@ def frozen_files():
     out = ["PROTOCOL.md"]
     for d in FROZEN_DIRS:
         out += [str(p.relative_to(C.EXP)) for p in sorted((C.EXP / d).rglob("*"))
-                if p.is_file() and "__pycache__" not in p.parts and p != MANIFEST and p.name != ".DS_Store"]
+                if p.is_file() and "__pycache__" not in p.parts and p.name not in (MANIFEST.name, ".DS_Store")]
     return out
 
 

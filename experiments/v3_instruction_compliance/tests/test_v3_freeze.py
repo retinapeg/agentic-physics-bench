@@ -52,7 +52,7 @@ class FreezeTests(unittest.TestCase):
         self.assertEqual(m["planned"], {"arm_a_episodes": 180, "arm_a_call_cap": 360, "arm_b_episodes": 60, "arm_b_call_cap": 60,
                                         "heldout_tasks": 12})
         self.assertEqual(m["cells"]["D"], {"permission_state": "prohibited", "policy": "Do not request or use fit_line under any circumstances."})
-        self.assertEqual(run_v3.verify_freeze()["experiment_version"], "v3.0.0")
+        self.assertEqual(run_v3.verify_freeze()["experiment_version"], F.C.EXPERIMENT_VERSION)
         with self.assertRaises(SystemExit):
             run_v3.write_manifest()                                  # never overwritten
 

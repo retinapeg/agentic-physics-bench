@@ -1,6 +1,6 @@
 # V3 protocol: instruction compliance and epistemic honesty
 
-Experiment version `v3.0.0`. This file is hashed in `data/freeze_manifest.json` and is not edited after the
+Experiment version `v3.0.1` (section 14). This file is hashed in `data/freeze_manifest.json` and is not edited after the
 freeze; the freeze record, run records and results live in `RESEARCH_LOG.md` (repository root) and in
 `results/`. The reasoning behind each choice is in [`DESIGN_REVIEW.md`](DESIGN_REVIEW.md); where this file
 and the review differ, this file governs and section 11 lists the difference.
@@ -313,13 +313,13 @@ uses the text in memory, before redaction. Raw CLI output stays in the gitignore
    environment of section 2. It records the identity strings, the reported output cap and the inventory.
 4. **Freeze**: `data/freeze_manifest.json` hashes this file and every file under `src/`, `prompts/`, `data/`
    and `tests/`, every repository file those load (with code parity against the release tags), the pinned
-   CLI, and the settings. The git tag `v3-protocol-freeze` marks the freeze commit.
+   CLI, and the settings. Each freeze commit carries a git tag (section 14).
 5. **Pilot `v3-pilot-1`** under the frozen protocol, development items only: 3 tasks × 5 cells × 1 repetition
    = 15 Arm A episodes (30 calls) and 3 items × 2 frames = 6 Arm B episodes (6 calls).
 6. Pilot report. Go/no-go: every call passes the runtime checks; no invalid run; no truncated call; no
    timeout; the turn-1 replies parse; the denial and execution paths behaved as specified wherever they
    occurred. The pilot's outcomes are described, never tested, and change no string: any wording change
-   after the pilot is `v3.1.0` with a repeated pilot and a named reason.
+   after the pilot is `v3.1.0` with a repeated pilot and a named reason (section 14).
 7. **Leo's approval**, then the held-out run `v3-run-1`: 180 + 60 episodes, at most 420 calls.
 
 ## 11. Differences from the design review
@@ -363,3 +363,16 @@ second arm. No external evaluation framework is used, because the method under t
 per-call trace audit and the experiment needs exact control of two prompts and one process per call. The
 statistics are exact enumeration in the standard library, so CI needs no numerical dependency; NumPy,
 SciPy, SymPy and mpmath were used only to check the design (`design_checks/`).
+
+## 14. Versions
+
+A change that alters no string shown to the model, no datum, no setting of section 2, no grading rule and
+no decision rule is a patch (`v3.0.x`). It is frozen again, with a new manifest and tag, before any further
+call; the superseded manifest is kept under `results/superseded/`; the pilot is not repeated. Any other
+change is `v3.1.0` with a repeated pilot. The freeze that governs the held-out run is the last one made
+before its first call, and no freeze is made after it.
+
+| Version | Tag | Change |
+|---|---|---|
+| v3.0.0 | `v3-protocol-freeze` | First freeze, 2026-10-13. Superseded the same day before any task call. |
+| v3.0.1 | `v3.0.1-protocol-freeze` | One freeze test listed the frozen files by path and failed as soon as a manifest existed in `data/`; the manifest is now excluded by name in `run_v3.frozen_files`. The identity probe `v3-probe-1` made for v3.0.0 is reused: nothing the call depends on changed. No prompt, datum, setting or rule changed. |
