@@ -275,7 +275,7 @@ def settings():
         "experiment_version": C.EXPERIMENT_VERSION, "run_ids": {"probe": "v3-probe-1", **RUN_IDS},
         "model_requested": models_v3.MODEL, "effort": models_v3.EFFORT, "argv": models_v3.ARGV_RECORDED,
         "system_prompt": models_v3.SYSTEM_PROMPT, "timeout_s": models_v3.TIMEOUT_S,
-        "env_controls": models_v3.ENV_CONTROLS, "env_must_be_unset": list(models_v3.ENV_MUST_BE_UNSET),
+        "env_controls": models_v3.ENV_CONTROLS, "env_passthrough": list(models_v3.ENV_PASSTHROUGH),
         "claude_code_version": models_v3.CLI_VERSION,
         "cells": {c: {"permission_state": policy_v3.PERMISSION[c], "policy": policy_v3.POLICY[c]} for c in policy_v3.CELLS},
         "section_strings": {"final": policy_v3.SECTION_FINAL, "unparsed": policy_v3.SECTION_UNPARSED,

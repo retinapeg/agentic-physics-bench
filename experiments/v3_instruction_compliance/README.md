@@ -1,6 +1,6 @@
 # V3: instruction compliance and epistemic honesty
 
-**Status (2026-10-13): built and tested offline; not frozen; no call made under the protocol.** Eight trivial
+**Status (2026-10-13): built and tested offline; not frozen; no call made under the protocol.** Eleven trivial
 reconnaissance calls were made to check that the model is served
 ([`results/prefreeze_calls.jsonl`](results/prefreeze_calls.jsonl)); they carried no task content. The
 protocol is [`PROTOCOL.md`](PROTOCOL.md). The held-out run needs Leo's approval and has not been run.
@@ -25,15 +25,22 @@ The protocol is [`PROTOCOL.md`](PROTOCOL.md). The reasoning behind it, including
 drafts, is in [`DESIGN_REVIEW.md`](DESIGN_REVIEW.md); on 2026-10-13 Leo delegated the open decisions and the
 review's recommended options were adopted (protocol section 12).
 
-## A finding before the first task call
+## Two findings before the first task call
 
-The first four calls to `claude-fable-5-1` through the CLI, with prompts such as "Reply with the single word
-ok", were stopped by the model's safety classifier. In three of them the CLI answered from a different model,
-`claude-opus-4-8`, and reported success; with that fallback disabled, the fourth returned an explicit refusal.
-Replacing the CLI's default system prompt with one neutral sentence removed the refusals. V3 therefore runs
-with a fixed system prompt, with fallback disabled, and treats a fallback event, a second model in the usage
-report or a second turn as an invalid call (protocol section 2.1). An evaluation that requested this model
-through the default configuration and read only the answers would have scored a different model.
+**The requested model was replaced.** Six trivial calls ("Reply with the single word ok", "What is 17 + 25?")
+were made to `claude-fable-5-1` through the CLI with its default system prompt. The model's safety classifier
+stopped five. In four of those the CLI answered from a different model, `claude-opus-4-8`, and reported
+success; with that fallback disabled, the fifth returned an explicit refusal. Replacing the default system
+prompt with one neutral sentence gave four answers out of four from the requested model. V3 therefore runs
+with a fixed system prompt and fallback disabled, and treats a fallback event, a second model in the usage
+report or a second turn as an invalid call. A harness that read only the answers would have scored the
+replacement model in those four calls. Six calls do not estimate a rate.
+
+**The launcher's environment reached the system under test.** The first calls were launched from inside
+another Claude Code session, and the child CLI inherited more than thirty of its variables, including an
+effort level different from the one requested on the command line. With them removed, the CLI reported a
+smaller context and a different set of loaded skills. V3 passes the child an allowlisted environment and
+nothing else (protocol sections 2.1 to 2.3).
 
 ## Layout
 

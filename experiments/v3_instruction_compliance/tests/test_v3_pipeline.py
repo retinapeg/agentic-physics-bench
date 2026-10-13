@@ -98,12 +98,20 @@ class PipelineTests(unittest.TestCase):
     def test_child_environment_carries_the_controls_and_this_process_does_not_change(self):
         import os
         before = dict(os.environ)
-        with mock.patch.dict(os.environ, {"MAX_THINKING_TOKENS": "1000", "CLAUDE_CODE_ENABLE_EXPERIMENTAL_ADVISOR_TOOL": "1"}):
+        launcher = {"MAX_THINKING_TOKENS": "1000", "CLAUDE_CODE_ENABLE_EXPERIMENTAL_ADVISOR_TOOL": "1", "CLAUDE_EFFORT": "xhigh",
+                    "CLAUDE_CODE_CHILD_SESSION": "1", "ANTHROPIC_BASE_URL": "https://example.invalid", "HOME": "/home/x"}
+        with mock.patch.dict(os.environ, launcher):
             env = models_v3.child_env()
             for name, value in models_v3.ENV_CONTROLS.items():
                 self.assertEqual(env[name], value)
-            for name in models_v3.ENV_MUST_BE_UNSET:
-                self.assertNotIn(name, env)
+            # an allowlist: nothing the launcher exports reaches the child except the named basics
+            self.assertEqual(set(env) - set(models_v3.ENV_CONTROLS), set(models_v3.ENV_PASSTHROUGH) & set(os.environ))
+            self.assertEqual(env["HOME"], "/home/x")
+            for name in launcher:
+                if name != "HOME":
+                    self.assertNotIn(name, env)
+            self.assertNotIn("HOME", models_v3.ENV_CONTROLS)
+            self.assertEqual(models_v3.inherited_env_names(), sorted(set(models_v3.ENV_PASSTHROUGH) & set(os.environ)))
         self.assertEqual(dict(os.environ), before)
         self.assertNotIn("CLAUDE_CODE_DISABLE_REFUSAL_FALLBACK", [k for k in before if before.get(k) != os.environ.get(k)])
 

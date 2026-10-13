@@ -3,9 +3,10 @@
 Differences from V1/V2's adapter (src/models.py, frozen), all declared in PROTOCOL.md section 2:
 - the model is claude-fable-5-1;
 - the CLI's default system prompt is replaced by one fixed sentence (prompts/system_prompt.txt). With the
-  default prompt, the model's safety classifier refused every reconnaissance call and the CLI answered
-  from a different model instead (PROTOCOL.md section 2.1);
-- environment controls are passed to the child process explicitly, never set on this process;
+  default prompt, the model's safety classifier stopped five of six reconnaissance calls and the CLI
+  answered four of them from a different model (PROTOCOL.md section 2.1);
+- the child process gets an allowlisted environment plus the controls: no CLAUDE* or ANTHROPIC* variable
+  of the launching process reaches it (this process's own environment is never changed);
 - refusal fallback is disabled, so a classifier refusal is an explicit outcome and never a model switch;
 - the CLI binary is a pinned copy whose SHA-256 is in the freeze manifest (the installed CLI updates itself).
 """
@@ -30,23 +31,24 @@ ENV_CONTROLS = {
     "CLAUDE_CODE_DISABLE_AUTO_MEMORY": "1",
     "CLAUDE_CODE_MAX_OUTPUT_TOKENS": "64000",         # the model's maximum as reported by the CLI
 }
-ENV_MUST_BE_UNSET = ("CLAUDE_CODE_ENABLE_EXPERIMENTAL_ADVISOR_TOOL", "MAX_THINKING_TOKENS")
+# The child process receives these variables from the launching process and nothing else. A launcher such as
+# another Claude Code session exports dozens of its own (an effort level, session and host settings); none
+# may reach the system under test.
+ENV_PASSTHROUGH = ("HOME", "PATH", "USER", "LOGNAME", "SHELL", "LANG", "LC_ALL", "LC_CTYPE", "TMPDIR")
 ARGS = ["--print", "--model", MODEL, "--effort", EFFORT, "--tools", "", "--safe-mode", "--strict-mcp-config",
         "--no-session-persistence", "--output-format", "stream-json", "--verbose", "--system-prompt", SYSTEM_PROMPT]
 ARGV_RECORDED = ["<pinned-cli>"] + ARGS               # what records and the manifest show (no local path)
 
 
 def child_env():
-    env = dict(os.environ)
+    env = {name: os.environ[name] for name in ENV_PASSTHROUGH if name in os.environ}
     env.update(ENV_CONTROLS)
-    for name in ENV_MUST_BE_UNSET:
-        env.pop(name, None)
     return env
 
 
 def inherited_env_names():
-    """Names (never values) of CLI-related variables the child inherits from this process; for the record."""
-    return sorted(k for k in os.environ if k.startswith(("CLAUDE", "ANTHROPIC")) and k not in ENV_CONTROLS)
+    """Names (never values) of the variables the child inherits from this process; for the record."""
+    return sorted(name for name in ENV_PASSTHROUGH if name in os.environ)
 
 
 def call_claude_v3(prompt, timeout_s=TIMEOUT_S):

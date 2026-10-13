@@ -30,26 +30,30 @@ it requested an optional tool every time. V3 asks what the ceiling left open:
 | Arguments | `--print --model claude-fable-5-1 --effort high --tools "" --safe-mode --strict-mcp-config --no-session-persistence --output-format stream-json --verbose --system-prompt "You are a helpful assistant."` |
 | System prompt | `prompts/system_prompt.txt`, one neutral sentence replacing the CLI's default prompt (section 2.1) |
 | Environment set for the child process | `CLAUDE_CODE_DISABLE_ADVISOR_TOOL=1`, `CLAUDE_CODE_DISABLE_REFUSAL_FALLBACK=1`, `DISABLE_AUTOUPDATER=1`, `CLAUDE_CODE_DISABLE_AUTO_MEMORY=1`, `CLAUDE_CODE_MAX_OUTPUT_TOKENS=64000` |
-| Environment that must be unset | `CLAUDE_CODE_ENABLE_EXPERIMENTAL_ADVISOR_TOOL`, `MAX_THINKING_TOKENS` |
+| Environment passed through from the launcher | `HOME`, `PATH`, `USER`, `LOGNAME`, `SHELL`, `LANG`, `LC_ALL`, `LC_CTYPE`, `TMPDIR` where present, and nothing else (section 2.3) |
 | Process | a fresh CLI process per call, prompt on stdin, an empty temporary working directory, 900 s timeout |
 | Access | a Claude subscription (no API key); overage rejected |
 
 The unit measured is model plus CLI. What the CLI adds to the context beyond the system prompt and the user
-message is not observable; the effort level is requested and cannot be confirmed from a trace. Other
-`CLAUDE*` variables of the launching process are inherited by the child; their names are recorded.
+message is not observable; the effort level is requested and cannot be confirmed from a trace.
 
 ### 2.1 Reconnaissance finding: the requested model was replaced
 
-Before the runner existed, eight trivial invocations were made on 2026-10-13 to check that the model is
-served (`results/prefreeze_calls.jsonl`; none carried task content). With the CLI's default system prompt,
-the model's safety classifier stopped all four calls in category `cyber`, for the prompts "Reply with the
-single word ok" and "What is 17 + 25? Reply with the number only." In three of them the CLI then answered
-from a different model, `claude-opus-4-8`, and reported success (`model_refusal_fallback`; two models in the
-usage report; `num_turns` 2). In the fourth, with `CLAUDE_CODE_DISABLE_REFUSAL_FALLBACK=1`, the call returned
-an explicit refusal and no answer. With the default prompt replaced by a single sentence (two wordings, three
-calls), every call was answered by `claude-fable-5-1` alone in one turn, and the reported input fell from
-about 8,200 to about 800 tokens. The eighth invocation tried the CLI's `--bare` flag, which does not accept
-subscription sign-in; it made no model call.
+Before the freeze, eleven trivial invocations were made on 2026-10-13 to check that the model is served
+(`results/prefreeze_calls.jsonl`, `v3-recon-0` to `v3-recon-10`; none carried task content). The prompts were
+"Reply with the single word ok" and "What is 17 + 25? Reply with the number only."
+
+With the CLI's **default system prompt**, the model's safety classifier stopped five of six calls, in
+category `cyber`. In four of the five the CLI then answered from a different model, `claude-opus-4-8`, and
+reported success (`model_refusal_fallback`; two models in the usage report; `num_turns` 2). In the fifth,
+made with `CLAUDE_CODE_DISABLE_REFUSAL_FALLBACK=1`, the call returned an explicit refusal and no answer.
+The sixth was answered by `claude-fable-5-1`. Stopped calls occurred both with the launcher's environment
+(four of four) and with the allowlisted environment of section 2.3 (one of two).
+
+With the default prompt **replaced by a single sentence**, all four calls (two wordings; three with the
+launcher's environment, one with the allowlisted environment) were answered by `claude-fable-5-1` alone in
+one turn. One further invocation tried the CLI's `--bare` flag, which does not accept subscription sign-in;
+it made no model call.
 
 Consequences, all frozen here:
 
@@ -60,20 +64,33 @@ Consequences, all frozen here:
 3. A fallback event, a second model in the usage report or more than one turn makes the call invalid.
 
 This is a statement about what the harness must verify, not about the provider's intent: the fallback is a
-documented feature of the client. V2's per-call checks would also have rejected these calls.
+documented feature of the client, and six calls do not estimate a refusal rate. V2's per-call checks would
+also have rejected the replaced calls.
 
 ### 2.2 A background summary after each reply
 
-Every reconnaissance call that produced a normal reply also carries a `post_turn_summary` system event,
-emitted after the assistant message and before the result: a one-line description of the reply (for example
-"answered 17 + 25 with 42"). The CLI describes it as a background post-turn summary. Whether writing it
-involves a model call is not visible in the usage report, which lists the requested model alone with the
-reply's own token counts. It is written after the reply, so it cannot have shaped the reply. It is not
-disabled here: the switch for it is not documented, and the property that matters is checked directly. Each
-call record states whether the result text is exactly the text of the model's own message
-(`result_matches_assistant_text`; true in all eight reconnaissance traces) and whether the event occurred;
-both counts are reported with the runtime-integrity results (M8). They are recorded, not enforced: neither
-makes a call invalid.
+Every normally answered reconnaissance call made with the launcher's environment also carries a
+`post_turn_summary` system event, emitted after the assistant message and before the result: a one-line
+description of the reply (for example "answered 17 + 25 with 42"). The CLI describes it as a background
+post-turn summary. Whether writing it involves a model call is not visible in the usage report. It did not
+occur in the three calls made with the allowlisted environment. It is written after the reply, so it
+cannot have shaped the reply, and it is not a violation if it occurs. Each call record states whether the
+result text is exactly the text of the model's own message (`result_matches_assistant_text`; true in all
+eleven traces) and whether the event occurred; both counts are reported with the runtime-integrity results
+(M8). They are recorded, not enforced.
+
+### 2.3 The launcher's environment does not reach the system under test
+
+The reconnaissance calls `v3-recon-0` to `v3-recon-7` were launched from inside another Claude Code session,
+and the child CLI inherited that session's environment: more than thirty CLI-related variables, among them
+an effort level (`CLAUDE_EFFORT=xhigh`, against the `--effort high` requested on the command line), an entry
+point, and session and host settings. Which of them the CLI honours cannot be read from a trace. With them
+removed, the same configuration reported a smaller context (591 input tokens instead of about 800), a
+different inventory (19 skills instead of 22, 4 agents instead of 5) and no post-turn summary event.
+
+The child process therefore receives an allowlist: the variables named in the table above, where the
+launcher has them, plus the five controls. No other variable is passed, so the system under test does not
+depend on what launched the run. Sign-in is read by the CLI from the user's stored subscription login.
 
 ## 3. Arm A: conditions
 
@@ -317,6 +334,7 @@ uses the text in memory, before redaction. Raw CLI output stays in the gitignore
 | an inventory-only change: re-probe and resume | the batch stops; resuming is Leo's decision with a dated note | simpler, and stricter |
 | sum markers `sum`, `int` on word boundaries | also when followed by `_`, `(`, `{` (`sum_n`), and `prod` | the prompt asks for underscore subscripts |
 | three schema sub-kinds | plus `not_an_object` and `wrong_type` | every reply gets exactly one outcome |
+| the child inherits the launcher's environment, with two variables unset | an allowlisted environment plus the controls | section 2.3 |
 | — | a usage guard and a required `--approval` for the held-out run | protects the subscription and the approval gate |
 | — | `result_matches_assistant_text` and the post-turn summary event recorded per call | section 2.2 |
 
