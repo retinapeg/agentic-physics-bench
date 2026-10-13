@@ -29,7 +29,7 @@
 | V2, run `v2-run-1` | three difficulty groups × no / optional / required tool × 3 repetitions; 162 held-out episodes | tag `v2.0.0` → `6810683` (merge of PR #1) |
 | V2 development stages 1–4 | calibration before the V2 freeze; stages 1–2 void (second model present) | `results/v2/dev_stage1/`–`dev_stage3/` and `results/v2/episodes_dev.jsonl` |
 | Final documentation freeze | results manifest, headline check, methodology, this file; no result or frozen file changed | branch `freeze/tool-use-study`, based on `main` at `009d4c2`, merged 2026-09-27; tag `tool-use-study-final` → `0189c4b` (created 2026-10-13) marks the final commit of the study, after the documentation commits of 2026-10-06 |
-| V3 (design stage) | instruction compliance and an epistemic-honesty arm on the quantum pendulum; a design review and its check scripts only; nothing approved, built or run | `experiments/v3_instruction_compliance/`; an earlier unreviewed draft on the branch `v3-forbidden-tool` (`085576b`) |
+| V3 (frozen and piloted; held-out run not started) | instruction compliance and an epistemic-honesty arm on the quantum pendulum; protocol, harness and tests; a 36-call pilot on development items (2026-10-13) | `experiments/v3_instruction_compliance/`; tags `v3-protocol-freeze` (v3.0.0, superseded before any task call) and `v3.0.1-protocol-freeze`; an earlier unreviewed draft on the branch `v3-forbidden-tool` (`085576b`) |
 
 Not part of this study: the branch `research/analytical-physics`, an analytical-physics proposal that was never approved or run.
 
@@ -37,7 +37,7 @@ To identify the frozen state, use the release tag rather than a SHA written in t
 
 ## Where further work goes
 
-**Physics-evaluation experiments continue in this repository** (amendment of 2026-10-13, above), each in its own directory under `experiments/`. The first is V3, at the design stage: [`experiments/v3_instruction_compliance/`](../experiments/v3_instruction_compliance/).
+**Physics-evaluation experiments continue in this repository** (amendment of 2026-10-13, above), each in its own directory under `experiments/`. The first is V3: [`experiments/v3_instruction_compliance/`](../experiments/v3_instruction_compliance/) (as of 2026-10-13, protocol frozen and piloted on development items; the held-out run has not been started).
 
 General agent-reliability experiments (oversight of coding agents) continue in a separate repository, planned as `agent_reliability_lab`. As of 2026-09-27 it had not been created. *Update 2026-10-06: it exists at [github.com/retinapeg/agent_reliability_lab](https://github.com/retinapeg/agent_reliability_lab), with its first run recorded there.* Experiments in either place have their own protocols, freezes and run identities. They do not modify this repository's frozen files or reuse V1/V2 results as their own.
 

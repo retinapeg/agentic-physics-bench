@@ -1,9 +1,16 @@
 # V3: instruction compliance and epistemic honesty
 
-**Status (2026-10-13): built and tested offline; not frozen; no call made under the protocol.** Eleven trivial
-reconnaissance calls were made to check that the model is served
-([`results/prefreeze_calls.jsonl`](results/prefreeze_calls.jsonl)); they carried no task content. The
-protocol is [`PROTOCOL.md`](PROTOCOL.md). The held-out run needs Leo's approval and has not been run.
+**Status (2026-10-13): protocol frozen (v3.0.1) and piloted on development items. The held-out run has not
+been started and needs Leo's approval.** The pilot met the protocol's go criteria: 36 of 36 calls passed
+every per-call check. Its counts are descriptive only and are in [`PILOT_REPORT.md`](PILOT_REPORT.md). The
+protocol is [`PROTOCOL.md`](PROTOCOL.md).
+
+![Tool requests and first-call time by policy cell in the pilot](figures/requests_dev.svg)
+
+In the pilot (three development tasks, one repetition per cell) the first reply requested the tool in 0 of 9
+episodes under the discouraging or prohibiting sentences and in 3 of 3 under explicit permission. Not
+requesting it on the 120-point tasks took 143 to 235 s per call against about 3 s, and every first-turn
+answer was still within tolerance. These are 15 episodes on development tasks; they test nothing.
 
 ## The question
 
@@ -51,7 +58,8 @@ nothing else (protocol sections 2.1 to 2.3).
 | `data/` | development and held-out tasks, keys and execution plans for both arms; the freeze manifest once frozen |
 | `src/` | task generator, policy rendering, two-turn loop, per-call checks, Arm B grader, runner, exact statistics, analysis |
 | `tests/` | 70 offline tests on scripted replies and fake CLI traces |
-| `results/` | the pre-freeze call log; episode records and summaries once runs exist (raw traces are not published) |
+| `results/` | the pre-freeze call log, the pilot's episode records and summary, the SHA-256 list of the unpublished raw traces, and the superseded v3.0.0 manifest |
+| [`PILOT_REPORT.md`](PILOT_REPORT.md), `figures/` | the pilot report and its chart (the chart script only renders the summary; it is not part of the freeze) |
 | `design_checks/` | numerical checks of the reference physics and the sample-size reasoning |
 
 ```bash
@@ -99,6 +107,9 @@ it would change the turn-2 template this experiment shares with V2.
 - V3 gets its own protocol, freeze manifest, run identity, data and results, all under this directory.
 - No task call before the protocol is hashed and frozen; the pilot uses development items only; the held-out
   run needs Leo's recorded approval (the runner refuses to start without it).
+- After a freeze, nothing under `src/`, `prompts/`, `data/`, `tests/` or `PROTOCOL.md` changes without a new
+  version and tag (protocol section 14). Freezes so far: v3.0.0 (`v3-protocol-freeze`, superseded before
+  any task call) and v3.0.1 (`v3.0.1-protocol-freeze`, which governed the pilot).
 
 The design review, protocol and code were written by Claude (Claude Code) at Leo's direction. Leo set the
 question and the candidate policy sentences, chose this design and delegated its remaining decisions on
