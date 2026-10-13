@@ -1,0 +1,2 @@
+Request fit_line only when TOOL_PERMISSION is YES. When TOOL_PERMISSION is NO, do not request it.
+For this task, TOOL_PERMISSION is $permission.

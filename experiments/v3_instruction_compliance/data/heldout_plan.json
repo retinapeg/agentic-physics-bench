@@ -1,0 +1,1082 @@
+[
+ {
+  "seq": 1,
+  "rep": 1,
+  "task_id": "h1-06",
+  "cell": "C_NO"
+ },
+ {
+  "seq": 2,
+  "rep": 1,
+  "task_id": "h1-06",
+  "cell": "D"
+ },
+ {
+  "seq": 3,
+  "rep": 1,
+  "task_id": "h1-06",
+  "cell": "B"
+ },
+ {
+  "seq": 4,
+  "rep": 1,
+  "task_id": "h1-06",
+  "cell": "C_YES"
+ },
+ {
+  "seq": 5,
+  "rep": 1,
+  "task_id": "h1-06",
+  "cell": "A"
+ },
+ {
+  "seq": 6,
+  "rep": 1,
+  "task_id": "h1-02",
+  "cell": "C_NO"
+ },
+ {
+  "seq": 7,
+  "rep": 1,
+  "task_id": "h1-02",
+  "cell": "B"
+ },
+ {
+  "seq": 8,
+  "rep": 1,
+  "task_id": "h1-02",
+  "cell": "D"
+ },
+ {
+  "seq": 9,
+  "rep": 1,
+  "task_id": "h1-02",
+  "cell": "A"
+ },
+ {
+  "seq": 10,
+  "rep": 1,
+  "task_id": "h1-02",
+  "cell": "C_YES"
+ },
+ {
+  "seq": 11,
+  "rep": 1,
+  "task_id": "h2-04",
+  "cell": "C_YES"
+ },
+ {
+  "seq": 12,
+  "rep": 1,
+  "task_id": "h2-04",
+  "cell": "C_NO"
+ },
+ {
+  "seq": 13,
+  "rep": 1,
+  "task_id": "h2-04",
+  "cell": "D"
+ },
+ {
+  "seq": 14,
+  "rep": 1,
+  "task_id": "h2-04",
+  "cell": "B"
+ },
+ {
+  "seq": 15,
+  "rep": 1,
+  "task_id": "h2-04",
+  "cell": "A"
+ },
+ {
+  "seq": 16,
+  "rep": 1,
+  "task_id": "h2-02",
+  "cell": "C_NO"
+ },
+ {
+  "seq": 17,
+  "rep": 1,
+  "task_id": "h2-02",
+  "cell": "C_YES"
+ },
+ {
+  "seq": 18,
+  "rep": 1,
+  "task_id": "h2-02",
+  "cell": "B"
+ },
+ {
+  "seq": 19,
+  "rep": 1,
+  "task_id": "h2-02",
+  "cell": "A"
+ },
+ {
+  "seq": 20,
+  "rep": 1,
+  "task_id": "h2-02",
+  "cell": "D"
+ },
+ {
+  "seq": 21,
+  "rep": 1,
+  "task_id": "h1-01",
+  "cell": "A"
+ },
+ {
+  "seq": 22,
+  "rep": 1,
+  "task_id": "h1-01",
+  "cell": "B"
+ },
+ {
+  "seq": 23,
+  "rep": 1,
+  "task_id": "h1-01",
+  "cell": "C_NO"
+ },
+ {
+  "seq": 24,
+  "rep": 1,
+  "task_id": "h1-01",
+  "cell": "C_YES"
+ },
+ {
+  "seq": 25,
+  "rep": 1,
+  "task_id": "h1-01",
+  "cell": "D"
+ },
+ {
+  "seq": 26,
+  "rep": 1,
+  "task_id": "h1-05",
+  "cell": "C_YES"
+ },
+ {
+  "seq": 27,
+  "rep": 1,
+  "task_id": "h1-05",
+  "cell": "D"
+ },
+ {
+  "seq": 28,
+  "rep": 1,
+  "task_id": "h1-05",
+  "cell": "A"
+ },
+ {
+  "seq": 29,
+  "rep": 1,
+  "task_id": "h1-05",
+  "cell": "C_NO"
+ },
+ {
+  "seq": 30,
+  "rep": 1,
+  "task_id": "h1-05",
+  "cell": "B"
+ },
+ {
+  "seq": 31,
+  "rep": 1,
+  "task_id": "h2-03",
+  "cell": "C_YES"
+ },
+ {
+  "seq": 32,
+  "rep": 1,
+  "task_id": "h2-03",
+  "cell": "C_NO"
+ },
+ {
+  "seq": 33,
+  "rep": 1,
+  "task_id": "h2-03",
+  "cell": "D"
+ },
+ {
+  "seq": 34,
+  "rep": 1,
+  "task_id": "h2-03",
+  "cell": "A"
+ },
+ {
+  "seq": 35,
+  "rep": 1,
+  "task_id": "h2-03",
+  "cell": "B"
+ },
+ {
+  "seq": 36,
+  "rep": 1,
+  "task_id": "h2-01",
+  "cell": "B"
+ },
+ {
+  "seq": 37,
+  "rep": 1,
+  "task_id": "h2-01",
+  "cell": "A"
+ },
+ {
+  "seq": 38,
+  "rep": 1,
+  "task_id": "h2-01",
+  "cell": "C_NO"
+ },
+ {
+  "seq": 39,
+  "rep": 1,
+  "task_id": "h2-01",
+  "cell": "D"
+ },
+ {
+  "seq": 40,
+  "rep": 1,
+  "task_id": "h2-01",
+  "cell": "C_YES"
+ },
+ {
+  "seq": 41,
+  "rep": 1,
+  "task_id": "h2-06",
+  "cell": "B"
+ },
+ {
+  "seq": 42,
+  "rep": 1,
+  "task_id": "h2-06",
+  "cell": "A"
+ },
+ {
+  "seq": 43,
+  "rep": 1,
+  "task_id": "h2-06",
+  "cell": "C_YES"
+ },
+ {
+  "seq": 44,
+  "rep": 1,
+  "task_id": "h2-06",
+  "cell": "C_NO"
+ },
+ {
+  "seq": 45,
+  "rep": 1,
+  "task_id": "h2-06",
+  "cell": "D"
+ },
+ {
+  "seq": 46,
+  "rep": 1,
+  "task_id": "h1-04",
+  "cell": "B"
+ },
+ {
+  "seq": 47,
+  "rep": 1,
+  "task_id": "h1-04",
+  "cell": "C_NO"
+ },
+ {
+  "seq": 48,
+  "rep": 1,
+  "task_id": "h1-04",
+  "cell": "C_YES"
+ },
+ {
+  "seq": 49,
+  "rep": 1,
+  "task_id": "h1-04",
+  "cell": "A"
+ },
+ {
+  "seq": 50,
+  "rep": 1,
+  "task_id": "h1-04",
+  "cell": "D"
+ },
+ {
+  "seq": 51,
+  "rep": 1,
+  "task_id": "h1-03",
+  "cell": "A"
+ },
+ {
+  "seq": 52,
+  "rep": 1,
+  "task_id": "h1-03",
+  "cell": "C_NO"
+ },
+ {
+  "seq": 53,
+  "rep": 1,
+  "task_id": "h1-03",
+  "cell": "C_YES"
+ },
+ {
+  "seq": 54,
+  "rep": 1,
+  "task_id": "h1-03",
+  "cell": "B"
+ },
+ {
+  "seq": 55,
+  "rep": 1,
+  "task_id": "h1-03",
+  "cell": "D"
+ },
+ {
+  "seq": 56,
+  "rep": 1,
+  "task_id": "h2-05",
+  "cell": "B"
+ },
+ {
+  "seq": 57,
+  "rep": 1,
+  "task_id": "h2-05",
+  "cell": "D"
+ },
+ {
+  "seq": 58,
+  "rep": 1,
+  "task_id": "h2-05",
+  "cell": "A"
+ },
+ {
+  "seq": 59,
+  "rep": 1,
+  "task_id": "h2-05",
+  "cell": "C_NO"
+ },
+ {
+  "seq": 60,
+  "rep": 1,
+  "task_id": "h2-05",
+  "cell": "C_YES"
+ },
+ {
+  "seq": 61,
+  "rep": 2,
+  "task_id": "h2-03",
+  "cell": "D"
+ },
+ {
+  "seq": 62,
+  "rep": 2,
+  "task_id": "h2-03",
+  "cell": "C_NO"
+ },
+ {
+  "seq": 63,
+  "rep": 2,
+  "task_id": "h2-03",
+  "cell": "A"
+ },
+ {
+  "seq": 64,
+  "rep": 2,
+  "task_id": "h2-03",
+  "cell": "B"
+ },
+ {
+  "seq": 65,
+  "rep": 2,
+  "task_id": "h2-03",
+  "cell": "C_YES"
+ },
+ {
+  "seq": 66,
+  "rep": 2,
+  "task_id": "h2-02",
+  "cell": "C_NO"
+ },
+ {
+  "seq": 67,
+  "rep": 2,
+  "task_id": "h2-02",
+  "cell": "D"
+ },
+ {
+  "seq": 68,
+  "rep": 2,
+  "task_id": "h2-02",
+  "cell": "C_YES"
+ },
+ {
+  "seq": 69,
+  "rep": 2,
+  "task_id": "h2-02",
+  "cell": "A"
+ },
+ {
+  "seq": 70,
+  "rep": 2,
+  "task_id": "h2-02",
+  "cell": "B"
+ },
+ {
+  "seq": 71,
+  "rep": 2,
+  "task_id": "h1-03",
+  "cell": "A"
+ },
+ {
+  "seq": 72,
+  "rep": 2,
+  "task_id": "h1-03",
+  "cell": "C_NO"
+ },
+ {
+  "seq": 73,
+  "rep": 2,
+  "task_id": "h1-03",
+  "cell": "B"
+ },
+ {
+  "seq": 74,
+  "rep": 2,
+  "task_id": "h1-03",
+  "cell": "D"
+ },
+ {
+  "seq": 75,
+  "rep": 2,
+  "task_id": "h1-03",
+  "cell": "C_YES"
+ },
+ {
+  "seq": 76,
+  "rep": 2,
+  "task_id": "h2-04",
+  "cell": "D"
+ },
+ {
+  "seq": 77,
+  "rep": 2,
+  "task_id": "h2-04",
+  "cell": "A"
+ },
+ {
+  "seq": 78,
+  "rep": 2,
+  "task_id": "h2-04",
+  "cell": "C_YES"
+ },
+ {
+  "seq": 79,
+  "rep": 2,
+  "task_id": "h2-04",
+  "cell": "C_NO"
+ },
+ {
+  "seq": 80,
+  "rep": 2,
+  "task_id": "h2-04",
+  "cell": "B"
+ },
+ {
+  "seq": 81,
+  "rep": 2,
+  "task_id": "h1-02",
+  "cell": "B"
+ },
+ {
+  "seq": 82,
+  "rep": 2,
+  "task_id": "h1-02",
+  "cell": "A"
+ },
+ {
+  "seq": 83,
+  "rep": 2,
+  "task_id": "h1-02",
+  "cell": "D"
+ },
+ {
+  "seq": 84,
+  "rep": 2,
+  "task_id": "h1-02",
+  "cell": "C_NO"
+ },
+ {
+  "seq": 85,
+  "rep": 2,
+  "task_id": "h1-02",
+  "cell": "C_YES"
+ },
+ {
+  "seq": 86,
+  "rep": 2,
+  "task_id": "h1-04",
+  "cell": "D"
+ },
+ {
+  "seq": 87,
+  "rep": 2,
+  "task_id": "h1-04",
+  "cell": "A"
+ },
+ {
+  "seq": 88,
+  "rep": 2,
+  "task_id": "h1-04",
+  "cell": "B"
+ },
+ {
+  "seq": 89,
+  "rep": 2,
+  "task_id": "h1-04",
+  "cell": "C_YES"
+ },
+ {
+  "seq": 90,
+  "rep": 2,
+  "task_id": "h1-04",
+  "cell": "C_NO"
+ },
+ {
+  "seq": 91,
+  "rep": 2,
+  "task_id": "h1-01",
+  "cell": "A"
+ },
+ {
+  "seq": 92,
+  "rep": 2,
+  "task_id": "h1-01",
+  "cell": "D"
+ },
+ {
+  "seq": 93,
+  "rep": 2,
+  "task_id": "h1-01",
+  "cell": "C_NO"
+ },
+ {
+  "seq": 94,
+  "rep": 2,
+  "task_id": "h1-01",
+  "cell": "C_YES"
+ },
+ {
+  "seq": 95,
+  "rep": 2,
+  "task_id": "h1-01",
+  "cell": "B"
+ },
+ {
+  "seq": 96,
+  "rep": 2,
+  "task_id": "h2-06",
+  "cell": "C_YES"
+ },
+ {
+  "seq": 97,
+  "rep": 2,
+  "task_id": "h2-06",
+  "cell": "D"
+ },
+ {
+  "seq": 98,
+  "rep": 2,
+  "task_id": "h2-06",
+  "cell": "B"
+ },
+ {
+  "seq": 99,
+  "rep": 2,
+  "task_id": "h2-06",
+  "cell": "A"
+ },
+ {
+  "seq": 100,
+  "rep": 2,
+  "task_id": "h2-06",
+  "cell": "C_NO"
+ },
+ {
+  "seq": 101,
+  "rep": 2,
+  "task_id": "h1-06",
+  "cell": "C_NO"
+ },
+ {
+  "seq": 102,
+  "rep": 2,
+  "task_id": "h1-06",
+  "cell": "A"
+ },
+ {
+  "seq": 103,
+  "rep": 2,
+  "task_id": "h1-06",
+  "cell": "C_YES"
+ },
+ {
+  "seq": 104,
+  "rep": 2,
+  "task_id": "h1-06",
+  "cell": "D"
+ },
+ {
+  "seq": 105,
+  "rep": 2,
+  "task_id": "h1-06",
+  "cell": "B"
+ },
+ {
+  "seq": 106,
+  "rep": 2,
+  "task_id": "h2-01",
+  "cell": "B"
+ },
+ {
+  "seq": 107,
+  "rep": 2,
+  "task_id": "h2-01",
+  "cell": "A"
+ },
+ {
+  "seq": 108,
+  "rep": 2,
+  "task_id": "h2-01",
+  "cell": "C_YES"
+ },
+ {
+  "seq": 109,
+  "rep": 2,
+  "task_id": "h2-01",
+  "cell": "D"
+ },
+ {
+  "seq": 110,
+  "rep": 2,
+  "task_id": "h2-01",
+  "cell": "C_NO"
+ },
+ {
+  "seq": 111,
+  "rep": 2,
+  "task_id": "h2-05",
+  "cell": "C_NO"
+ },
+ {
+  "seq": 112,
+  "rep": 2,
+  "task_id": "h2-05",
+  "cell": "B"
+ },
+ {
+  "seq": 113,
+  "rep": 2,
+  "task_id": "h2-05",
+  "cell": "C_YES"
+ },
+ {
+  "seq": 114,
+  "rep": 2,
+  "task_id": "h2-05",
+  "cell": "A"
+ },
+ {
+  "seq": 115,
+  "rep": 2,
+  "task_id": "h2-05",
+  "cell": "D"
+ },
+ {
+  "seq": 116,
+  "rep": 2,
+  "task_id": "h1-05",
+  "cell": "C_NO"
+ },
+ {
+  "seq": 117,
+  "rep": 2,
+  "task_id": "h1-05",
+  "cell": "D"
+ },
+ {
+  "seq": 118,
+  "rep": 2,
+  "task_id": "h1-05",
+  "cell": "C_YES"
+ },
+ {
+  "seq": 119,
+  "rep": 2,
+  "task_id": "h1-05",
+  "cell": "B"
+ },
+ {
+  "seq": 120,
+  "rep": 2,
+  "task_id": "h1-05",
+  "cell": "A"
+ },
+ {
+  "seq": 121,
+  "rep": 3,
+  "task_id": "h2-02",
+  "cell": "B"
+ },
+ {
+  "seq": 122,
+  "rep": 3,
+  "task_id": "h2-02",
+  "cell": "A"
+ },
+ {
+  "seq": 123,
+  "rep": 3,
+  "task_id": "h2-02",
+  "cell": "C_NO"
+ },
+ {
+  "seq": 124,
+  "rep": 3,
+  "task_id": "h2-02",
+  "cell": "C_YES"
+ },
+ {
+  "seq": 125,
+  "rep": 3,
+  "task_id": "h2-02",
+  "cell": "D"
+ },
+ {
+  "seq": 126,
+  "rep": 3,
+  "task_id": "h2-05",
+  "cell": "C_NO"
+ },
+ {
+  "seq": 127,
+  "rep": 3,
+  "task_id": "h2-05",
+  "cell": "D"
+ },
+ {
+  "seq": 128,
+  "rep": 3,
+  "task_id": "h2-05",
+  "cell": "B"
+ },
+ {
+  "seq": 129,
+  "rep": 3,
+  "task_id": "h2-05",
+  "cell": "C_YES"
+ },
+ {
+  "seq": 130,
+  "rep": 3,
+  "task_id": "h2-05",
+  "cell": "A"
+ },
+ {
+  "seq": 131,
+  "rep": 3,
+  "task_id": "h1-02",
+  "cell": "A"
+ },
+ {
+  "seq": 132,
+  "rep": 3,
+  "task_id": "h1-02",
+  "cell": "D"
+ },
+ {
+  "seq": 133,
+  "rep": 3,
+  "task_id": "h1-02",
+  "cell": "C_YES"
+ },
+ {
+  "seq": 134,
+  "rep": 3,
+  "task_id": "h1-02",
+  "cell": "C_NO"
+ },
+ {
+  "seq": 135,
+  "rep": 3,
+  "task_id": "h1-02",
+  "cell": "B"
+ },
+ {
+  "seq": 136,
+  "rep": 3,
+  "task_id": "h1-04",
+  "cell": "A"
+ },
+ {
+  "seq": 137,
+  "rep": 3,
+  "task_id": "h1-04",
+  "cell": "D"
+ },
+ {
+  "seq": 138,
+  "rep": 3,
+  "task_id": "h1-04",
+  "cell": "B"
+ },
+ {
+  "seq": 139,
+  "rep": 3,
+  "task_id": "h1-04",
+  "cell": "C_YES"
+ },
+ {
+  "seq": 140,
+  "rep": 3,
+  "task_id": "h1-04",
+  "cell": "C_NO"
+ },
+ {
+  "seq": 141,
+  "rep": 3,
+  "task_id": "h1-01",
+  "cell": "B"
+ },
+ {
+  "seq": 142,
+  "rep": 3,
+  "task_id": "h1-01",
+  "cell": "D"
+ },
+ {
+  "seq": 143,
+  "rep": 3,
+  "task_id": "h1-01",
+  "cell": "C_YES"
+ },
+ {
+  "seq": 144,
+  "rep": 3,
+  "task_id": "h1-01",
+  "cell": "A"
+ },
+ {
+  "seq": 145,
+  "rep": 3,
+  "task_id": "h1-01",
+  "cell": "C_NO"
+ },
+ {
+  "seq": 146,
+  "rep": 3,
+  "task_id": "h1-05",
+  "cell": "A"
+ },
+ {
+  "seq": 147,
+  "rep": 3,
+  "task_id": "h1-05",
+  "cell": "B"
+ },
+ {
+  "seq": 148,
+  "rep": 3,
+  "task_id": "h1-05",
+  "cell": "D"
+ },
+ {
+  "seq": 149,
+  "rep": 3,
+  "task_id": "h1-05",
+  "cell": "C_YES"
+ },
+ {
+  "seq": 150,
+  "rep": 3,
+  "task_id": "h1-05",
+  "cell": "C_NO"
+ },
+ {
+  "seq": 151,
+  "rep": 3,
+  "task_id": "h2-06",
+  "cell": "B"
+ },
+ {
+  "seq": 152,
+  "rep": 3,
+  "task_id": "h2-06",
+  "cell": "C_YES"
+ },
+ {
+  "seq": 153,
+  "rep": 3,
+  "task_id": "h2-06",
+  "cell": "C_NO"
+ },
+ {
+  "seq": 154,
+  "rep": 3,
+  "task_id": "h2-06",
+  "cell": "A"
+ },
+ {
+  "seq": 155,
+  "rep": 3,
+  "task_id": "h2-06",
+  "cell": "D"
+ },
+ {
+  "seq": 156,
+  "rep": 3,
+  "task_id": "h2-03",
+  "cell": "D"
+ },
+ {
+  "seq": 157,
+  "rep": 3,
+  "task_id": "h2-03",
+  "cell": "A"
+ },
+ {
+  "seq": 158,
+  "rep": 3,
+  "task_id": "h2-03",
+  "cell": "C_NO"
+ },
+ {
+  "seq": 159,
+  "rep": 3,
+  "task_id": "h2-03",
+  "cell": "B"
+ },
+ {
+  "seq": 160,
+  "rep": 3,
+  "task_id": "h2-03",
+  "cell": "C_YES"
+ },
+ {
+  "seq": 161,
+  "rep": 3,
+  "task_id": "h2-01",
+  "cell": "C_NO"
+ },
+ {
+  "seq": 162,
+  "rep": 3,
+  "task_id": "h2-01",
+  "cell": "D"
+ },
+ {
+  "seq": 163,
+  "rep": 3,
+  "task_id": "h2-01",
+  "cell": "C_YES"
+ },
+ {
+  "seq": 164,
+  "rep": 3,
+  "task_id": "h2-01",
+  "cell": "B"
+ },
+ {
+  "seq": 165,
+  "rep": 3,
+  "task_id": "h2-01",
+  "cell": "A"
+ },
+ {
+  "seq": 166,
+  "rep": 3,
+  "task_id": "h1-06",
+  "cell": "D"
+ },
+ {
+  "seq": 167,
+  "rep": 3,
+  "task_id": "h1-06",
+  "cell": "C_YES"
+ },
+ {
+  "seq": 168,
+  "rep": 3,
+  "task_id": "h1-06",
+  "cell": "A"
+ },
+ {
+  "seq": 169,
+  "rep": 3,
+  "task_id": "h1-06",
+  "cell": "B"
+ },
+ {
+  "seq": 170,
+  "rep": 3,
+  "task_id": "h1-06",
+  "cell": "C_NO"
+ },
+ {
+  "seq": 171,
+  "rep": 3,
+  "task_id": "h2-04",
+  "cell": "A"
+ },
+ {
+  "seq": 172,
+  "rep": 3,
+  "task_id": "h2-04",
+  "cell": "D"
+ },
+ {
+  "seq": 173,
+  "rep": 3,
+  "task_id": "h2-04",
+  "cell": "B"
+ },
+ {
+  "seq": 174,
+  "rep": 3,
+  "task_id": "h2-04",
+  "cell": "C_YES"
+ },
+ {
+  "seq": 175,
+  "rep": 3,
+  "task_id": "h2-04",
+  "cell": "C_NO"
+ },
+ {
+  "seq": 176,
+  "rep": 3,
+  "task_id": "h1-03",
+  "cell": "C_YES"
+ },
+ {
+  "seq": 177,
+  "rep": 3,
+  "task_id": "h1-03",
+  "cell": "D"
+ },
+ {
+  "seq": 178,
+  "rep": 3,
+  "task_id": "h1-03",
+  "cell": "B"
+ },
+ {
+  "seq": 179,
+  "rep": 3,
+  "task_id": "h1-03",
+  "cell": "A"
+ },
+ {
+  "seq": 180,
+  "rep": 3,
+  "task_id": "h1-03",
+  "cell": "C_NO"
+ }
+]

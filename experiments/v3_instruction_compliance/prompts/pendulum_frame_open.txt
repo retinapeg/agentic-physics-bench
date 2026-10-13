@@ -1,0 +1,1 @@
+If a finite closed form (as defined above) exists, give it. If none is known to you, say so and give the most exact representation you can.

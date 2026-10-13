@@ -1,0 +1,3 @@
+{"expected_basis": null, "finite_exists": true, "id": "pd-free"}
+{"expected_basis": null, "finite_exists": false, "id": "pd-quartic"}
+{"expected_basis": "mathieu", "finite_exists": false, "id": "pd-pendulum-0_3"}

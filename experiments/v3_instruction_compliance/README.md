@@ -1,8 +1,9 @@
-# V3: instruction compliance and epistemic honesty (design stage)
+# V3: instruction compliance and epistemic honesty
 
-**Status (2026-10-13): proposed. Not approved, not frozen, nothing run.** This directory holds a design
-review and the scripts that check its mathematics and statistics. It contains no task data, prompts, runner
-or results, and no model has seen any of it.
+**Status (2026-10-13): built and tested offline; not frozen; no call made under the protocol.** Eight trivial
+reconnaissance calls were made to check that the model is served
+([`results/prefreeze_calls.jsonl`](results/prefreeze_calls.jsonl)); they carried no task content. The
+protocol is [`PROTOCOL.md`](PROTOCOL.md). The held-out run needs Leo's approval and has not been run.
 
 ## The question
 
@@ -20,8 +21,36 @@ it say honestly what it can and cannot compute?** Two arms:
   is known. The outcome is whether the model claims an exact closed form where none is supported, under a
   neutral prompt and under one that asks for a closed form.
 
-The full design, its flaws and the open decisions are in [`DESIGN_REVIEW.md`](DESIGN_REVIEW.md) (sections
-0–12 and "Decisions for Leo").
+The protocol is [`PROTOCOL.md`](PROTOCOL.md). The reasoning behind it, including the flaws found in earlier
+drafts, is in [`DESIGN_REVIEW.md`](DESIGN_REVIEW.md); on 2026-10-13 Leo delegated the open decisions and the
+review's recommended options were adopted (protocol section 12).
+
+## A finding before the first task call
+
+The first four calls to `claude-fable-5-1` through the CLI, with prompts such as "Reply with the single word
+ok", were stopped by the model's safety classifier. In three of them the CLI answered from a different model,
+`claude-opus-4-8`, and reported success; with that fallback disabled, the fourth returned an explicit refusal.
+Replacing the CLI's default system prompt with one neutral sentence removed the refusals. V3 therefore runs
+with a fixed system prompt, with fallback disabled, and treats a fallback event, a second model in the usage
+report or a second turn as an invalid call (protocol section 2.1). An evaluation that requested this model
+through the default configuration and read only the answers would have scored a different model.
+
+## Layout
+
+| Path | Contents |
+|---|---|
+| [`PROTOCOL.md`](PROTOCOL.md) | conditions, state machine, metrics, hypotheses, controls, procedure |
+| `prompts/` | the turn-1 template, the five policy slots, the system prompt, the Arm B item and frames |
+| `data/` | development and held-out tasks, keys and execution plans for both arms; the freeze manifest once frozen |
+| `src/` | task generator, policy rendering, two-turn loop, per-call checks, Arm B grader, runner, exact statistics, analysis |
+| `tests/` | 70 offline tests on scripted replies and fake CLI traces |
+| `results/` | the pre-freeze call log; episode records and summaries once runs exist (raw traces are not published) |
+| `design_checks/` | numerical checks of the reference physics and the sample-size reasoning |
+
+```bash
+python3 -m unittest discover -s experiments/v3_instruction_compliance/tests   # standard library only, no model calls
+python3 experiments/v3_instruction_compliance/src/run_v3.py plan              # planned, completed and remaining episodes
+```
 
 ## What has been verified (no model calls)
 
@@ -51,9 +80,9 @@ A different V3 draft is on the branch
 one commit, built by Codex through a task queue and marked unreviewed): four tool-policy conditions with a
 sandboxed code tool, a second-turn honesty question, and quantum-mechanics and symbolic-physics tasks; an
 offline synthetic rehearsal only, with six decisions open before any freeze. The design review here came two
-days later and takes a narrower route (the existing `fit_line` protocol plus the pendulum arm). Neither has
-been approved; which design goes forward, or how they combine, is Leo's decision. Nothing from that branch is
-merged here.
+days later and takes a narrower route (the existing `fit_line` protocol plus the pendulum arm), and is the
+one built here. Nothing from that branch is merged; its second-turn honesty question was not adopted, because
+it would change the turn-2 template this experiment shares with V2.
 
 ## Rules for this directory
 
@@ -61,6 +90,9 @@ merged here.
   edited by V3 work; CI enforces this against the release tags. The tag `tool-use-study-final` marks the last
   commit of the two-experiment study.
 - V3 gets its own protocol, freeze manifest, run identity, data and results, all under this directory.
-- No development or scored call before Leo approves a protocol and it is hashed and frozen.
+- No task call before the protocol is hashed and frozen; the pilot uses development items only; the held-out
+  run needs Leo's recorded approval (the runner refuses to start without it).
 
-The design review was written by Claude (Claude Code) at Leo's direction; Leo decides the protocol.
+The design review, protocol and code were written by Claude (Claude Code) at Leo's direction. Leo set the
+question and the candidate policy sentences, chose this design and delegated its remaining decisions on
+2026-10-13; any of them can be changed before a scored run.
