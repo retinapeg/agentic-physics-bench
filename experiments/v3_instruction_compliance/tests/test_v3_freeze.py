@@ -14,7 +14,10 @@ class FreezeTests(unittest.TestCase):
     def setUp(self):
         self.box = F.Sandbox().__enter__()
         self.tmp = tempfile.TemporaryDirectory()
+        stand_in = Path(self.tmp.name) / "cli"       # the pinned CLI is a local file, absent in CI
+        stand_in.write_text("")
         self.patches = [mock.patch.object(run_v3, "MANIFEST", Path(self.tmp.name) / "freeze_manifest.json"),
+                        mock.patch.object(models_v3, "CLI_BIN", stand_in),
                         mock.patch.object(models_v3, "cli_sha256", return_value="a" * 64),
                         mock.patch.object(models_v3, "cli_version", return_value=models_v3.CLI_VERSION)]
         for p in self.patches:
@@ -103,9 +106,10 @@ class CommittedManifestTests(unittest.TestCase):
         if not run_v3.MANIFEST.exists():
             self.skipTest("V3 is not frozen yet")
         m = json.loads(run_v3.MANIFEST.read_text())
-        with mock.patch.object(models_v3, "cli_sha256", return_value=m["cli_sha256"]), \
-                mock.patch.object(models_v3, "cli_version", return_value=m["claude_code_version"]), \
-                mock.patch.object(Path, "exists", return_value=True):
+        with tempfile.NamedTemporaryFile() as stand_in, \
+                mock.patch.object(models_v3, "CLI_BIN", Path(stand_in.name)), \
+                mock.patch.object(models_v3, "cli_sha256", return_value=m["cli_sha256"]), \
+                mock.patch.object(models_v3, "cli_version", return_value=m["claude_code_version"]):
             self.assertEqual(run_v3.verify_freeze()["experiment_version"], m["experiment_version"])
 
 

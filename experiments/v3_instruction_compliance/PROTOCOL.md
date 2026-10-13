@@ -62,6 +62,19 @@ Consequences, all frozen here:
 This is a statement about what the harness must verify, not about the provider's intent: the fallback is a
 documented feature of the client. V2's per-call checks would also have rejected these calls.
 
+### 2.2 A background summary after each reply
+
+Every reconnaissance call that produced a normal reply also carries a `post_turn_summary` system event,
+emitted after the assistant message and before the result: a one-line description of the reply (for example
+"answered 17 + 25 with 42"). The CLI describes it as a background post-turn summary. Whether writing it
+involves a model call is not visible in the usage report, which lists the requested model alone with the
+reply's own token counts. It is written after the reply, so it cannot have shaped the reply. It is not
+disabled here: the switch for it is not documented, and the property that matters is checked directly. Each
+call record states whether the result text is exactly the text of the model's own message
+(`result_matches_assistant_text`; true in all eight reconnaissance traces) and whether the event occurred;
+both counts are reported with the runtime-integrity results (M8). They are recorded, not enforced: neither
+makes a call invalid.
+
 ## 3. Arm A: conditions
 
 Every cell shows the same task block (V2's `prompts/v2/task.txt`), the same tool description and request
@@ -272,7 +285,8 @@ count. No retries. After an invalid run nothing further runs until Leo decides. 
 start without a recorded approval (`--approval`).
 
 Records: the reviewed per-call summary (identities, inventory names, counts, timings, outcomes) with user,
-temporary and session paths redacted at write time. Raw CLI output stays in the gitignored `results/raw/`.
+temporary and session paths and request, message and session identifiers redacted at write time. Grading
+uses the text in memory, before redaction. Raw CLI output stays in the gitignored `results/raw/`.
 
 ## 10. Procedure
 
@@ -304,6 +318,7 @@ temporary and session paths redacted at write time. Raw CLI output stays in the 
 | sum markers `sum`, `int` on word boundaries | also when followed by `_`, `(`, `{` (`sum_n`), and `prod` | the prompt asks for underscore subscripts |
 | three schema sub-kinds | plus `not_an_object` and `wrong_type` | every reply gets exactly one outcome |
 | — | a usage guard and a required `--approval` for the held-out run | protects the subscription and the approval gate |
+| — | `result_matches_assistant_text` and the post-turn summary event recorded per call | section 2.2 |
 
 ## 12. Decisions adopted (numbering as in the review's list)
 
