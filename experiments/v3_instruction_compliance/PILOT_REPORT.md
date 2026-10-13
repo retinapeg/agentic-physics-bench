@@ -93,9 +93,12 @@ The pilot reported 147,797 output tokens, 135,891 of them in the ten 120-point e
 has 90 such episodes, 90 ten-point episodes and 60 Arm B calls. Scaling the pilot's per-episode figures
 gives about 1.4 million reported output tokens (9.4 times the pilot), about 3.8 hours of call time, and
 on the order of 75 points of a five-hour window. The run would therefore span at least two five-hour
-windows: the usage guard stops the batch at 85 % and the runner resumes without replaying an episode. The
-seven-day estimate is rough, because the pilot moved that window by about one point at the resolution
-reported: roughly 10 to 20 points.
+windows. The usage guard stops the batch at 85 % and the process exits; it does not restart itself.
+Someone has to start the same command again after the window resets, from a clone that has the pinned CLI
+copy, and the runner then continues without replaying any attempted episode. Elapsed time is therefore
+well over the 3.8 hours of calls, with at least one supervised restart. The seven-day estimate is rough,
+because the pilot moved that window by about one point at the resolution reported: roughly 10 to 20
+points.
 
 ## Not done
 
