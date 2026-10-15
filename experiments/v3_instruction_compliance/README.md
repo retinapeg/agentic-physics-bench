@@ -90,8 +90,8 @@ relative.
 
 ## Relation to the other V3 draft
 
-A different V3 draft is on the branch
-[`v3-forbidden-tool`](https://github.com/retinapeg/agentic-physics-bench/tree/v3-forbidden-tool) (2026-10-04,
+A different V3 draft is archived under the tag
+[`archive/v3-forbidden-tool`](https://github.com/retinapeg/agentic-physics-bench/tree/archive/v3-forbidden-tool) (2026-10-04,
 one commit, built by Codex through a task queue and marked unreviewed): four tool-policy conditions with a
 sandboxed code tool, a second-turn honesty question, and quantum-mechanics and symbolic-physics tasks; an
 offline synthetic rehearsal only, with six decisions open before any freeze. The design review here came two
