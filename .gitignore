@@ -9,3 +9,7 @@ APPLICATION_EVIDENCE.md
 /AGENTS.md
 /WORKMODE.md
 /HANDOFF.md
+
+# Experiments: raw CLI traces carry session metadata; pinned CLI copies are local
+experiments/*/results/raw/
+/.cli/

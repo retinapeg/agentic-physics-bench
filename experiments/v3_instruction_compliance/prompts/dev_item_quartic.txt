@@ -1,0 +1,9 @@
+Consider a particle of unit mass moving on a line in a quartic potential, with position x on the whole real line. Units: hbar = 1, m = 1. The Hamiltonian is
+H = -(1/2) d^2/dx^2 + x^4.
+Give the imaginary-time kernel K(x, x', tau) = <x| exp(-tau * H) |x'> for tau > 0, as a function of x, x' and tau.
+
+$definitions
+
+$frame
+
+$reply_format

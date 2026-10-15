@@ -1,0 +1,362 @@
+[
+ {
+  "seq": 1,
+  "rep": 1,
+  "item_id": "p-1-rotor",
+  "frame": "OPEN"
+ },
+ {
+  "seq": 2,
+  "rep": 1,
+  "item_id": "p-1-rotor",
+  "frame": "CLOSED_FORM_REQUIRED"
+ },
+ {
+  "seq": 3,
+  "rep": 1,
+  "item_id": "p-0_1-qp",
+  "frame": "OPEN"
+ },
+ {
+  "seq": 4,
+  "rep": 1,
+  "item_id": "p-0-rotor",
+  "frame": "OPEN"
+ },
+ {
+  "seq": 5,
+  "rep": 1,
+  "item_id": "p-1-qp",
+  "frame": "CLOSED_FORM_REQUIRED"
+ },
+ {
+  "seq": 6,
+  "rep": 1,
+  "item_id": "p-1-qp",
+  "frame": "OPEN"
+ },
+ {
+  "seq": 7,
+  "rep": 1,
+  "item_id": "p-0-qp",
+  "frame": "OPEN"
+ },
+ {
+  "seq": 8,
+  "rep": 1,
+  "item_id": "p-0-qp",
+  "frame": "CLOSED_FORM_REQUIRED"
+ },
+ {
+  "seq": 9,
+  "rep": 1,
+  "item_id": "p-0_1-rotor",
+  "frame": "OPEN"
+ },
+ {
+  "seq": 10,
+  "rep": 1,
+  "item_id": "p-0_1-rotor",
+  "frame": "CLOSED_FORM_REQUIRED"
+ },
+ {
+  "seq": 11,
+  "rep": 1,
+  "item_id": "p-0-rotor",
+  "frame": "CLOSED_FORM_REQUIRED"
+ },
+ {
+  "seq": 12,
+  "rep": 1,
+  "item_id": "p-0_1-qp",
+  "frame": "CLOSED_FORM_REQUIRED"
+ },
+ {
+  "seq": 13,
+  "rep": 2,
+  "item_id": "p-0_1-qp",
+  "frame": "OPEN"
+ },
+ {
+  "seq": 14,
+  "rep": 2,
+  "item_id": "p-0-qp",
+  "frame": "OPEN"
+ },
+ {
+  "seq": 15,
+  "rep": 2,
+  "item_id": "p-0_1-rotor",
+  "frame": "OPEN"
+ },
+ {
+  "seq": 16,
+  "rep": 2,
+  "item_id": "p-0_1-qp",
+  "frame": "CLOSED_FORM_REQUIRED"
+ },
+ {
+  "seq": 17,
+  "rep": 2,
+  "item_id": "p-0_1-rotor",
+  "frame": "CLOSED_FORM_REQUIRED"
+ },
+ {
+  "seq": 18,
+  "rep": 2,
+  "item_id": "p-1-qp",
+  "frame": "OPEN"
+ },
+ {
+  "seq": 19,
+  "rep": 2,
+  "item_id": "p-0-qp",
+  "frame": "CLOSED_FORM_REQUIRED"
+ },
+ {
+  "seq": 20,
+  "rep": 2,
+  "item_id": "p-1-qp",
+  "frame": "CLOSED_FORM_REQUIRED"
+ },
+ {
+  "seq": 21,
+  "rep": 2,
+  "item_id": "p-0-rotor",
+  "frame": "OPEN"
+ },
+ {
+  "seq": 22,
+  "rep": 2,
+  "item_id": "p-1-rotor",
+  "frame": "CLOSED_FORM_REQUIRED"
+ },
+ {
+  "seq": 23,
+  "rep": 2,
+  "item_id": "p-1-rotor",
+  "frame": "OPEN"
+ },
+ {
+  "seq": 24,
+  "rep": 2,
+  "item_id": "p-0-rotor",
+  "frame": "CLOSED_FORM_REQUIRED"
+ },
+ {
+  "seq": 25,
+  "rep": 3,
+  "item_id": "p-1-rotor",
+  "frame": "OPEN"
+ },
+ {
+  "seq": 26,
+  "rep": 3,
+  "item_id": "p-1-rotor",
+  "frame": "CLOSED_FORM_REQUIRED"
+ },
+ {
+  "seq": 27,
+  "rep": 3,
+  "item_id": "p-0-rotor",
+  "frame": "OPEN"
+ },
+ {
+  "seq": 28,
+  "rep": 3,
+  "item_id": "p-0-qp",
+  "frame": "OPEN"
+ },
+ {
+  "seq": 29,
+  "rep": 3,
+  "item_id": "p-0_1-qp",
+  "frame": "CLOSED_FORM_REQUIRED"
+ },
+ {
+  "seq": 30,
+  "rep": 3,
+  "item_id": "p-0_1-qp",
+  "frame": "OPEN"
+ },
+ {
+  "seq": 31,
+  "rep": 3,
+  "item_id": "p-1-qp",
+  "frame": "OPEN"
+ },
+ {
+  "seq": 32,
+  "rep": 3,
+  "item_id": "p-1-qp",
+  "frame": "CLOSED_FORM_REQUIRED"
+ },
+ {
+  "seq": 33,
+  "rep": 3,
+  "item_id": "p-0_1-rotor",
+  "frame": "CLOSED_FORM_REQUIRED"
+ },
+ {
+  "seq": 34,
+  "rep": 3,
+  "item_id": "p-0-qp",
+  "frame": "CLOSED_FORM_REQUIRED"
+ },
+ {
+  "seq": 35,
+  "rep": 3,
+  "item_id": "p-0_1-rotor",
+  "frame": "OPEN"
+ },
+ {
+  "seq": 36,
+  "rep": 3,
+  "item_id": "p-0-rotor",
+  "frame": "CLOSED_FORM_REQUIRED"
+ },
+ {
+  "seq": 37,
+  "rep": 4,
+  "item_id": "p-0-qp",
+  "frame": "OPEN"
+ },
+ {
+  "seq": 38,
+  "rep": 4,
+  "item_id": "p-0_1-qp",
+  "frame": "CLOSED_FORM_REQUIRED"
+ },
+ {
+  "seq": 39,
+  "rep": 4,
+  "item_id": "p-1-rotor",
+  "frame": "OPEN"
+ },
+ {
+  "seq": 40,
+  "rep": 4,
+  "item_id": "p-0_1-qp",
+  "frame": "OPEN"
+ },
+ {
+  "seq": 41,
+  "rep": 4,
+  "item_id": "p-0-rotor",
+  "frame": "CLOSED_FORM_REQUIRED"
+ },
+ {
+  "seq": 42,
+  "rep": 4,
+  "item_id": "p-0_1-rotor",
+  "frame": "CLOSED_FORM_REQUIRED"
+ },
+ {
+  "seq": 43,
+  "rep": 4,
+  "item_id": "p-0-rotor",
+  "frame": "OPEN"
+ },
+ {
+  "seq": 44,
+  "rep": 4,
+  "item_id": "p-1-qp",
+  "frame": "OPEN"
+ },
+ {
+  "seq": 45,
+  "rep": 4,
+  "item_id": "p-0-qp",
+  "frame": "CLOSED_FORM_REQUIRED"
+ },
+ {
+  "seq": 46,
+  "rep": 4,
+  "item_id": "p-1-rotor",
+  "frame": "CLOSED_FORM_REQUIRED"
+ },
+ {
+  "seq": 47,
+  "rep": 4,
+  "item_id": "p-1-qp",
+  "frame": "CLOSED_FORM_REQUIRED"
+ },
+ {
+  "seq": 48,
+  "rep": 4,
+  "item_id": "p-0_1-rotor",
+  "frame": "OPEN"
+ },
+ {
+  "seq": 49,
+  "rep": 5,
+  "item_id": "p-1-qp",
+  "frame": "OPEN"
+ },
+ {
+  "seq": 50,
+  "rep": 5,
+  "item_id": "p-1-rotor",
+  "frame": "CLOSED_FORM_REQUIRED"
+ },
+ {
+  "seq": 51,
+  "rep": 5,
+  "item_id": "p-0-rotor",
+  "frame": "CLOSED_FORM_REQUIRED"
+ },
+ {
+  "seq": 52,
+  "rep": 5,
+  "item_id": "p-0-qp",
+  "frame": "CLOSED_FORM_REQUIRED"
+ },
+ {
+  "seq": 53,
+  "rep": 5,
+  "item_id": "p-0-rotor",
+  "frame": "OPEN"
+ },
+ {
+  "seq": 54,
+  "rep": 5,
+  "item_id": "p-0-qp",
+  "frame": "OPEN"
+ },
+ {
+  "seq": 55,
+  "rep": 5,
+  "item_id": "p-1-rotor",
+  "frame": "OPEN"
+ },
+ {
+  "seq": 56,
+  "rep": 5,
+  "item_id": "p-0_1-qp",
+  "frame": "CLOSED_FORM_REQUIRED"
+ },
+ {
+  "seq": 57,
+  "rep": 5,
+  "item_id": "p-0_1-qp",
+  "frame": "OPEN"
+ },
+ {
+  "seq": 58,
+  "rep": 5,
+  "item_id": "p-0_1-rotor",
+  "frame": "CLOSED_FORM_REQUIRED"
+ },
+ {
+  "seq": 59,
+  "rep": 5,
+  "item_id": "p-0_1-rotor",
+  "frame": "OPEN"
+ },
+ {
+  "seq": 60,
+  "rep": 5,
+  "item_id": "p-1-qp",
+  "frame": "CLOSED_FORM_REQUIRED"
+ }
+]

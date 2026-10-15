@@ -1,0 +1,6 @@
+{"expected_basis": "theta", "finite_exists": true, "id": "p-0-qp"}
+{"expected_basis": "theta", "finite_exists": true, "id": "p-0-rotor"}
+{"expected_basis": "mathieu", "finite_exists": false, "id": "p-0_1-qp"}
+{"expected_basis": "mathieu", "finite_exists": false, "id": "p-0_1-rotor"}
+{"expected_basis": "mathieu", "finite_exists": false, "id": "p-1-qp"}
+{"expected_basis": "mathieu", "finite_exists": false, "id": "p-1-rotor"}

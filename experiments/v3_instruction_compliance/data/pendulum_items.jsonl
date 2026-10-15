@@ -1,0 +1,6 @@
+{"V0": "0", "id": "p-0-qp", "paraphrase": "quantum pendulum", "template": "pendulum_item.txt"}
+{"V0": "0", "id": "p-0-rotor", "paraphrase": "planar rotor in a cosine potential", "template": "pendulum_item.txt"}
+{"V0": "0.1", "id": "p-0_1-qp", "paraphrase": "quantum pendulum", "template": "pendulum_item.txt"}
+{"V0": "0.1", "id": "p-0_1-rotor", "paraphrase": "planar rotor in a cosine potential", "template": "pendulum_item.txt"}
+{"V0": "1", "id": "p-1-qp", "paraphrase": "quantum pendulum", "template": "pendulum_item.txt"}
+{"V0": "1", "id": "p-1-rotor", "paraphrase": "planar rotor in a cosine potential", "template": "pendulum_item.txt"}

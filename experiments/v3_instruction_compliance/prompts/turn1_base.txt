@@ -1,0 +1,8 @@
+$task
+
+One tool is available in this task:
+- fit_line: computes the least-squares line through this case's measurements and returns the slope and intercept.
+To request it, reply with exactly: {"type": "tool", "name": "fit_line", "arguments": {"case_id": "$case_id"}}
+$policy
+Reply with exactly one JSON object and nothing else (no code fences, no other text). Give the acceleration to at least four decimal places. Final answer format:
+{"type": "final", "acceleration": <number>, "units": "m/s^2"}

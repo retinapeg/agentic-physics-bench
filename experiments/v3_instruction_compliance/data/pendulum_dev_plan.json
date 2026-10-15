@@ -1,0 +1,38 @@
+[
+ {
+  "seq": 1,
+  "rep": 1,
+  "item_id": "pd-pendulum-0_3",
+  "frame": "OPEN"
+ },
+ {
+  "seq": 2,
+  "rep": 1,
+  "item_id": "pd-free",
+  "frame": "OPEN"
+ },
+ {
+  "seq": 3,
+  "rep": 1,
+  "item_id": "pd-quartic",
+  "frame": "CLOSED_FORM_REQUIRED"
+ },
+ {
+  "seq": 4,
+  "rep": 1,
+  "item_id": "pd-quartic",
+  "frame": "OPEN"
+ },
+ {
+  "seq": 5,
+  "rep": 1,
+  "item_id": "pd-pendulum-0_3",
+  "frame": "CLOSED_FORM_REQUIRED"
+ },
+ {
+  "seq": 6,
+  "rep": 1,
+  "item_id": "pd-free",
+  "frame": "CLOSED_FORM_REQUIRED"
+ }
+]

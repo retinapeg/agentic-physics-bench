@@ -31,6 +31,20 @@ jobs:
           if [ -f results/v2/episodes_scored.jsonl ]; then python3 src/analyze_v2.py scored && python3 src/chart_v2.py scored; fi
           git status --short data/ results/
           test -z "$(git status --short data/ results/)"
+      - name: V3 offline checks (experiments/v3_instruction_compliance; no model calls)
+        # The suite includes the V3 freeze check once a manifest is committed (hashes and tag parity; the
+        # pinned CLI is not in the repository). Data and summaries must regenerate byte-identically.
+        run: |
+          V3=experiments/v3_instruction_compliance
+          python3 -m unittest discover -s $V3/tests
+          python3 $V3/src/tasks_v3.py > /dev/null && python3 $V3/src/pendulum_v3.py > /dev/null
+          for split in dev heldout; do
+            if [ -f $V3/results/episodes_$split.jsonl ]; then
+              python3 $V3/src/analyze_v3.py $split > /dev/null && python3 $V3/figures/chart_v3.py $split
+            fi
+          done
+          git status --short experiments/
+          test -z "$(git status --short experiments/)"
       - name: Freeze manifests (the CLI version check needs the CLI, so hashes only)
         # Each manifest must match its release tag byte for byte. At HEAD, frozen prompts and data must be
         # byte-identical to the tag, and frozen modules must have the same code (module docstrings may differ).

@@ -1,0 +1,1 @@
+A finite closed form (as defined above) is required. Give the kernel as a finite closed-form expression. Do not answer with an infinite series, an approximation, or a statement that no closed form exists.

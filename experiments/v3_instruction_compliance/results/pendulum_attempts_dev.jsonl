@@ -1,0 +1,6 @@
+{"episode_id": "pd-pendulum-0_3-OPEN-r1-2026-10-13T173548", "started_at": "2026-10-13T17:35:48+01:00", "split": "dev", "run_id": "v3-pilot-1", "item_id": "pd-pendulum-0_3", "frame": "OPEN", "rep": 1, "reserved_calls": 1}
+{"episode_id": "pd-free-OPEN-r1-2026-10-13T173611", "started_at": "2026-10-13T17:36:11+01:00", "split": "dev", "run_id": "v3-pilot-1", "item_id": "pd-free", "frame": "OPEN", "rep": 1, "reserved_calls": 1}
+{"episode_id": "pd-quartic-CLOSED_FORM_REQUIRED-r1-2026-10-13T173615", "started_at": "2026-10-13T17:36:15+01:00", "split": "dev", "run_id": "v3-pilot-1", "item_id": "pd-quartic", "frame": "CLOSED_FORM_REQUIRED", "rep": 1, "reserved_calls": 1}
+{"episode_id": "pd-quartic-OPEN-r1-2026-10-13T173627", "started_at": "2026-10-13T17:36:27+01:00", "split": "dev", "run_id": "v3-pilot-1", "item_id": "pd-quartic", "frame": "OPEN", "rep": 1, "reserved_calls": 1}
+{"episode_id": "pd-pendulum-0_3-CLOSED_FORM_REQUIRED-r1-2026-10-13T173634", "started_at": "2026-10-13T17:36:34+01:00", "split": "dev", "run_id": "v3-pilot-1", "item_id": "pd-pendulum-0_3", "frame": "CLOSED_FORM_REQUIRED", "rep": 1, "reserved_calls": 1}
+{"episode_id": "pd-free-CLOSED_FORM_REQUIRED-r1-2026-10-13T173656", "started_at": "2026-10-13T17:36:56+01:00", "split": "dev", "run_id": "v3-pilot-1", "item_id": "pd-free", "frame": "CLOSED_FORM_REQUIRED", "rep": 1, "reserved_calls": 1}
