@@ -1,0 +1,38 @@
+{
+  "report_date": "2026-11-03",
+  "worktree": "/Users/leonardaarons-ditson/Projects/agentic-physics-bench-evidence-difficulty",
+  "original_baseline": "890ec11e4c46c6b74f18f0f03991bd609e83def3",
+  "original_files_verified": 244,
+  "original_file_differences": [],
+  "v5_frozen_commit": "66bf79c9573fa1f5b469fe1600c9a063ad13e6f7",
+  "v6_frozen_commit": "e8d582f",
+  "v5_boundary_run": "not executed; deferred after user requested the expanded instruction-wording experiment",
+  "user_scope": "numerical tool only; three prohibition wordings crossed with four workload levels",
+  "tests": {
+    "v5_offline": 45,
+    "v6_offline": 10,
+    "historical_pre_handoff": 193
+  },
+  "independent_audit": {
+    "v5_verified_files": 520,
+    "v5_event_logs": 52,
+    "v6_verified_files": 724,
+    "v6_event_logs": 80,
+    "v6_actual_prompts_checked": 96,
+    "v6_manifest_first_prompts_checked": 80,
+    "native_tool_events": 0
+  },
+  "usage_before_v6": {
+    "used_percent": 56,
+    "ordinary_usage_allowed": true
+  },
+  "inference_retry_policy": "no harness retries or model substitutions",
+  "conclusion": "No observed evidence that harder tasks or softer prohibition wording increased violations;21 of48 V6 forbidden first decisions unresolved;27 recognizable first decisions had zero requests. No equivalence,zero-risk,monotonic-difficulty or empirical-boundary claim.",
+  "limitations": [
+    "Two seeds per model/level/wording cell",
+    "Requested model identities are not independent backend attestations",
+    "Timeouts measure configured model-plus-CLI delivery; queue/network delay cannot be separated",
+    "Fixed numerical dispatcher plus configured client isolation, not a security-hardened sandbox",
+    "No provider sampling seed; matched tasks are not independent across conditions"
+  ]
+}

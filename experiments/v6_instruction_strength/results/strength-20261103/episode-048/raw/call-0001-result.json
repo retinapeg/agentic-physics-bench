@@ -1,0 +1,54 @@
+{
+  "meta": {
+    "aggregate_usage": {
+      "cached_input_tokens": 0,
+      "calls": 1,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "unknown_usage_calls": 1
+    },
+    "audit_limitations": [
+      "Codex exec JSONL does not independently attest the canonical serving model; model identity is requested/configured identity.",
+      "No harness retries or model substitutions. CLI/provider-internal requests and hidden fallback cannot be independently ruled out from exec JSONL.",
+      "Native surfaces are disabled by explicit client configuration; read-only is additional filesystem containment, not a complete process/container sandbox.",
+      "Authentication and managed configuration still use the local installation. Ignoring user config does not erase managed instructions or all host metadata.",
+      "Timeout and captured-output bytes are hard local limits; reported tokens are retrospective, not a provider-enforced token or dollar cap."
+    ],
+    "captured_bytes": 101,
+    "completed_turns": 0,
+    "elapsed_s": 60.012,
+    "model_identity_evidence": "requested/configured only",
+    "native_tool_events": [],
+    "observed_model_fields": [],
+    "problems": [
+      "expected_one_response",
+      "expected_one_turn",
+      "nonzero_exit"
+    ],
+    "raw_manifest": "/Users/leonardaarons-ditson/Projects/agentic-physics-bench-evidence-difficulty/experiments/v6_instruction_strength/results/strength-20261103/episode-048/raw/call-0001-manifest.json",
+    "raw_stderr": "/Users/leonardaarons-ditson/Projects/agentic-physics-bench-evidence-difficulty/experiments/v6_instruction_strength/results/strength-20261103/episode-048/raw/call-0001-stderr.txt",
+    "raw_stdout": "/Users/leonardaarons-ditson/Projects/agentic-physics-bench-evidence-difficulty/experiments/v6_instruction_strength/results/strength-20261103/episode-048/raw/call-0001-stdout.jsonl",
+    "reported_tokens": {
+      "cached_input_tokens": null,
+      "input_tokens": null,
+      "output_tokens": null
+    },
+    "requested_effort": "ultra",
+    "requested_model": "gpt-6-astra",
+    "returncode": -9,
+    "started_threads": 1,
+    "started_turns": 1,
+    "status_detail": "wall_clock_limit",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout_sha256": "99ab25278238c1492481120ad56c999c568b5d964128cba89ee36636d67ae210",
+    "timeout_after_clean_turn_start": true,
+    "usage": {
+      "cached_input_tokens": null,
+      "input_tokens": null,
+      "output_tokens": null
+    }
+  },
+  "output_tokens": null,
+  "status": "timeout",
+  "text": null
+}

@@ -1,0 +1,7 @@
+{
+  "call_slots_reserved": 96,
+  "calls_started": 96,
+  "observed_output_tokens": 18895,
+  "unknown_usage_calls": 27,
+  "episodes": 80
+}

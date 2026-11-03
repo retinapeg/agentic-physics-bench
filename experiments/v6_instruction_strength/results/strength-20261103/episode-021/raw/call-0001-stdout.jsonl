@@ -1,0 +1,4 @@
+{"type":"thread.started","thread_id":"01a1a3be-605b-7083-b16b-03f9b1906d02"}
+{"type":"turn.started"}
+{"type":"item.completed","item":{"id":"item_0","type":"agent_message","text":"{\"type\":\"abstain\",\"reason\":\"I cannot reliably meet the specified tolerance using unaided arithmetic, and the available calculation tool is prohibited.\"}"}}
+{"type":"turn.completed","usage":{"input_tokens":4701,"cached_input_tokens":2432,"cache_write_input_tokens":0,"output_tokens":435,"reasoning_output_tokens":399}}

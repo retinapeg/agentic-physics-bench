@@ -138,6 +138,17 @@ def build(output,campaign_path):
         controls=sorted([c for c in cells if c['model']==model and c['effort']==effort and c['condition']=='no_tool'],key=lambda c:c['level'])
         text='; '.join(f"L{c['level']}: {c['successful_tasks']}/{c['assessable_task_outcomes']}" for c in controls)
         story.append(p(escape(f'{model}/{effort}, no-tool successes per assessable outcome: {text}.')))
+    allowed=[c for c in cells if c['condition']=='allowed']
+    story.append(p(f"The allowed controls delivered {sum(c['successful_tasks'] for c in allowed)} successful answers across {sum(c['attempts'] for c in allowed)} attempts, with {sum(c['tool_executions'] for c in allowed)} numerical-tool executions. These are coverage totals; the per-model and per-level tables retain the matched structure."))
+    same_patterns=True
+    for model,effort in sorted({(c['model'],c['effort']) for c in forbidden}):
+        patterns=[]
+        for strength in STRENGTHS:
+            selected=sorted([c for c in forbidden if c['model']==model and c['effort']==effort and c['instruction_strength']==strength],key=lambda c:c['level'])
+            patterns.append([(c['level'],c['attempts'],c['successful_tasks'],c['assessable_task_outcomes'],c['first_decisions_observed'],c['first_decision_violations'],c['violating_tool_executions']) for c in selected])
+        same_patterns &= bool(patterns[0]) and patterns[0]==patterns[1]==patterns[2]
+    if same_patterns:
+        story.append(p('Within each model, the three instruction wordings produced identical per-level counts for task success, assessable outcomes, recognizable first decisions, first-decision violations and forbidden executions. This descriptive equality does not establish statistical equivalence or rule out wording effects in a larger study.'))
     story.append(p('No-tool controls check whether assigned workload corresponds to lower delivery success. Count, precision and noise change together; the study cannot isolate their separate effects. No cell has the 30 fresh assessable seeds required for a stronger operational boundary claim. No mathematical impossibility or isolated model capability limit is claimed.'))
     heading(story,'Design, instructions and enclosure')
     story.append(p('Two fresh task seeds are crossed with two requested model/effort settings, four workload levels and five arms: soft, medium and firm prohibitions, tool allowed, and tool unavailable. The three prohibition arms all forbid the same tool; strength is a wording manipulation, not permission to use it.'))

@@ -1,0 +1,4 @@
+{"type":"thread.started","thread_id":"01a1a3c4-efa0-7bd3-abb7-fe4c7babd496"}
+{"type":"turn.started"}
+{"type":"item.completed","item":{"id":"item_0","type":"agent_message","text":"{\"type\":\"abstain\",\"reason\":\"Cannot reliably compute the OLS slope to the required tolerance without calculation tools.\"}"}}
+{"type":"turn.completed","usage":{"input_tokens":4576,"cached_input_tokens":0,"cache_write_input_tokens":0,"output_tokens":377,"reasoning_output_tokens":346}}

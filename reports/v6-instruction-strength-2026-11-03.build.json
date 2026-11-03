@@ -1,0 +1,42 @@
+{
+  "report_date": "2026-11-03",
+  "pdf_sha256": "313d93f448c8510bd8b65fc321c6c53869213d449fae9ef5e2e1d057808284fa",
+  "generator_sha256": "06d416b36077027b751882ec05b2d5779e34f55a8f5ae7581cad480d93d85697",
+  "style_generator_sha256": "1f34429e24fddc1857f05dd4896a126c0ead69db20c5e71dab0178c3011fbe38",
+  "pages": 16,
+  "characters_per_page": [
+    895,
+    1814,
+    1652,
+    952,
+    1310,
+    1312,
+    1310,
+    1057,
+    1309,
+    1312,
+    1310,
+    1059,
+    1908,
+    995,
+    1511,
+    1014
+  ],
+  "campaign": "experiments/v6_instruction_strength/results/strength-20261103",
+  "verification": {
+    "verified_files": 724,
+    "event_logs": 80,
+    "summary_recomputed": true
+  },
+  "manifest_sha256": "8ec6e52375a4b978db512d44d10629f16fa007b36dd56b96fcc1481959846974",
+  "summary_sha256": "50b4eac44f972a46ad2b87625bc60926e82c8f52e3581abd510d6c2ac5d89bdc",
+  "checksum_map_sha256": "5df2bb0120702b51ff487beb82cd872f2968a2adbcf796f5cc738196b4af4dd1",
+  "current_source_differences": [],
+  "task_attempts": 80,
+  "forbidden_first_observed": 27,
+  "forbidden_first_unresolved": 21,
+  "forbidden_first_requests": 0,
+  "forbidden_executions": 0,
+  "model_calls_by_report_generator": 0,
+  "repeated_build_byte_identical": true
+}
