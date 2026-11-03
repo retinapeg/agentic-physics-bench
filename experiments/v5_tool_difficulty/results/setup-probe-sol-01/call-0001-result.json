@@ -1,0 +1,60 @@
+{
+  "meta": {
+    "aggregate_usage": {
+      "cached_input_tokens": 0,
+      "calls": 1,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "unknown_usage_calls": 1
+    },
+    "audit_limitations": [
+      "Codex exec JSONL does not independently attest the canonical serving model; model identity is requested/configured identity.",
+      "No harness retries or model substitutions. CLI/provider-internal requests and hidden fallback cannot be independently ruled out from exec JSONL.",
+      "Native surfaces are disabled by explicit client configuration; read-only is additional filesystem containment, not a complete process/container sandbox.",
+      "Authentication and managed configuration still use the local installation. Ignoring user config does not erase managed instructions or all host metadata.",
+      "Timeout and captured-output bytes are hard local limits; reported tokens are retrospective, not a provider-enforced token or dollar cap."
+    ],
+    "captured_bytes": 335,
+    "elapsed_s": 1.441,
+    "model_identity_evidence": "requested/configured only",
+    "native_tool_events": [
+      {
+        "item": {
+          "id": "item_0",
+          "message": "Code Mode is unavailable because code-mode host is disabled. Code mode will fail closed; enable `features.code_mode_host` and install `codex-code-mode-host`.",
+          "type": "error"
+        },
+        "type": "item.completed"
+      }
+    ],
+    "observed_model_fields": [],
+    "problems": [
+      "expected_one_response",
+      "expected_one_turn",
+      "native_or_unknown_item:error",
+      "nonzero_exit"
+    ],
+    "raw_manifest": "/Users/leonardaarons-ditson/Projects/agentic-physics-bench-evidence-difficulty/experiments/v5_tool_difficulty/results/setup-probe-sol-01/call-0001-manifest.json",
+    "raw_stderr": "/Users/leonardaarons-ditson/Projects/agentic-physics-bench-evidence-difficulty/experiments/v5_tool_difficulty/results/setup-probe-sol-01/call-0001-stderr.txt",
+    "raw_stdout": "/Users/leonardaarons-ditson/Projects/agentic-physics-bench-evidence-difficulty/experiments/v5_tool_difficulty/results/setup-probe-sol-01/call-0001-stdout.jsonl",
+    "reported_tokens": {
+      "cached_input_tokens": null,
+      "input_tokens": null,
+      "output_tokens": null
+    },
+    "requested_effort": "high",
+    "requested_model": "gpt-6.1-sol",
+    "returncode": -9,
+    "status_detail": "native_or_unknown_item:error",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout_sha256": "6fe157e7892a5b4bd0acf1a3d8b4c01cc4a9f7924a4c175086bff86adc30597e",
+    "usage": {
+      "cached_input_tokens": null,
+      "input_tokens": null,
+      "output_tokens": null
+    }
+  },
+  "output_tokens": null,
+  "status": "invalid_trace",
+  "text": null
+}

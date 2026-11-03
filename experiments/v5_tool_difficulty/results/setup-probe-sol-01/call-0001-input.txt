@@ -1,0 +1,1 @@
+Return exactly {"ready":true}. This is an interface readiness probe, not a task trial.
