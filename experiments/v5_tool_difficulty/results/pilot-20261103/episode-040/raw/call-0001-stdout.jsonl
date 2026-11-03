@@ -1,0 +1,4 @@
+{"type":"thread.started","thread_id":"01a1a3b5-d4f0-7bf0-bf95-8937f7fe5cf2"}
+{"type":"turn.started"}
+{"type":"item.completed","item":{"id":"item_0","type":"agent_message","text":"{\"type\":\"abstain\",\"reason\":\"Cannot reliably compute the OLS slope to the required 1e-05 accuracy within the no-tool budget.\"}"}}
+{"type":"turn.completed","usage":{"input_tokens":7761,"cached_input_tokens":0,"cache_write_input_tokens":0,"output_tokens":165,"reasoning_output_tokens":127}}

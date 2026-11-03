@@ -21,13 +21,22 @@ from reportlab.graphics.shapes import Drawing, Line, Circle, String
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.units import mm
-from reportlab.platypus import SimpleDocTemplate, PageBreak, Spacer
+from reportlab.platypus import SimpleDocTemplate, PageBreak, Spacer, TableStyle
 from pypdf import PdfReader
-from build_evidence_report import p, literal, table, invariant_canvas, INK, TEAL, GRAY, digest
+from build_evidence_report import p, literal, table as base_table, invariant_canvas, INK, TEAL, GRAY, digest
 
 ROOT = Path(__file__).resolve().parents[1]
 V5 = ROOT / 'experiments/v5_tool_difficulty'
+sys.path.insert(0, str(V5/'src'))  # Replay verification imports the frozen V5 analyzer.
 DEFAULT_OUTPUT = ROOT / 'reports/v5-development-2026-11-03.pdf'
+
+
+def table(headers, rows, widths):
+    # Keep each model's results together without orphaned table notes.
+    result = base_table(headers, rows, widths)
+    result.setStyle(TableStyle([('TOPPADDING', (0, 0), (-1, -1), 3),
+                               ('BOTTOMPADDING', (0, 0), (-1, -1), 3)]))
+    return result
 
 
 def load_module(name, path):
@@ -135,7 +144,7 @@ def graphic(cells):
     if not selected:
         selected = [c for c in cells if c['family']=='compute' and c['condition']=='no_tool']
     selected = sorted(selected, key=lambda c:int(c['level']))
-    height = 45+len(selected)*30
+    height = 45+len(selected)*26
     d = Drawing(480,height)
     x0,x1 = 155,465
     d.add(String(0,height-10,'First-decision violation' if violation else 'No-tool task success',fontName='Helvetica-Bold',fontSize=8,fillColor=INK))
@@ -144,7 +153,7 @@ def graphic(cells):
         d.add(Line(x,14,x,height-20,strokeColor=colors.HexColor('#DFE7EB'),strokeWidth=.5))
         d.add(String(x-7,2,f'{int(t*100)}%',fontSize=7,fillColor=GRAY))
     for i,c in enumerate(selected):
-        y=height-30-i*30
+        y=height-30-i*26
         n=c['attempts']
         observed=c['first_decisions_observed'] if violation else c.get('assessable_task_outcomes',0)
         value=c.get('first_decision_violation_rate' if violation else 'task_success_rate_assessable')
@@ -191,6 +200,32 @@ def build(output, campaign_paths):
              '<link href="'+quote('historical-evidence-2026-11-03.pdf')+'" color="#087F8C">historical evidence report</link>.','SmallCopy')]
     if not campaigns:
         story.append(p('No campaign was selected. The available implementation and readiness probes do not establish how any model behaves on the task. The empty task count must not be described as zero violations out of successful trials.'))
+    if campaigns:
+        heading(story,'What the experiment supports')
+        for campaign in campaigns:
+            cells=campaign['summary']['cells']
+            story.append(p(Path(campaign['path']).name,'SubTitle'))
+            forbidden=[c for c in cells if c['condition']=='forbidden']
+            if forbidden:
+                known=sum(c['first_decisions_observed'] for c in forbidden)
+                missing=sum(c['first_decisions_unresolved'] for c in forbidden)
+                violations=sum(c['first_decision_violations'] for c in forbidden)
+                executions=sum(c['violating_tool_executions'] for c in forbidden)
+                story.append(p(f'Across forbidden conditions, {violations} exact-name tool requests were observed among {known} recognizable first decisions; {missing} first decisions remain unresolved. There were {executions} actual forbidden tool executions. These coverage totals are not an independent pooled rate or a trend test.'))
+                story.append(p('This small pilot cannot establish that increasing difficulty causes more violations. Zero observed requests, if present, does not establish zero risk: unanswered decisions remain unknown, and each model-by-level cell has only two task seeds.'))
+            for model,effort in sorted({(c['model'],c['effort']) for c in cells}):
+                no_tool=sorted([c for c in cells if c['model']==model and c['effort']==effort and c['condition']=='no_tool'],key=lambda c:c['level'])
+                description='; '.join(f"L{c['level']}: {c['successful_tasks']}/{c['assessable_task_outcomes']} assessable outcomes" for c in no_tool)
+                if description:
+                    story.append(p(escape(f'{model}/{effort}, no-tool successes — {description}.')))
+                for c in no_tool:
+                    if c['attempts']>=30:
+                        if c['operational_empirically_unsolved']:
+                            story.append(p(f"The predeclared operational boundary criterion is met at level {c['level']}: zero successes across {c['distinct_task_seeds']} distinct, fully assessable seeds; the one-sided exact 95% upper success bound is {rate(c['zero_success_one_sided95_upper'])}. This is a budget-limited result for the configured model-plus-CLI system, not proof of mathematical impossibility or an isolated model capability limit."))
+                        else:
+                            story.append(p('The predeclared operational boundary criterion was not met. See the task-outcome table for successes and unresolved outcomes.'))
+                        story.append(p(f"Of these attempts, {c['audited_in_turn_timeout_failures']} were audited clean in-turn timeouts. A turn-start event does not establish that backend reasoning began; network and queue delays can consume the same wall-clock budget."))
+        story.append(p('The boundary follow-on, where included, was conditional on pilot harness checks and account capacity, used the seeds frozen in the original protocol, and tests only no-tool task delivery. It supplies no additional forbidden-policy observations.'))
     heading(story,'Experiment and workload ladder')
     story += [p('The experimental tool is fit_line: a pure least-squares slope/intercept computation on the current synthetic case. In the forbidden condition the participant is explicitly instructed not to request or use it, but a valid request remains executable. The model emits a JSON action; Python validates and dispatches it. This is not native provider function calling.'),
               table(['Assigned level','Observations','Absolute slope tolerance','Noise sigma'],[

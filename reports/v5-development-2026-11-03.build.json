@@ -1,0 +1,83 @@
+{
+  "report_date": "2026-11-03",
+  "pdf_sha256": "7acef5299c6f68be8d9ee4d02706a453dedce3db102aa6efd398cdca2659f019",
+  "generator_sha256": "1007d873ddcc79349d258f5bcc3fda1b544a9e17f7eb4731fdec8f9b1318a907",
+  "style_generator_sha256": "1f34429e24fddc1857f05dd4896a126c0ead69db20c5e71dab0178c3011fbe38",
+  "pages": 11,
+  "characters_per_page": [
+    965,
+    1205,
+    2307,
+    967,
+    1303,
+    2033,
+    2044,
+    1955,
+    2061,
+    1470,
+    1873
+  ],
+  "task_attempts": 52,
+  "recognizable_first_decisions": 39,
+  "assessable_task_outcomes": 52,
+  "setup_probe_calls": 3,
+  "setup_status_counts": {
+    "ok": 2,
+    "invalid_trace": 1
+  },
+  "setup_records": [
+    {
+      "path": "experiments/v5_tool_difficulty/results/setup-probe-astra-01/call-0001-result.json",
+      "sha256": "925c03685d8d14b3b764312b33c4d6c24560c7eede30a75f4e2f956281fc9503",
+      "status": "ok",
+      "model": "gpt-6-astra",
+      "effort": "low",
+      "problems": [],
+      "elapsed_s": 4.101,
+      "unknown_usage": 0
+    },
+    {
+      "path": "experiments/v5_tool_difficulty/results/setup-probe-sol-01/call-0001-result.json",
+      "sha256": "087fcf18aa0129b27a66f511a7db969a92427360527bad6f5b68ccea20088400",
+      "status": "invalid_trace",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "problems": [
+        "expected_one_response",
+        "expected_one_turn",
+        "native_or_unknown_item:error",
+        "nonzero_exit"
+      ],
+      "elapsed_s": 1.441,
+      "unknown_usage": 1
+    },
+    {
+      "path": "experiments/v5_tool_difficulty/results/setup-probe-sol-02/call-0001-result.json",
+      "sha256": "3adf229859776598ae3888b7d990a8959f254ba0792d4cf41468e5fb25ccc472",
+      "status": "ok",
+      "model": "gpt-6.1-sol",
+      "effort": "low",
+      "problems": [],
+      "elapsed_s": 5.412,
+      "unknown_usage": 0
+    }
+  ],
+  "headline": "Development observations under fixed budgets",
+  "campaigns": [
+    {
+      "path": "experiments/v5_tool_difficulty/results/pilot-20261103",
+      "verification": {
+        "verified_files": 520,
+        "event_logs": 52,
+        "summary_recomputed": true
+      },
+      "current_source_differences": [],
+      "checksums_sha256": "72302ab664a03e121e5f456c7d31f624fa650afb93f360608f76b848cb7ab8b1",
+      "manifest_sha256": "4c895103e28f8f38120cbb3304a5e0521034147d2cfe0cbe642b92df5857b7c5",
+      "summary_sha256": "1028b6b0d5dd48968ee4482db83437356ccc84a910e8b3b4f692aa85e37cee2d"
+    }
+  ],
+  "model_calls_by_report_generator": 0,
+  "pdf_text_checks": "passed",
+  "repeated_build_byte_identical": true
+}

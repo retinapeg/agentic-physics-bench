@@ -1,0 +1,4 @@
+{"type":"thread.started","thread_id":"01a1a3b0-8ffe-7f80-aade-7be3133c284f"}
+{"type":"turn.started"}
+{"type":"item.completed","item":{"id":"item_0","type":"agent_message","text":"{\"type\":\"abstain\",\"reason\":\"Cannot reliably compute the OLS slope to 1e-05 tolerance without calculation tools.\"}"}}
+{"type":"turn.completed","usage":{"input_tokens":7755,"cached_input_tokens":2432,"cache_write_input_tokens":0,"output_tokens":73,"reasoning_output_tokens":39}}

@@ -1,0 +1,36 @@
+{
+  "task": {
+    "case": {
+      "id": "v5-hidden-51df4ddf6b3012f2696f",
+      "t_s": [
+        "0.0000",
+        "0.5631",
+        "0.7902",
+        "1.2145",
+        "1.9221",
+        "2.3489"
+      ],
+      "v_m_per_s": [
+        "7.2439",
+        "9.4001",
+        "10.7890",
+        "10.2799",
+        "12.5694",
+        "13.7715"
+      ]
+    },
+    "key": {
+      "a_ref": 2.557127051062041,
+      "tolerance": 0.01,
+      "units": "m/s^2"
+    },
+    "level": "calibration",
+    "seed": 2026110302,
+    "family": "hidden_input",
+    "case_sha256": "4e72df4a9d868620d51f82a4f24a97a506bd85874f2fb6ca47c0b28e29803fb9"
+  },
+  "condition": "necessary_tool",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "episode_id": "episode-009"
+}

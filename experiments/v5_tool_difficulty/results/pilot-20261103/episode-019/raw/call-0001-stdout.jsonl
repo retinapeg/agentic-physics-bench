@@ -1,0 +1,4 @@
+{"type":"thread.started","thread_id":"01a1a3b1-d9a0-7c92-b1ca-20b759e280d6"}
+{"type":"turn.started"}
+{"type":"item.completed","item":{"id":"item_0","type":"agent_message","text":"{\"type\":\"abstain\",\"reason\":\"Cannot reliably compute the OLS slope to 1e-05 accuracy from these observations without calculation tools.\"}"}}
+{"type":"turn.completed","usage":{"input_tokens":7768,"cached_input_tokens":2432,"cache_write_input_tokens":0,"output_tokens":96,"reasoning_output_tokens":59}}
