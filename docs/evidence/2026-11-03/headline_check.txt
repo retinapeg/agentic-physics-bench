@@ -1,0 +1,39 @@
+| Claim | Recomputed | Published | Source | Match |
+|---|---|---|---|---|
+| V1 scored episodes: valid / planned | 24/24 | 24/24 | `results/episodes_scored.jsonl` | yes |
+| V1 scored model calls | 24 | 24 | `results/episodes_scored.jsonl` | yes |
+| V1 correct, direct answer | 12/12 | 12/12 | `results/episodes_scored.jsonl` | yes |
+| V1 correct, optional fit_line workflow | 12/12 | 12/12 | `results/episodes_scored.jsonl` | yes |
+| V1 optional fit_line requested | 0/12 | 0/12 | `results/episodes_scored.jsonl` | yes |
+| V2 scored episodes: valid / planned (18 tasks x 3 conditions x 3 repetitions) | 162/162 | 162/162 | `results/v2/episodes_scored.jsonl` | yes |
+| V2 scored model calls | 324 | 324 | `results/v2/episodes_scored.jsonl` | yes |
+| V2 correct, no tool | 54/54 | 54/54 | `results/v2/episodes_scored.jsonl` | yes |
+| V2 correct, optional tool | 54/54 | 54/54 | `results/v2/episodes_scored.jsonl` | yes |
+| V2 correct, required tool | 54/54 | 54/54 | `results/v2/episodes_scored.jsonl` | yes |
+| V2 optional tool requested | 54/54 | 54/54 | `results/v2/episodes_scored.jsonl` | yes |
+| V2 optional tool requested by group (easy, moderate, hard) | 18/18, 18/18, 18/18 | 18/18, 18/18, 18/18 | `results/v2/episodes_scored.jsonl` | yes |
+| V2 required-tool compliance | 54/54 | 54/54 | `results/v2/episodes_scored.jsonl` | yes |
+| V2 executed tool results relayed within tolerance | 108/108 | 108/108 | `results/v2/episodes_scored.jsonl` | yes |
+| V2 tasks tied in each paired comparison (opt-none, req-none, req-opt) | 18/18, 18/18, 18/18 | 18/18, 18/18, 18/18 | `results/v2/episodes_scored.jsonl` | yes |
+| V2 tasks with mixed outcomes over repetitions (none, opt, req) | 0, 0, 0 | 0, 0, 0 | `results/v2/episodes_scored.jsonl` | yes |
+| V2 no-tool first-turn answers correct | 53/54 | 53/54 | `results/v2/episodes_scored.jsonl` | yes |
+| V2 no-tool median reported thinking tokens per call (easy, moderate, hard) | 621, 2298, 5314 | 621, 2298, 5314 | `results/v2/episodes_scored.jsonl` | yes |
+| V2 median s per call: no tool by group (easy, moderate, hard); optional; required | 10, 26, 55; 5; 5 | 10, 26, 55; 5; 5 | `results/v2/episodes_scored.jsonl` | yes |
+| V2 median reported thinking tokens per call: optional; required | 0; 0 | 0; 0 | `results/v2/episodes_scored.jsonl` | yes |
+| V2 scored calls that timed out | 0 | 0 | `results/v2/episodes_scored.jsonl` | yes |
+| Deterministic least-squares solver on the held-out tasks: V1; V2 | 12/12; 18/18 | 12/12; 18/18 | `data/scored_*.jsonl, data/v2/scored_*.jsonl` | yes |
+| V2 scored calls: claude-opus-5 only, no server-side tool | 324/324 | 324/324 | `results/v2/episodes_scored.jsonl (per-call cli.models_used, server_tool_uses, iteration_types)` | yes |
+| V2 development calls in committed records (stages 1-4, unique); +2 (smoke, probe) outside the repo | 96 | 96 | `results/v2/dev_stage{1,2,3}/episodes_dev.jsonl, results/v2/episodes_dev.jsonl` | yes |
+| V2 dev stages 1-2: calls in which a second model ran (unique calls) | 31/48 | 31/48 | `results/v2/dev_stage{1,2}/advisor_audit.json` | yes |
+| V2 dev stages 1-2: episodes with at least one such call (unique) | 21/24 | 21/24 | `results/v2/dev_stage{1,2}/advisor_audit.json` | yes |
+| V2 dev stage 1; stage 2 (12 of stage 2's records were carried over from stage 1) | 24/36; 25/36 | 24/36; 25/36 | `results/v2/dev_stage{1,2}/advisor_audit.json` | yes |
+| V2 dev stage 1 (void: second model present), correct over all conditions | 18/18 | 18/18 | `results/v2/dev_stage1/episodes_dev.jsonl` | yes |
+| V2 dev stage 1 (void: second model present), no tool correct | 6/6 | 6/6 | `results/v2/dev_stage1/episodes_dev.jsonl` | yes |
+| V2 dev stages 3-4: calls with claude-opus-5 only, no server-side tool | 48/48 | 48/48 | `results/v2/dev_stage3/episodes_dev.jsonl, results/v2/episodes_dev.jsonl` | yes |
+| V2 dev stage 3 (earlier wording), no tool correct (easy, moderate, hard) | 2/2, 1/2, 0/2 | 2/2, 1/2, 0/2 | `results/v2/dev_stage3/episodes_dev.jsonl` | yes |
+| V2 dev stage 3, moderate and hard no-tool turn-1 replies that attempted code | 4/4 | 4/4 | `results/v2/dev_stage3/episodes_dev.jsonl` | yes |
+| V2 dev final wording (stage 4), no tool correct | 6/6 | 6/6 | `results/v2/episodes_dev.jsonl` | yes |
+
+Raw CLI traces (results/raw/, gitignored) not present: the raw re-derivation was skipped, not passed.
+
+0 mismatches.

@@ -1,0 +1,471 @@
+{
+  "schema_version": 1,
+  "audit_date": "2026-11-03",
+  "scope": "Historical evidence only. New experiments have separate provenance and results. Claims distinguish recomputed counts, historical reports, and unavailable raw verification.",
+  "baseline_commit": "890ec11e4c46c6b74f18f0f03991bd609e83def3",
+  "baseline_archive_directory": "/Users/leonardaarons-ditson/Documents/ChatGPT/organise mysefl/physics-evidence-baseline-2026-11-03",
+  "baseline_file_count": 244,
+  "baseline_manifest_sha256": "e659c2bea1a175873bafd6b1fffd5a6cdfa268e2c875872ba7d4febc44632b45",
+  "refs": {
+    "refs/heads/main": {
+      "object_id": "890ec11e4c46c6b74f18f0f03991bd609e83def3",
+      "commit_id": "890ec11e4c46c6b74f18f0f03991bd609e83def3"
+    },
+    "refs/remotes/origin/HEAD": {
+      "object_id": "890ec11e4c46c6b74f18f0f03991bd609e83def3",
+      "commit_id": "890ec11e4c46c6b74f18f0f03991bd609e83def3"
+    },
+    "refs/remotes/origin/main": {
+      "object_id": "890ec11e4c46c6b74f18f0f03991bd609e83def3",
+      "commit_id": "890ec11e4c46c6b74f18f0f03991bd609e83def3"
+    },
+    "refs/remotes/origin/research/analytical-physics": {
+      "object_id": "9d1256298bb7459a5ee60f56ec8d790d0a7097ac",
+      "commit_id": "9d1256298bb7459a5ee60f56ec8d790d0a7097ac"
+    },
+    "refs/tags/archive/backup/v2-tool-policy-first-push": {
+      "object_id": "b8e68fe8a72542392d8b22bd7214428ff9eeae78",
+      "commit_id": "b8e68fe8a72542392d8b22bd7214428ff9eeae78"
+    },
+    "refs/tags/archive/docs/architecture": {
+      "object_id": "56b4ed85510ccf9ba3e9cdb8d5342567760da207",
+      "commit_id": "56b4ed85510ccf9ba3e9cdb8d5342567760da207"
+    },
+    "refs/tags/archive/freeze/tool-use-study": {
+      "object_id": "07c3689508fdb6b6471b0a73a0d00a20276cc1cc",
+      "commit_id": "07c3689508fdb6b6471b0a73a0d00a20276cc1cc"
+    },
+    "refs/tags/archive/v2/tool-policy": {
+      "object_id": "81d03423e8e5ebf59eb25af1f413ac0caa35530f",
+      "commit_id": "81d03423e8e5ebf59eb25af1f413ac0caa35530f"
+    },
+    "refs/tags/archive/v3-forbidden-tool": {
+      "object_id": "085576b451e1de500067496e9e0c9e498a41f21f",
+      "commit_id": "085576b451e1de500067496e9e0c9e498a41f21f"
+    },
+    "refs/tags/archive/v3/design-review": {
+      "object_id": "efc0723f431852332ed6bc6c69fae590fba6777e",
+      "commit_id": "efc0723f431852332ed6bc6c69fae590fba6777e"
+    },
+    "refs/tags/tool-use-study-final": {
+      "object_id": "508bc513c63f4341f7d2ad02e1e1f04a0c6b68af",
+      "commit_id": "0189c4b2c9a5a201c5d0ff831ffaa0d13b7c0853"
+    },
+    "refs/tags/v0-protocol-freeze": {
+      "object_id": "4c3d66ff7bb7b6725dc40ca80217efcc35095d93",
+      "commit_id": "f504c574f9e056dae8a40ef3a86246b577b0c4ed"
+    },
+    "refs/tags/v1.0.0": {
+      "object_id": "70f65aa8c0ac9d8ccf50f8a54e54d9f37e8cf23b",
+      "commit_id": "8d336d8302ecf76b6bcabf7afc37ab817a0630ea"
+    },
+    "refs/tags/v2.0.0": {
+      "object_id": "68c1cc4898c2a01a920663bab640f986ad08b9ea",
+      "commit_id": "68106835b31935b4fb08210456210ec2b20ea52c"
+    },
+    "refs/tags/v3-protocol-freeze": {
+      "object_id": "a66ee7bee7757c4ea53170200d25186775f1e545",
+      "commit_id": "9a2d6b2985c2e197bb1ff1597eacae98494a58d6"
+    },
+    "refs/tags/v3.0.1-protocol-freeze": {
+      "object_id": "c243032df4b76884b02a2e9ff3a6775c42536f63",
+      "commit_id": "1b95a4f3984ab1a555ddba9cd1c22fa511161805"
+    }
+  },
+  "sources": [
+    {
+      "path": "README.md",
+      "bytes": 6385,
+      "sha256": "a2e4fde9ff2738a8556ee0a1cdb2f98b017958a6e9e95e4c18e640eeaa3623cf"
+    },
+    {
+      "path": "EXPERIMENT.md",
+      "bytes": 16432,
+      "sha256": "5b79f6b7d16023cb999f5adde7d912250cadf5105c1a5e4fbe4ad048947427a2"
+    },
+    {
+      "path": "EXPERIMENT_V2.md",
+      "bytes": 19944,
+      "sha256": "c01b6d9def410e3fca6dba8f1e1a45dd435181fc81c9611385eebe413e6279bc"
+    },
+    {
+      "path": "RESEARCH_LOG.md",
+      "bytes": 62315,
+      "sha256": "5992c271ec75b5dad77caac6f69d26e20994c8ca170de26360f250eb176cd3b3"
+    },
+    {
+      "path": "results/RESULTS_MANIFEST.md",
+      "bytes": 11634,
+      "sha256": "0fed920e40af1f899d379308d0e9f745f6e187d2bbfb4ae76384bd102599b613"
+    },
+    {
+      "path": "docs/HISTORICAL_STATUS.md",
+      "bytes": 5702,
+      "sha256": "96f742a1f9b6afd62ede35344178888e3951c9013f50c27051ef75149ac2ca32"
+    },
+    {
+      "path": "docs/methodology.md",
+      "bytes": 12493,
+      "sha256": "ac573514a6d6715aff4ca8574fccbc71e8f568b29f571c5e2b3a36bd3f1d1bdb"
+    },
+    {
+      "path": "docs/evidence/raw_trace_sha256.txt",
+      "bytes": 56404,
+      "sha256": "93f6f8792510938f3701421ec11bbb43ad68f2cb3a40b9993f8666745fc621b6"
+    },
+    {
+      "path": "src/headline_results.py",
+      "bytes": 15989,
+      "sha256": "1959413b6ccdadc61001ec07041add0e978ddacf5b92840de81b387214cff1cd"
+    },
+    {
+      "path": "results/episodes_scored.jsonl",
+      "bytes": 65024,
+      "sha256": "2786ab4e849942181f70fbd3fb2fd01b0b5fa5b239510760baca6b17617a4484"
+    },
+    {
+      "path": "results/summary.json",
+      "bytes": 7259,
+      "sha256": "dce8d5b29f2509380f8c2158cbf5f1ad658b982d676d28e1b3f01656c61a1df3"
+    },
+    {
+      "path": "results/v2/episodes_scored.jsonl",
+      "bytes": 1105994,
+      "sha256": "940bed819971e407a8220aeeefe227cec1cfd7419dbc7240c8817e8ecd481719"
+    },
+    {
+      "path": "results/v2/summary_scored.json",
+      "bytes": 96000,
+      "sha256": "dd8b908d09c3e93abf782199c5547631f30ae42f7fb249a6e332d554ebbd8d42"
+    },
+    {
+      "path": "results/v2/dev_stage1/advisor_audit.json",
+      "bytes": 9036,
+      "sha256": "6b4f3fcb37bfbca5bce6aa1622f836c090776b497eab931a3ba309b8d8033d4f"
+    },
+    {
+      "path": "results/v2/dev_stage2/advisor_audit.json",
+      "bytes": 9058,
+      "sha256": "24c9ea42e050c66b6daecb9561876fa614e6f533b72ba83e5f1ba00bd79792da"
+    },
+    {
+      "path": "experiments/v3_instruction_compliance/PROTOCOL.md",
+      "bytes": 27533,
+      "sha256": "fa998878c235f672d91ec90995f946108e0d12047efe3537630c09d6d31de636"
+    },
+    {
+      "path": "experiments/v3_instruction_compliance/PILOT_REPORT.md",
+      "bytes": 6894,
+      "sha256": "aafc2d231aa347412256442b0cec409412ee09f8eae1287860a6528d8a95a043"
+    },
+    {
+      "path": "experiments/v3_instruction_compliance/results/summary_dev.md",
+      "bytes": 4311,
+      "sha256": "b6581cefa1877e9ee03854411cb7c8319efd9d69e7f5eeaf2ab0a86112557bc1"
+    },
+    {
+      "path": "experiments/v3_instruction_compliance/results/episodes_dev.jsonl",
+      "bytes": 195439,
+      "sha256": "d79dfa892bd9072ff7cce92ffab26c830a46d4e68433769b52bc26aecc137e32"
+    },
+    {
+      "path": "experiments/v3_instruction_compliance/results/pendulum_episodes_dev.jsonl",
+      "bytes": 51592,
+      "sha256": "5ac2f7f4a452d688525f496631dc8771813bade423c785d99e65e62470622a8f"
+    },
+    {
+      "path": "experiments/v3_instruction_compliance/results/raw_trace_sha256.txt",
+      "bytes": 5808,
+      "sha256": "10f3cd2f53bd58da73a50267f868b4962ae3cfb850cef3fa7ffb439fa35a6de1"
+    },
+    {
+      "path": "experiments/v4_knowledge_vault/PROTOCOL.md",
+      "bytes": 11477,
+      "sha256": "8b51e37f65e456ad8b5c504f06f4803e206eeab9c51409466b88721c273ccfef"
+    },
+    {
+      "path": "experiments/v4_knowledge_vault/DEVELOPMENT_REPORT.md",
+      "bytes": 6491,
+      "sha256": "f520335ce6196d5d9935c69b0a03d0c7b17298ac23bfcbebf0fa0d3e5f01c1c2"
+    },
+    {
+      "path": "experiments/v4_knowledge_vault/results/opus_smoke_verification.json",
+      "bytes": 2432,
+      "sha256": "dfe80a503d218d0da89cb241b29633cb1c1372fd48d9f7b18b57626c0e2a8045"
+    }
+  ],
+  "verification": [
+    {
+      "check": "python3 src/headline_results.py",
+      "exit_code": 0,
+      "result": "0 mismatches for committed record claims; raw trace re-derivation skipped, not passed",
+      "output": "docs/evidence/2026-11-03/headline_check.txt"
+    },
+    {
+      "check": "Deduplicated stage 1/2 audits by (episode_id,turn), requiring duplicate records equal",
+      "unique_calls": 48,
+      "advisor_active_calls": 31,
+      "calls_explicitly_naming_claude_fable_5_1": 28,
+      "source": [
+        "results/v2/dev_stage1/advisor_audit.json",
+        "results/v2/dev_stage2/advisor_audit.json"
+      ]
+    },
+    {
+      "check": "Local V4 successful smoke evidence against shareable verification digest",
+      "run_id": "v4-a600fefc6699478d",
+      "checks": {
+        "run_bytes": true,
+        "events_bytes": true,
+        "manifest_canonical_json": true
+      },
+      "manifest_digest_format": "SHA-256 over sorted compact UTF-8 JSON, not pretty-file bytes"
+    }
+  ],
+  "experiments": [
+    {
+      "name": "V1",
+      "status": "completed historical scored study",
+      "source": [
+        "results/episodes_scored.jsonl",
+        "results/summary.json",
+        "EXPERIMENT.md"
+      ],
+      "model": "claude-opus-5",
+      "cli_version": "2.1.278",
+      "planned_episodes": 24,
+      "recorded_episodes": 24,
+      "model_calls": 24,
+      "tasks": 12,
+      "conditions": {
+        "direct": {
+          "correct": 12,
+          "total": 12
+        },
+        "optional_fit_line": {
+          "correct": 12,
+          "total": 12,
+          "tool_requests": 0
+        }
+      },
+      "limitations": [
+        "Single model, small fixed synthetic set, ceiling on correctness.",
+        "Offering tool had no observed accuracy gain; benefit of executing tool untested.",
+        "No internal algorithm can be inferred from numerical agreement.",
+        "V1 advisor pathway was not disabled; scored trace rescan historically reported one model, but raw traces unavailable here."
+      ]
+    },
+    {
+      "name": "V2",
+      "status": "completed historical scored study",
+      "source": [
+        "results/v2/episodes_scored.jsonl",
+        "results/v2/summary_scored.json",
+        "EXPERIMENT_V2.md"
+      ],
+      "model": "claude-opus-5",
+      "cli_version": "2.1.280",
+      "planned_episodes": 162,
+      "recorded_episodes": 162,
+      "model_calls": 324,
+      "tasks": 18,
+      "repetitions": 3,
+      "conditions": {
+        "no_tool": {
+          "correct": 54,
+          "total": 54
+        },
+        "optional_fit_line": {
+          "correct": 54,
+          "total": 54,
+          "tool_requests": 54
+        },
+        "required_fit_line": {
+          "correct": 54,
+          "total": 54,
+          "compliant": 54
+        }
+      },
+      "limitations": [
+        "All three conditions hit correctness ceiling.",
+        "Repeated tasks are clustered; 54 observations must not be treated as 54 independent task draws.",
+        "V1-to-V2 optional uptake changed with multiple simultaneous prompt, CLI, task, advisor and turn-structure changes; not a causal estimate.",
+        "Scored per-call metadata report one model and no server tools; raw re-derivation unavailable here."
+      ]
+    },
+    {
+      "name": "V2 development stages 1 and 2",
+      "status": "void; retain for provenance and contamination audit",
+      "unique_calls": 48,
+      "advisor_active_calls": 31,
+      "explicit_second_model_calls": 28,
+      "source": [
+        "results/v2/dev_stage1/advisor_audit.json",
+        "results/v2/dev_stage2/advisor_audit.json"
+      ],
+      "limitations": [
+        "Stages overlap; summing their 36+36 calls would double-count 24 carried-over call records.",
+        "31 advisor-active is distinct from 28 naming a second model; summaries using second-model wording for 31 are imprecise.",
+        "Counts verified from committed audits; historical raw trace audit cannot be independently repeated with this checkout."
+      ]
+    },
+    {
+      "name": "V3 pilot",
+      "status": "development only; held-out not started",
+      "source": [
+        "experiments/v3_instruction_compliance/PILOT_REPORT.md",
+        "experiments/v3_instruction_compliance/results/episodes_dev.jsonl",
+        "experiments/v3_instruction_compliance/results/pendulum_episodes_dev.jsonl"
+      ],
+      "model": "claude-fable-5-1",
+      "cli_version": "2.1.296",
+      "arm_a_episodes": 15,
+      "arm_b_episodes": 6,
+      "model_calls": 36,
+      "arm_a_reported_requests": {
+        "A": 2,
+        "B": 0,
+        "C_yes": 3,
+        "C_no": 0,
+        "D": 0
+      },
+      "arm_a_denominator_per_cell": 3,
+      "arm_a_reported_correct": {
+        "A": 3,
+        "B": 3,
+        "C_yes": 3,
+        "C_no": 3,
+        "D": 2
+      },
+      "limitations": [
+        "Pilot counts are descriptive, not confirmatory.",
+        "Prohibited tool denial path unexercised live, only offline.",
+        "No request under prohibited policy is not proof it would execute if requested: existing V3 denies prohibited requests.",
+        "Arm B form-class grader and human reading do not numerically verify entire expressions.",
+        "V3 raw traces unavailable here; hash index has 48 records covering prefreeze and pilot."
+      ]
+    },
+    {
+      "name": "V4 Knowledge Vault",
+      "status": "development smoke tests and deterministic baselines; distinct construct from forbidden tool use",
+      "source": [
+        "experiments/v4_knowledge_vault/DEVELOPMENT_REPORT.md",
+        "experiments/v4_knowledge_vault/results/opus_smoke_verification.json"
+      ],
+      "successful_real_run": {
+        "run_id": "v4-a600fefc6699478d",
+        "models": [
+          "claude-opus-5"
+        ],
+        "inference_calls": 4,
+        "observed_cost_usd": 0.060508000000000006,
+        "utility_successes": 2,
+        "utility_total": 2,
+        "detected_attack_success": false,
+        "valid": true,
+        "complete": true
+      },
+      "limitations": [
+        "One completed development run is not a security efficacy estimate.",
+        "Earlier Fable attempt was incomplete after provider refusal and remains preserved.",
+        "Detector coverage is exact token/selected encodings/schema action; arbitrary semantic leakage is unscored.",
+        "Email-like identifier in an attacker message has unestablished origin; no proof of cross-role context access.",
+        "Deterministic gate baseline executions make no model calls and cannot be pooled with adaptive model runs.",
+        "Reported cost is CLI list-price estimate, not billed charge."
+      ]
+    }
+  ],
+  "missing_evidence": [
+    {
+      "path": "results/raw/",
+      "available": false,
+      "published_hash_index": "docs/evidence/raw_trace_sha256.txt",
+      "indexed_files": 447,
+      "consequence": "V1/V2 raw trace/model provenance audit cannot be rerun here."
+    },
+    {
+      "path": "experiments/v3_instruction_compliance/results/raw/",
+      "available": false,
+      "published_hash_index": "experiments/v3_instruction_compliance/results/raw_trace_sha256.txt",
+      "indexed_files": 48,
+      "consequence": "V3 raw trace provenance audit cannot be rerun here."
+    },
+    {
+      "description": "Two V2 development calls outside repository: smoke and advisor probe",
+      "available": false,
+      "source": [
+        "EXPERIMENT_V2.md",
+        "results/RESULTS_MANIFEST.md"
+      ],
+      "consequence": "98 development calls documented, 96 represented by committed unique episode records."
+    }
+  ],
+  "local_private_evidence": [
+    {
+      "path": "experiments/v4_knowledge_vault/results/raw/",
+      "files": 16
+    },
+    {
+      "path": "experiments/v4_knowledge_vault/results/runs/",
+      "files": 12
+    }
+  ],
+  "discrepancies": [
+    {
+      "issue": "31 advisor-active vs 28 explicit second-model calls",
+      "source": [
+        "README.md",
+        "results/RESULTS_MANIFEST.md",
+        "src/headline_results.py"
+      ],
+      "resolution": "Use precise distinction from current README; historical manifest/headline labels retained unchanged."
+    },
+    {
+      "issue": "Annotated tag object IDs differ from target commit IDs",
+      "resolution": "Inventory stores both. Experimental provenance should cite peeled commit IDs."
+    },
+    {
+      "issue": "V3 v3.0.1 freeze commit message says 51 files; manifest has 49",
+      "source": "RESEARCH_LOG.md",
+      "resolution": "Use manifest count 49 plus 15 dependencies, as historical correction records."
+    },
+    {
+      "issue": "Manifest hash format differs from file byte hash in V4",
+      "resolution": "Published manifest_sha256 is canonical JSON digest; both record and event byte hashes match."
+    },
+    {
+      "issue": "Frozen V1/V2 module docstrings were edited after release",
+      "source": "docs/HISTORICAL_STATUS.md",
+      "resolution": "Replay analysis on current code; new model reruns of historical protocol must use release tag and exact historical CLI. Do not claim current whole-file bytes equal protocol freeze."
+    }
+  ],
+  "branch_integration": {
+    "method": "archival merge",
+    "merge_commit": "90b8d399b3ed8e922d371ce56202effc8b3f0704",
+    "source_commit": "9d1256298bb7459a5ee60f56ec8d790d0a7097ac",
+    "source_changed_files": 7,
+    "source_branch_only_commits": 8,
+    "new_source_or_results": false,
+    "unchanged_main_tracked_files_verified": 216,
+    "archive_manifest": "docs/archive/analytical-physics/ARCHIVE_MANIFEST.json",
+    "unmerged_archives": [
+      {
+        "ref": "archive/v3-forbidden-tool",
+        "commit": "085576b451e1de500067496e9e0c9e498a41f21f",
+        "reason": "Explicitly unreviewed draft; 22 files / 1731 lines. Preserve archive, do not import over reviewed V3."
+      },
+      {
+        "ref": "archive/backup/v2-tool-policy-first-push",
+        "commit": "b8e68fe8a72542392d8b22bd7214428ff9eeae78",
+        "reason": "Superseded branch ancestry backup, not additional validated experiment."
+      }
+    ]
+  },
+  "scientific_reporting_rules": [
+    "Historical evidence and new pilot results must be distinct.",
+    "Finite failure does not prove mathematical impossibility.",
+    "No model or seed result should be fabricated to fill missing runs.",
+    "Report attempted, completed, valid, failed and unresolved denominators separately.",
+    "Hash manifests detect change against trusted records; they are not independent timestamping or adversarial signatures."
+  ]
+}
