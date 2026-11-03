@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "archived_on": "2026-11-03",
+  "source_ref": "origin/research/analytical-physics",
+  "source_commit": "9d1256298bb7459a5ee60f56ec8d790d0a7097ac",
+  "main_parent": "890ec11e4c46c6b74f18f0f03991bd609e83def3",
+  "merge_base": "8d336d8302ecf76b6bcabf7afc37ab817a0630ea",
+  "method": "Reviewed archival merge using ours strategy, then exact source document additions under this archive directory. No current main file is replaced.",
+  "rationale": "The eight branch-only commits alter documentation only. Root documents are obsolete against current main and V1/V2 records are immutable. Main RESEARCH_LOG.md lines 228-229 records their deliberate exclusion from V2. Archive retains every changed document verbatim and merge ancestry retains original commits and authorship. This is integration of historical proposal documentation, not implementation or execution of that proposal.",
+  "commits": [
+    "955b3b2ddd2dcfb95417dd9bbd9653b9e299cd8c Derive from Agentic Physics Bench V1 (v1.0.0, 8d336d8): lineage and research proposal",
+    "aa4728030d8681c04fe477c81678b2f258edf9ae Consolidate the analytical study into the canonical repo (research/analytical-physics)",
+    "f62467eb757b811f1fbe0460b50ba4dff34cf57e Overnight documentation pack: pending-study notes, clarifications, handoff",
+    "c5d01e3d250c8ca31717e19ad39eccf6e7f4495c Documentation corrections from Codex's verification (wording only)",
+    "750a00f38e758ccdcf6fc1a901ee5f125993ef3c Record that V1 is released but not yet interpreted",
+    "2d7dcabb0d425b000b06811bd52f2259e398bb59 Make the repository public after a pre-publication audit",
+    "8d720e052cbf8e0642354d09247169a3690e8310 Record the anonymous public-access check and fix an imprecise timestamp",
+    "9d1256298bb7459a5ee60f56ec8d790d0a7097ac Add a bounded review request for Codex (V1 and branch state)"
+  ],
+  "files": [
+    {
+      "source_path": "CLAUDE.md",
+      "archived_path": "docs/archive/analytical-physics/CLAUDE.md",
+      "bytes": 8414,
+      "sha256": "b9556be068ba3215b097fd40acd1b4cf0e279372dc07873987eed9e440f43869",
+      "git_blob": "749bf7d98aef095177415a93e6b23141195d163c"
+    },
+    {
+      "source_path": "HANDOFF.md",
+      "archived_path": "docs/archive/analytical-physics/HANDOFF.md",
+      "bytes": 26009,
+      "sha256": "ad285a36267638316e1a2d0413409a6af22ff1ae117bb45be49698770ad36e2c",
+      "git_blob": "ed5f4904f4e41f6adfcb8ae5f900a8a41f4e7076"
+    },
+    {
+      "source_path": "LINEAGE.md",
+      "archived_path": "docs/archive/analytical-physics/LINEAGE.md",
+      "bytes": 1810,
+      "sha256": "51ebb2dfcfca80766b00cb6a862dd0618c8574018e09bf5a6bd990b88b6cb44d",
+      "git_blob": "15aad86682796472fd191bc3a83fcf414f940ab2"
+    },
+    {
+      "source_path": "PROPOSAL.md",
+      "archived_path": "docs/archive/analytical-physics/PROPOSAL.md",
+      "bytes": 6622,
+      "sha256": "2312a4e1124393ec60e5af8903a0b0847a90dc6049d1fc33b4e9c509611d48e6",
+      "git_blob": "501ad2b342408c0f8f694c7fdde1e7e68061d7f3"
+    },
+    {
+      "source_path": "README.md",
+      "archived_path": "docs/archive/analytical-physics/README.md",
+      "bytes": 8247,
+      "sha256": "22899eb94e82d85ae7dd2ab0552e66272799ec53eafc3ae046d34c585e44be0a",
+      "git_blob": "3867c0c749393b8fb312c7373f2492ef35aabe7c"
+    },
+    {
+      "source_path": "RESEARCH_LOG.md",
+      "archived_path": "docs/archive/analytical-physics/RESEARCH_LOG.md",
+      "bytes": 26074,
+      "sha256": "5826cc28da343063be07551361b663dff3f132d2e5026aa3f36e7040b4efcf89",
+      "git_blob": "1b82a06c39afb8f1e0d55a213b5c895911ba6b49"
+    },
+    {
+      "source_path": "RESEARCH_ROADMAP.md",
+      "archived_path": "docs/archive/analytical-physics/RESEARCH_ROADMAP.md",
+      "bytes": 12575,
+      "sha256": "1c4424a0c0e33b546b5a830a060dcb177a5e8a2c7ba2e4be4a40c32be86fd0a6",
+      "git_blob": "9a0eaaa0734ae4d1d2b8628f5816a3005be868e9"
+    }
+  ],
+  "verification": "Source blobs and archived bytes compared exactly; all existing main tracked paths checked against first parent before merge commit."
+}
