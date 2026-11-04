@@ -1,0 +1,1 @@
+Return the study token from the preceding turn as exactly one JSON object with key "remembered_token".

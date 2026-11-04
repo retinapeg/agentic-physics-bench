@@ -1,0 +1,26 @@
+{
+  "results": [
+    {
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "token": "11445aa5c0873848c2927330",
+      "first_status": "ok",
+      "second_status": "ok",
+      "same_session": true,
+      "memory_recall": true,
+      "calls": 2
+    },
+    {
+      "model": "gpt-6-astra",
+      "effort": "ultra",
+      "token": "ffe5e274fb4aee0702c2c093",
+      "first_status": "ok",
+      "second_status": "ok",
+      "same_session": true,
+      "memory_recall": true,
+      "calls": 2
+    }
+  ],
+  "total_calls": 4,
+  "all_passed": true
+}

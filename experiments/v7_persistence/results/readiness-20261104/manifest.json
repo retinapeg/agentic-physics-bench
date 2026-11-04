@@ -1,0 +1,17 @@
+{
+  "schema": "v7-readiness-only",
+  "execute": false,
+  "created_utc": "2026-11-04T00:38:11.539776+00:00",
+  "deadline": "2026-11-04T07:33:16Z",
+  "source_sha256": {
+    "experiments/v5_tool_difficulty/src/engine.py": "514fa59fd7526448424febd059b61c0162cdf2a1a29ea4d372519e1cbd77e4db",
+    "experiments/v5_tool_difficulty/src/tasks.py": "be913569b774adff473e1f8158d9e85829740b4b5c393d96b0cbcaa02bb30340",
+    "experiments/v7_persistence/PROTOCOL.md": "772b203d38c8159e0c20fcb1edeb6bc11065737cb0c27e3f8d2371ca0abd0a25",
+    "experiments/v7_persistence/src/adapter.py": "5114c96ff7344d11ab8e28560e9a5ddd11da247acc0701b8c12c6c19fe9a4ef7",
+    "experiments/v7_persistence/src/run_v7.py": "67aec4e8e0e63724b185a69d5a1ce87073ab795a7c788781b579ad91acd69059",
+    "experiments/v7_persistence/src/shared.py": "73261a84881bbf10602a4daa6e78f0abf42e0891b8589b53ea965f0b068159d3",
+    "experiments/v7_persistence/tests/test_v7.py": "31050bcb672209d506ebea01c6e8f58c47f52a23140830cc87fcf8b1f4e3b1ac",
+    "src/tasks.py": "834dd72a5c2784216b79176b54d026cb372af825b671889535735650d2beadf7",
+    "src/tools.py": "6687d51b0f744e3410ba93fd427d5f087bfccb6662c9cfe540c90fbb785cf72d"
+  }
+}
