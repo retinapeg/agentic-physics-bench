@@ -1,0 +1,135 @@
+{
+  "archive": "/Users/leonardaarons-ditson/Documents/ChatGPT/organise mysefl/physics-overnight-evidence-2026-11-04",
+  "archive_SHA256SUMS_sha256": "60addb1a8aa98c00b66cfd12d068812a1070011cfa0edd5ffc19b2956ca2d927",
+  "archive_manifest_sha256": "e55959edd28c704b7e3ccecb3becd366924d03f6ca67417e67d6dbb014869751",
+  "archive_modified": false,
+  "audited_utc": "2026-11-04T07:38:19.149158+00:00",
+  "baseline_git_head": "52fee845c6b475ac070d8f8d757a6f2eeef1a0e2",
+  "baseline_outer_file_sha256": {
+    "REPRODUCE.txt": "8d50b028a7fbf2917c36c8415e507dd21a4ffe143bc2834de611f27b462831bb",
+    "SHA256SUMS": "60addb1a8aa98c00b66cfd12d068812a1070011cfa0edd5ffc19b2956ca2d927",
+    "evidence-files.tar.gz": "2cd5271e56ab6d85a4f780d261bc4946a3c4447e92814ced58071464e862f2d2",
+    "manifest.json": "e55959edd28c704b7e3ccecb3becd366924d03f6ca67417e67d6dbb014869751",
+    "repository.bundle": "76fbb163d47d128adf0ad88235430eb00fe5b0b95580631761b264aba17a631e"
+  },
+  "checks": {
+    "baseline_files_unchanged_during_audit": true,
+    "baseline_head_matches_requested": true,
+    "campaigns": [
+      {
+        "event_chain_mismatches": [],
+        "event_chains": 12,
+        "events": 912,
+        "frozen_source_count": 9,
+        "frozen_source_mismatches": [],
+        "path": "experiments/v7_persistence/results/persistence-20261104",
+        "precall_manifest_hash_matches": true,
+        "seal_matches_archived_files": true,
+        "sealed_files": 1625,
+        "summary_replay_reported_by_baseline": true
+      },
+      {
+        "event_chain_mismatches": [],
+        "event_chains": 4,
+        "events": 188,
+        "frozen_source_count": 9,
+        "frozen_source_mismatches": [],
+        "path": "experiments/v8_revocation/results/revocation-20261104",
+        "precall_manifest_hash_matches": true,
+        "seal_matches_archived_files": true,
+        "sealed_files": 297,
+        "summary_replay_reported_by_baseline": true
+      },
+      {
+        "event_chain_mismatches": [],
+        "event_chains": 9,
+        "events": 246,
+        "frozen_source_count": 11,
+        "frozen_source_mismatches": [],
+        "path": "experiments/v9_memory_handoff/results/handoff-20261104",
+        "precall_manifest_hash_matches": true,
+        "seal_matches_archived_files": true,
+        "sealed_files": 478,
+        "summary_replay_reported_by_baseline": true
+      },
+      {
+        "event_chain_mismatches": [],
+        "event_chains": 4,
+        "events": 1280,
+        "frozen_source_count": 14,
+        "frozen_source_mismatches": [],
+        "path": "experiments/v10_long_history/results/long-history-20261104",
+        "precall_manifest_hash_matches": true,
+        "seal_matches_archived_files": true,
+        "sealed_files": 1807,
+        "summary_replay_reported_by_baseline": true
+      }
+    ],
+    "git_bundle_contains_baseline_head": true,
+    "git_bundle_verified": true,
+    "independent_audit_script_hash_matches": true,
+    "manifest_files": 4332,
+    "outer_baseline_members_exact": true,
+    "outer_checksum_members": 4,
+    "outer_checksums_match": true,
+    "report_checksum_entries": [
+      {
+        "matched": true,
+        "path": "reports/overnight-synthesis-2026-11-04.pdf"
+      },
+      {
+        "matched": true,
+        "path": "reports/overnight-synthesis-2026-11-04.build.json"
+      },
+      {
+        "matched": true,
+        "path": "reports/v10-long-history-2026-11-04.pdf"
+      },
+      {
+        "matched": true,
+        "path": "reports/v10-long-history-2026-11-04.build.json"
+      },
+      {
+        "matched": true,
+        "path": "reports/v7-persistence-2026-11-04.pdf"
+      },
+      {
+        "matched": true,
+        "path": "reports/v7-persistence-2026-11-04.build.json"
+      },
+      {
+        "matched": true,
+        "path": "reports/v8-revocation-2026-11-04.pdf"
+      },
+      {
+        "matched": true,
+        "path": "reports/v8-revocation-2026-11-04.build.json"
+      },
+      {
+        "matched": true,
+        "path": "reports/v9-memory-handoff-2026-11-04.pdf"
+      },
+      {
+        "matched": true,
+        "path": "reports/v9-memory-handoff-2026-11-04.build.json"
+      }
+    ],
+    "required_missing": [],
+    "tar_duplicates": [],
+    "tar_matches_manifest": true,
+    "tar_members": 4332,
+    "tar_unsafe_members": []
+  },
+  "issues": [],
+  "limitations": [
+    "Checksums establish consistency relative to these recorded digests, not external signatures or tamper-proof custody.",
+    "Behavioral summaries were already replay-verified by the baseline archive workflow; this independent audit checks seals, sources and event chains without rerunning model or test suites.",
+    "Independent V10 audit external local session rollouts are not included; original-host corroboration may be unavailable after relocation.",
+    "Older readiness probes retain source-drift caveats in the baseline manifest.",
+    "Any later completion sidecars are outside this baseline audit and require separate checksums."
+  ],
+  "no_experimental_inference": true,
+  "passed": true,
+  "schema": "apb-independent-overnight-archive-audit-v1",
+  "tar_extracted_to_filesystem": false
+}
