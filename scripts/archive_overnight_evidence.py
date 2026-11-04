@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Archive sealed overnight V7/V8/V9 evidence; never perform model inference.
+"""Archive sealed overnight V7/V8/V9/V10 evidence; never perform model inference.
 
 Use --campaign once per sealed campaign and --output for a new external
 archive directory. --check-only validates selected inputs without an archive.
@@ -21,7 +21,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DOCS = 'docs/overnight-2026-11-04'
 STATE = 'experiments/v7_persistence/overnight_state.json'
 READINESS = ('readiness-20261104', 'readiness-frozen-20261104')
-SOURCE_PATTERN = re.compile(r'experiments/v[5-9]_[a-z0-9_]+/(?:src/[a-zA-Z0-9_]+\.py|tests/[a-zA-Z0-9_]+\.py|PROTOCOL\.md|README\.md)\Z')
+SOURCE_PATTERN = re.compile(r'experiments/v(?:[5-9]|10)_[a-z0-9_]+/(?:src/[a-zA-Z0-9_]+\.py|tests/[a-zA-Z0-9_-]+\.(?:py|json)|PROTOCOL\.md|README\.md)\Z')
 
 
 def digest(path):
@@ -64,12 +64,13 @@ def campaign_identity(path):
     checked = safe_path(rel.as_posix())
     if len(rel.parts) != 4 or rel.parts[0] != 'experiments' or rel.parts[2] != 'results':
         raise ValueError('Campaign must be a direct child of an experiment results directory')
-    match = re.fullmatch(r'v([789])_[a-z0-9_]+', rel.parts[1])
+    match = re.fullmatch(r'v([789]|10)_[a-z0-9_]+', rel.parts[1])
     if not match:
-        raise ValueError('Only overnight V7/V8/V9 campaign roots are accepted')
+        raise ValueError('Only overnight V7/V8/V9/V10 campaign roots are accepted')
     version = int(match.group(1))
-    if version == 7 and rel.parts[1] != 'v7_persistence' or version == 8 and rel.parts[1] != 'v8_revocation':
-        raise ValueError('Unrecognized V7/V8 experiment root')
+    exact_roots = {7: 'v7_persistence', 8: 'v8_revocation', 10: 'v10_long_history'}
+    if version in exact_roots and rel.parts[1] != exact_roots[version]:
+        raise ValueError('Unrecognized overnight experiment root')
     base = ROOT / 'experiments' / rel.parts[1]
     return checked, version, base
 
@@ -136,9 +137,9 @@ def collect(campaigns):
             add(source_path(source))
         probes.append(checked)
     for name in ('build_evidence_report.py', 'build_v7_report.py', 'build_v8_report.py',
-                 'build_v9_report.py', 'archive_overnight_evidence.py'):
+                 'build_v9_report.py', 'build_v10_report.py', 'archive_overnight_evidence.py'):
         add(ROOT / 'scripts' / name)
-    for version in (7, 8, 9):
+    for version in (7, 8, 9, 10):
         for pattern in (f'v{version}-*.pdf', f'v{version}-*.build.json', f'v{version}-*.SHA256SUMS'):
             for path in (ROOT / 'reports').glob(pattern):
                 add(path)

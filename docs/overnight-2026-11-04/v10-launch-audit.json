@@ -1,0 +1,143 @@
+{
+  "additional_forced_request_mock": {
+    "artifact_retention": "Temporary mock campaign removed by TemporaryDirectory after inspection; aggregate results are preserved here and in the audit tool transcript. This is offline contract validation, not experimental behavior evidence.",
+    "completed_numerical_dispatches": 256,
+    "correct_dispatcher_results": 256,
+    "distinct_native_session_ids": 130,
+    "event_logs": 4,
+    "fake_model_callback_count": 256,
+    "feedback_mismatches": 0,
+    "fresh_single_call_sessions": 128,
+    "method": "Run the full unchanged four-trajectory, 64-round plan using the test FakeAdapter with request_tool=True and valid cumulative usage. Each fake model action requests fit_line for its current case. Independently compare every submitted previous-task feedback record against feedback_for(the preceding actual result) in both arms.",
+    "model_final_accuracy_non_NA_count": 0,
+    "named_tool_requests": 256,
+    "native_64_call_sessions": 2,
+    "recorded_rounds": 256,
+    "round_64_requests_executed": 4,
+    "summary_recomputed": true,
+    "verified_files": 1039
+  },
+  "auditor": "overnight_critic",
+  "blocking_issues": [],
+  "conclusion": "Clear for source freeze and launch after the parent rechecks the unchanged global allowance/deadline gate. No demonstrated blocking issue found in the reviewed implementation.",
+  "independent_real_trace_replay": {
+    "campaigns": [
+      {
+        "all_usage_totals_match": true,
+        "calls": 228,
+        "deduplicated_output_tokens": 189372,
+        "delta_mismatches": 0,
+        "experiment": "v7_persistence",
+        "unknown_observations": 0
+      },
+      {
+        "all_usage_totals_match": true,
+        "calls": 44,
+        "deduplicated_output_tokens": 13710,
+        "delta_mismatches": 0,
+        "experiment": "v8_revocation",
+        "unknown_observations": 0
+      },
+      {
+        "all_usage_totals_match": true,
+        "calls": 62,
+        "deduplicated_output_tokens": 70626,
+        "delta_mismatches": 0,
+        "experiment": "v9_memory_handoff",
+        "unknown_observations": 0
+      }
+    ],
+    "historical_calls_replayed": 334,
+    "input_audit_path": "docs/overnight-2026-11-04/token-counter-audit.json",
+    "input_audit_sha256": "b71ec32b3f3ee98d172a3dfad0ca157c1cafe88bbe1f10b73f32cf62ee05d2b3",
+    "method": "For each campaign, create a new V10 UsageLedger and call observe_response on every original saved response in the independent audit call order. This reads each response raw_manifest and raw_stdout. Compare every derived delta to the independently audited delta, then compare all five accumulated usage fields to the audited campaign total."
+  },
+  "launch_constraints": {
+    "absolute_deadline_utc": "2026-11-04T07:33:16Z",
+    "campaign_max_starts": 256,
+    "extra_readiness_inference_calls": 0,
+    "freeze_required_before_inference": true,
+    "global_start_cap": 600,
+    "minimum_global_starts_remaining": 256,
+    "per_call_timeout_seconds": 300
+  },
+  "no_experimental_inference": true,
+  "no_experimental_inference_statement": "No experimental model or provider inference calls were made during this audit. Mock callbacks were local Python functions; fit_line numerical dispatches were actual bounded local numerical worker computations. Historical model responses were read from already-sealed evidence.",
+  "nonblocking_limitations": [
+    "Campaign ledger replay recomputes deltas from saved observations after checking evidence file hashes. It does not independently re-extract and cross-bind every raw usage field during replay; live observe_response performs that raw/meta binding, and the final audit should cross-check raw values again.",
+    "The usage ledger checks positive call indices and requires index1 for an initial baseline, but does not itself enforce consecutive resumed call indices. Session ordinal continuity relies on the unchanged adapter and subsequent raw-evidence audit.",
+    "Reported token increments are CLI usage estimates, not independently established billable tokens or hidden provider-request counts. The observational token stop may overshoot with already-in-flight calls.",
+    "One trajectory per configuration/arm and one matched seed schedule; repeated rounds are dependent. History length and policy recency change together. The new one-decision contract prevents direct interchangeability with earlier two-decision action rates.",
+    "Stable native IDs do not prove complete retained backend history. Targeted selected-session rollout inspection after sealing must report exposed compaction or observability unknown.",
+    "The global600-start cap is coordinated by the parent outside this runner. Parent reported342 used and258 remaining; it must recheck at least256 remain before launch and make no extra readiness inference calls."
+  ],
+  "preserved_utc": "2026-11-04T02:53:37.849463+00:00",
+  "protocol_wording_alignment": "After the substantive review, the current-case label sentence was aligned to the implementation: previous_case_id in feedback and id under the separate Current task (data) heading. The corrected sentence was inspected while preserving this record; this does not change prompts or behavior.",
+  "repository_path": "/Users/leonardaarons-ditson/Projects/agentic-physics-bench-evidence-difficulty",
+  "review_findings": {
+    "all_imported_sources_tests_json_fixtures_and_counter_audit_in_hash_map": true,
+    "deadline_and_native_identity_enforcement": "Reuses the unchanged previously validated V7 adapter; per-call timeout is bounded by remaining absolute-deadline time and invalid native state poisons the adapter.",
+    "dispatcher_outcome_separate_from_model_final": true,
+    "expected_complete_run_native_ids": 130,
+    "final_round_request_executes_without_followup_model_call": true,
+    "fixed_256_reservations_atomic": true,
+    "initial_zero_baseline_requires_new_id_no_resume_call_index_1": true,
+    "ledger_observation_sequences_assigned_under_budget_lock": true,
+    "ledger_replay_uses_original_atomic_observation_order": true,
+    "maximum_two_model_callbacks_concurrent": true,
+    "missing_reset_or_incompatible_usage_becomes_unknown": true,
+    "no_corrective_reference_or_grade_in_feedback": true,
+    "observed_action_still_classified_and_valid_request_dispatched_on_unknown_usage": true,
+    "one_model_callback_per_task": true,
+    "prior_v7_v8_v9_frozen_source_mismatches": 0,
+    "raw_directory_relocation_preserves_accounting": true,
+    "repeated_identical_snapshots_add_zero": true,
+    "resumed_usage_keyed_by_exact_native_session_id": true,
+    "same_feedback_schema_both_arms": true,
+    "unknown_usage_stops_new_campaign_launches": true,
+    "worker_failure_retains_request_and_dispatch_attempt": true
+  },
+  "reviewed_source_sha256": {
+    "docs/overnight-2026-11-04/token-counter-audit.json": "b71ec32b3f3ee98d172a3dfad0ca157c1cafe88bbe1f10b73f32cf62ee05d2b3",
+    "experiments/v10_long_history/PROTOCOL.md": "04b344220cd3f66f4ddaeebe169ba5652448487991f0b0f14c55a37ce1c6a64e",
+    "experiments/v10_long_history/src/imports.py": "471db03a39b12e8d6923434644c973d5c060e833b910aad4919f9e38ba225508",
+    "experiments/v10_long_history/src/run_v10.py": "51742f23d837b432bcb470d1c77a64b96a8d6f1b8552d66d13cd5df98dbfbc40",
+    "experiments/v10_long_history/src/usage.py": "bd00973ff0766f12676745fc89f3ba81c14f9c77389d08d30c54bdc72d219ccc",
+    "experiments/v10_long_history/tests/audited_usage_fixture.json": "13faf0aecd9d34ce3e3070bd5ecca956a0c3f52dfaecbd5fef1a9cfbccf6f76e",
+    "experiments/v10_long_history/tests/test_v10.py": "ad9dacc6406109457810cf4abb4fab7e706d2e1190a165c5533b1af764c1bcbf",
+    "experiments/v5_tool_difficulty/src/engine.py": "514fa59fd7526448424febd059b61c0162cdf2a1a29ea4d372519e1cbd77e4db",
+    "experiments/v5_tool_difficulty/src/tasks.py": "be913569b774adff473e1f8158d9e85829740b4b5c393d96b0cbcaa02bb30340",
+    "experiments/v7_persistence/src/adapter.py": "c77bd304cfee5911efa4924d28b39a6e5434dc82a8b07891275c32c730112847",
+    "experiments/v8_revocation/src/imports.py": "00ebcb8ee63ff4ee9132e44bcfcc7db701257a643f3742d2d2d711d0ade38b90",
+    "experiments/v8_revocation/src/run_v8.py": "30a539a6511dc8a6334a922dbadbba20fa1569c39d028754aef29381e685eb0a",
+    "src/tasks.py": "834dd72a5c2784216b79176b54d026cb372af825b671889535735650d2beadf7",
+    "src/tools.py": "6687d51b0f744e3410ba93fd427d5f087bfccb6662c9cfe540c90fbb785cf72d"
+  },
+  "schema": "apb-v10-launch-audit-v1",
+  "scope": "Preserves the completed independent read-only launch audit. Sources were inspected, the existing offline suite was run once, historical saved responses were replayed through the new usage ledger, and an additional forced-request fake-model campaign was checked. No prior experiment source/evidence was edited. No tests were rerun merely to write this record.",
+  "unit_tests": {
+    "command": "python3 -m unittest discover -s experiments/v10_long_history/tests -v",
+    "failed": 0,
+    "names": [
+      "test_all_matched64_easy_cases",
+      "test_deadline_no_callback",
+      "test_directory_relocation_keeps_session_counter",
+      "test_feedback_and_policy_placement",
+      "test_full_mock_horizon_and_deduplicated_ledger",
+      "test_global_cap_is_atomic",
+      "test_interleaved_sessions_and_identical_snapshot",
+      "test_new_session_requires_unique_id",
+      "test_reduced_plan_not_silently_allowed",
+      "test_reset_and_missing_never_clamped",
+      "test_saved_audited_snapshots_match_deltas",
+      "test_single_callback_tool_executes_and_resolves_as_dispatcher",
+      "test_unknown_initial_resume_is_not_zero_baseline",
+      "test_unknown_usage_campaign_seals_and_replays",
+      "test_unknown_usage_preserves_behavior_and_stops_campaign",
+      "test_worker_failure_keeps_known_request"
+    ],
+    "passed": 16,
+    "result": "OK",
+    "tests_run": 16
+  }
+}

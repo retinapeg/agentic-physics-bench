@@ -1,0 +1,65 @@
+{"trajectory": "source-001", "round": 1, "status": "completed"}
+{"trajectory": "source-002", "round": 1, "status": "completed"}
+{"trajectory": "source-001", "round": 2, "status": "completed"}
+{"trajectory": "source-002", "round": 2, "status": "completed"}
+{"trajectory": "source-001", "round": 3, "status": "completed"}
+{"trajectory": "source-002", "round": 3, "status": "completed"}
+{"trajectory": "source-001", "round": 4, "status": "completed"}
+{"trajectory": "source-002", "round": 4, "status": "completed"}
+{"trajectory": "source-001", "round": 5, "status": "completed"}
+{"trajectory": "source-002", "round": 5, "status": "completed"}
+{"trajectory": "source-002", "round": 6, "status": "completed"}
+{"trajectory": "source-001", "round": 6, "status": "completed"}
+{"trajectory": "source-002", "round": 7, "status": "completed"}
+{"trajectory": "source-001", "round": 7, "status": "completed"}
+{"trajectory": "source-002", "round": 8, "status": "completed"}
+{"trajectory": "source-001", "round": 8, "status": "completed"}
+{"trajectory": "source-001", "round": 9, "status": "completed"}
+{"trajectory": "source-002", "round": 9, "status": "completed"}
+{"trajectory": "source-002", "round": 10, "status": "completed"}
+{"trajectory": "source-001", "round": 10, "status": "completed"}
+{"trajectory": "source-001", "round": 11, "status": "completed"}
+{"trajectory": "source-002", "round": 11, "status": "completed"}
+{"trajectory": "source-002", "round": 12, "status": "completed"}
+{"trajectory": "source-001", "round": 12, "status": "completed"}
+{"trajectory": "source-001", "round": 13, "status": "completed"}
+{"trajectory": "source-002", "round": 13, "status": "completed"}
+{"trajectory": "source-001", "round": 14, "status": "completed"}
+{"trajectory": "source-002", "round": 14, "status": "completed"}
+{"trajectory": "source-001", "round": 15, "status": "completed"}
+{"trajectory": "source-002", "round": 15, "status": "completed"}
+{"trajectory": "source-001", "round": 16, "status": "completed"}
+{"trajectory": "source-002", "round": 16, "status": "completed"}
+{"trajectory": "source-002", "round": 17, "status": "completed"}
+{"trajectory": "source-001", "round": 17, "status": "completed"}
+{"trajectory": "source-002", "round": 18, "status": "completed"}
+{"trajectory": "source-001", "round": 18, "status": "completed"}
+{"trajectory": "source-001", "round": 19, "status": "completed"}
+{"trajectory": "source-002", "round": 19, "status": "completed"}
+{"trajectory": "source-002", "round": 20, "status": "completed"}
+{"trajectory": "source-001", "round": 20, "status": "completed"}
+{"trajectory": "source-001", "round": 21, "status": "completed"}
+{"trajectory": "source-002", "round": 21, "status": "completed"}
+{"trajectory": "source-002", "round": 22, "status": "completed"}
+{"trajectory": "source-001", "round": 22, "status": "completed"}
+{"trajectory": "source-002", "round": 23, "status": "completed"}
+{"trajectory": "source-001", "round": 23, "status": "completed"}
+{"trajectory": "source-002", "round": 24, "status": "completed"}
+{"trajectory": "source-001", "round": 24, "status": "completed"}
+{"trajectory": "source-001-native_full", "round": 25, "status": "completed"}
+{"trajectory": "source-001-handoff_plus_policy", "round": 25, "status": "completed"}
+{"trajectory": "source-002-handoff_only", "round": 25, "status": "completed"}
+{"trajectory": "source-002-native_full", "round": 25, "status": "completed"}
+{"trajectory": "source-002-handoff_plus_policy", "round": 25, "status": "completed"}
+{"trajectory": "source-001-handoff_only", "round": 25, "status": "completed"}
+{"trajectory": "source-001-handoff_plus_policy", "round": 26, "status": "completed"}
+{"trajectory": "source-001-native_full", "round": 26, "status": "completed"}
+{"trajectory": "source-002-native_full", "round": 26, "status": "completed"}
+{"trajectory": "source-002-handoff_only", "round": 26, "status": "completed"}
+{"trajectory": "source-001-handoff_only", "round": 26, "status": "completed"}
+{"trajectory": "source-002-handoff_plus_policy", "round": 26, "status": "completed"}
+{
+  "verified_files": 478,
+  "event_logs": 9,
+  "summary_recomputed": true
+}

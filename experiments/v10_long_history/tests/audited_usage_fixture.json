@@ -1,0 +1,69 @@
+{
+  "audit_sha256": "b71ec32b3f3ee98d172a3dfad0ca157c1cafe88bbe1f10b73f32cf62ee05d2b3",
+  "semantics": "Saved audited raw cumulative snapshots; local last usage equals consecutive deltas.",
+  "calls": [
+    {
+      "native_session_id": "01a1a3ff-bb40-7651-9646-8f3809e9cf32",
+      "resumed_session_id": null,
+      "argv_has_resume": false,
+      "call_index": 1,
+      "raw_usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 2432,
+        "input_tokens": 3464,
+        "output_tokens": 850,
+        "reasoning_output_tokens": 820
+      },
+      "deduplicated_delta": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 2432,
+        "input_tokens": 3464,
+        "output_tokens": 850,
+        "reasoning_output_tokens": 820
+      },
+      "result_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-001/raw/call-0001-result.json"
+    },
+    {
+      "native_session_id": "01a1a3ff-bb40-7651-9646-8f3809e9cf32",
+      "resumed_session_id": "01a1a3ff-bb40-7651-9646-8f3809e9cf32",
+      "argv_has_resume": true,
+      "call_index": 2,
+      "raw_usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 6528,
+        "input_tokens": 8061,
+        "output_tokens": 1535,
+        "reasoning_output_tokens": 1473
+      },
+      "deduplicated_delta": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 4096,
+        "input_tokens": 4597,
+        "output_tokens": 685,
+        "reasoning_output_tokens": 653
+      },
+      "result_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-001/raw/call-0002-result.json"
+    },
+    {
+      "native_session_id": "01a1a3ff-bb40-7651-9646-8f3809e9cf32",
+      "resumed_session_id": "01a1a3ff-bb40-7651-9646-8f3809e9cf32",
+      "argv_has_resume": true,
+      "call_index": 3,
+      "raw_usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 11648,
+        "input_tokens": 13634,
+        "output_tokens": 2330,
+        "reasoning_output_tokens": 2237
+      },
+      "deduplicated_delta": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 5120,
+        "input_tokens": 5573,
+        "output_tokens": 795,
+        "reasoning_output_tokens": 764
+      },
+      "result_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-001/raw/call-0003-result.json"
+    }
+  ]
+}

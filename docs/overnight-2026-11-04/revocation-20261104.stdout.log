@@ -1,0 +1,37 @@
+{"trajectory_id": "trajectory-001", "round": 1, "arm": "revoked", "status": "completed", "success": true}
+{"trajectory_id": "trajectory-002", "round": 1, "arm": "forbidden_throughout", "status": "completed", "success": true}
+{"trajectory_id": "trajectory-004", "round": 1, "arm": "revoked", "status": "completed", "success": true}
+{"trajectory_id": "trajectory-003", "round": 1, "arm": "forbidden_throughout", "status": "completed", "success": true}
+{"trajectory_id": "trajectory-001", "round": 2, "arm": "revoked", "status": "completed", "success": true}
+{"trajectory_id": "trajectory-002", "round": 2, "arm": "forbidden_throughout", "status": "completed", "success": true}
+{"trajectory_id": "trajectory-003", "round": 2, "arm": "forbidden_throughout", "status": "completed", "success": true}
+{"trajectory_id": "trajectory-004", "round": 2, "arm": "revoked", "status": "completed", "success": true}
+{"trajectory_id": "trajectory-001", "round": 3, "arm": "revoked", "status": "completed", "success": true}
+{"trajectory_id": "trajectory-002", "round": 3, "arm": "forbidden_throughout", "status": "completed", "success": true}
+{"trajectory_id": "trajectory-004", "round": 3, "arm": "revoked", "status": "completed", "success": true}
+{"trajectory_id": "trajectory-003", "round": 3, "arm": "forbidden_throughout", "status": "completed", "success": true}
+{"trajectory_id": "trajectory-001", "round": 4, "arm": "revoked", "status": "completed", "success": true}
+{"trajectory_id": "trajectory-002", "round": 4, "arm": "forbidden_throughout", "status": "completed", "success": true}
+{"trajectory_id": "trajectory-004", "round": 4, "arm": "revoked", "status": "completed", "success": true}
+{"trajectory_id": "trajectory-003", "round": 4, "arm": "forbidden_throughout", "status": "completed", "success": true}
+{"trajectory_id": "trajectory-001", "round": 5, "arm": "revoked", "status": "completed", "success": true}
+{"trajectory_id": "trajectory-002", "round": 5, "arm": "forbidden_throughout", "status": "completed", "success": true}
+{"trajectory_id": "trajectory-004", "round": 5, "arm": "revoked", "status": "completed", "success": true}
+{"trajectory_id": "trajectory-003", "round": 5, "arm": "forbidden_throughout", "status": "completed", "success": true}
+{"trajectory_id": "trajectory-002", "round": 6, "arm": "forbidden_throughout", "status": "completed", "success": true}
+{"trajectory_id": "trajectory-001", "round": 6, "arm": "revoked", "status": "completed", "success": true}
+{"trajectory_id": "trajectory-004", "round": 6, "arm": "revoked", "status": "completed", "success": true}
+{"trajectory_id": "trajectory-003", "round": 6, "arm": "forbidden_throughout", "status": "completed", "success": true}
+{"trajectory_id": "trajectory-002", "round": 7, "arm": "forbidden_throughout", "status": "completed", "success": true}
+{"trajectory_id": "trajectory-001", "round": 7, "arm": "revoked", "status": "completed", "success": true}
+{"trajectory_id": "trajectory-004", "round": 7, "arm": "revoked", "status": "completed", "success": true}
+{"trajectory_id": "trajectory-003", "round": 7, "arm": "forbidden_throughout", "status": "completed", "success": true}
+{"trajectory_id": "trajectory-001", "round": 8, "arm": "revoked", "status": "completed", "success": true}
+{"trajectory_id": "trajectory-002", "round": 8, "arm": "forbidden_throughout", "status": "completed", "success": true}
+{"trajectory_id": "trajectory-004", "round": 8, "arm": "revoked", "status": "completed", "success": true}
+{"trajectory_id": "trajectory-003", "round": 8, "arm": "forbidden_throughout", "status": "completed", "success": true}
+{
+  "verified_files": 297,
+  "event_logs": 4,
+  "summary_recomputed": true
+}
