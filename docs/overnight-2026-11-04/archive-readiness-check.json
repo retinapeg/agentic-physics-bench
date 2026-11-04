@@ -1,0 +1,79 @@
+{
+  "files": 4327,
+  "campaigns": [
+    {
+      "path": "experiments/v7_persistence/results/persistence-20261104",
+      "version": 7,
+      "verification": {
+        "verified_files": 1625,
+        "event_logs": 12,
+        "summary_recomputed": true
+      },
+      "current_source_differences": [],
+      "task_evidence": true
+    },
+    {
+      "path": "experiments/v8_revocation/results/revocation-20261104",
+      "version": 8,
+      "verification": {
+        "verified_files": 297,
+        "event_logs": 4,
+        "summary_recomputed": true
+      },
+      "current_source_differences": [],
+      "task_evidence": true
+    },
+    {
+      "path": "experiments/v9_memory_handoff/results/handoff-20261104",
+      "version": 9,
+      "verification": {
+        "verified_files": 478,
+        "event_logs": 9,
+        "summary_recomputed": true
+      },
+      "current_source_differences": [],
+      "task_evidence": true
+    },
+    {
+      "path": "experiments/v10_long_history/results/long-history-20261104",
+      "version": 10,
+      "verification": {
+        "verified_files": 1807,
+        "event_logs": 4,
+        "summary_recomputed": true
+      },
+      "current_source_differences": [],
+      "task_evidence": true
+    }
+  ],
+  "readiness_probes": [
+    {
+      "path": "experiments/v7_persistence/results/readiness-20261104",
+      "version": 7,
+      "verification": {
+        "verified_files": 23,
+        "event_logs": 0,
+        "summary_recomputed": false
+      },
+      "current_source_differences": [
+        "experiments/v7_persistence/src/adapter.py",
+        "experiments/v7_persistence/src/run_v7.py",
+        "experiments/v7_persistence/tests/test_v7.py"
+      ],
+      "task_evidence": false,
+      "limitation": "Readiness-only development probe, excluded from task counts. Archived current source may differ from its recorded source hashes; an exact old working-source snapshot is not asserted."
+    },
+    {
+      "path": "experiments/v7_persistence/results/readiness-frozen-20261104",
+      "version": 7,
+      "verification": {
+        "verified_files": 23,
+        "event_logs": 0,
+        "summary_recomputed": false
+      },
+      "current_source_differences": [],
+      "task_evidence": false,
+      "limitation": "Readiness-only development probe, excluded from task counts. Archived current source may differ from its recorded source hashes; an exact old working-source snapshot is not asserted."
+    }
+  ]
+}

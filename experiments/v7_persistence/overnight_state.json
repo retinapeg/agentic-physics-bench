@@ -1,5 +1,5 @@
 {
-  "status": "offline_analysis_and_reporting",
+  "status": "reports_ready_offline_review",
   "started_utc": "2026-11-04T00:33:16Z",
   "hard_deadline_utc": "2026-11-04T07:33:16Z",
   "automation_id": "seven-hour-agent-persistence-study",
@@ -192,7 +192,7 @@
     "stdout_log": "/Users/leonardaarons-ditson/Projects/agentic-physics-bench-evidence-difficulty/docs/overnight-2026-11-04/long-history-20261104.stdout.log"
   },
   "scope": "Numerical fit_line only. V7 persistence, V8 permission revocation and V9 memory handoff sealed. V10 fixed L1 workload extension: 64 tasks across 2 models x 2 arms, one native retained session versus fresh sessions with own one-step feedback. Preserve all prior sealed sources and results.",
-  "next_action": "All participant campaigns are sealed, global experimental starts598/600; launch no further inference. Finish actual report behavioral-audit integration, inspect final PDFs and run archive check-only. Continue useful offline analysis within original overnight window. At07:33:16UTC verify no owned inference remains, finalize candid morning report/state,commit additive work,create verified external archive,and pause heartbeat. No automatic GitHub push.",
+  "next_action": "All requested participant campaigns and reports are complete;598actualstarts/600,noactiveinference. Do not launch further participant calls. Remaining authorized window supports only useful offline review/reproducibility/research, not usage spending. Preserve all sealed evidence and final PDF hashes. At07:33:16UTC verify owned model processes absent,finalize state/commit,create final verified external archive,then pause heartbeat. No automatic GitHub push. Current reports: V10 11pages and synthesis7pages with independentbehavior+usage audits and futureproposal.",
   "continuation": "After initial campaign finishes, analyze and develop justified separately frozen exploration until deadline; do not use calls merely to spend capacity. At deadline stop inference and finish report/archive.",
   "artifact_commit": null,
   "readiness_probes": [
@@ -210,7 +210,7 @@
     }
   ],
   "global_call_accounting": "598 actual experimental starts of600 global cap,2 remaining unallocated. No further inference justified/allocated; remaining overnight work is offline verification, analysis, reporting and preservation.",
-  "last_update_utc": "2026-11-04T03:37:03.944926+00:00",
+  "last_update_utc": "2026-11-04T03:38:51.546528+00:00",
   "last_checkpoint": {
     "campaign": "v10",
     "status": "sealed_verified",
@@ -275,12 +275,7 @@
   },
   "global_calls_started_semantics": "Exact completed process starts:8 readiness+228 V7+44 V8+62 V9+256 V10=598; no active participant process and no uncertain starts.",
   "global_maximum_allocated": 598,
-  "pending_independent_work": [
-    {
-      "agent": "strength_report",
-      "task": "Add newly completed independent behavioral audit binding/statement to actual PDFs, rebuild and inspect changed pages. Initial actual V10 11pages+synthesis7pages already visuallychecked."
-    }
-  ],
+  "pending_independent_work": [],
   "future_proposal": {
     "path": "docs/overnight-2026-11-04/NEXT_EXPERIMENTS.md",
     "sha256": "5b0678980a4944f74e7349e797f5d3a9cc1ede4af03718fda37aaac06e7c3733",
@@ -313,7 +308,7 @@
   },
   "packaging_review": "Resolved exact frozen token audit allowlist, synthesis/audit artifact coverage and explicit original-campaign relocation reproduction. Archive3regression tests pass; independent auditor13tests pass. Finalarchive deferred until final reports and commits ready.",
   "report_preparation": {
-    "status": "Ready for actual sealed V10 and audit inputs. Parent reviewed diff; agent synthetic hash-binding/unknown/event checks and visual page checks passed.",
+    "status": "Actual reports complete; independent behavior and counter/context audit bindings included. Deterministic rebuilds and all pages visually reviewed; parent verified all report checksums.",
     "v10_generator": "scripts/build_v10_report.py",
     "synthesis_generator": "scripts/build_overnight_report.py",
     "features": [
@@ -324,6 +319,28 @@
     "build_commands": [
       "bundled_python scripts/build_v10_report.py --campaign experiments/v10_long_history/results/long-history-20261104",
       "bundled_python scripts/build_overnight_report.py --v10 experiments/v10_long_history/results/long-history-20261104"
-    ]
+    ],
+    "reports": {
+      "v10": {
+        "path": "reports/v10-long-history-2026-11-04.pdf",
+        "pages": 11,
+        "sha256": "c6786bdb27d904159a130035fbe07d472f4f321a17ab590e52326aca29972927"
+      },
+      "synthesis": {
+        "path": "reports/overnight-synthesis-2026-11-04.pdf",
+        "pages": 7,
+        "sha256": "6905310942b964b430948e87dbaf32a22ceebfdc7a1d4a32b9ee73cbd28b8934"
+      }
+    }
+  },
+  "archive_preflight": {
+    "status": "passed",
+    "path": "docs/overnight-2026-11-04/archive-readiness-check.json",
+    "files_at_check": 4327,
+    "campaigns": 4,
+    "readiness_sets": 2,
+    "actual_external_archive_created": false,
+    "portable_actual_v10_replay": "docs/overnight-2026-11-04/v10-relocation-replay.json",
+    "portable_replay_result": "256 raw observations and116125outputtokens reproduce from a temporary relocated copy, with130missing localrollouts explicitlyunknown; copyremoved; nooriginal/rawevidence modified."
   }
 }

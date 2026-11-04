@@ -1,0 +1,391 @@
+{
+  "report_date": "2026-11-04",
+  "pdf_sha256": "6905310942b964b430948e87dbaf32a22ceebfdc7a1d4a32b9ee73cbd28b8934",
+  "pages": 7,
+  "characters_per_page": [
+    1547,
+    1710,
+    2068,
+    2562,
+    1943,
+    2731,
+    1747
+  ],
+  "generator_sha256": "74cb3550e933054b849a63e2e727cb7d5c976b81a012e1627ff12269c42ee823",
+  "helper_sha256": {
+    "scripts/build_evidence_report.py": "1f34429e24fddc1857f05dd4896a126c0ead69db20c5e71dab0178c3011fbe38",
+    "scripts/build_v7_report.py": "814ed7633ae39fd057ff99173adab75f3bef5eb0a106c4ae32fa818677d40fa4",
+    "scripts/build_v8_report.py": "baf483d2b102da3a5c6f346734eee836ba46092a3c6071e62857fa9b37a9b94d",
+    "scripts/build_v9_report.py": "a8805b4c798a5f085afc466de4899ddda0dea5a59e485eafa0085a6e07fb4e2b",
+    "scripts/build_v10_report.py": "e0595435734ea3a136ac7f07b9d1d0d8d8a7612ba9526084e005feeacecbd5d0"
+  },
+  "campaigns": {
+    "7": {
+      "path": "experiments/v7_persistence/results/persistence-20261104",
+      "manifest_sha256": "08400587163bc630d01c479f2b3eb8ab61a712af1da6edf7acdadbac876e0ac7",
+      "summary_sha256": "5b62d18e0fec011e115b1b862e0450e8ffc69938433cff7f6351877df2570306",
+      "checksum_map_sha256": "2371c1471a65077f76b0cc8ed616c9b6afd970d0b5ca1f6c752dbeb17cfe3989",
+      "verification": {
+        "verified_files": 1625,
+        "event_logs": 12,
+        "summary_recomputed": true
+      },
+      "assessment_recorded": 228,
+      "assessment_observed": 228,
+      "assessment_unknown": 0,
+      "assessment_requests": 0,
+      "actual_exposure": {
+        "first": 1793752807.894688,
+        "last": 1793755421.157286,
+        "span": 2613.2625980377197,
+        "calls": 228,
+        "sessions": 84,
+        "resumes": 144,
+        "estimated_ends": 0,
+        "timed_calls": 228
+      }
+    },
+    "8": {
+      "path": "experiments/v8_revocation/results/revocation-20261104",
+      "manifest_sha256": "3e6e27d3d6d98cfb636d07b226b10e105fc3424320bb280596d7380a223ec19b",
+      "summary_sha256": "c595332ab601e3e0a4c15f7e6925daaa22fc0b1c5a56001ba1935275cea773f6",
+      "checksum_map_sha256": "6ad0cb3fc7ee877c9075112556e245c9b1bc6f83fa8883267fc1809876142702",
+      "verification": {
+        "verified_files": 297,
+        "event_logs": 4,
+        "summary_recomputed": true
+      },
+      "assessment_recorded": 8,
+      "assessment_observed": 8,
+      "assessment_unknown": 0,
+      "assessment_requests": 0,
+      "actual_exposure": {
+        "first": 1793756112.937715,
+        "last": 1793756385.714334,
+        "span": 272.77661895751953,
+        "calls": 44,
+        "sessions": 4,
+        "resumes": 40,
+        "estimated_ends": 0,
+        "timed_calls": 44
+      }
+    },
+    "9": {
+      "path": "experiments/v9_memory_handoff/results/handoff-20261104",
+      "manifest_sha256": "aaf874667a31727f47f56c4de84b3f776836def76318c1523d0d5527fdd791a8",
+      "summary_sha256": "39601f25db27858ebedfe141e837b557a324f0dc6972a189cb8cd2f3339ccb58",
+      "checksum_map_sha256": "5db1aa72a90ae8e7bf7f5e7a7b97d475f8a3ba9064cd6e24382ddc3e0a2ae859",
+      "verification": {
+        "verified_files": 478,
+        "event_logs": 9,
+        "summary_recomputed": true
+      },
+      "assessment_recorded": 12,
+      "assessment_observed": 12,
+      "assessment_unknown": 0,
+      "assessment_requests": 0,
+      "actual_exposure": {
+        "first": 1793758064.276069,
+        "last": 1793759226.552112,
+        "span": 1162.276043176651,
+        "calls": 62,
+        "sessions": 6,
+        "resumes": 56,
+        "estimated_ends": 0,
+        "timed_calls": 62
+      }
+    },
+    "10": {
+      "path": "experiments/v10_long_history/results/long-history-20261104",
+      "manifest_sha256": "34bcb061c866998e76ad6b7b5bba67f5f4a3f16b7cef3f85c438e5cf8b0930e2",
+      "summary_sha256": "4aee7649cb6f641a0e31c524c5725a3da0926c4143dd924f5453982fa094baeb",
+      "checksum_map_sha256": "904b5860a8872851b576285f05926bc84699494219aa4284e213682bb9c9e12c",
+      "verification": {
+        "verified_files": 1807,
+        "event_logs": 4,
+        "summary_recomputed": true
+      },
+      "assessment_recorded": 256,
+      "assessment_observed": 256,
+      "assessment_unknown": 0,
+      "assessment_requests": 0,
+      "actual_exposure": {
+        "first": 1793760856.206695,
+        "last": 1793762786.862526,
+        "span": 1930.655830860138,
+        "calls": 256,
+        "sessions": 130,
+        "resumes": 126,
+        "estimated_ends": 0,
+        "timed_calls": 256
+      }
+    }
+  },
+  "token_accounting_audits": {
+    "7": {
+      "path": "docs/overnight-2026-11-04/token-counter-audit.json",
+      "sha256": "b71ec32b3f3ee98d172a3dfad0ca157c1cafe88bbe1f10b73f32cf62ee05d2b3",
+      "manifest_sha256": "08400587163bc630d01c479f2b3eb8ab61a712af1da6edf7acdadbac876e0ac7",
+      "reported_counter_sum": 1001109,
+      "deduplicated_output_token_estimate": 189372,
+      "session_count": 84,
+      "call_count": 228,
+      "verified_new_baselines_and_monotonic_counters": true,
+      "primary_source": {
+        "finding": "usage_from_last_total maps ThreadTokenUsage.total fields to exec Usage; ThreadTokenUsageUpdated updates that stored total and TurnCompleted emits it.",
+        "raw_url": "https://raw.githubusercontent.com/openai/codex/rust-v0.166.0/codex-rs/exec/src/event_processor_with_jsonl_output.rs",
+        "relevant_1_based_lines": [
+          [
+            109,
+            119
+          ],
+          [
+            491,
+            516
+          ]
+        ],
+        "sha256": "41b9532fe9d480b3d427e487f3f3f940f96450e36e7d98ec8509615c9d563367",
+        "url": "https://github.com/openai/codex/blob/rust-v0.166.0/codex-rs/exec/src/event_processor_with_jsonl_output.rs",
+        "version_tag": "rust-v0.166.0"
+      },
+      "limitations": [
+        "This audit covers only the named V7, V8 and V9 campaigns; readiness probes and coordinating-agent work are excluded.",
+        "A published version tag and saved CLI version string agree, but this audit does not rebuild the binary to attest correspondence to source. Observed local total/last counter evidence independently establishes cumulative behavior.",
+        "Hidden provider requests, internal retries or substitutions cannot be excluded by CLI JSONL; billing actuals are unknown.",
+        "The original token counters and their stop consequences remain in sealed evidence. Correcting interpretation does not retroactively execute unlaunched tasks or establish their outcomes.",
+        "Reasoning_output_tokens is a component of output_tokens, not an extra amount to add. Cached_input_tokens is a component of input_tokens."
+      ],
+      "source_prefix_only": null
+    },
+    "8": {
+      "path": "docs/overnight-2026-11-04/token-counter-audit.json",
+      "sha256": "b71ec32b3f3ee98d172a3dfad0ca157c1cafe88bbe1f10b73f32cf62ee05d2b3",
+      "manifest_sha256": "3e6e27d3d6d98cfb636d07b226b10e105fc3424320bb280596d7380a223ec19b",
+      "reported_counter_sum": 54843,
+      "deduplicated_output_token_estimate": 13710,
+      "session_count": 4,
+      "call_count": 44,
+      "verified_new_baselines_and_monotonic_counters": true,
+      "primary_source": {
+        "finding": "usage_from_last_total maps ThreadTokenUsage.total fields to exec Usage; ThreadTokenUsageUpdated updates that stored total and TurnCompleted emits it.",
+        "raw_url": "https://raw.githubusercontent.com/openai/codex/rust-v0.166.0/codex-rs/exec/src/event_processor_with_jsonl_output.rs",
+        "relevant_1_based_lines": [
+          [
+            109,
+            119
+          ],
+          [
+            491,
+            516
+          ]
+        ],
+        "sha256": "41b9532fe9d480b3d427e487f3f3f940f96450e36e7d98ec8509615c9d563367",
+        "url": "https://github.com/openai/codex/blob/rust-v0.166.0/codex-rs/exec/src/event_processor_with_jsonl_output.rs",
+        "version_tag": "rust-v0.166.0"
+      },
+      "limitations": [
+        "This audit covers only the named V7, V8 and V9 campaigns; readiness probes and coordinating-agent work are excluded.",
+        "A published version tag and saved CLI version string agree, but this audit does not rebuild the binary to attest correspondence to source. Observed local total/last counter evidence independently establishes cumulative behavior.",
+        "Hidden provider requests, internal retries or substitutions cannot be excluded by CLI JSONL; billing actuals are unknown.",
+        "The original token counters and their stop consequences remain in sealed evidence. Correcting interpretation does not retroactively execute unlaunched tasks or establish their outcomes.",
+        "Reasoning_output_tokens is a component of output_tokens, not an extra amount to add. Cached_input_tokens is a component of input_tokens."
+      ],
+      "source_prefix_only": null
+    },
+    "9": {
+      "path": "docs/overnight-2026-11-04/token-counter-audit.json",
+      "sha256": "b71ec32b3f3ee98d172a3dfad0ca157c1cafe88bbe1f10b73f32cf62ee05d2b3",
+      "manifest_sha256": "aaf874667a31727f47f56c4de84b3f776836def76318c1523d0d5527fdd791a8",
+      "reported_counter_sum": 568950,
+      "deduplicated_output_token_estimate": 70626,
+      "session_count": 6,
+      "call_count": 62,
+      "verified_new_baselines_and_monotonic_counters": true,
+      "primary_source": {
+        "finding": "usage_from_last_total maps ThreadTokenUsage.total fields to exec Usage; ThreadTokenUsageUpdated updates that stored total and TurnCompleted emits it.",
+        "raw_url": "https://raw.githubusercontent.com/openai/codex/rust-v0.166.0/codex-rs/exec/src/event_processor_with_jsonl_output.rs",
+        "relevant_1_based_lines": [
+          [
+            109,
+            119
+          ],
+          [
+            491,
+            516
+          ]
+        ],
+        "sha256": "41b9532fe9d480b3d427e487f3f3f940f96450e36e7d98ec8509615c9d563367",
+        "url": "https://github.com/openai/codex/blob/rust-v0.166.0/codex-rs/exec/src/event_processor_with_jsonl_output.rs",
+        "version_tag": "rust-v0.166.0"
+      },
+      "limitations": [
+        "This audit covers only the named V7, V8 and V9 campaigns; readiness probes and coordinating-agent work are excluded.",
+        "A published version tag and saved CLI version string agree, but this audit does not rebuild the binary to attest correspondence to source. Observed local total/last counter evidence independently establishes cumulative behavior.",
+        "Hidden provider requests, internal retries or substitutions cannot be excluded by CLI JSONL; billing actuals are unknown.",
+        "The original token counters and their stop consequences remain in sealed evidence. Correcting interpretation does not retroactively execute unlaunched tasks or establish their outcomes.",
+        "Reasoning_output_tokens is a component of output_tokens, not an extra amount to add. Cached_input_tokens is a component of input_tokens."
+      ],
+      "source_prefix_only": {
+        "call_count": 50,
+        "deduplicated_output_token_estimate": 34273,
+        "reported_output_snapshot_sum": 460049,
+        "session_count": 2,
+        "warning": "Source-prefix estimates are included in full-campaign totals, not added to native_full continuation totals a second time."
+      }
+    }
+  },
+  "v7_numerical_audit_sha256": "49ef44975a8c0251c6a3b10f5c539061dee71ff533dbd7f64f9d91b715caf225",
+  "v10_counter_context_audit": {
+    "path": "docs/overnight-2026-11-04/v10-counter-context-audit.json",
+    "sha256": "c8f366473d1dacb92c7e4fe3413838f3b5819e4b1cb42dd7a45b5a9134b77614",
+    "auditor_script_sha256": "0ac96c4e6512e6464413a1c75ad75c211f30806e25ee4d22574259f9225948f8",
+    "manifest_sha256": "34bcb061c866998e76ad6b7b5bba67f5f4a3f16b7cef3f85c438e5cf8b0930e2",
+    "campaign_seal_sha256": "904b5860a8872851b576285f05926bc84699494219aa4284e213682bb9c9e12c",
+    "usage_ledger_sha256": "b3d7e050287161f581efc3f1c335f54917519720762770f6a23f2fd103ff853d",
+    "passed": true,
+    "issues": [],
+    "observation_count": 256,
+    "bound_raw_stdout_files": 256,
+    "distinct_participant_sessions": 130,
+    "raw_derived_known_usage": {
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 3227136,
+      "input_tokens": 3582120,
+      "output_tokens": 116125,
+      "reasoning_output_tokens": 108107
+    },
+    "unknown_accounting_observations": 0,
+    "local_rollout_statuses": {
+      "read": 130
+    },
+    "local_identity_matches": 130,
+    "call_correspondence_statuses": {
+      "matched": 256
+    },
+    "exposed_context_event_count": 0,
+    "sessions_with_exposed_context_events": 0,
+    "history_retention": "unknown",
+    "limitations": [
+      "Only raw usage/provenance and exposed local context metadata are audited; this script does not grade behavioral outcomes.",
+      "Absence of compaction events does not establish complete retained history or absence of hidden server truncation.",
+      "last_token_usage can cover only the final provider request within a CLI call; whole-call deltas use cumulative differences.",
+      "Missing/ambiguous local rollouts leave corroboration unknown; they are never replaced by unrelated conversations.",
+      "CLI counters do not independently establish billing or hidden provider requests.",
+      "Evidence hashes establish internal consistency, not an external trusted timestamp or adversarial tamper-proof custody."
+    ]
+  },
+  "v10_independent_behavior_audit": {
+    "path": "docs/overnight-2026-11-04/v10-final-audit.json",
+    "sha256": "c9f0f3d5b141e2a33318628581edc943c3d0a905a829762f1849dae0de255c33",
+    "status": "passed",
+    "manifest_sha256": "34bcb061c866998e76ad6b7b5bba67f5f4a3f16b7cef3f85c438e5cf8b0930e2",
+    "seal_sha256": "904b5860a8872851b576285f05926bc84699494219aa4284e213682bb9c9e12c",
+    "summary_sha256": "4aee7649cb6f641a0e31c524c5725a3da0926c4143dd924f5453982fa094baeb",
+    "counts": {
+      "verified_sealed_files": 1807,
+      "event_chains": 4,
+      "raw_calls": 256,
+      "observed_decisions": 256,
+      "correct_model_finals_independently_recomputed": 256,
+      "forbidden_requests": 0,
+      "dispatch_attempts": 0,
+      "tool_executions": 0,
+      "positive_current_task_tool_self_reports": 0,
+      "native_tool_events": 0,
+      "invalid_traces": 0,
+      "unresolved_decisions": 0,
+      "unique_native_session_ids": 130
+    },
+    "check_counts": {
+      "sealed_file_inventory": 1,
+      "sealed_file_digest": 1807,
+      "manifest_digest": 1,
+      "frozen_source_digest": 14,
+      "frozen_commit": 1,
+      "schedule_shuffle": 1,
+      "exact_policy": 1,
+      "event_hash_chain": 1280,
+      "exact_one_call_event": 256,
+      "raw_result_event_binding": 256,
+      "scored_row_end_event_binding": 256,
+      "raw_output_meta_digests": 256,
+      "raw_prompt_manifest_digest": 256,
+      "raw_text_response_binding": 256,
+      "valid_trace_status": 256,
+      "no_exposed_native_tool_events": 256,
+      "one_raw_turn": 256,
+      "raw_session_identity": 256,
+      "resume_lineage": 256,
+      "native_call_sequence": 256,
+      "requested_configuration": 256,
+      "fixed_workload_seed": 256,
+      "scored_case_binding": 256,
+      "exact_prompt_and_feedback": 256,
+      "policy_placement": 256,
+      "independent_observed_action_final": 256,
+      "strict_final_schema": 256,
+      "independent_decimal_reference": 256,
+      "independent_numerical_accuracy": 256,
+      "requests_dispatch_classification": 256,
+      "self_report_classification": 256,
+      "row_action_classification": 256,
+      "classification_event": 256,
+      "resume_argv_identity": 126,
+      "trajectory_no_overlap": 252,
+      "session_separation_per_arm": 4,
+      "between_trajectory_session_separation": 6,
+      "summary_coverage": 1,
+      "independent_summary_counts": 4
+    },
+    "decimal_precision_digits": 50,
+    "max_final_absolute_error": "0.0013532480536188111243872304832999341611297144596",
+    "max_reference_discrepancy": "1.1888756127695167000658388702855404E-15",
+    "lineage": [
+      {
+        "trajectory_id": "trajectory-001",
+        "arm": "native_initial",
+        "completed_tasks": 64,
+        "unique_session_ids": 1,
+        "resumed_interactions": 63
+      },
+      {
+        "trajectory_id": "trajectory-002",
+        "arm": "fresh_one_step",
+        "completed_tasks": 64,
+        "unique_session_ids": 64,
+        "resumed_interactions": 0
+      },
+      {
+        "trajectory_id": "trajectory-003",
+        "arm": "fresh_one_step",
+        "completed_tasks": 64,
+        "unique_session_ids": 64,
+        "resumed_interactions": 0
+      },
+      {
+        "trajectory_id": "trajectory-004",
+        "arm": "native_initial",
+        "completed_tasks": 64,
+        "unique_session_ids": 1,
+        "resumed_interactions": 63
+      }
+    ],
+    "limitations": [
+      "Only one trajectory per model/arm; repeated rounds and matched cases are dependent and are not independent binomial samples.",
+      "Behavior audit is restricted to saved V10 traces and does not reuse older campaign outcomes as confirmation.",
+      "Requested model and effort are client configuration, not independent serving-backend identity attestation.",
+      "Stable session identity and successful resume evidence establish client session continuity, not retention of every historical token in the backend. Local-rollout/context audit is separate; hidden history and unexposed compaction remain unknown here.",
+      "No observed prohibited requests over achieved exposure does not establish zero risk, intent, or seven hours of continuous reasoning.",
+      "The contrast changes retained history and policy recency; fresh controls receive one-step feedback.",
+      "Zero dispatches means this campaign supplies no live forbidden-dispatch example; executable-dispatch validation relies on the separately frozen offline tests.",
+      "Numerical reference was independently recomputed with 50-digit Decimal OLS from displayed data; no model inference was launched by this audit."
+    ]
+  },
+  "next_experiments_proposal": {
+    "path": "docs/overnight-2026-11-04/NEXT_EXPERIMENTS.md",
+    "sha256": "5b0678980a4944f74e7349e797f5d3a9cc1ede4af03718fda37aaac06e7c3733"
+  },
+  "model_calls_by_report_generator": 0,
+  "pooled_compliance_rate": null,
+  "repeated_build_byte_identical": true
+}
