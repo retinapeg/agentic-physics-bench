@@ -1,5 +1,5 @@
 {
-  "status": "awaiting_deadline_for_final_preservation",
+  "status": "finalizing_preservation",
   "started_utc": "2026-11-04T00:33:16Z",
   "hard_deadline_utc": "2026-11-04T07:33:16Z",
   "automation_id": "seven-hour-agent-persistence-study",
@@ -192,9 +192,9 @@
     "stdout_log": "/Users/leonardaarons-ditson/Projects/agentic-physics-bench-evidence-difficulty/docs/overnight-2026-11-04/long-history-20261104.stdout.log"
   },
   "scope": "Numerical fit_line only. V7 persistence, V8 permission revocation and V9 memory handoff sealed. V10 fixed L1 workload extension: 64 tasks across 2 models x 2 arms, one native retained session versus fresh sessions with own one-step feedback. Preserve all prior sealed sources and results.",
-  "next_action": "Research, independent behavioral/counter/scientific audits, reports, future proposal and portability checks complete. No pending subagent work and no active inference;598/600participant starts. Preserve frozen files and current report hashes. Do not repeat tests or launch calls merely to fill time. Unless user steers or a new issue emerges, remain quiet through remaining authorized window. At/after07:33:16UTC verify only owned experiment processes absent,finalize state and commit latest additive work,create/verify external archive using archive_overnight_evidence.py for all4campaigns,then pause heartbeat. No automatic GitHub push.",
+  "next_action": "Create and independently verify the final external archive; then pause heartbeat, record final state, commit closure metadata and preserve completion sidecars. Launch no experimental inference. No GitHub push.",
   "continuation": "After initial campaign finishes, analyze and develop justified separately frozen exploration until deadline; do not use calls merely to spend capacity. At deadline stop inference and finish report/archive.",
-  "artifact_commit": "401bb8d0cfd8c12116f8d443fe63c3a9cc88e59c",
+  "artifact_commit": "c2496244ddffd51ab9b66fae6230c5bff8b46b41",
   "readiness_probes": [
     {
       "path": "experiments/v7_persistence/results/readiness-20261104",
@@ -210,7 +210,7 @@
     }
   ],
   "global_call_accounting": "598 actual experimental starts of600 global cap,2 remaining unallocated. No further inference justified/allocated; remaining overnight work is offline verification, analysis, reporting and preservation.",
-  "last_update_utc": "2026-11-04T03:54:43.469562+00:00",
+  "last_update_utc": "2026-11-04T07:36:50.128292+00:00",
   "last_checkpoint": {
     "campaign": "v10",
     "status": "sealed_verified",
@@ -352,5 +352,21 @@
     "planning_arithmetic_checks": 54,
     "sample_size_planning": "docs/overnight-2026-11-04/sample-size-planning.json",
     "interpretation": "Future 2session/model/cell study is feasibility only; hypothetical sensitivity calculations are not empirical V7\u2013V10 intervals and not contrast power."
+  },
+  "last_monitor_check": {
+    "utc": "2026-11-04T07:34:40.918077+00:00",
+    "owned_experiment_pids_absent": true,
+    "all_four_campaign_seals_present": true,
+    "experimental_starts_unchanged": 598,
+    "no_additional_inference": true,
+    "v7_protocol_sha256": "772b203d38c8159e0c20fcb1edeb6bc11065737cb0c27e3f8d2371ca0abd0a25",
+    "final_preservation_due": true
+  },
+  "finalization_started_utc": "2026-11-04T07:36:50.128292+00:00",
+  "deadline_close_check": "docs/overnight-2026-11-04/deadline-close-check.json",
+  "external_archive": {
+    "path": "/Users/leonardaarons-ditson/Documents/ChatGPT/organise mysefl/physics-overnight-evidence-2026-11-04",
+    "status": "creation_pending",
+    "scope": "All four sealed campaigns, readiness sets, frozen sources, reports, independent audits, research notes, reproducibility commands and Git history."
   }
 }
