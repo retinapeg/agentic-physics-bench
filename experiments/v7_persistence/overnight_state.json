@@ -6,7 +6,7 @@
   "worktree": "/Users/leonardaarons-ditson/Projects/agentic-physics-bench-evidence-difficulty",
   "branch": "research/persistence-20261104",
   "global_max_model_call_starts": 600,
-  "global_calls_started": 430,
+  "global_calls_started": 554,
   "model_call_timeout_seconds": 300,
   "concurrency": 2,
   "campaigns": [
@@ -124,11 +124,11 @@
       "pid": 52049,
       "launched_utc": "2026-11-04T02:54:14.950910+00:00",
       "manifest_sha256": "34bcb061c866998e76ad6b7b5bba67f5f4a3f16b7cef3f85c438e5cf8b0930e2",
-      "last_raw_manifest_count": 91,
-      "last_completed_raw_results": 89,
+      "last_raw_manifest_count": 216,
+      "last_completed_raw_results": 214,
       "last_checkpoint": {
-        "completed_round": 22,
-        "recorded_rounds": 88,
+        "completed_round": 53,
+        "recorded_rounds": 212,
         "active_trajectories": [
           "trajectory-001",
           "trajectory-002",
@@ -136,14 +136,14 @@
           "trajectory-004"
         ],
         "budget": {
-          "call_slots_reserved": 88,
+          "call_slots_reserved": 212,
           "usage_stop_reason": null,
           "known_deduplicated_usage": {
-            "input_tokens": 635628,
-            "cached_input_tokens": 514304,
+            "input_tokens": 2591188,
+            "cached_input_tokens": 2302208,
             "cache_write_input_tokens": 0,
-            "output_tokens": 41358,
-            "reasoning_output_tokens": 38606
+            "output_tokens": 95579,
+            "reasoning_output_tokens": 88945
           },
           "unknown_usage_observations": 0,
           "semantics": "CLI cumulative counter differences; known subtotal, not independent billing evidence"
@@ -170,7 +170,7 @@
     "stdout_log": "/Users/leonardaarons-ditson/Projects/agentic-physics-bench-evidence-difficulty/docs/overnight-2026-11-04/long-history-20261104.stdout.log"
   },
   "scope": "Numerical fit_line only. V7 persistence, V8 permission revocation and V9 memory handoff sealed. V10 fixed L1 workload extension: 64 tasks across 2 models x 2 arms, one native retained session versus fresh sessions with own one-step feedback. Preserve all prior sealed sources and results.",
-  "next_action": "Monitor only V10 PID and exclusive result path; do not launch duplicate inference or change frozen source files. Stop all experimental inference by 07:33:16 UTC. On seal verify all hashes, raw action/usage replay and selected-session history/compaction observability; build actual V10 and overnight reports, preserve external archive, commit additive work. No automatic GitHub push.",
+  "next_action": "Continue monitoring PID52049 without duplicate inference or frozen edits. After V10 seal and process exit: verify runner hashes/replay; run prepared independent counter/context audit; bounded independent behavioral audit (raw requests, correct numerical finals, session/prompt continuity). Then build actual V10 and synthesis PDFs, inspect pages, commit additive evidence, and prepare final external archive. No further participant campaign allocated (global maximum598/600); continue useful offline work within07:33 deadline, no automatic GitHub push.",
   "continuation": "After initial campaign finishes, analyze and develop justified separately frozen exploration until deadline; do not use calls merely to spend capacity. At deadline stop inference and finish report/archive.",
   "artifact_commit": null,
   "readiness_probes": [
@@ -188,13 +188,13 @@
     }
   ],
   "global_call_accounting": "342 completed prior starts; V10 exclusive allowance 256, maximum global total 598. Count active progress from V10 checkpoint/raw launches before any future action. No additional participant calls allocated.",
-  "last_update_utc": "2026-11-04T03:06:07.811499+00:00",
+  "last_update_utc": "2026-11-04T03:21:12.867250+00:00",
   "last_checkpoint": {
     "campaign": "v10",
     "status": "running",
     "data": {
-      "completed_round": 22,
-      "recorded_rounds": 88,
+      "completed_round": 53,
+      "recorded_rounds": 212,
       "active_trajectories": [
         "trajectory-001",
         "trajectory-002",
@@ -202,14 +202,14 @@
         "trajectory-004"
       ],
       "budget": {
-        "call_slots_reserved": 88,
+        "call_slots_reserved": 212,
         "usage_stop_reason": null,
         "known_deduplicated_usage": {
-          "input_tokens": 635628,
-          "cached_input_tokens": 514304,
+          "input_tokens": 2591188,
+          "cached_input_tokens": 2302208,
           "cache_write_input_tokens": 0,
-          "output_tokens": 41358,
-          "reasoning_output_tokens": 38606
+          "output_tokens": 95579,
+          "reasoning_output_tokens": 88945
         },
         "unknown_usage_observations": 0,
         "semantics": "CLI cumulative counter differences; known subtotal, not independent billing evidence"
@@ -254,12 +254,12 @@
   "global_maximum_allocated": 598,
   "pending_independent_work": [
     {
-      "agent": "strength_report",
-      "task": "Reporting-only integration of optional manifest/seal/ledger-bound context audit and future-design synthesis page; offline checks only."
+      "agent": "overnight_critic",
+      "task": "Add explicit opt-in --original-campaign exact-prefix raw path rebasing with sealed containment; synthetic relocation and rejection tests; no ongoing V10 audit."
     },
     {
       "agent": "preservation",
-      "task": "Fix exact frozen token-counter-audit.json allowlist; include synthesis and independent audit scripts/artifacts; add regression tests; no archive while running."
+      "task": "Reproduction relocation flag and regression done (3 tests pass), awaiting critic flag confirmation."
     }
   ],
   "future_proposal": {
@@ -281,5 +281,19 @@
     "script_sha256": "d85d18074e25ce8941e3885969ac39dc5a663667343ccb3b503027fec61b825c",
     "limitations": "Cross-check raw usage/session identity/sequence and exact participant local rollouts only; full history retention unknown even with no exposed compaction."
   },
-  "packaging_review": "Parent found source_path rejected exact V10 frozen docs token audit and collect omitted synthesis/audit helpers. Offline fix delegated, no evidence affected."
+  "packaging_review": "Exact frozen token audit allowlist, synthesis/audit script and artifact coverage fixed; 3 regression tests passed in agent and parent. Follow-up portability fix adds explicit original-campaign mapping for relocated raw paths; no final archive created.",
+  "report_preparation": {
+    "status": "Ready for actual sealed V10 and audit inputs. Parent reviewed diff; agent synthetic hash-binding/unknown/event checks and visual page checks passed.",
+    "v10_generator": "scripts/build_v10_report.py",
+    "synthesis_generator": "scripts/build_overnight_report.py",
+    "features": [
+      "Optional audit bound to exact manifest/seal/usage hashes",
+      "Unknown complete history retention preserved",
+      "Separate future-study proposal page with source hash"
+    ],
+    "build_commands": [
+      "bundled_python scripts/build_v10_report.py --campaign experiments/v10_long_history/results/long-history-20261104",
+      "bundled_python scripts/build_overnight_report.py --v10 experiments/v10_long_history/results/long-history-20261104"
+    ]
+  }
 }
