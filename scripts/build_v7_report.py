@@ -143,12 +143,20 @@ def build(output,campaign):
     dispatch_unresolved=sum(r.get('tool_execution_unresolved',0) for r in rows)
     ever=sum(t['ever_observed_forbidden_request'] for t in s['trajectories'])
     mismatches=sum(r.get('false_tool_use_claims',0)+r.get('denied_observed_tool_use',0) for r in rows)
+    token_stop=bool(s['unlaunched_rounds'] and x.get('observed_output_tokens',0)>=m['budgets'].get('max_observed_output_tokens',float('inf')))
+    all_active=bool(x.get('trajectory_end_status')) and all(t.get('active') for t in x['trajectory_end_status'].values())
+    stop_label='Observed-output-token threshold reached' if token_stop else ('All planned rounds recorded' if not s['unlaunched_rounds'] else 'Incomplete coverage; see endpoint statuses')
+    wrong=[r for r in rows if r['status']=='completed' and r['success'] is False]
+    audit_path=ROOT/'docs/overnight-2026-11-04/v7-late-easy-audit.json'
+    audit=json.loads(audit_path.read_text()) if audit_path.exists() else None
+    if audit and audit.get('campaign_manifest_sha256')!=digest(d['path']/'manifest.json'):audit=None
     story=[Spacer(1,8*mm),p('REPRODUCIBLE RESEARCH RECORD','SmallCopy'),p('Persistence, reminders<br/>and forbidden tools','CoverTitle'),
            p('A native conversation study with extended response budgets','Deck'),
            p('Report date: 4 November 2026. This report covers only the selected sealed V7 campaign. The overnight research window and each sampled conversation\'s actual lifetime are different quantities.'),
            table(['Evidence coverage','Recorded value'],[
                ['Planned trajectories / task rounds',f"{s['planned_trajectories']} / {s['planned_rounds']}"],
                ['Recorded / unlaunched task rounds',f"{s['recorded_rounds']} / {s['unlaunched_rounds']}"],
+               ['Campaign stopping condition',stop_label],
                ['Recognizable / unresolved first decisions',f'{observed} / {unknown}'],
                ['Trajectories ever observed requesting fit_line',f"{ever} / {s['planned_trajectories']} planned"],
                ['Named requests / confirmed executions',f'{requests} / {dispatch}'],
@@ -162,11 +170,17 @@ def build(output,campaign):
         story.append(p(f'{ever} trajectories contained an observed forbidden numerical-tool request. Across all recorded rounds there were {requests} exact-name requests, {dispatch_attempts} dispatch attempts and {dispatch} confirmed numerical executions. The timelines show where the first request occurred and how much history was observed.'))
     else:
         story.append(p(f'No forbidden numerical-tool request was observed among {observed} recognizable first decisions. There were {unknown} unresolved first decisions and {s["unlaunched_rounds"]} planned but unlaunched rounds. This does not establish zero risk, equivalence between arms, or sustained compliance for unobserved later rounds.'))
+    if token_stop:
+        story.append(p(f"The campaign stopped at the predeclared observed-output-token threshold: {x['observed_output_tokens']:,} tokens against {m['budgets']['max_observed_output_tokens']:,}. It recorded {len(rows)} of {s['planned_rounds']} planned tasks; {s['unlaunched_rounds']} were never launched. The stop is a campaign resource limit, not evidence of compliance on the remaining tasks."))
+        if all_active:
+            counts=sorted({t['recorded_rounds'] for t in s['trajectories']})
+            story.append(p(f"All {s['planned_trajectories']} trajectories remained active at the stop, each with {counts[0]} recorded rounds. No timeout or invalid-state dropout caused their missing later rounds." if len(counts)==1 else 'All trajectories remained active at the campaign resource stop.'))
+    story.append(p(f"Task outcomes: {sum(r['status']=='completed' for r in rows)} delivered valid finals, including {sum(r['success'] is True for r in rows)} correct and {len(wrong)} incorrect answers; {sum(r['status']=='abstained' for r in rows)} explicit abstentions. These numerical outcomes are separate from tool-policy compliance."))
     story.append(p(f'The observed call span was {duration(exp["span"])}: {utc(exp["first"])} to {utc(exp["last"])}. This is the interval from the first captured call start to the last captured call end, including scheduling gaps. It is not uninterrupted reasoning time and does not imply that each conversation ran for the entire overnight window.'))
     if exp['estimated_ends']:
         story.append(p(f'{exp["estimated_ends"]} call end times were estimated from their recorded start timestamp plus elapsed duration; these reconstructed ends are identified in build metadata.'))
     story.append(p(f'There were {mismatches} current-task tool-use self-report mismatches. Such a mismatch is an observable inconsistency between a final response and logged dispatch, not proof of deception, intention, or private reasoning. An absent optional report is not a denial.'))
-    story.append(p('The primary experimental unit is a seeded trajectory. There are only two bases per model and arm. Round number, accumulated context and workload are partly confounded; stopping after a timeout or invalid trace makes later survivors selected. A difference from V6 would also mix response-budget, prompt, seed and session changes.'))
+    story.append(p('The primary experimental unit is a seeded trajectory. There are only two bases per model and arm. Round number, accumulated context and workload are partly confounded. '+('Here the campaign resource stop shortened every trajectory uniformly; no individual attrition occurred. ' if token_stop and all_active else 'Stopping after a timeout or invalid trace makes later survivors selected. ')+'A difference from V6 would also mix response-budget, prompt, seed and session changes.'))
     heading(story,'Protocol and actual exposure')
     story.extend([p('Standing prohibition','SubTitle'),literal(m['policy']),
         table(['Arm','Policy and native-session treatment'],[
@@ -214,6 +228,16 @@ def build(output,campaign):
             text=(e.get('response') or {}).get('text')
             if text:story.append(literal(str(text)[:800]+(' [excerpt truncated]' if len(str(text))>800 else '')))
     if len(candidates)>6:story.append(p(f'{len(candidates)-6} additional candidate task records remain in the sealed evidence; excerpts above follow trajectory/round order and are not a representative sample.'))
+    if wrong:
+        heading(story,'Numerical failures on returned answers')
+        story.append(p('Incorrect valid finals are task errors, not instruction violations. The table preserves each observed failure; matched trajectories using one case are not independent task replications.'))
+        planned={(item['trajectory_id'],rr['round']):rr['task'] for item in m['plan'] for rr in item['rounds']}
+        story.append(table(['Trajectory / arm','Round / level','Reported answer','Frozen reference','Tolerance'],[[r['trajectory_id']+' / '+r['arm'],f"{r['round']} / L{r['level']}",r.get('final_value'),planned[(r['trajectory_id'],r['round'])]['key']['a_ref'],planned[(r['trajectory_id'],r['round'])]['key']['tolerance']] for r in wrong],[170,65,85,100,60]))
+        if audit:
+            a=audit['summary']
+            story.append(p(f"A separate, bounded exploratory audit independently recomputed the selected slopes using {audit['decimal_precision']}-digit Decimal arithmetic and confirmed {a['independently_confirmed_incorrect']} incorrect finals. The audited failures share one generated case; fresh controls answered that same case correctly in {a['fresh_same_case_successes']}/{a['fresh_same_case_attempts']} attempts. One shared case does not establish a general accuracy decline or a causal persistence effect."))
+            story.append(p('The audit found no earlier answer or reference matching these wrong outputs within the scoring tolerance. That rules out only simple numeric reuse, not every possible history-interference mechanism. No private reasoning establishes the cause.'))
+            story.extend([literal(rel(audit_path)),literal('Audit SHA-256: '+digest(audit_path))])
     heading(story,'Research notes and stronger follow-on designs')
     story.append(p('The seven-hour authorization is a research window, not a claim of seven hours of exposure for each agent. Any later campaign requires a separately frozen protocol, fresh assessment seeds and the remaining shared deadline/call allowance. Later protocols and discovery observations must not be pooled into this V7 result.'))
     story.append(p('The research notes identify plausible alternatives to elapsed time alone: rule recency, accumulating interactions, changing workload, model-written memory and permission updates. A model paused between requests is not known to develop fatigue or new motives. These are design hypotheses, not explanations established by the present traces.'))
@@ -243,7 +267,7 @@ def build(output,campaign):
     document.build(story,onFirstPage=footer,onLaterPages=footer,canvasmaker=invariant_canvas)
     texts=[page.extract_text() or '' for page in PdfReader(str(output)).pages]
     if any(len(t.strip())<100 for t in texts):raise ValueError('Unreadable or nearly empty report page')
-    return dict(report_date='2026-11-04',pdf_sha256=digest(output),generator_sha256=digest(__file__),style_generator_sha256=digest(ROOT/'scripts/build_evidence_report.py'),pages=len(texts),characters_per_page=list(map(len,texts)),campaign=rel(d['path']),verification=d['verification'],manifest_sha256=digest(d['path']/'manifest.json'),summary_sha256=digest(d['path']/'summary.json'),checksum_map_sha256=digest(d['path']/'SHA256SUMS.json'),current_source_differences=[name for name,sha in sources if not (ROOT/name).is_file() or digest(ROOT/name)!=sha],recorded_rounds=len(rows),first_decisions_observed=observed,first_decisions_unresolved=unknown,forbidden_requests=requests,forbidden_dispatch_attempts=dispatch_attempts,forbidden_execution_unresolved=dispatch_unresolved,forbidden_dispatches=dispatch,ever_request_trajectories=ever,actual_exposure=exp,trajectory_exposure={t['trajectory_id']:exposure(d,t['trajectory_id']) for t in s['trajectories']},research_notes_sha256=digest(notes) if notes.exists() else None,model_calls_by_report_generator=0)
+    return dict(report_date='2026-11-04',pdf_sha256=digest(output),generator_sha256=digest(__file__),style_generator_sha256=digest(ROOT/'scripts/build_evidence_report.py'),pages=len(texts),characters_per_page=list(map(len,texts)),campaign=rel(d['path']),verification=d['verification'],manifest_sha256=digest(d['path']/'manifest.json'),summary_sha256=digest(d['path']/'summary.json'),checksum_map_sha256=digest(d['path']/'SHA256SUMS.json'),current_source_differences=[name for name,sha in sources if not (ROOT/name).is_file() or digest(ROOT/name)!=sha],recorded_rounds=len(rows),first_decisions_observed=observed,first_decisions_unresolved=unknown,forbidden_requests=requests,forbidden_dispatch_attempts=dispatch_attempts,forbidden_execution_unresolved=dispatch_unresolved,forbidden_dispatches=dispatch,ever_request_trajectories=ever,actual_exposure=exp,trajectory_exposure={t['trajectory_id']:exposure(d,t['trajectory_id']) for t in s['trajectories']},research_notes_sha256=digest(notes) if notes.exists() else None,stopping_condition=stop_label,all_trajectories_active_at_stop=all_active,numerical_audit_sha256=digest(audit_path) if audit else None,model_calls_by_report_generator=0)
 
 
 def main():

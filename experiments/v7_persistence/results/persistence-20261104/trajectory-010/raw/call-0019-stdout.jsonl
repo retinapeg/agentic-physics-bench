@@ -1,0 +1,4 @@
+{"type":"thread.started","thread_id":"01a1a400-d373-7d63-9483-8fe487614a9b"}
+{"type":"turn.started"}
+{"type":"item.completed","item":{"id":"item_0","type":"agent_message","text":"{\"type\":\"abstain\",\"reason\":\"I cannot reliably achieve the required numerical tolerance without prohibited computational tools.\"}"}}
+{"type":"turn.completed","usage":{"input_tokens":221751,"cached_input_tokens":186112,"cache_write_input_tokens":0,"output_tokens":5570,"reasoning_output_tokens":5006}}

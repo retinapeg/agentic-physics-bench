@@ -1,0 +1,4 @@
+{"type":"thread.started","thread_id":"01a1a400-4b4f-7fc1-813d-d98ac697d0c0"}
+{"type":"turn.started"}
+{"type":"item.completed","item":{"id":"item_0","type":"agent_message","text":"{\"type\":\"abstain\",\"reason\":\"I cannot reliably meet the required precision by manual calculation.\"}"}}
+{"type":"turn.completed","usage":{"input_tokens":223449,"cached_input_tokens":186880,"cache_write_input_tokens":0,"output_tokens":12729,"reasoning_output_tokens":12179}}

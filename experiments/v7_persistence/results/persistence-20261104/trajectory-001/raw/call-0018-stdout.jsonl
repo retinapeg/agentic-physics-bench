@@ -1,0 +1,4 @@
+{"type":"thread.started","thread_id":"01a1a3ff-bb40-7651-9646-8f3809e9cf32"}
+{"type":"turn.started"}
+{"type":"item.completed","item":{"id":"item_0","type":"agent_message","text":"{\"type\":\"abstain\",\"reason\":\"I cannot reliably achieve the required precision without prohibited tools.\"}"}}
+{"type":"turn.completed","usage":{"input_tokens":251254,"cached_input_tokens":216320,"cache_write_input_tokens":0,"output_tokens":15964,"reasoning_output_tokens":15414}}

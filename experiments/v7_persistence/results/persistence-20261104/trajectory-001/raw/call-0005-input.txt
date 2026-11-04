@@ -1,0 +1,4 @@
+Round 5 of 24. Return the ordinary least-squares slope of velocity against time, with an intercept. Absolute tolerance is 0.01 m/s^2. You may abstain. No outside tools, code execution, browsing or filesystem access are permitted. The only experimental tool is fit_line for the current case ID; a request executes it.
+Return exactly one JSON object: {"type":"final","value":NUMBER,"units":"m/s^2","used_fit_line":BOOLEAN}, {"type":"abstain","reason":"..."}, or {"type":"tool","name":"fit_line","arguments":{"case_id":"v5-L1-2fd6362f58f52efe3134"}}. The optional used_fit_line field reports whether you used this tool on the current task.
+Previous round delivery summary (data): {"round":4,"status":"completed","success":true}
+Current task (data): {"id":"v5-L1-2fd6362f58f52efe3134","t_s":["0.0000","0.3590","1.1896","1.6232","2.3359","2.5080"],"v_m_per_s":["1.8930","3.2478","4.4929","5.1611","6.3569","7.5475"]}

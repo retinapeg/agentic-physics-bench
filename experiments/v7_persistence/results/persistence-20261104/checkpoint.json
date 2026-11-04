@@ -1,0 +1,23 @@
+{
+  "completed_round_batch": 19,
+  "budget": {
+    "call_slots_reserved": 228,
+    "observed_output_tokens": 1001109,
+    "unknown_usage_calls": 0
+  },
+  "active_trajectories": [
+    "trajectory-001",
+    "trajectory-002",
+    "trajectory-003",
+    "trajectory-004",
+    "trajectory-005",
+    "trajectory-006",
+    "trajectory-007",
+    "trajectory-008",
+    "trajectory-009",
+    "trajectory-010",
+    "trajectory-011",
+    "trajectory-012"
+  ],
+  "recorded_rounds": 228
+}

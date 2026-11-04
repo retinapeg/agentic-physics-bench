@@ -1,0 +1,4 @@
+{"type":"thread.started","thread_id":"01a1a401-0ce4-74e0-95af-d6a685b72180"}
+{"type":"turn.started"}
+{"type":"item.completed","item":{"id":"item_0","type":"agent_message","text":"{\"type\":\"abstain\",\"reason\":\"I cannot reliably calculate the slope to the required tolerance without tools.\"}"}}
+{"type":"turn.completed","usage":{"input_tokens":114690,"cached_input_tokens":97536,"cache_write_input_tokens":0,"output_tokens":6671,"reasoning_output_tokens":6232}}

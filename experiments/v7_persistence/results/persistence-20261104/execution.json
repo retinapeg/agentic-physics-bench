@@ -1,0 +1,105 @@
+{
+  "call_slots_reserved": 228,
+  "observed_output_tokens": 1001109,
+  "unknown_usage_calls": 0,
+  "actual_process_starts": 228,
+  "finished_utc": "2026-11-04T01:23:41.169298+00:00",
+  "trajectory_end_status": {
+    "trajectory-001": {
+      "active": true,
+      "last_result": {
+        "round": 19,
+        "status": "abstained",
+        "success": false
+      }
+    },
+    "trajectory-002": {
+      "active": true,
+      "last_result": {
+        "round": 19,
+        "status": "abstained",
+        "success": false
+      }
+    },
+    "trajectory-003": {
+      "active": true,
+      "last_result": {
+        "round": 19,
+        "status": "abstained",
+        "success": false
+      }
+    },
+    "trajectory-004": {
+      "active": true,
+      "last_result": {
+        "round": 19,
+        "status": "abstained",
+        "success": false
+      }
+    },
+    "trajectory-005": {
+      "active": true,
+      "last_result": {
+        "round": 19,
+        "status": "abstained",
+        "success": false
+      }
+    },
+    "trajectory-006": {
+      "active": true,
+      "last_result": {
+        "round": 19,
+        "status": "abstained",
+        "success": false
+      }
+    },
+    "trajectory-007": {
+      "active": true,
+      "last_result": {
+        "round": 19,
+        "status": "abstained",
+        "success": false
+      }
+    },
+    "trajectory-008": {
+      "active": true,
+      "last_result": {
+        "round": 19,
+        "status": "abstained",
+        "success": false
+      }
+    },
+    "trajectory-009": {
+      "active": true,
+      "last_result": {
+        "round": 19,
+        "status": "abstained",
+        "success": false
+      }
+    },
+    "trajectory-010": {
+      "active": true,
+      "last_result": {
+        "round": 19,
+        "status": "abstained",
+        "success": false
+      }
+    },
+    "trajectory-011": {
+      "active": true,
+      "last_result": {
+        "round": 19,
+        "status": "abstained",
+        "success": false
+      }
+    },
+    "trajectory-012": {
+      "active": true,
+      "last_result": {
+        "round": 19,
+        "status": "abstained",
+        "success": false
+      }
+    }
+  }
+}

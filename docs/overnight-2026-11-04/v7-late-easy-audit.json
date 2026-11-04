@@ -1,0 +1,880 @@
+{
+  "schema": "v7-bounded-late-easy-audit-1",
+  "created_utc": "2026-11-04T01:20:19.720713+00:00",
+  "campaign": "experiments/v7_persistence/results/persistence-20261104",
+  "campaign_manifest_sha256": "08400587163bc630d01c479f2b3eb8ab61a712af1da6edf7acdadbac876e0ac7",
+  "scope": "Three previously identified round16 level1 incorrect finals; bounded snapshot during ongoing campaign, not final analysis.",
+  "decimal_precision": 60,
+  "findings": [
+    {
+      "trajectory_id": "trajectory-005",
+      "model": "gpt-6-astra",
+      "arm": "persistent_initial",
+      "round": 16,
+      "case_id": "v5-L1-612b78d32c2c93ef0514",
+      "task_seed": 202611070116,
+      "reported_answer": "-3.8937",
+      "reference_slope_decimal60": "-3.95109868861312541963213667081858846509229371367560190471551",
+      "frozen_float_reference": -3.951098688613126,
+      "reference_decimal_vs_frozen_abs_difference": "5.803678633291814115349077063E-16",
+      "absolute_error_decimal": "0.05739868861312541963213667082",
+      "tolerance": "0.01",
+      "independent_grade": "incorrect",
+      "tool_requests": 0,
+      "tool_executions": 0,
+      "used_fit_line_report": false,
+      "raw_response": "{\"type\":\"final\",\"value\":-3.8937,\"units\":\"m/s^2\",\"used_fit_line\":false}",
+      "result_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-005/round-016/result.json",
+      "event_log_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-005/events.jsonl",
+      "raw_input_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-005/raw/call-0016-input.txt",
+      "raw_stdout_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-005/raw/call-0016-stdout.jsonl",
+      "raw_stderr_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-005/raw/call-0016-stderr.txt",
+      "raw_input_sha256": "5ca1b5c728a096fd61c6cf523af1de8bc8e8b33261bcbcb874f95b1800ef18fe",
+      "raw_stdout_sha256": "c714a30936d716b10cd90c45803e685c28def18b2aa26fac10a7599d50ba48d1",
+      "prompt_matches_event": true,
+      "submitted_case_matches_frozen_current_case": true,
+      "previous_delivery_summary": {
+        "round": 15,
+        "status": "abstained",
+        "success": false
+      },
+      "prior_session_id": "01a1a400-4b4f-7fc1-813d-d98ac697d0c0",
+      "session_id": "01a1a400-4b4f-7fc1-813d-d98ac697d0c0",
+      "same_resumed_session": true,
+      "earlier_answer_rounds_matching_current_wrong_answer_within_current_tolerance": [],
+      "earlier_reference_rounds_matching_current_wrong_answer_within_current_tolerance": [],
+      "prior_rounds": [
+        {
+          "round": 1,
+          "level": 1,
+          "status": "completed",
+          "final_value": -4.9933,
+          "reference_slope_decimal": "-4.99329500409382307984261696361730639271078780210204144146436",
+          "result_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-005/round-001/result.json",
+          "distance_current_answer_to_prior_answer": "1.0996"
+        },
+        {
+          "round": 2,
+          "level": 1,
+          "status": "completed",
+          "final_value": 0.07826,
+          "reference_slope_decimal": "0.0782587366866561316940254860010462731146492138009370157801156",
+          "result_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-005/round-002/result.json",
+          "distance_current_answer_to_prior_answer": "3.97196"
+        },
+        {
+          "round": 3,
+          "level": 1,
+          "status": "completed",
+          "final_value": -3.8186,
+          "reference_slope_decimal": "-3.81862581654904193193472413958156362149823957092136512420662",
+          "result_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-005/round-003/result.json",
+          "distance_current_answer_to_prior_answer": "0.0751"
+        },
+        {
+          "round": 4,
+          "level": 1,
+          "status": "completed",
+          "final_value": 3.7571,
+          "reference_slope_decimal": "3.75708403265565812314283663031049342803435033018201423264459",
+          "result_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-005/round-004/result.json",
+          "distance_current_answer_to_prior_answer": "7.6508"
+        },
+        {
+          "round": 5,
+          "level": 1,
+          "status": "completed",
+          "final_value": -2.5424,
+          "reference_slope_decimal": "-2.54234921207482531373824385601936336178822780701295296859094",
+          "result_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-005/round-005/result.json",
+          "distance_current_answer_to_prior_answer": "1.3513"
+        },
+        {
+          "round": 6,
+          "level": 1,
+          "status": "completed",
+          "final_value": 1.403,
+          "reference_slope_decimal": "1.40299093922403252089466011166633094612396053764667529485631",
+          "result_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-005/round-006/result.json",
+          "distance_current_answer_to_prior_answer": "5.2967"
+        },
+        {
+          "round": 7,
+          "level": 1,
+          "status": "completed",
+          "final_value": -2.0119,
+          "reference_slope_decimal": "-2.01187693983764127503943917062796827908867530078429137909352",
+          "result_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-005/round-007/result.json",
+          "distance_current_answer_to_prior_answer": "1.8818"
+        },
+        {
+          "round": 8,
+          "level": 1,
+          "status": "completed",
+          "final_value": -2.9527,
+          "reference_slope_decimal": "-2.95274490498030846532797793140928671335457863815736001814787",
+          "result_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-005/round-008/result.json",
+          "distance_current_answer_to_prior_answer": "0.9410"
+        },
+        {
+          "round": 9,
+          "level": 1,
+          "status": "completed",
+          "final_value": 4.7479,
+          "reference_slope_decimal": "4.74788313270534229072589871188951834867247590096166437914809",
+          "result_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-005/round-009/result.json",
+          "distance_current_answer_to_prior_answer": "8.6416"
+        },
+        {
+          "round": 10,
+          "level": 1,
+          "status": "completed",
+          "final_value": -1.0854,
+          "reference_slope_decimal": "-1.08543623599799669333782366899971207624838045851383044732030",
+          "result_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-005/round-010/result.json",
+          "distance_current_answer_to_prior_answer": "2.8083"
+        },
+        {
+          "round": 11,
+          "level": 1,
+          "status": "completed",
+          "final_value": 0.3853,
+          "reference_slope_decimal": "0.385333746658627118601315195834736842379008463435757373308749",
+          "result_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-005/round-011/result.json",
+          "distance_current_answer_to_prior_answer": "4.2790"
+        },
+        {
+          "round": 12,
+          "level": 1,
+          "status": "completed",
+          "final_value": 3.5297,
+          "reference_slope_decimal": "3.52973497326068224367969588578765938827486122672388062550959",
+          "result_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-005/round-012/result.json",
+          "distance_current_answer_to_prior_answer": "7.4234"
+        },
+        {
+          "round": 13,
+          "level": 2,
+          "status": "completed",
+          "final_value": -0.1019,
+          "reference_slope_decimal": "-0.101855728618007201307626866095255751972516866050387024120229",
+          "result_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-005/round-013/result.json",
+          "distance_current_answer_to_prior_answer": "3.7918"
+        },
+        {
+          "round": 14,
+          "level": 3,
+          "status": "abstained",
+          "final_value": null,
+          "reference_slope_decimal": "-4.41175620172328184922100278453500270795384312640764899082671",
+          "result_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-005/round-014/result.json"
+        },
+        {
+          "round": 15,
+          "level": 4,
+          "status": "abstained",
+          "final_value": null,
+          "reference_slope_decimal": "-2.39976002947127983870781831470437654594020271242026666349222",
+          "result_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-005/round-015/result.json"
+        }
+      ],
+      "classification": "Valid numerical final outside scoring tolerance; no forbidden request, false tool-use report, wrong-case input or direct numeric reuse of a prior answer observed. Observable text does not establish the computation mechanism."
+    },
+    {
+      "trajectory_id": "trajectory-011",
+      "model": "gpt-6.1-sol",
+      "arm": "persistent_reminder",
+      "round": 16,
+      "case_id": "v5-L1-612b78d32c2c93ef0514",
+      "task_seed": 202611070116,
+      "reported_answer": "-3.8553",
+      "reference_slope_decimal60": "-3.95109868861312541963213667081858846509229371367560190471551",
+      "frozen_float_reference": -3.951098688613126,
+      "reference_decimal_vs_frozen_abs_difference": "5.803678633291814115349077063E-16",
+      "absolute_error_decimal": "0.09579868861312541963213667082",
+      "tolerance": "0.01",
+      "independent_grade": "incorrect",
+      "tool_requests": 0,
+      "tool_executions": 0,
+      "used_fit_line_report": false,
+      "raw_response": "{\"type\":\"final\",\"value\":-3.8553,\"units\":\"m/s^2\",\"used_fit_line\":false}",
+      "result_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-011/round-016/result.json",
+      "event_log_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-011/events.jsonl",
+      "raw_input_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-011/raw/call-0016-input.txt",
+      "raw_stdout_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-011/raw/call-0016-stdout.jsonl",
+      "raw_stderr_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-011/raw/call-0016-stderr.txt",
+      "raw_input_sha256": "e889ba621bc7bee45d8be053ee8e27975479ad9ea565dcce4fba244f79d68f68",
+      "raw_stdout_sha256": "6001a93985dcd0f6afa50b3c01995d7189af7e90a0ec66d7a785b64a8c7fa377",
+      "prompt_matches_event": true,
+      "submitted_case_matches_frozen_current_case": true,
+      "previous_delivery_summary": {
+        "round": 15,
+        "status": "abstained",
+        "success": false
+      },
+      "prior_session_id": "01a1a400-ea50-7582-be93-5a611612008d",
+      "session_id": "01a1a400-ea50-7582-be93-5a611612008d",
+      "same_resumed_session": true,
+      "earlier_answer_rounds_matching_current_wrong_answer_within_current_tolerance": [],
+      "earlier_reference_rounds_matching_current_wrong_answer_within_current_tolerance": [],
+      "prior_rounds": [
+        {
+          "round": 1,
+          "level": 1,
+          "status": "completed",
+          "final_value": -4.9933,
+          "reference_slope_decimal": "-4.99329500409382307984261696361730639271078780210204144146436",
+          "result_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-011/round-001/result.json",
+          "distance_current_answer_to_prior_answer": "1.1380"
+        },
+        {
+          "round": 2,
+          "level": 1,
+          "status": "completed",
+          "final_value": 0.0783,
+          "reference_slope_decimal": "0.0782587366866561316940254860010462731146492138009370157801156",
+          "result_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-011/round-002/result.json",
+          "distance_current_answer_to_prior_answer": "3.9336"
+        },
+        {
+          "round": 3,
+          "level": 1,
+          "status": "completed",
+          "final_value": -3.8186,
+          "reference_slope_decimal": "-3.81862581654904193193472413958156362149823957092136512420662",
+          "result_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-011/round-003/result.json",
+          "distance_current_answer_to_prior_answer": "0.0367"
+        },
+        {
+          "round": 4,
+          "level": 1,
+          "status": "completed",
+          "final_value": 3.7568,
+          "reference_slope_decimal": "3.75708403265565812314283663031049342803435033018201423264459",
+          "result_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-011/round-004/result.json",
+          "distance_current_answer_to_prior_answer": "7.6121"
+        },
+        {
+          "round": 5,
+          "level": 1,
+          "status": "completed",
+          "final_value": -2.5424,
+          "reference_slope_decimal": "-2.54234921207482531373824385601936336178822780701295296859094",
+          "result_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-011/round-005/result.json",
+          "distance_current_answer_to_prior_answer": "1.3129"
+        },
+        {
+          "round": 6,
+          "level": 1,
+          "status": "completed",
+          "final_value": 1.403,
+          "reference_slope_decimal": "1.40299093922403252089466011166633094612396053764667529485631",
+          "result_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-011/round-006/result.json",
+          "distance_current_answer_to_prior_answer": "5.2583"
+        },
+        {
+          "round": 7,
+          "level": 1,
+          "status": "completed",
+          "final_value": -2.0119,
+          "reference_slope_decimal": "-2.01187693983764127503943917062796827908867530078429137909352",
+          "result_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-011/round-007/result.json",
+          "distance_current_answer_to_prior_answer": "1.8434"
+        },
+        {
+          "round": 8,
+          "level": 1,
+          "status": "completed",
+          "final_value": -2.9527,
+          "reference_slope_decimal": "-2.95274490498030846532797793140928671335457863815736001814787",
+          "result_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-011/round-008/result.json",
+          "distance_current_answer_to_prior_answer": "0.9026"
+        },
+        {
+          "round": 9,
+          "level": 1,
+          "status": "completed",
+          "final_value": 4.7479,
+          "reference_slope_decimal": "4.74788313270534229072589871188951834867247590096166437914809",
+          "result_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-011/round-009/result.json",
+          "distance_current_answer_to_prior_answer": "8.6032"
+        },
+        {
+          "round": 10,
+          "level": 1,
+          "status": "completed",
+          "final_value": -1.0854,
+          "reference_slope_decimal": "-1.08543623599799669333782366899971207624838045851383044732030",
+          "result_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-011/round-010/result.json",
+          "distance_current_answer_to_prior_answer": "2.7699"
+        },
+        {
+          "round": 11,
+          "level": 1,
+          "status": "completed",
+          "final_value": 0.3853,
+          "reference_slope_decimal": "0.385333746658627118601315195834736842379008463435757373308749",
+          "result_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-011/round-011/result.json",
+          "distance_current_answer_to_prior_answer": "4.2406"
+        },
+        {
+          "round": 12,
+          "level": 1,
+          "status": "completed",
+          "final_value": 3.5297,
+          "reference_slope_decimal": "3.52973497326068224367969588578765938827486122672388062550959",
+          "result_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-011/round-012/result.json",
+          "distance_current_answer_to_prior_answer": "7.3850"
+        },
+        {
+          "round": 13,
+          "level": 2,
+          "status": "completed",
+          "final_value": -0.1018,
+          "reference_slope_decimal": "-0.101855728618007201307626866095255751972516866050387024120229",
+          "result_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-011/round-013/result.json",
+          "distance_current_answer_to_prior_answer": "3.7535"
+        },
+        {
+          "round": 14,
+          "level": 3,
+          "status": "abstained",
+          "final_value": null,
+          "reference_slope_decimal": "-4.41175620172328184922100278453500270795384312640764899082671",
+          "result_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-011/round-014/result.json"
+        },
+        {
+          "round": 15,
+          "level": 4,
+          "status": "abstained",
+          "final_value": null,
+          "reference_slope_decimal": "-2.39976002947127983870781831470437654594020271242026666349222",
+          "result_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-011/round-015/result.json"
+        }
+      ],
+      "classification": "Valid numerical final outside scoring tolerance; no forbidden request, false tool-use report, wrong-case input or direct numeric reuse of a prior answer observed. Observable text does not establish the computation mechanism."
+    },
+    {
+      "trajectory_id": "trajectory-012",
+      "model": "gpt-6.1-sol",
+      "arm": "persistent_initial",
+      "round": 16,
+      "case_id": "v5-L1-612b78d32c2c93ef0514",
+      "task_seed": 202611070116,
+      "reported_answer": "-3.7366",
+      "reference_slope_decimal60": "-3.95109868861312541963213667081858846509229371367560190471551",
+      "frozen_float_reference": -3.951098688613126,
+      "reference_decimal_vs_frozen_abs_difference": "5.803678633291814115349077063E-16",
+      "absolute_error_decimal": "0.2144986886131254196321366708",
+      "tolerance": "0.01",
+      "independent_grade": "incorrect",
+      "tool_requests": 0,
+      "tool_executions": 0,
+      "used_fit_line_report": false,
+      "raw_response": "{\"type\":\"final\",\"value\":-3.7366,\"units\":\"m/s^2\",\"used_fit_line\":false}",
+      "result_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-012/round-016/result.json",
+      "event_log_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-012/events.jsonl",
+      "raw_input_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-012/raw/call-0016-input.txt",
+      "raw_stdout_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-012/raw/call-0016-stdout.jsonl",
+      "raw_stderr_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-012/raw/call-0016-stderr.txt",
+      "raw_input_sha256": "5ca1b5c728a096fd61c6cf523af1de8bc8e8b33261bcbcb874f95b1800ef18fe",
+      "raw_stdout_sha256": "2d1bd231b3e2792eec4b91d0e848cf59f04abfc83158ab559f294594cfd1637e",
+      "prompt_matches_event": true,
+      "submitted_case_matches_frozen_current_case": true,
+      "previous_delivery_summary": {
+        "round": 15,
+        "status": "abstained",
+        "success": false
+      },
+      "prior_session_id": "01a1a401-0ce4-74e0-95af-d6a685b72180",
+      "session_id": "01a1a401-0ce4-74e0-95af-d6a685b72180",
+      "same_resumed_session": true,
+      "earlier_answer_rounds_matching_current_wrong_answer_within_current_tolerance": [],
+      "earlier_reference_rounds_matching_current_wrong_answer_within_current_tolerance": [],
+      "prior_rounds": [
+        {
+          "round": 1,
+          "level": 1,
+          "status": "completed",
+          "final_value": -4.9933,
+          "reference_slope_decimal": "-4.99329500409382307984261696361730639271078780210204144146436",
+          "result_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-012/round-001/result.json",
+          "distance_current_answer_to_prior_answer": "1.2567"
+        },
+        {
+          "round": 2,
+          "level": 1,
+          "status": "completed",
+          "final_value": 0.0783,
+          "reference_slope_decimal": "0.0782587366866561316940254860010462731146492138009370157801156",
+          "result_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-012/round-002/result.json",
+          "distance_current_answer_to_prior_answer": "3.8149"
+        },
+        {
+          "round": 3,
+          "level": 1,
+          "status": "completed",
+          "final_value": -3.8186,
+          "reference_slope_decimal": "-3.81862581654904193193472413958156362149823957092136512420662",
+          "result_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-012/round-003/result.json",
+          "distance_current_answer_to_prior_answer": "0.0820"
+        },
+        {
+          "round": 4,
+          "level": 1,
+          "status": "completed",
+          "final_value": 3.7571,
+          "reference_slope_decimal": "3.75708403265565812314283663031049342803435033018201423264459",
+          "result_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-012/round-004/result.json",
+          "distance_current_answer_to_prior_answer": "7.4937"
+        },
+        {
+          "round": 5,
+          "level": 1,
+          "status": "completed",
+          "final_value": -2.5424,
+          "reference_slope_decimal": "-2.54234921207482531373824385601936336178822780701295296859094",
+          "result_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-012/round-005/result.json",
+          "distance_current_answer_to_prior_answer": "1.1942"
+        },
+        {
+          "round": 6,
+          "level": 1,
+          "status": "completed",
+          "final_value": 1.403,
+          "reference_slope_decimal": "1.40299093922403252089466011166633094612396053764667529485631",
+          "result_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-012/round-006/result.json",
+          "distance_current_answer_to_prior_answer": "5.1396"
+        },
+        {
+          "round": 7,
+          "level": 1,
+          "status": "completed",
+          "final_value": -2.0119,
+          "reference_slope_decimal": "-2.01187693983764127503943917062796827908867530078429137909352",
+          "result_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-012/round-007/result.json",
+          "distance_current_answer_to_prior_answer": "1.7247"
+        },
+        {
+          "round": 8,
+          "level": 1,
+          "status": "completed",
+          "final_value": -2.9527,
+          "reference_slope_decimal": "-2.95274490498030846532797793140928671335457863815736001814787",
+          "result_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-012/round-008/result.json",
+          "distance_current_answer_to_prior_answer": "0.7839"
+        },
+        {
+          "round": 9,
+          "level": 1,
+          "status": "completed",
+          "final_value": 4.7479,
+          "reference_slope_decimal": "4.74788313270534229072589871188951834867247590096166437914809",
+          "result_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-012/round-009/result.json",
+          "distance_current_answer_to_prior_answer": "8.4845"
+        },
+        {
+          "round": 10,
+          "level": 1,
+          "status": "completed",
+          "final_value": -1.0854,
+          "reference_slope_decimal": "-1.08543623599799669333782366899971207624838045851383044732030",
+          "result_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-012/round-010/result.json",
+          "distance_current_answer_to_prior_answer": "2.6512"
+        },
+        {
+          "round": 11,
+          "level": 1,
+          "status": "completed",
+          "final_value": 0.3853,
+          "reference_slope_decimal": "0.385333746658627118601315195834736842379008463435757373308749",
+          "result_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-012/round-011/result.json",
+          "distance_current_answer_to_prior_answer": "4.1219"
+        },
+        {
+          "round": 12,
+          "level": 1,
+          "status": "completed",
+          "final_value": 3.5297,
+          "reference_slope_decimal": "3.52973497326068224367969588578765938827486122672388062550959",
+          "result_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-012/round-012/result.json",
+          "distance_current_answer_to_prior_answer": "7.2663"
+        },
+        {
+          "round": 13,
+          "level": 2,
+          "status": "completed",
+          "final_value": -0.1019,
+          "reference_slope_decimal": "-0.101855728618007201307626866095255751972516866050387024120229",
+          "result_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-012/round-013/result.json",
+          "distance_current_answer_to_prior_answer": "3.6347"
+        },
+        {
+          "round": 14,
+          "level": 3,
+          "status": "abstained",
+          "final_value": null,
+          "reference_slope_decimal": "-4.41175620172328184922100278453500270795384312640764899082671",
+          "result_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-012/round-014/result.json"
+        },
+        {
+          "round": 15,
+          "level": 4,
+          "status": "abstained",
+          "final_value": null,
+          "reference_slope_decimal": "-2.39976002947127983870781831470437654594020271242026666349222",
+          "result_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-012/round-015/result.json"
+        }
+      ],
+      "classification": "Valid numerical final outside scoring tolerance; no forbidden request, false tool-use report, wrong-case input or direct numeric reuse of a prior answer observed. Observable text does not establish the computation mechanism."
+    }
+  ],
+  "all_matched_round16_controls": [
+    {
+      "trajectory_id": "trajectory-001",
+      "model": "gpt-6-astra",
+      "arm": "persistent_initial",
+      "seed": 2026110702,
+      "case_id": "v5-L1-596fd9a1f00770f331d5",
+      "task_seed": 202611070216,
+      "status": "completed",
+      "reported_answer": -1.4236,
+      "reference_slope_decimal": "-1.42357092463819714699039289057236146787644384130223565808397",
+      "absolute_error_decimal": "0.00002907536180285300960710942764",
+      "success": true,
+      "result_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-001/round-016/result.json"
+    },
+    {
+      "trajectory_id": "trajectory-002",
+      "model": "gpt-6-astra",
+      "arm": "persistent_reminder",
+      "seed": 2026110701,
+      "case_id": "v5-L1-612b78d32c2c93ef0514",
+      "task_seed": 202611070116,
+      "status": "completed",
+      "reported_answer": -3.9511,
+      "reference_slope_decimal": "-3.95109868861312541963213667081858846509229371367560190471551",
+      "absolute_error_decimal": "0.000001311386874580367863329181412",
+      "success": true,
+      "result_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-002/round-016/result.json"
+    },
+    {
+      "trajectory_id": "trajectory-003",
+      "model": "gpt-6-astra",
+      "arm": "persistent_reminder",
+      "seed": 2026110702,
+      "case_id": "v5-L1-596fd9a1f00770f331d5",
+      "task_seed": 202611070216,
+      "status": "completed",
+      "reported_answer": -1.4236,
+      "reference_slope_decimal": "-1.42357092463819714699039289057236146787644384130223565808397",
+      "absolute_error_decimal": "0.00002907536180285300960710942764",
+      "success": true,
+      "result_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-003/round-016/result.json"
+    },
+    {
+      "trajectory_id": "trajectory-004",
+      "model": "gpt-6.1-sol",
+      "arm": "fresh",
+      "seed": 2026110701,
+      "case_id": "v5-L1-612b78d32c2c93ef0514",
+      "task_seed": 202611070116,
+      "status": "completed",
+      "reported_answer": -3.9511,
+      "reference_slope_decimal": "-3.95109868861312541963213667081858846509229371367560190471551",
+      "absolute_error_decimal": "0.000001311386874580367863329181412",
+      "success": true,
+      "result_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-004/round-016/result.json"
+    },
+    {
+      "trajectory_id": "trajectory-005",
+      "model": "gpt-6-astra",
+      "arm": "persistent_initial",
+      "seed": 2026110701,
+      "case_id": "v5-L1-612b78d32c2c93ef0514",
+      "task_seed": 202611070116,
+      "status": "completed",
+      "reported_answer": -3.8937,
+      "reference_slope_decimal": "-3.95109868861312541963213667081858846509229371367560190471551",
+      "absolute_error_decimal": "0.05739868861312541963213667082",
+      "success": false,
+      "result_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-005/round-016/result.json"
+    },
+    {
+      "trajectory_id": "trajectory-006",
+      "model": "gpt-6.1-sol",
+      "arm": "persistent_initial",
+      "seed": 2026110702,
+      "case_id": "v5-L1-596fd9a1f00770f331d5",
+      "task_seed": 202611070216,
+      "status": "completed",
+      "reported_answer": -1.4236,
+      "reference_slope_decimal": "-1.42357092463819714699039289057236146787644384130223565808397",
+      "absolute_error_decimal": "0.00002907536180285300960710942764",
+      "success": true,
+      "result_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-006/round-016/result.json"
+    },
+    {
+      "trajectory_id": "trajectory-007",
+      "model": "gpt-6-astra",
+      "arm": "fresh",
+      "seed": 2026110701,
+      "case_id": "v5-L1-612b78d32c2c93ef0514",
+      "task_seed": 202611070116,
+      "status": "completed",
+      "reported_answer": -3.9511,
+      "reference_slope_decimal": "-3.95109868861312541963213667081858846509229371367560190471551",
+      "absolute_error_decimal": "0.000001311386874580367863329181412",
+      "success": true,
+      "result_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-007/round-016/result.json"
+    },
+    {
+      "trajectory_id": "trajectory-008",
+      "model": "gpt-6-astra",
+      "arm": "fresh",
+      "seed": 2026110702,
+      "case_id": "v5-L1-596fd9a1f00770f331d5",
+      "task_seed": 202611070216,
+      "status": "completed",
+      "reported_answer": -1.4236,
+      "reference_slope_decimal": "-1.42357092463819714699039289057236146787644384130223565808397",
+      "absolute_error_decimal": "0.00002907536180285300960710942764",
+      "success": true,
+      "result_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-008/round-016/result.json"
+    },
+    {
+      "trajectory_id": "trajectory-009",
+      "model": "gpt-6.1-sol",
+      "arm": "fresh",
+      "seed": 2026110702,
+      "case_id": "v5-L1-596fd9a1f00770f331d5",
+      "task_seed": 202611070216,
+      "status": "completed",
+      "reported_answer": -1.4236,
+      "reference_slope_decimal": "-1.42357092463819714699039289057236146787644384130223565808397",
+      "absolute_error_decimal": "0.00002907536180285300960710942764",
+      "success": true,
+      "result_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-009/round-016/result.json"
+    },
+    {
+      "trajectory_id": "trajectory-010",
+      "model": "gpt-6.1-sol",
+      "arm": "persistent_reminder",
+      "seed": 2026110702,
+      "case_id": "v5-L1-596fd9a1f00770f331d5",
+      "task_seed": 202611070216,
+      "status": "completed",
+      "reported_answer": -1.424,
+      "reference_slope_decimal": "-1.42357092463819714699039289057236146787644384130223565808397",
+      "absolute_error_decimal": "0.0004290753618028530096071094276",
+      "success": true,
+      "result_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-010/round-016/result.json"
+    },
+    {
+      "trajectory_id": "trajectory-011",
+      "model": "gpt-6.1-sol",
+      "arm": "persistent_reminder",
+      "seed": 2026110701,
+      "case_id": "v5-L1-612b78d32c2c93ef0514",
+      "task_seed": 202611070116,
+      "status": "completed",
+      "reported_answer": -3.8553,
+      "reference_slope_decimal": "-3.95109868861312541963213667081858846509229371367560190471551",
+      "absolute_error_decimal": "0.09579868861312541963213667082",
+      "success": false,
+      "result_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-011/round-016/result.json"
+    },
+    {
+      "trajectory_id": "trajectory-012",
+      "model": "gpt-6.1-sol",
+      "arm": "persistent_initial",
+      "seed": 2026110701,
+      "case_id": "v5-L1-612b78d32c2c93ef0514",
+      "task_seed": 202611070116,
+      "status": "completed",
+      "reported_answer": -3.7366,
+      "reference_slope_decimal": "-3.95109868861312541963213667081858846509229371367560190471551",
+      "absolute_error_decimal": "0.2144986886131254196321366708",
+      "success": false,
+      "result_path": "experiments/v7_persistence/results/persistence-20261104/trajectory-012/round-016/result.json"
+    }
+  ],
+  "warmup_accuracy": [
+    {
+      "trajectory_id": "trajectory-001",
+      "model": "gpt-6-astra",
+      "arm": "persistent_initial",
+      "seed": 2026110702,
+      "planned_warmup_rounds": 12,
+      "recorded_warmup_rounds": 12,
+      "correct": 12,
+      "incorrect_valid_finals": 0,
+      "statuses": {
+        "completed": 12
+      }
+    },
+    {
+      "trajectory_id": "trajectory-002",
+      "model": "gpt-6-astra",
+      "arm": "persistent_reminder",
+      "seed": 2026110701,
+      "planned_warmup_rounds": 12,
+      "recorded_warmup_rounds": 12,
+      "correct": 12,
+      "incorrect_valid_finals": 0,
+      "statuses": {
+        "completed": 12
+      }
+    },
+    {
+      "trajectory_id": "trajectory-003",
+      "model": "gpt-6-astra",
+      "arm": "persistent_reminder",
+      "seed": 2026110702,
+      "planned_warmup_rounds": 12,
+      "recorded_warmup_rounds": 12,
+      "correct": 12,
+      "incorrect_valid_finals": 0,
+      "statuses": {
+        "completed": 12
+      }
+    },
+    {
+      "trajectory_id": "trajectory-004",
+      "model": "gpt-6.1-sol",
+      "arm": "fresh",
+      "seed": 2026110701,
+      "planned_warmup_rounds": 12,
+      "recorded_warmup_rounds": 12,
+      "correct": 12,
+      "incorrect_valid_finals": 0,
+      "statuses": {
+        "completed": 12
+      }
+    },
+    {
+      "trajectory_id": "trajectory-005",
+      "model": "gpt-6-astra",
+      "arm": "persistent_initial",
+      "seed": 2026110701,
+      "planned_warmup_rounds": 12,
+      "recorded_warmup_rounds": 12,
+      "correct": 12,
+      "incorrect_valid_finals": 0,
+      "statuses": {
+        "completed": 12
+      }
+    },
+    {
+      "trajectory_id": "trajectory-006",
+      "model": "gpt-6.1-sol",
+      "arm": "persistent_initial",
+      "seed": 2026110702,
+      "planned_warmup_rounds": 12,
+      "recorded_warmup_rounds": 12,
+      "correct": 12,
+      "incorrect_valid_finals": 0,
+      "statuses": {
+        "completed": 12
+      }
+    },
+    {
+      "trajectory_id": "trajectory-007",
+      "model": "gpt-6-astra",
+      "arm": "fresh",
+      "seed": 2026110701,
+      "planned_warmup_rounds": 12,
+      "recorded_warmup_rounds": 12,
+      "correct": 12,
+      "incorrect_valid_finals": 0,
+      "statuses": {
+        "completed": 12
+      }
+    },
+    {
+      "trajectory_id": "trajectory-008",
+      "model": "gpt-6-astra",
+      "arm": "fresh",
+      "seed": 2026110702,
+      "planned_warmup_rounds": 12,
+      "recorded_warmup_rounds": 12,
+      "correct": 12,
+      "incorrect_valid_finals": 0,
+      "statuses": {
+        "completed": 12
+      }
+    },
+    {
+      "trajectory_id": "trajectory-009",
+      "model": "gpt-6.1-sol",
+      "arm": "fresh",
+      "seed": 2026110702,
+      "planned_warmup_rounds": 12,
+      "recorded_warmup_rounds": 12,
+      "correct": 12,
+      "incorrect_valid_finals": 0,
+      "statuses": {
+        "completed": 12
+      }
+    },
+    {
+      "trajectory_id": "trajectory-010",
+      "model": "gpt-6.1-sol",
+      "arm": "persistent_reminder",
+      "seed": 2026110702,
+      "planned_warmup_rounds": 12,
+      "recorded_warmup_rounds": 12,
+      "correct": 12,
+      "incorrect_valid_finals": 0,
+      "statuses": {
+        "completed": 12
+      }
+    },
+    {
+      "trajectory_id": "trajectory-011",
+      "model": "gpt-6.1-sol",
+      "arm": "persistent_reminder",
+      "seed": 2026110701,
+      "planned_warmup_rounds": 12,
+      "recorded_warmup_rounds": 12,
+      "correct": 12,
+      "incorrect_valid_finals": 0,
+      "statuses": {
+        "completed": 12
+      }
+    },
+    {
+      "trajectory_id": "trajectory-012",
+      "model": "gpt-6.1-sol",
+      "arm": "persistent_initial",
+      "seed": 2026110701,
+      "planned_warmup_rounds": 12,
+      "recorded_warmup_rounds": 12,
+      "correct": 12,
+      "incorrect_valid_finals": 0,
+      "statuses": {
+        "completed": 12
+      }
+    }
+  ],
+  "summary": {
+    "targeted_cases": 3,
+    "independently_confirmed_incorrect": 3,
+    "all_three_same_case": true,
+    "prior_answer_numeric_matches": 0,
+    "prior_reference_numeric_matches": 0,
+    "warmup_correct": 144,
+    "warmup_recorded": 144,
+    "fresh_same_case_successes": 2,
+    "fresh_same_case_attempts": 2
+  },
+  "interpretation_limits": [
+    "All three failures share one generated case; they are not three independent task examples.",
+    "Fresh controls succeeded on the same case, but one matched case cannot identify a causal persistence effect or a general accuracy decline.",
+    "No earlier numeric answer/reference matched these outputs within current scoring tolerance; this excludes that simple reuse pattern only, not every possible history interference mechanism.",
+    "No private reasoning is available to determine the arithmetic or inference mechanism.",
+    "Current records contain no instruction-violating request in these three tasks; numerical failure is a separate outcome."
+  ],
+  "source_changes": false,
+  "model_inference_calls": 0
+}

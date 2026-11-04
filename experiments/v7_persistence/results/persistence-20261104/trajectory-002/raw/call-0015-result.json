@@ -1,0 +1,55 @@
+{
+  "meta": {
+    "aggregate_usage": {
+      "cached_input_tokens": 897280,
+      "calls": 15,
+      "input_tokens": 973584,
+      "output_tokens": 81694,
+      "unknown_usage_calls": 0
+    },
+    "audit_limitations": [
+      "Codex exec JSONL does not independently attest the canonical serving model; model identity is requested/configured identity.",
+      "No harness retries or model substitutions. CLI/provider-internal requests and hidden fallback cannot be independently ruled out from exec JSONL.",
+      "Native surfaces are disabled by explicit client configuration; read-only is additional filesystem containment, not a complete process/container sandbox.",
+      "Authentication and managed configuration still use the local installation. Ignoring user config does not erase managed instructions or all host metadata.",
+      "Timeout and captured-output bytes are hard local limits; reported tokens are retrospective, not a provider-enforced token or dollar cap."
+    ],
+    "captured_bytes": 470,
+    "completed_turns": 1,
+    "elapsed_s": 3.924,
+    "finished_utc": "2026-11-04T01:11:58.538374+00:00",
+    "model_identity_evidence": "requested/configured only",
+    "native_tool_events": [],
+    "observed_model_fields": [],
+    "persistent": true,
+    "prior_session_id": "01a1a3ff-bb40-7811-a29c-5cb621fc5fc8",
+    "problems": [],
+    "raw_manifest": "/Users/leonardaarons-ditson/Projects/agentic-physics-bench-evidence-difficulty/experiments/v7_persistence/results/persistence-20261104/trajectory-002/raw/call-0015-manifest.json",
+    "raw_stderr": "/Users/leonardaarons-ditson/Projects/agentic-physics-bench-evidence-difficulty/experiments/v7_persistence/results/persistence-20261104/trajectory-002/raw/call-0015-stderr.txt",
+    "raw_stdout": "/Users/leonardaarons-ditson/Projects/agentic-physics-bench-evidence-difficulty/experiments/v7_persistence/results/persistence-20261104/trajectory-002/raw/call-0015-stdout.jsonl",
+    "reported_tokens": {
+      "cached_input_tokens": 149632,
+      "input_tokens": 163589,
+      "output_tokens": 10717
+    },
+    "requested_effort": "ultra",
+    "requested_model": "gpt-6-astra",
+    "returncode": 0,
+    "session_id": "01a1a3ff-bb40-7811-a29c-5cb621fc5fc8",
+    "started_threads": 1,
+    "started_turns": 1,
+    "started_utc": "2026-11-04T01:11:54.614401+00:00",
+    "status_detail": null,
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout_sha256": "a6fe8ca842748111ca79620b547234bf49a70221975524af4ab78d1074892cd5",
+    "timeout_after_clean_turn_start": false,
+    "usage": {
+      "cached_input_tokens": 149632,
+      "input_tokens": 163589,
+      "output_tokens": 10717
+    }
+  },
+  "output_tokens": 10717,
+  "status": "ok",
+  "text": "{\"type\":\"abstain\",\"reason\":\"I cannot reliably calculate this slope to the required tolerance without tools.\"}"
+}
