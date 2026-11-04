@@ -1,0 +1,119 @@
+{
+  "schema": "apb-future-session-planning-v1",
+  "created_utc": "2026-11-04T03:50:52.432167+00:00",
+  "scope": "Offline arithmetic for planning future studies only. Not an empirical confidence interval for V7-V10; not an extension or launch authorization. No participant inference.",
+  "proposal_path": "docs/overnight-2026-11-04/NEXT_EXPERIMENTS.md",
+  "proposal_sha256": "5b0678980a4944f74e7349e797f5d3a9cc1ede4af03718fda37aaac06e7c3733",
+  "assumed_event": "At least one exact-name forbidden request during the two predeclared probes of a future 34-task native session. Risk depends on that fixed horizon and complete protocol, not on one task.",
+  "assumptions": [
+    "Independent, identically distributed session-level Bernoulli outcomes within one fixed model/condition.",
+    "All primary outcomes completely and accurately observed.",
+    "No adaptive selection or stopping on first event.",
+    "Actual task-seed pairing, calendar/provider effects and shared prompt construction may violate these idealized assumptions; real design/precision analysis must address them.",
+    "Different models/arms are not pooled to inflate n.",
+    "Missing/censored primary outcomes cannot be counted as zero or silently dropped."
+  ],
+  "formulae": {
+    "zero_event_one_sided_upper_limit": "1 - alpha ** (1 / n), alpha=0.05",
+    "chance_at_least_one_event": "1 - (1 - p) ** n",
+    "minimum_n_for_95_percent_detection": "ceil(log(0.05) / log(1-p))",
+    "proposed_plan_calls": "2 models * 4 cells * n independent sessions/cell * 34 tasks"
+  },
+  "distinction": "Chance of observing at least one event is not power to distinguish conditions, estimate a causal contrast, or demonstrate safety/equivalence.",
+  "planning_rows": [
+    {
+      "independent_sessions_per_model_cell": 1,
+      "one_sided_95_percent_upper_bound_after_zero_events": 0.95,
+      "probability_of_at_least_one_event_if_session_risk_1_percent": 0.01,
+      "probability_of_at_least_one_event_if_session_risk_5_percent": 0.05,
+      "probability_of_at_least_one_event_if_session_risk_10_percent": 0.1,
+      "calls_for_complete_proposed_2model_4cell_34task_design": 272
+    },
+    {
+      "independent_sessions_per_model_cell": 2,
+      "one_sided_95_percent_upper_bound_after_zero_events": 0.7763932022500211,
+      "probability_of_at_least_one_event_if_session_risk_1_percent": 0.0199,
+      "probability_of_at_least_one_event_if_session_risk_5_percent": 0.0975,
+      "probability_of_at_least_one_event_if_session_risk_10_percent": 0.19,
+      "calls_for_complete_proposed_2model_4cell_34task_design": 544
+    },
+    {
+      "independent_sessions_per_model_cell": 4,
+      "one_sided_95_percent_upper_bound_after_zero_events": 0.5271291954984121,
+      "probability_of_at_least_one_event_if_session_risk_1_percent": 0.03940399,
+      "probability_of_at_least_one_event_if_session_risk_5_percent": 0.18549375,
+      "probability_of_at_least_one_event_if_session_risk_10_percent": 0.34390000000000004,
+      "calls_for_complete_proposed_2model_4cell_34task_design": 1088
+    },
+    {
+      "independent_sessions_per_model_cell": 8,
+      "one_sided_95_percent_upper_bound_after_zero_events": 0.31234397806636793,
+      "probability_of_at_least_one_event_if_session_risk_1_percent": 0.07725530557207991,
+      "probability_of_at_least_one_event_if_session_risk_5_percent": 0.3365795687109375,
+      "probability_of_at_least_one_event_if_session_risk_10_percent": 0.56953279,
+      "calls_for_complete_proposed_2model_4cell_34task_design": 2176
+    },
+    {
+      "independent_sessions_per_model_cell": 16,
+      "one_sided_95_percent_upper_bound_after_zero_events": 0.17074972298248092,
+      "probability_of_at_least_one_event_if_session_risk_1_percent": 0.14854222890512436,
+      "probability_of_at_least_one_event_if_session_risk_5_percent": 0.5598733313482344,
+      "probability_of_at_least_one_event_if_session_risk_10_percent": 0.814697981114816,
+      "calls_for_complete_proposed_2model_4cell_34task_design": 4352
+    },
+    {
+      "independent_sessions_per_model_cell": 32,
+      "one_sided_95_percent_upper_bound_after_zero_events": 0.0893681989862648,
+      "probability_of_at_least_one_event_if_session_risk_1_percent": 0.2750196640421464,
+      "probability_of_at_least_one_event_if_session_risk_5_percent": 0.8062885155414988,
+      "probability_of_at_least_one_event_if_session_risk_10_percent": 0.9656631617970749,
+      "calls_for_complete_proposed_2model_4cell_34task_design": 8704
+    },
+    {
+      "independent_sessions_per_model_cell": 59,
+      "one_sided_95_percent_upper_bound_after_zero_events": 0.049507609888227,
+      "probability_of_at_least_one_event_if_session_risk_1_percent": 0.4473165228376147,
+      "probability_of_at_least_one_event_if_session_risk_5_percent": 0.9515054747505768,
+      "probability_of_at_least_one_event_if_session_risk_10_percent": 0.998003321888984,
+      "calls_for_complete_proposed_2model_4cell_34task_design": 16048
+    },
+    {
+      "independent_sessions_per_model_cell": 100,
+      "one_sided_95_percent_upper_bound_after_zero_events": 0.029513049607039932,
+      "probability_of_at_least_one_event_if_session_risk_1_percent": 0.6339676587267705,
+      "probability_of_at_least_one_event_if_session_risk_5_percent": 0.994079470779666,
+      "probability_of_at_least_one_event_if_session_risk_10_percent": 0.9999734386011124,
+      "calls_for_complete_proposed_2model_4cell_34task_design": 27200
+    },
+    {
+      "independent_sessions_per_model_cell": 299,
+      "one_sided_95_percent_upper_bound_after_zero_events": 0.009969146792899286,
+      "probability_of_at_least_one_event_if_session_risk_1_percent": 0.9504637433623375,
+      "probability_of_at_least_one_event_if_session_risk_5_percent": 0.9999997815470161,
+      "probability_of_at_least_one_event_if_session_risk_10_percent": 0.9999999999999791,
+      "calls_for_complete_proposed_2model_4cell_34task_design": 81328
+    }
+  ],
+  "minimum_detection_examples": [
+    {
+      "hypothetical_session_risk": 0.1,
+      "independent_sessions_for_95_percent_chance_at_least_one_event": 29,
+      "detection_probability": 0.9528987130275376,
+      "probability_one_fewer": 0.947665236697264
+    },
+    {
+      "hypothetical_session_risk": 0.05,
+      "independent_sessions_for_95_percent_chance_at_least_one_event": 59,
+      "detection_probability": 0.9515054747505768,
+      "probability_one_fewer": 0.9489531313163966
+    },
+    {
+      "hypothetical_session_risk": 0.01,
+      "independent_sessions_for_95_percent_chance_at_least_one_event": 299,
+      "detection_probability": 0.9504637433623375,
+      "probability_one_fewer": 0.9499633771336743
+    }
+  ],
+  "implication_for_current_proposal": "Two independent sessions per model/cell (544 total calls) are a feasibility pilot. Under the idealized assumptions, even zero events leave a one-sided 95% upper limit about77.6% for that session outcome; an actual5% session risk has only9.75% chance to produce any event in two sessions. Thus a null pilot mostly tests the implementation/exposure and cannot characterize rare events. A precision study needs a separate budget and design.",
+  "current_overnight_allocation": "598 of600 participant starts already completed. These calculations authorize no additional calls."
+}

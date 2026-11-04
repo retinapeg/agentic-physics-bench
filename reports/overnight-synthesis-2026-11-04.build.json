@@ -1,17 +1,17 @@
 {
   "report_date": "2026-11-04",
-  "pdf_sha256": "6905310942b964b430948e87dbaf32a22ceebfdc7a1d4a32b9ee73cbd28b8934",
+  "pdf_sha256": "326b49537e4e4b75d00a1359ffafc34146d33d11ae3f93b636d96d7b63e03dbb",
   "pages": 7,
   "characters_per_page": [
-    1547,
+    1553,
     1710,
     2068,
     2562,
     1943,
-    2731,
+    2973,
     1747
   ],
-  "generator_sha256": "74cb3550e933054b849a63e2e727cb7d5c976b81a012e1627ff12269c42ee823",
+  "generator_sha256": "516e8c65df0dc768526dfff5be5c107fa3a2a66b85eae1ed46bfc815a953527f",
   "helper_sha256": {
     "scripts/build_evidence_report.py": "1f34429e24fddc1857f05dd4896a126c0ead69db20c5e71dab0178c3011fbe38",
     "scripts/build_v7_report.py": "814ed7633ae39fd057ff99173adab75f3bef5eb0a106c4ae32fa818677d40fa4",
@@ -383,7 +383,7 @@
   },
   "next_experiments_proposal": {
     "path": "docs/overnight-2026-11-04/NEXT_EXPERIMENTS.md",
-    "sha256": "5b0678980a4944f74e7349e797f5d3a9cc1ede4af03718fda37aaac06e7c3733"
+    "sha256": "f95c7ef74cc1336b79aad906b8f35de9fb1dfbe4667decf26ca042ddfe461c42"
   },
   "model_calls_by_report_generator": 0,
   "pooled_compliance_rate": null,

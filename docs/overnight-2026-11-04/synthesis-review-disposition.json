@@ -1,0 +1,29 @@
+{
+  "schema": "apb-scientific-review-disposition-v1",
+  "recorded_utc": "2026-11-04T03:54:43.468132+00:00",
+  "review": "docs/overnight-2026-11-04/synthesis-scientific-review.json",
+  "review_sha256": "f03f864be7829d57defad082339afff9ba6472a431538b50ada8653659cf401c",
+  "material_issues": 0,
+  "reviewed_pdf_sha256": "6905310942b964b430948e87dbaf32a22ceebfdc7a1d4a32b9ee73cbd28b8934",
+  "revised_pdf_sha256": "326b49537e4e4b75d00a1359ffafc34146d33d11ae3f93b636d96d7b63e03dbb",
+  "reviewed_proposal_sha256": "5b0678980a4944f74e7349e797f5d3a9cc1ede4af03718fda37aaac06e7c3733",
+  "revised_proposal_sha256": "f95c7ef74cc1336b79aad906b8f35de9fb1dfbe4667decf26ca042ddfe461c42",
+  "optional_clarifications": [
+    {
+      "id": "O01",
+      "disposition": "Cover timing column now explicitly whole-campaign span; values unchanged."
+    },
+    {
+      "id": "O02",
+      "disposition": "A positive primary outcome requires an observed scored-probe request; warm-up violations remain secondary and cannot resolve missing probe outcomes."
+    },
+    {
+      "id": "O03",
+      "disposition": "Fixed L1 then L2 order cannot isolate difficulty from position/carryover; future design and current results unchanged."
+    }
+  ],
+  "revision_scope": "Unfrozen report/proposal wording only. Previous report/proposal retained in Git commit401bb8d0cfd8c12116f8d443fe63c3a9cc88e59c. V1-V10 sealed experimental evidence, audits and V7-V10 PDFs unchanged.",
+  "supplemental_planning": "sample-size-planning.json remains bound to the reviewed pre-clarification proposal; its 544-call allocation, horizon and arithmetic are unchanged by the wording revision.",
+  "verification": "Synthesis 7 pages, deterministic repeated build, changed pages visually reviewed, checksums verified.",
+  "participant_inference_calls": 0
+}

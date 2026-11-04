@@ -1,5 +1,5 @@
 {
-  "status": "reports_ready_offline_review",
+  "status": "awaiting_deadline_for_final_preservation",
   "started_utc": "2026-11-04T00:33:16Z",
   "hard_deadline_utc": "2026-11-04T07:33:16Z",
   "automation_id": "seven-hour-agent-persistence-study",
@@ -192,9 +192,9 @@
     "stdout_log": "/Users/leonardaarons-ditson/Projects/agentic-physics-bench-evidence-difficulty/docs/overnight-2026-11-04/long-history-20261104.stdout.log"
   },
   "scope": "Numerical fit_line only. V7 persistence, V8 permission revocation and V9 memory handoff sealed. V10 fixed L1 workload extension: 64 tasks across 2 models x 2 arms, one native retained session versus fresh sessions with own one-step feedback. Preserve all prior sealed sources and results.",
-  "next_action": "All requested participant campaigns and reports are complete;598actualstarts/600,noactiveinference. Do not launch further participant calls. Remaining authorized window supports only useful offline review/reproducibility/research, not usage spending. Preserve all sealed evidence and final PDF hashes. At07:33:16UTC verify owned model processes absent,finalize state/commit,create final verified external archive,then pause heartbeat. No automatic GitHub push. Current reports: V10 11pages and synthesis7pages with independentbehavior+usage audits and futureproposal.",
+  "next_action": "Research, independent behavioral/counter/scientific audits, reports, future proposal and portability checks complete. No pending subagent work and no active inference;598/600participant starts. Preserve frozen files and current report hashes. Do not repeat tests or launch calls merely to fill time. Unless user steers or a new issue emerges, remain quiet through remaining authorized window. At/after07:33:16UTC verify only owned experiment processes absent,finalize state and commit latest additive work,create/verify external archive using archive_overnight_evidence.py for all4campaigns,then pause heartbeat. No automatic GitHub push.",
   "continuation": "After initial campaign finishes, analyze and develop justified separately frozen exploration until deadline; do not use calls merely to spend capacity. At deadline stop inference and finish report/archive.",
-  "artifact_commit": null,
+  "artifact_commit": "401bb8d0cfd8c12116f8d443fe63c3a9cc88e59c",
   "readiness_probes": [
     {
       "path": "experiments/v7_persistence/results/readiness-20261104",
@@ -210,7 +210,7 @@
     }
   ],
   "global_call_accounting": "598 actual experimental starts of600 global cap,2 remaining unallocated. No further inference justified/allocated; remaining overnight work is offline verification, analysis, reporting and preservation.",
-  "last_update_utc": "2026-11-04T03:38:51.546528+00:00",
+  "last_update_utc": "2026-11-04T03:54:43.469562+00:00",
   "last_checkpoint": {
     "campaign": "v10",
     "status": "sealed_verified",
@@ -278,7 +278,7 @@
   "pending_independent_work": [],
   "future_proposal": {
     "path": "docs/overnight-2026-11-04/NEXT_EXPERIMENTS.md",
-    "sha256": "5b0678980a4944f74e7349e797f5d3a9cc1ede4af03718fda37aaac06e7c3733",
+    "sha256": "f95c7ef74cc1336b79aad906b8f35de9fb1dfbe4667decf26ca042ddfe461c42",
     "status": "Reviewed; estimates assigned history-load, reminder, and interaction; not launch authorization; future 544-call feasibility proposal outside overnight allocation."
   },
   "postseal_audit_preparation": {
@@ -329,7 +329,7 @@
       "synthesis": {
         "path": "reports/overnight-synthesis-2026-11-04.pdf",
         "pages": 7,
-        "sha256": "6905310942b964b430948e87dbaf32a22ceebfdc7a1d4a32b9ee73cbd28b8934"
+        "sha256": "326b49537e4e4b75d00a1359ffafc34146d33d11ae3f93b636d96d7b63e03dbb"
       }
     }
   },
@@ -342,5 +342,15 @@
     "actual_external_archive_created": false,
     "portable_actual_v10_replay": "docs/overnight-2026-11-04/v10-relocation-replay.json",
     "portable_replay_result": "256 raw observations and116125outputtokens reproduce from a temporary relocated copy, with130missing localrollouts explicitlyunknown; copyremoved; nooriginal/rawevidence modified."
+  },
+  "scientific_review": {
+    "review": "docs/overnight-2026-11-04/synthesis-scientific-review.json",
+    "disposition": "docs/overnight-2026-11-04/synthesis-review-disposition.json",
+    "material_issues": 0,
+    "optional_clarifications_addressed": 3,
+    "claims_checked": 11,
+    "planning_arithmetic_checks": 54,
+    "sample_size_planning": "docs/overnight-2026-11-04/sample-size-planning.json",
+    "interpretation": "Future 2session/model/cell study is feasibility only; hypothetical sensitivity calculations are not empirical V7\u2013V10 intervals and not contrast power."
   }
 }
