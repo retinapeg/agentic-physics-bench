@@ -1,12 +1,12 @@
 {
-  "status": "preparing_v10",
+  "status": "running_v10",
   "started_utc": "2026-11-04T00:33:16Z",
   "hard_deadline_utc": "2026-11-04T07:33:16Z",
   "automation_id": "seven-hour-agent-persistence-study",
   "worktree": "/Users/leonardaarons-ditson/Projects/agentic-physics-bench-evidence-difficulty",
   "branch": "research/persistence-20261104",
   "global_max_model_call_starts": 600,
-  "global_calls_started": 342,
+  "global_calls_started": 430,
   "model_call_timeout_seconds": 300,
   "concurrency": 2,
   "campaigns": [
@@ -96,30 +96,81 @@
       },
       "audit": "docs/overnight-2026-11-04/v9-final-audit.json",
       "actual_exposure_minutes": 19.366666666666667
+    },
+    {
+      "path": "experiments/v10_long_history/results/long-history-20261104",
+      "status": "running",
+      "frozen_commit": "af898ab108ed714d182c2f3655f09f89bc2040a1",
+      "max_calls": 256,
+      "global_baseline_call_starts": 342,
+      "global_maximum_after_campaign": 598,
+      "planned_rounds": 256,
+      "planned_rounds_per_trajectory": 64,
+      "planned_trajectories": 4,
+      "launch_audit": "docs/overnight-2026-11-04/v10-launch-audit.json",
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+        "experiments/v10_long_history/src/run_v10.py",
+        "run",
+        "experiments/v10_long_history/results/long-history-20261104",
+        "--deadline",
+        "2026-11-04T07:33:16Z",
+        "--max-calls",
+        "256",
+        "--timeout",
+        "300"
+      ],
+      "stdout_log": "/Users/leonardaarons-ditson/Projects/agentic-physics-bench-evidence-difficulty/docs/overnight-2026-11-04/long-history-20261104.stdout.log",
+      "pid": 52049,
+      "launched_utc": "2026-11-04T02:54:14.950910+00:00",
+      "manifest_sha256": "34bcb061c866998e76ad6b7b5bba67f5f4a3f16b7cef3f85c438e5cf8b0930e2",
+      "last_raw_manifest_count": 91,
+      "last_completed_raw_results": 89,
+      "last_checkpoint": {
+        "completed_round": 22,
+        "recorded_rounds": 88,
+        "active_trajectories": [
+          "trajectory-001",
+          "trajectory-002",
+          "trajectory-003",
+          "trajectory-004"
+        ],
+        "budget": {
+          "call_slots_reserved": 88,
+          "usage_stop_reason": null,
+          "known_deduplicated_usage": {
+            "input_tokens": 635628,
+            "cached_input_tokens": 514304,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 41358,
+            "reasoning_output_tokens": 38606
+          },
+          "unknown_usage_observations": 0,
+          "semantics": "CLI cumulative counter differences; known subtotal, not independent billing evidence"
+        }
+      }
     }
   ],
   "processes": {
-    "experiment_pid": null,
+    "experiment_pid": 52049,
     "caffeinate_pid": 37300,
     "caffeinate_seconds": 25074,
     "experiment_command": [
       "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
-      "experiments/v9_memory_handoff/src/run_v9.py",
+      "experiments/v10_long_history/src/run_v10.py",
       "run",
-      "experiments/v9_memory_handoff/results/handoff-20261104",
-      "--review-inbox",
-      "/Users/leonardaarons-ditson/Projects/agentic-physics-bench-evidence-difficulty/docs/overnight-2026-11-04/handoff-review-inbox",
+      "experiments/v10_long_history/results/long-history-20261104",
       "--deadline",
       "2026-11-04T07:33:16Z",
       "--max-calls",
-      "122",
+      "256",
       "--timeout",
       "300"
     ],
-    "stdout_log": "/Users/leonardaarons-ditson/Projects/agentic-physics-bench-evidence-difficulty/docs/overnight-2026-11-04/handoff-20261104.stdout.log"
+    "stdout_log": "/Users/leonardaarons-ditson/Projects/agentic-physics-bench-evidence-difficulty/docs/overnight-2026-11-04/long-history-20261104.stdout.log"
   },
   "scope": "Numerical fit_line only. V7 persistence, V8 permission revocation and V9 memory handoff sealed. V10 fixed L1 workload extension: 64 tasks across 2 models x 2 arms, one native retained session versus fresh sessions with own one-step feedback. Preserve all prior sealed sources and results.",
-  "next_action": "V10 offline implementation and independent audit cleared; protocol label aligned with actual prompt. Freeze before launch. Allocate at most 256 single-decision calls: global 342 + 256 = 598 of 600. Preserve hard 07:33:16 UTC deadline. No extra readiness calls. Monitor only the exclusive campaign; audit targeted session histories after seal, create actual V10 and synthesis reports, commit additive evidence and create verified external archive. No automatic GitHub push.",
+  "next_action": "Monitor only V10 PID and exclusive result path; do not launch duplicate inference or change frozen source files. Stop all experimental inference by 07:33:16 UTC. On seal verify all hashes, raw action/usage replay and selected-session history/compaction observability; build actual V10 and overnight reports, preserve external archive, commit additive work. No automatic GitHub push.",
   "continuation": "After initial campaign finishes, analyze and develop justified separately frozen exploration until deadline; do not use calls merely to spend capacity. At deadline stop inference and finish report/archive.",
   "artifact_commit": null,
   "readiness_probes": [
@@ -136,15 +187,33 @@
       "frozen_source_hashes_verified": true
     }
   ],
-  "global_call_accounting": "8readiness+228V7+44V8+62V9=342 total;258remaining. V10planned256 noadditionalreadiness/nootherparticipantcalls.",
-  "last_update_utc": "2026-11-04T02:53:41.331236+00:00",
+  "global_call_accounting": "342 completed prior starts; V10 exclusive allowance 256, maximum global total 598. Count active progress from V10 checkpoint/raw launches before any future action. No additional participant calls allocated.",
+  "last_update_utc": "2026-11-04T03:06:07.811499+00:00",
   "last_checkpoint": {
-    "campaign": "v9",
-    "status": "probe_arms",
-    "budget": {
-      "call_slots_reserved": 56,
-      "observed_output_tokens": 498324,
-      "unknown_usage_calls": 0
+    "campaign": "v10",
+    "status": "running",
+    "data": {
+      "completed_round": 22,
+      "recorded_rounds": 88,
+      "active_trajectories": [
+        "trajectory-001",
+        "trajectory-002",
+        "trajectory-003",
+        "trajectory-004"
+      ],
+      "budget": {
+        "call_slots_reserved": 88,
+        "usage_stop_reason": null,
+        "known_deduplicated_usage": {
+          "input_tokens": 635628,
+          "cached_input_tokens": 514304,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 41358,
+          "reasoning_output_tokens": 38606
+        },
+        "unknown_usage_observations": 0,
+        "semantics": "CLI cumulative counter differences; known subtotal, not independent billing evidence"
+      }
     }
   },
   "followon_preparation": {
@@ -168,7 +237,7 @@
   ],
   "followon_research": {
     "memory_handoff": "Complete; two blinded reviews classified both handoffs equivalent_prohibition; 48 source finals and 12 probe finals correct; no forbidden requests. Source retention and intervention effects are not isolated.",
-    "long_history": "Independent offline audit cleared 16 tests, 334 saved real-call usage replays, full 256-request mock including final-round dispatches; no experimental inference in audit. Wording-only label correction done. Ready for freeze."
+    "long_history": "Running under frozen commit af898ab108ed714d182c2f3655f09f89bc2040a1, PID52049; all frozen hashes checked and unchanged."
   },
   "usage_before_v9": {
     "used_percent": 70,
@@ -180,5 +249,37 @@
     "used_percent": 77,
     "ordinary_usage_allowed": true,
     "billing_changes": false
-  }
+  },
+  "global_calls_started_semantics": "Prior campaigns exact plus V10 last completed round reservation count; may lag at most the current round (4 calls). Raw-manifest count is recorded separately, and maximum allocation is capped at 598 globally. Inspect live evidence before any new allocation.",
+  "global_maximum_allocated": 598,
+  "pending_independent_work": [
+    {
+      "agent": "strength_report",
+      "task": "Reporting-only integration of optional manifest/seal/ledger-bound context audit and future-design synthesis page; offline checks only."
+    },
+    {
+      "agent": "preservation",
+      "task": "Fix exact frozen token-counter-audit.json allowlist; include synthesis and independent audit scripts/artifacts; add regression tests; no archive while running."
+    }
+  ],
+  "future_proposal": {
+    "path": "docs/overnight-2026-11-04/NEXT_EXPERIMENTS.md",
+    "sha256": "5b0678980a4944f74e7349e797f5d3a9cc1ede4af03718fda37aaac06e7c3733",
+    "status": "Reviewed; estimates assigned history-load, reminder, and interaction; not launch authorization; future 544-call feasibility proposal outside overnight allocation."
+  },
+  "postseal_audit_preparation": {
+    "script": "scripts/audit_v10_evidence.py",
+    "tests": "scripts/test_audit_v10_evidence.py",
+    "test_results": "9 synthetic tests passed, independently reviewed by critic team; actual campaign audit deferred until seal.",
+    "command": [
+      "python3",
+      "scripts/audit_v10_evidence.py",
+      "experiments/v10_long_history/results/long-history-20261104",
+      "--output",
+      "docs/overnight-2026-11-04/v10-counter-context-audit.json"
+    ],
+    "script_sha256": "d85d18074e25ce8941e3885969ac39dc5a663667343ccb3b503027fec61b825c",
+    "limitations": "Cross-check raw usage/session identity/sequence and exact participant local rollouts only; full history retention unknown even with no exposed compaction."
+  },
+  "packaging_review": "Parent found source_path rejected exact V10 frozen docs token audit and collect omitted synthesis/audit helpers. Offline fix delegated, no evidence affected."
 }
