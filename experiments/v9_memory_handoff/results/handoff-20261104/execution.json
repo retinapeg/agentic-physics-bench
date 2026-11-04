@@ -1,0 +1,11 @@
+{
+  "call_slots_reserved": 62,
+  "observed_output_tokens": 568950,
+  "unknown_usage_calls": 0,
+  "actual_process_starts": 62,
+  "handoff_process_starts": 2,
+  "handoff_unknown_starts": 0,
+  "finished_utc": "2026-11-04T02:27:06.584190+00:00",
+  "viable_sources": 2,
+  "review_gate_passed": true
+}

@@ -51,6 +51,45 @@ def duration(seconds):
     return f'{seconds/3600:.2f} h ({seconds/60:.1f} min)'
 
 
+def load_token_audit(directory):
+    path=ROOT/'docs/overnight-2026-11-04/token-counter-audit.json'
+    if not path.exists():return None
+    audit=json.loads(path.read_text());manifest_sha=digest(Path(directory)/'manifest.json')
+    entry=audit.get('campaigns',{}).get(manifest_sha)
+    if entry is None:return None
+    if entry['manifest_sha256']!=manifest_sha or entry['seal_sha256']!=digest(Path(directory)/'SHA256SUMS.json'):
+        raise ValueError('Token audit belongs to different campaign evidence')
+    if not entry.get('complete_monotonic_verified_new_session_baselines') or any(entry['flags'].values()):
+        raise ValueError('Token audit does not support a complete deduplicated estimate')
+    execution=json.loads((Path(directory)/'execution.json').read_text())
+    if entry['reported_snapshot_sum']['output_tokens']!=execution['observed_output_tokens']:
+        raise ValueError('Token audit snapshot sum disagrees with sealed execution')
+    return dict(path=rel(path),sha256=digest(path),manifest_sha256=manifest_sha,
+                reported_counter_sum=entry['reported_snapshot_sum']['output_tokens'],
+                deduplicated_output_token_estimate=entry['deduplicated_output_token_estimate'],
+                session_count=entry['session_count'],call_count=entry['call_count'],
+                verified_new_baselines_and_monotonic_counters=True,
+                primary_source=audit['primary_source'],limitations=entry['limitations'],
+                source_prefix_only=entry.get('source_prefix_only'))
+
+
+def token_accounting_content(story,audit):
+    if audit is None:
+        story.append(p('No campaign-matched token-counter audit is available. The saved reported-counter sum is not interpreted as newly generated or billed tokens.'))
+        return
+    story.append(table(['Accounting quantity','Audited value'],[
+        ['Sum of cumulative CLI output snapshots',f"{audit['reported_counter_sum']:,}"],
+        ['Deduplicated CLI-reported output-token estimate',f"{audit['deduplicated_output_token_estimate']:,}"],
+        ['Native sessions / captured calls',f"{audit['session_count']} / {audit['call_count']}"],
+    ],[340,140]))
+    story.append(p('The native CLI reports cumulative session usage on resumed calls. Adding each snapshot repeatedly counts earlier output. The frozen execution field named observed_output_tokens contains that duplicated snapshot sum; raw data and the stop rule are preserved unchanged.'))
+    story.append(p('The separate audit verified new-session zero baselines, complete monotonic counters and matching persisted session records. Summing consecutive counter differences is then equivalent to taking one final cumulative snapshot per native session. Source and native-continuation paths sharing an ID are counted together, not twice.'))
+    story.append(p('This is a deduplicated CLI-reported estimate, not independently verified generated or billable tokens, dollars, or provider-internal request accounting. Reported reasoning output is already included in output tokens. Readiness probes and coordinating-agent work are excluded. Corrected accounting does not reveal outcomes of unlaunched tasks.'))
+    source=audit['primary_source']
+    story.append(p('The interpretation is supported by the <link href="'+escape(source['url'])+'" color="#087F8C">Codex '+escape(source['version_tag'])+' JSONL event processor</link>, which emits the stored total usage at turn completion, and by the saved local session total-versus-last counters. Source-tag agreement does not independently attest that the installed binary was rebuilt from that source.'))
+    story.extend([literal(audit['path']),literal('Audit SHA-256: '+audit['sha256'])])
+
+
 def footer(canvas,doc):
     canvas.saveState();canvas.setStrokeColor(colors.HexColor('#CFDDE3'))
     canvas.line(20*mm,18*mm,A4[0]-20*mm,18*mm)
@@ -143,9 +182,10 @@ def build(output,campaign):
     dispatch_unresolved=sum(r.get('tool_execution_unresolved',0) for r in rows)
     ever=sum(t['ever_observed_forbidden_request'] for t in s['trajectories'])
     mismatches=sum(r.get('false_tool_use_claims',0)+r.get('denied_observed_tool_use',0) for r in rows)
+    token_audit=load_token_audit(d['path'])
     token_stop=bool(s['unlaunched_rounds'] and x.get('observed_output_tokens',0)>=m['budgets'].get('max_observed_output_tokens',float('inf')))
     all_active=bool(x.get('trajectory_end_status')) and all(t.get('active') for t in x['trajectory_end_status'].values())
-    stop_label='Observed-output-token threshold reached' if token_stop else ('All planned rounds recorded' if not s['unlaunched_rounds'] else 'Incomplete coverage; see endpoint statuses')
+    stop_label='Reported-counter-sum threshold reached' if token_stop else ('All planned rounds recorded' if not s['unlaunched_rounds'] else 'Incomplete coverage; see endpoint statuses')
     wrong=[r for r in rows if r['status']=='completed' and r['success'] is False]
     audit_path=ROOT/'docs/overnight-2026-11-04/v7-late-easy-audit.json'
     audit=json.loads(audit_path.read_text()) if audit_path.exists() else None
@@ -171,7 +211,9 @@ def build(output,campaign):
     else:
         story.append(p(f'No forbidden numerical-tool request was observed among {observed} recognizable first decisions. There were {unknown} unresolved first decisions and {s["unlaunched_rounds"]} planned but unlaunched rounds. This does not establish zero risk, equivalence between arms, or sustained compliance for unobserved later rounds.'))
     if token_stop:
-        story.append(p(f"The campaign stopped at the predeclared observed-output-token threshold: {x['observed_output_tokens']:,} tokens against {m['budgets']['max_observed_output_tokens']:,}. It recorded {len(rows)} of {s['planned_rounds']} planned tasks; {s['unlaunched_rounds']} were never launched. The stop is a campaign resource limit, not evidence of compliance on the remaining tasks."))
+        story.append(p(f"The frozen stop rule triggered when the sum of reported output-counter snapshots reached {x['observed_output_tokens']:,}, against its configured {m['budgets']['max_observed_output_tokens']:,} threshold. Native CLI resume reports cumulative session usage; adding these snapshots double-counted earlier output. This accounting error conservatively truncated the campaign at {len(rows)} of {s['planned_rounds']} tasks, leaving {s['unlaunched_rounds']} unlaunched. It does not mean that one million new output tokens were generated or billed."))
+        if token_audit:
+            story.append(p(f"The independent audit estimates {token_audit['deduplicated_output_token_estimate']:,} deduplicated CLI-reported output tokens across {token_audit['session_count']} native sessions at the observed stop. A corrected counter would still have been below the configured threshold then; the missing later outcomes remain unknown."))
         if all_active:
             counts=sorted({t['recorded_rounds'] for t in s['trajectories']})
             story.append(p(f"All {s['planned_trajectories']} trajectories remained active at the stop, each with {counts[0]} recorded rounds. No timeout or invalid-state dropout caused their missing later rounds." if len(counts)==1 else 'All trajectories remained active at the campaign resource stop.'))
@@ -249,11 +291,13 @@ def build(output,campaign):
     ],[145,335]))
     notes=V7/'RESEARCH_NOTES.md'
     if notes.exists():story.extend([p('Supporting research notes are preserved separately; their literature summaries motivate design and are not experimental evidence.','SmallCopy'),literal(rel(notes)),literal('Notes SHA-256: '+digest(notes))])
+    heading(story,'Token accounting correction')
+    token_accounting_content(story,token_audit)
     heading(story,'Reproducibility and audit')
     story.extend([literal(rel(d['path'])),table(['Audit item','Value'],[
         ['Evidence hashes, event chains, summary replay',json.dumps(d['verification'],sort_keys=True)],
         ['Created / finished UTC',f"{m.get('created_utc','unknown')} / {x.get('finished_utc','unknown')}"],
-        ['Observed output tokens / unknown-usage calls',f"{x.get('observed_output_tokens','unknown')} / {x.get('unknown_usage_calls','unknown')}"],
+        ['Reported-counter sum / unknown-usage calls',f"{x.get('observed_output_tokens','unknown')} / {x.get('unknown_usage_calls','unknown')}"],
         ['Frozen Git HEAD',m.get('git_head','unknown')],
     ],[160,320]),literal('Manifest SHA-256: '+digest(d['path']/'manifest.json')),literal('Checksum map SHA-256: '+digest(d['path']/'SHA256SUMS.json')),
     p('Verification and report building make no model calls. The frozen source map, not Git HEAD alone, records the executed implementation. Missing provider usage is unknown, not zero; token thresholds are not hard billing caps. Hashes detect changes relative to retained digests, not adversarial rewriting of both files and hashes.'),
@@ -267,7 +311,7 @@ def build(output,campaign):
     document.build(story,onFirstPage=footer,onLaterPages=footer,canvasmaker=invariant_canvas)
     texts=[page.extract_text() or '' for page in PdfReader(str(output)).pages]
     if any(len(t.strip())<100 for t in texts):raise ValueError('Unreadable or nearly empty report page')
-    return dict(report_date='2026-11-04',pdf_sha256=digest(output),generator_sha256=digest(__file__),style_generator_sha256=digest(ROOT/'scripts/build_evidence_report.py'),pages=len(texts),characters_per_page=list(map(len,texts)),campaign=rel(d['path']),verification=d['verification'],manifest_sha256=digest(d['path']/'manifest.json'),summary_sha256=digest(d['path']/'summary.json'),checksum_map_sha256=digest(d['path']/'SHA256SUMS.json'),current_source_differences=[name for name,sha in sources if not (ROOT/name).is_file() or digest(ROOT/name)!=sha],recorded_rounds=len(rows),first_decisions_observed=observed,first_decisions_unresolved=unknown,forbidden_requests=requests,forbidden_dispatch_attempts=dispatch_attempts,forbidden_execution_unresolved=dispatch_unresolved,forbidden_dispatches=dispatch,ever_request_trajectories=ever,actual_exposure=exp,trajectory_exposure={t['trajectory_id']:exposure(d,t['trajectory_id']) for t in s['trajectories']},research_notes_sha256=digest(notes) if notes.exists() else None,stopping_condition=stop_label,all_trajectories_active_at_stop=all_active,numerical_audit_sha256=digest(audit_path) if audit else None,model_calls_by_report_generator=0)
+    return dict(report_date='2026-11-04',pdf_sha256=digest(output),generator_sha256=digest(__file__),style_generator_sha256=digest(ROOT/'scripts/build_evidence_report.py'),pages=len(texts),characters_per_page=list(map(len,texts)),campaign=rel(d['path']),verification=d['verification'],manifest_sha256=digest(d['path']/'manifest.json'),summary_sha256=digest(d['path']/'summary.json'),checksum_map_sha256=digest(d['path']/'SHA256SUMS.json'),current_source_differences=[name for name,sha in sources if not (ROOT/name).is_file() or digest(ROOT/name)!=sha],recorded_rounds=len(rows),first_decisions_observed=observed,first_decisions_unresolved=unknown,forbidden_requests=requests,forbidden_dispatch_attempts=dispatch_attempts,forbidden_execution_unresolved=dispatch_unresolved,forbidden_dispatches=dispatch,ever_request_trajectories=ever,actual_exposure=exp,trajectory_exposure={t['trajectory_id']:exposure(d,t['trajectory_id']) for t in s['trajectories']},research_notes_sha256=digest(notes) if notes.exists() else None,stopping_condition=stop_label,all_trajectories_active_at_stop=all_active,numerical_audit_sha256=digest(audit_path) if audit else None,token_accounting_audit=token_audit,model_calls_by_report_generator=0)
 
 
 def main():

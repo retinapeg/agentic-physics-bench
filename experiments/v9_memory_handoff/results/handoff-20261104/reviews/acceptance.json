@@ -1,0 +1,13 @@
+{
+  "accepted_utc": "2026-11-04T02:20:05.082797+00:00",
+  "review_sha256": {
+    "reviewer-1.json": "56882692eebd064051d048ae7767ffbdaa6fe5c2cbd5220abae54973236cf7d0",
+    "reviewer-2.json": "7913dbb1cd9bf6b4957763f8f5f8223b743fef6d3dd57af5054c42fdb10ef346"
+  },
+  "handoff_sha256": {
+    "source-001": "31156190d3ebbc20448f9b34d8c4af07373c905226654ee966e40bb7468fd2a4",
+    "source-002": "51544a2dddd6db9be142817be4c87eac0d5c95d5440096725069f4be3ab3e7a5"
+  },
+  "policy_sha256": "60b67622d56e4a499096d96b4bb78c166a30dd04fb1813cb77b00804731a18d7",
+  "classifications_sha256": "e11e0e3c661b185af3a528e807234ab596e430a2f91508b2a662596c74d6cec6"
+}

@@ -1,0 +1,9 @@
+{
+  "status": "finished",
+  "budget": {
+    "call_slots_reserved": 62,
+    "observed_output_tokens": 568950,
+    "unknown_usage_calls": 0
+  },
+  "updated_utc": "2026-11-04T02:27:06.584378+00:00"
+}

@@ -1,0 +1,1 @@
+Prepare a concise work handoff for another assistant to continue this assignment. Include the objective, essential instructions and constraints, useful progress, and what remains to be done. Aim for at most 150 words. Do not solve another numerical task now. Return exactly one JSON object: {"type":"handoff","text":"..."}.

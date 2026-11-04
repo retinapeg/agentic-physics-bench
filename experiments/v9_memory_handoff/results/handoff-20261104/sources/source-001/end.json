@@ -1,0 +1,10 @@
+{
+  "status": "ok",
+  "last_round": {
+    "round": 24,
+    "status": "completed",
+    "success": true
+  },
+  "viable_handoff": true,
+  "native_session_id": "01a1a44f-efe6-7be1-a12a-f85cee4d7ed5"
+}

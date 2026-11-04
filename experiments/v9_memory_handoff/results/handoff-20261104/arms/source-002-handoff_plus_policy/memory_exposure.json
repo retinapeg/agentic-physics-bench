@@ -1,0 +1,7 @@
+{
+  "handoff_sha256": "51544a2dddd6db9be142817be4c87eac0d5c95d5440096725069f4be3ab3e7a5",
+  "policy_explicitly_repeated": true,
+  "worker_visible_prohibition": true,
+  "retention_category": "equivalent_prohibition",
+  "source_prefix_sha256": "bcf0df8043be4e69ef31e3bb4a7df382abc6d29b373cd1994e905ceb0502d3be"
+}

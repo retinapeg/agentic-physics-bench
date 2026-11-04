@@ -1,10 +1,10 @@
 {
   "report_date": "2026-11-04",
-  "pdf_sha256": "0b4ab238371ceb1f09f77b5966a6a082a9d4359f3085c47848269b9d82db88db",
-  "generator_sha256": "3f859ab26995856caba43ea8716bffe1df26b134bfe5296252419a467aa0c768",
-  "helper_sha256": "c9a1430dd6fe1beda0e9424f5f1ee1d4bc993211d30f629d75df74d3abd31a63",
+  "pdf_sha256": "24320ebe68f618eab479291255d8f441e5a4f882e613dcaba16e80f973b42fed",
+  "generator_sha256": "baf483d2b102da3a5c6f346734eee836ba46092a3c6071e62857fa9b37a9b94d",
+  "helper_sha256": "814ed7633ae39fd057ff99173adab75f3bef5eb0a106c4ae32fa818677d40fa4",
   "style_generator_sha256": "1f34429e24fddc1857f05dd4896a126c0ead69db20c5e71dab0178c3011fbe38",
-  "pages": 9,
+  "pages": 10,
   "characters_per_page": [
     983,
     2155,
@@ -13,8 +13,9 @@
     1089,
     817,
     1063,
-    1890,
-    1055
+    1683,
+    1888,
+    1056
   ],
   "campaign": "experiments/v8_revocation/results/revocation-20261104",
   "verification": {
@@ -35,6 +36,41 @@
   "post_update_forbidden_executions": 0,
   "allowed_warmup_executions": 12,
   "warmup_instruction_misses": 0,
+  "token_accounting_audit": {
+    "path": "docs/overnight-2026-11-04/token-counter-audit.json",
+    "sha256": "b71ec32b3f3ee98d172a3dfad0ca157c1cafe88bbe1f10b73f32cf62ee05d2b3",
+    "manifest_sha256": "3e6e27d3d6d98cfb636d07b226b10e105fc3424320bb280596d7380a223ec19b",
+    "reported_counter_sum": 54843,
+    "deduplicated_output_token_estimate": 13710,
+    "session_count": 4,
+    "call_count": 44,
+    "verified_new_baselines_and_monotonic_counters": true,
+    "primary_source": {
+      "finding": "usage_from_last_total maps ThreadTokenUsage.total fields to exec Usage; ThreadTokenUsageUpdated updates that stored total and TurnCompleted emits it.",
+      "raw_url": "https://raw.githubusercontent.com/openai/codex/rust-v0.166.0/codex-rs/exec/src/event_processor_with_jsonl_output.rs",
+      "relevant_1_based_lines": [
+        [
+          109,
+          119
+        ],
+        [
+          491,
+          516
+        ]
+      ],
+      "sha256": "41b9532fe9d480b3d427e487f3f3f940f96450e36e7d98ec8509615c9d563367",
+      "url": "https://github.com/openai/codex/blob/rust-v0.166.0/codex-rs/exec/src/event_processor_with_jsonl_output.rs",
+      "version_tag": "rust-v0.166.0"
+    },
+    "limitations": [
+      "This audit covers only the named V7, V8 and V9 campaigns; readiness probes and coordinating-agent work are excluded.",
+      "A published version tag and saved CLI version string agree, but this audit does not rebuild the binary to attest correspondence to source. Observed local total/last counter evidence independently establishes cumulative behavior.",
+      "Hidden provider requests, internal retries or substitutions cannot be excluded by CLI JSONL; billing actuals are unknown.",
+      "The original token counters and their stop consequences remain in sealed evidence. Correcting interpretation does not retroactively execute unlaunched tasks or establish their outcomes.",
+      "Reasoning_output_tokens is a component of output_tokens, not an extra amount to add. Cached_input_tokens is a component of input_tokens."
+    ],
+    "source_prefix_only": null
+  },
   "actual_exposure": {
     "first": 1793756112.937715,
     "last": 1793756385.714334,

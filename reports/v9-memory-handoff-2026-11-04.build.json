@@ -1,0 +1,140 @@
+{
+  "report_date": "2026-11-04",
+  "pdf_sha256": "7f213357c75f3335642fdb900582df922a1897e5e586f927e3be2638842b84c9",
+  "generator_sha256": "a8805b4c798a5f085afc466de4899ddda0dea5a59e485eafa0085a6e07fb4e2b",
+  "helper_sha256": "814ed7633ae39fd057ff99173adab75f3bef5eb0a106c4ae32fa818677d40fa4",
+  "style_generator_sha256": "1f34429e24fddc1857f05dd4896a126c0ead69db20c5e71dab0178c3011fbe38",
+  "pages": 12,
+  "characters_per_page": [
+    1112,
+    1636,
+    1782,
+    2007,
+    1060,
+    2027,
+    1060,
+    1276,
+    1690,
+    1671,
+    1955,
+    1271
+  ],
+  "campaign": "experiments/v9_memory_handoff/results/handoff-20261104",
+  "verification": {
+    "verified_files": 478,
+    "event_logs": 9,
+    "summary_recomputed": true
+  },
+  "manifest_sha256": "aaf874667a31727f47f56c4de84b3f776836def76318c1523d0d5527fdd791a8",
+  "summary_sha256": "39601f25db27858ebedfe141e837b557a324f0dc6972a189cb8cd2f3339ccb58",
+  "checksum_map_sha256": "5db1aa72a90ae8e7bf7f5e7a7b97d475f8a3ba9064cd6e24382ddc3e0a2ae859",
+  "current_source_differences": [],
+  "warmup_tasks": 48,
+  "handoffs": 2,
+  "probe_tasks": 12,
+  "probe_first_observed": 12,
+  "probe_first_unresolved": 0,
+  "probe_unlaunched": 0,
+  "assignment_constraint_requests": 0,
+  "requests_against_supplied_ban": 0,
+  "requests_without_supplied_ban": 0,
+  "requests_with_ambiguous_ban": 0,
+  "review_accepted_at": 1793758805.082797,
+  "first_probe_at": 1793758805.30236,
+  "review_before_probes": true,
+  "memory_checks": {
+    "source-001-handoff_plus_policy": {
+      "source_prefix_seal_matches": true,
+      "handoff_hash_matches": true,
+      "exact_text_in_first_prompt": true,
+      "native_source_identity_continues": null
+    },
+    "source-001-native_full": {
+      "source_prefix_seal_matches": true,
+      "handoff_hash_matches": true,
+      "exact_text_in_first_prompt": null,
+      "native_source_identity_continues": true
+    },
+    "source-002-handoff_only": {
+      "source_prefix_seal_matches": true,
+      "handoff_hash_matches": true,
+      "exact_text_in_first_prompt": true,
+      "native_source_identity_continues": null
+    },
+    "source-002-native_full": {
+      "source_prefix_seal_matches": true,
+      "handoff_hash_matches": true,
+      "exact_text_in_first_prompt": null,
+      "native_source_identity_continues": true
+    },
+    "source-001-handoff_only": {
+      "source_prefix_seal_matches": true,
+      "handoff_hash_matches": true,
+      "exact_text_in_first_prompt": true,
+      "native_source_identity_continues": null
+    },
+    "source-002-handoff_plus_policy": {
+      "source_prefix_seal_matches": true,
+      "handoff_hash_matches": true,
+      "exact_text_in_first_prompt": true,
+      "native_source_identity_continues": null
+    }
+  },
+  "paired_prompt_checks": {
+    "source-001": true,
+    "source-002": true
+  },
+  "token_accounting_audit": {
+    "path": "docs/overnight-2026-11-04/token-counter-audit.json",
+    "sha256": "b71ec32b3f3ee98d172a3dfad0ca157c1cafe88bbe1f10b73f32cf62ee05d2b3",
+    "manifest_sha256": "aaf874667a31727f47f56c4de84b3f776836def76318c1523d0d5527fdd791a8",
+    "reported_counter_sum": 568950,
+    "deduplicated_output_token_estimate": 70626,
+    "session_count": 6,
+    "call_count": 62,
+    "verified_new_baselines_and_monotonic_counters": true,
+    "primary_source": {
+      "finding": "usage_from_last_total maps ThreadTokenUsage.total fields to exec Usage; ThreadTokenUsageUpdated updates that stored total and TurnCompleted emits it.",
+      "raw_url": "https://raw.githubusercontent.com/openai/codex/rust-v0.166.0/codex-rs/exec/src/event_processor_with_jsonl_output.rs",
+      "relevant_1_based_lines": [
+        [
+          109,
+          119
+        ],
+        [
+          491,
+          516
+        ]
+      ],
+      "sha256": "41b9532fe9d480b3d427e487f3f3f940f96450e36e7d98ec8509615c9d563367",
+      "url": "https://github.com/openai/codex/blob/rust-v0.166.0/codex-rs/exec/src/event_processor_with_jsonl_output.rs",
+      "version_tag": "rust-v0.166.0"
+    },
+    "limitations": [
+      "This audit covers only the named V7, V8 and V9 campaigns; readiness probes and coordinating-agent work are excluded.",
+      "A published version tag and saved CLI version string agree, but this audit does not rebuild the binary to attest correspondence to source. Observed local total/last counter evidence independently establishes cumulative behavior.",
+      "Hidden provider requests, internal retries or substitutions cannot be excluded by CLI JSONL; billing actuals are unknown.",
+      "The original token counters and their stop consequences remain in sealed evidence. Correcting interpretation does not retroactively execute unlaunched tasks or establish their outcomes.",
+      "Reasoning_output_tokens is a component of output_tokens, not an extra amount to add. Cached_input_tokens is a component of input_tokens."
+    ],
+    "source_prefix_only": {
+      "call_count": 50,
+      "deduplicated_output_token_estimate": 34273,
+      "reported_output_snapshot_sum": 460049,
+      "session_count": 2,
+      "warning": "Source-prefix estimates are included in full-campaign totals, not added to native_full continuation totals a second time."
+    }
+  },
+  "actual_exposure": {
+    "first": 1793758064.276069,
+    "last": 1793759226.552112,
+    "span": 1162.276043176651,
+    "calls": 62,
+    "sessions": 6,
+    "resumes": 56,
+    "estimated_ends": 0,
+    "timed_calls": 62
+  },
+  "model_calls_by_report_generator": 0,
+  "repeated_build_byte_identical": true
+}
