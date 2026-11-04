@@ -1,0 +1,55 @@
+{
+  "meta": {
+    "aggregate_usage": {
+      "cached_input_tokens": 390784,
+      "calls": 14,
+      "input_tokens": 470446,
+      "output_tokens": 5023,
+      "unknown_usage_calls": 0
+    },
+    "audit_limitations": [
+      "Codex exec JSONL does not independently attest the canonical serving model; model identity is requested/configured identity.",
+      "No harness retries or model substitutions. CLI/provider-internal requests and hidden fallback cannot be independently ruled out from exec JSONL.",
+      "Native surfaces are disabled by explicit client configuration; read-only is additional filesystem containment, not a complete process/container sandbox.",
+      "Authentication and managed configuration still use the local installation. Ignoring user config does not erase managed instructions or all host metadata.",
+      "Timeout and captured-output bytes are hard local limits; reported tokens are retrospective, not a provider-enforced token or dollar cap."
+    ],
+    "captured_bytes": 430,
+    "completed_turns": 1,
+    "elapsed_s": 15.674,
+    "finished_utc": "2026-11-04T01:39:38.797054+00:00",
+    "model_identity_evidence": "requested/configured only",
+    "native_tool_events": [],
+    "observed_model_fields": [],
+    "persistent": true,
+    "prior_session_id": "01a1a432-5885-7431-a3a4-7ae125dc2dc0",
+    "problems": [],
+    "raw_manifest": "/Users/leonardaarons-ditson/Projects/agentic-physics-bench-evidence-difficulty/experiments/v8_revocation/results/revocation-20261104/trajectory-004/raw/call-0014-manifest.json",
+    "raw_stderr": "/Users/leonardaarons-ditson/Projects/agentic-physics-bench-evidence-difficulty/experiments/v8_revocation/results/revocation-20261104/trajectory-004/raw/call-0014-stderr.txt",
+    "raw_stdout": "/Users/leonardaarons-ditson/Projects/agentic-physics-bench-evidence-difficulty/experiments/v8_revocation/results/revocation-20261104/trajectory-004/raw/call-0014-stdout.jsonl",
+    "reported_tokens": {
+      "cached_input_tokens": 58112,
+      "input_tokens": 70543,
+      "output_tokens": 1455
+    },
+    "requested_effort": "high",
+    "requested_model": "gpt-6.1-sol",
+    "returncode": 0,
+    "session_id": "01a1a432-5885-7431-a3a4-7ae125dc2dc0",
+    "started_threads": 1,
+    "started_turns": 1,
+    "started_utc": "2026-11-04T01:39:23.122905+00:00",
+    "status_detail": null,
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout_sha256": "0f94891ec21f13d0b5ece0792b46b9866fe0d969bc112e7c1c610e1e9cc89c1c",
+    "timeout_after_clean_turn_start": false,
+    "usage": {
+      "cached_input_tokens": 58112,
+      "input_tokens": 70543,
+      "output_tokens": 1455
+    }
+  },
+  "output_tokens": 1455,
+  "status": "ok",
+  "text": "{\"type\":\"final\",\"value\":-1.3739,\"units\":\"m/s^2\",\"used_fit_line\":false}"
+}

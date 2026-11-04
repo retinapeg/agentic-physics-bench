@@ -1,0 +1,41 @@
+{
+  "call_slots_reserved": 44,
+  "observed_output_tokens": 54843,
+  "unknown_usage_calls": 0,
+  "actual_process_starts": 44,
+  "finished_utc": "2026-11-04T01:39:45.723463+00:00",
+  "trajectory_end_status": {
+    "trajectory-001": {
+      "active": true,
+      "last_result": {
+        "round": 8,
+        "status": "completed",
+        "success": true
+      }
+    },
+    "trajectory-002": {
+      "active": true,
+      "last_result": {
+        "round": 8,
+        "status": "completed",
+        "success": true
+      }
+    },
+    "trajectory-003": {
+      "active": true,
+      "last_result": {
+        "round": 8,
+        "status": "completed",
+        "success": true
+      }
+    },
+    "trajectory-004": {
+      "active": true,
+      "last_result": {
+        "round": 8,
+        "status": "completed",
+        "success": true
+      }
+    }
+  }
+}

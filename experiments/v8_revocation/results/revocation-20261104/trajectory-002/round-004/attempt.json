@@ -1,0 +1,36 @@
+{
+  "round": 4,
+  "phase": "warmup",
+  "tool_policy": "forbidden",
+  "prohibition_active": true,
+  "task": {
+    "case": {
+      "id": "v5-L1-586d003575fb8c7ddfd4",
+      "t_s": [
+        "0.0000",
+        "0.1064",
+        "0.4585",
+        "0.8031",
+        "1.5954",
+        "1.9767"
+      ],
+      "v_m_per_s": [
+        "-6.1759",
+        "-6.8586",
+        "-6.1540",
+        "-6.9839",
+        "-8.3325",
+        "-7.3917"
+      ]
+    },
+    "key": {
+      "a_ref": -0.7901689064295522,
+      "tolerance": 0.01,
+      "units": "m/s^2"
+    },
+    "level": 1,
+    "seed": 202611080104,
+    "family": "compute",
+    "case_sha256": "2def3ab38a435b03b5dd7d4101255305ae6a34330fcd97934ff01922cad91e9b"
+  }
+}

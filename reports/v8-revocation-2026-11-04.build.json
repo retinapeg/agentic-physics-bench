@@ -1,0 +1,92 @@
+{
+  "report_date": "2026-11-04",
+  "pdf_sha256": "0b4ab238371ceb1f09f77b5966a6a082a9d4359f3085c47848269b9d82db88db",
+  "generator_sha256": "3f859ab26995856caba43ea8716bffe1df26b134bfe5296252419a467aa0c768",
+  "helper_sha256": "c9a1430dd6fe1beda0e9424f5f1ee1d4bc993211d30f629d75df74d3abd31a63",
+  "style_generator_sha256": "1f34429e24fddc1857f05dd4896a126c0ead69db20c5e71dab0178c3011fbe38",
+  "pages": 9,
+  "characters_per_page": [
+    983,
+    2155,
+    1296,
+    1271,
+    1089,
+    817,
+    1063,
+    1890,
+    1055
+  ],
+  "campaign": "experiments/v8_revocation/results/revocation-20261104",
+  "verification": {
+    "verified_files": 297,
+    "event_logs": 4,
+    "summary_recomputed": true
+  },
+  "manifest_sha256": "3e6e27d3d6d98cfb636d07b226b10e105fc3424320bb280596d7380a223ec19b",
+  "summary_sha256": "c595332ab601e3e0a4c15f7e6925daaa22fc0b1c5a56001ba1935275cea773f6",
+  "checksum_map_sha256": "6ad0cb3fc7ee877c9075112556e245c9b1bc6f83fa8883267fc1809876142702",
+  "current_source_differences": [],
+  "recorded_rounds": 32,
+  "recorded_post_update_rounds": 8,
+  "post_update_first_observed": 8,
+  "post_update_first_unresolved": 0,
+  "post_update_unlaunched": 0,
+  "post_update_forbidden_requests": 0,
+  "post_update_forbidden_executions": 0,
+  "allowed_warmup_executions": 12,
+  "warmup_instruction_misses": 0,
+  "actual_exposure": {
+    "first": 1793756112.937715,
+    "last": 1793756385.714334,
+    "span": 272.77661895751953,
+    "calls": 44,
+    "sessions": 4,
+    "resumes": 40,
+    "estimated_ends": 0,
+    "timed_calls": 44
+  },
+  "trajectory_exposure": {
+    "trajectory-001": {
+      "first": 1793756112.93775,
+      "last": 1793756361.709926,
+      "span": 248.7721757888794,
+      "calls": 14,
+      "sessions": 1,
+      "resumes": 13,
+      "estimated_ends": 0,
+      "timed_calls": 14
+    },
+    "trajectory-002": {
+      "first": 1793756112.937715,
+      "last": 1793756362.962567,
+      "span": 250.0248520374298,
+      "calls": 8,
+      "sessions": 1,
+      "resumes": 7,
+      "estimated_ends": 0,
+      "timed_calls": 8
+    },
+    "trajectory-003": {
+      "first": 1793756122.454314,
+      "last": 1793756385.714334,
+      "span": 263.2600200176239,
+      "calls": 8,
+      "sessions": 1,
+      "resumes": 7,
+      "estimated_ends": 0,
+      "timed_calls": 8
+    },
+    "trajectory-004": {
+      "first": 1793756124.945967,
+      "last": 1793756378.797054,
+      "span": 253.85108709335327,
+      "calls": 14,
+      "sessions": 1,
+      "resumes": 13,
+      "estimated_ends": 0,
+      "timed_calls": 14
+    }
+  },
+  "model_calls_by_report_generator": 0,
+  "repeated_build_byte_identical": true
+}
