@@ -21,6 +21,10 @@ ROOT = Path(__file__).resolve().parents[1]
 DOCS = 'docs/overnight-2026-11-04'
 STATE = 'experiments/v7_persistence/overnight_state.json'
 READINESS = ('readiness-20261104', 'readiness-frozen-20261104')
+FROZEN_TOKEN_AUDIT = DOCS + '/token-counter-audit.json'
+EXTERNAL_CORROBORATION_LIMIT = ('The independent V10 audit may corroborate targeted local .codex session rollouts outside the repository. '
+    'The archive preserves its audit JSON and script hashes but does not copy those sessions; '
+    'rerunning elsewhere may leave that corroboration unknown even when archived campaign checks pass.')
 SOURCE_PATTERN = re.compile(r'experiments/v(?:[5-9]|10)_[a-z0-9_]+/(?:src/[a-zA-Z0-9_]+\.py|tests/[a-zA-Z0-9_-]+\.(?:py|json)|PROTOCOL\.md|README\.md)\Z')
 
 
@@ -50,7 +54,7 @@ def safe_path(name):
 
 
 def source_path(name):
-    if name not in ('src/tasks.py', 'src/tools.py') and not SOURCE_PATTERN.fullmatch(name):
+    if name not in ('src/tasks.py', 'src/tools.py', FROZEN_TOKEN_AUDIT) and not SOURCE_PATTERN.fullmatch(name):
         raise ValueError(f'Source is outside the explicit archive allowlist: {name}')
     return safe_path(name)
 
@@ -137,16 +141,18 @@ def collect(campaigns):
             add(source_path(source))
         probes.append(checked)
     for name in ('build_evidence_report.py', 'build_v7_report.py', 'build_v8_report.py',
-                 'build_v9_report.py', 'build_v10_report.py', 'archive_overnight_evidence.py'):
+                 'build_v9_report.py', 'build_v10_report.py', 'build_overnight_report.py',
+                 'audit_v10_evidence.py', 'test_audit_v10_evidence.py',
+                 'archive_overnight_evidence.py', 'test_archive_overnight_evidence.py'):
         add(ROOT / 'scripts' / name)
-    for version in (7, 8, 9, 10):
-        for pattern in (f'v{version}-*.pdf', f'v{version}-*.build.json', f'v{version}-*.SHA256SUMS'):
+    for prefix in ('v7-', 'v8-', 'v9-', 'v10-', 'overnight-synthesis-'):
+        for pattern in (prefix + '*.pdf', prefix + '*.build.json', prefix + '*.SHA256SUMS'):
             for path in (ROOT / 'reports').glob(pattern):
                 add(path)
-        for sums in (ROOT / 'reports').glob(f'v{version}-*.SHA256SUMS'):
+        for sums in (ROOT / 'reports').glob(prefix + '*.SHA256SUMS'):
             for line in sums.read_text().splitlines():
                 sha, name = line.split(None, 1)
-                if Path(name.strip()).name != name.strip() or not name.startswith(f'v{version}-'):
+                if Path(name.strip()).name != name.strip() or not name.startswith(prefix):
                     raise ValueError('Report checksum points outside the versioned report set')
                 report = safe_path('reports/' + name.strip())
                 if report not in files or digest(report) != sha:
@@ -174,6 +180,24 @@ def reproduction(campaigns):
         lines.append(f'python3 {shlex.quote(base_name + f"/src/run_v{version}.py")} verify {shlex.quote(str(path.relative_to(ROOT)))}')
         if (ROOT / f'scripts/build_v{version}_report.py').is_file():
             lines.append(f'python3 scripts/build_v{version}_report.py --campaign {shlex.quote(str(path.relative_to(ROOT)))}')
+    lines.extend(['# ' + EXTERNAL_CORROBORATION_LIMIT])
+    versions = {}
+    for selected in campaigns:
+        path, version, _ = campaign_identity(selected)
+        versions.setdefault(version, []).append(path)
+    if 10 in versions and (ROOT / 'scripts/audit_v10_evidence.py').is_file():
+        lines.extend([
+            '# Fresh replay outputs never overwrite sealed evidence or the archived final audit.',
+            'overnight_replay_dir=$(mktemp -d "${TMPDIR:-/tmp}/physics-overnight-replay.XXXXXX")',
+            'python3 -m unittest discover -s scripts -p test_audit_v10_evidence.py -v',
+        ])
+        for index, path in enumerate(versions[10], 1):
+            lines.append('python3 scripts/audit_v10_evidence.py ' + shlex.quote(str(path.relative_to(ROOT)))
+                         + ' --original-campaign ' + shlex.quote(str(path))
+                         + f' --output "$overnight_replay_dir/v10-audit-{index}.json"')
+    if all(len(versions.get(version, [])) == 1 for version in (7, 8, 9, 10)) and (ROOT / 'scripts/build_overnight_report.py').is_file():
+        lines.append('python3 scripts/build_overnight_report.py ' + ' '.join(
+            f'--v{version} ' + shlex.quote(str(versions[version][0].relative_to(ROOT))) for version in (7, 8, 9, 10)))
     return '\n'.join(lines) + '\n'
 
 
@@ -228,6 +252,7 @@ def main():
                     limitations=['Git bundle preserves committed history; tar also preserves selected working evidence.',
                                  'Older readiness probes retain their original hashes but may lack an exact archived working-source snapshot.',
                                  'Readiness probes are separate development evidence and never task observations.',
+                                 EXTERNAL_CORROBORATION_LIMIT,
                                  'Checksums are integrity checks against retained digests, not signatures.'])
     (output / 'manifest.json').write_text(json.dumps(manifest, indent=2, sort_keys=True) + '\n')
     entries = [p for p in sorted(output.iterdir()) if p.is_file()]

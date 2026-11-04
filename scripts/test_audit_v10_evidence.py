@@ -1,5 +1,6 @@
-import copy,datetime,hashlib,importlib.util,json,tempfile,unittest
+import copy,datetime,hashlib,importlib.util,json,shutil,subprocess,sys,tempfile,unittest
 from pathlib import Path
+from unittest.mock import patch
 p=Path(__file__).with_name('audit_v10_evidence.py');s=importlib.util.spec_from_file_location('audit',p);a=importlib.util.module_from_spec(s);s.loader.exec_module(a)
 SID='11111111-1111-1111-1111-111111111111'
 def write(p,d):p.parent.mkdir(parents=True,exist_ok=True);p.write_text(json.dumps(d))
@@ -25,7 +26,7 @@ def build(root,sessions,unknown=False):
  write(root/'usage_ledger.json',dict(observations=observations,**snap));write(root/'execution.json',dict(usage_stop_reason='usage_accounting_unknown' if unknown else None,**snap));write(root/'manifest.json',{'schema':'v10-long-history-1','execute':True});(root/'manifest.sha256').write_text(a.digest(root/'manifest.json')+'\n');seal(root)
  sessions.mkdir();lp=sessions/f'rollout-{SID}.jsonl';lp.write_text('\n'.join(json.dumps(e) for e in local)+'\n');return lp
 class T(unittest.TestCase):
- def setUp(self):self.tmp=tempfile.TemporaryDirectory();self.addCleanup(self.tmp.cleanup);self.base=Path(self.tmp.name);self.root=self.base/'campaign';self.sessions=self.base/'sessions'
+ def setUp(self):self.tmp=tempfile.TemporaryDirectory();self.addCleanup(self.tmp.cleanup);self.base=Path(self.tmp.name).resolve();self.root=self.base/'campaign';self.sessions=self.base/'sessions'
  def test_clean_and_local_turn_usage(self):
   build(self.root,self.sessions);x=a.audit(self.root,self.sessions);self.assertTrue(x['passed'],x['issues']);self.assertEqual(x['raw_derived_known_usage']['output_tokens'],40);self.assertEqual(x['history_retention'],'unknown');self.assertTrue(all(r['record_turn_usage_matches_call_delta'] for r in x['local_rollouts'][0]['call_correspondence']))
  def test_unsealed_refused(self):
@@ -53,4 +54,28 @@ class T(unittest.TestCase):
   p=build(self.root,self.sessions);events=[a.loads(l) for l in p.read_text().splitlines()];events.insert(2,copy.deepcopy(events[1]));events.insert(3,{'timestamp':'2026-11-04T00:00:14Z','type':'compacted','payload':{}});p.write_text('\n'.join(json.dumps(e) for e in events)+'\n');x=a.audit(self.root,self.sessions);self.assertTrue(x['passed'],x['issues']);self.assertEqual(len(x['local_rollouts'][0]['exposed_context_events']),1)
  def test_wrong_local_identity_stops_before_later_parse(self):
   p=build(self.root,self.sessions);p.write_text(json.dumps({'type':'session_meta','payload':{'id':'other'}})+'\nNOT JSON PRIVATE CONTENT');x=a.audit(self.root,self.sessions);self.assertFalse(x['passed']);self.assertEqual(x['local_rollouts'][0]['rollout_status'],'contradictory_initial_identity');self.assertNotIn('rollout_sha256',x['local_rollouts'][0])
+ def test_relocated_copy_opt_in_never_accesses_original(self):
+  build(self.root,self.sessions);restored=self.base/'restored';shutil.copytree(self.root,restored);original=self.root;shutil.rmtree(original)
+  self.assertFalse(a.audit(restored,self.sessions)['passed'])
+  def guard(method):
+   def wrapped(path,*args,**kwargs):
+    if path.is_absolute() and path.is_relative_to(original):raise AssertionError('Original path accessed: '+str(path))
+    return method(path,*args,**kwargs)
+   return wrapped
+  with patch.object(Path,'open',guard(Path.open)),patch.object(Path,'resolve',guard(Path.resolve)),patch.object(Path,'is_symlink',guard(Path.is_symlink)):
+   result=a.audit(restored,self.sessions,original_campaign=original)
+  self.assertTrue(result['passed'],result['issues']);self.assertEqual(result['raw_derived_known_usage']['output_tokens'],40);self.assertEqual(result['relocation']['original_campaign_prefix'],str(original));self.assertEqual(result['relocation']['restored_campaign_root'],str(restored));self.assertTrue(result['relocation']['enabled'])
+ def test_relocated_cli_records_mapping(self):
+  build(self.root,self.sessions);restored=self.base/'restored';shutil.copytree(self.root,restored);original=self.root;shutil.rmtree(original);output=self.base/'audit.json'
+  command=[sys.executable,str(Path(__file__).with_name('audit_v10_evidence.py')),str(restored),'--original-campaign',str(original),'--sessions-root',str(self.sessions),'--output',str(output)]
+  result=subprocess.run(command,capture_output=True,text=True);self.assertEqual(result.returncode,0,result.stderr+result.stdout);self.assertEqual(a.read_json(output)['relocation']['original_campaign_prefix'],str(original))
+ def test_relocation_rejects_unrelated_sibling_and_escape(self):
+  self.root.mkdir();original=Path('/old/campaign')
+  for value in ['/unrelated/raw.json','/old/campaign-evil/raw.json','/old/campaign/../outside.json','../outside.json']:
+   with self.subTest(value=value),self.assertRaises(a.PathViolation):a.contained(self.root,value,original)
+  for prefix in ['relative/campaign','/old/../campaign','/']:
+   with self.subTest(prefix=prefix),self.assertRaises(ValueError):a.original_prefix(prefix)
+ def test_relocation_rejects_restored_symlink_ancestor(self):
+  self.root.mkdir();target=self.root/'real';target.mkdir();(target/'raw.json').write_text('{}');(self.root/'link').symlink_to(target,target_is_directory=True)
+  with self.assertRaises(a.PathViolation):a.contained(self.root,'/old/campaign/link/raw.json',Path('/old/campaign'))
 if __name__=='__main__':unittest.main(verbosity=2)

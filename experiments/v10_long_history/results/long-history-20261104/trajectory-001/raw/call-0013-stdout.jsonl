@@ -1,0 +1,4 @@
+{"type":"thread.started","thread_id":"01a1a47a-89a6-7d93-8753-9e987816253b"}
+{"type":"turn.started"}
+{"type":"item.completed","item":{"id":"item_0","type":"agent_message","text":"{\"type\":\"final\",\"value\":4.0996,\"units\":\"m/s^2\",\"used_fit_line\":false}"}}
+{"type":"turn.completed","usage":{"input_tokens":90793,"cached_input_tokens":75648,"cache_write_input_tokens":0,"output_tokens":2430,"reasoning_output_tokens":2024}}

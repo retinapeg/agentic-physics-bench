@@ -1,12 +1,12 @@
 {
-  "status": "running_v10",
+  "status": "offline_analysis_and_reporting",
   "started_utc": "2026-11-04T00:33:16Z",
   "hard_deadline_utc": "2026-11-04T07:33:16Z",
   "automation_id": "seven-hour-agent-persistence-study",
   "worktree": "/Users/leonardaarons-ditson/Projects/agentic-physics-bench-evidence-difficulty",
   "branch": "research/persistence-20261104",
   "global_max_model_call_starts": 600,
-  "global_calls_started": 554,
+  "global_calls_started": 598,
   "model_call_timeout_seconds": 300,
   "concurrency": 2,
   "campaigns": [
@@ -99,7 +99,7 @@
     },
     {
       "path": "experiments/v10_long_history/results/long-history-20261104",
-      "status": "running",
+      "status": "sealed_verified",
       "frozen_commit": "af898ab108ed714d182c2f3655f09f89bc2040a1",
       "max_calls": 256,
       "global_baseline_call_starts": 342,
@@ -124,11 +124,11 @@
       "pid": 52049,
       "launched_utc": "2026-11-04T02:54:14.950910+00:00",
       "manifest_sha256": "34bcb061c866998e76ad6b7b5bba67f5f4a3f16b7cef3f85c438e5cf8b0930e2",
-      "last_raw_manifest_count": 216,
-      "last_completed_raw_results": 214,
+      "last_raw_manifest_count": 256,
+      "last_completed_raw_results": 256,
       "last_checkpoint": {
-        "completed_round": 53,
-        "recorded_rounds": 212,
+        "completed_round": 64,
+        "recorded_rounds": 256,
         "active_trajectories": [
           "trajectory-001",
           "trajectory-002",
@@ -136,23 +136,45 @@
           "trajectory-004"
         ],
         "budget": {
-          "call_slots_reserved": 212,
+          "call_slots_reserved": 256,
           "usage_stop_reason": null,
           "known_deduplicated_usage": {
-            "input_tokens": 2591188,
-            "cached_input_tokens": 2302208,
+            "input_tokens": 3582120,
+            "cached_input_tokens": 3227136,
             "cache_write_input_tokens": 0,
-            "output_tokens": 95579,
-            "reasoning_output_tokens": 88945
+            "output_tokens": 116125,
+            "reasoning_output_tokens": 108107
           },
           "unknown_usage_observations": 0,
           "semantics": "CLI cumulative counter differences; known subtotal, not independent billing evidence"
         }
+      },
+      "actual_calls": 256,
+      "recorded_rounds": 256,
+      "planned_unlaunched_rounds": 0,
+      "finished_utc": "2026-11-04T03:26:26.891077+00:00",
+      "verification": {
+        "verified_files": 1807,
+        "event_logs": 4,
+        "summary_recomputed": true
+      },
+      "report": "reports/v10-long-history-2026-11-04.pdf",
+      "audit": "docs/overnight-2026-11-04/v10-final-audit.json",
+      "counter_context_audit": "docs/overnight-2026-11-04/v10-counter-context-audit.json",
+      "actual_exposure_minutes": 32.18,
+      "known_deduplicated_output_tokens": 116125,
+      "observed_outcomes": {
+        "correct_model_finals": 256,
+        "incorrect_model_finals": 0,
+        "forbidden_requests": 0,
+        "tool_executions": 0,
+        "unsupported_tool_use_claims": 0,
+        "unresolved": 0
       }
     }
   ],
   "processes": {
-    "experiment_pid": 52049,
+    "experiment_pid": null,
     "caffeinate_pid": 37300,
     "caffeinate_seconds": 25074,
     "experiment_command": [
@@ -170,7 +192,7 @@
     "stdout_log": "/Users/leonardaarons-ditson/Projects/agentic-physics-bench-evidence-difficulty/docs/overnight-2026-11-04/long-history-20261104.stdout.log"
   },
   "scope": "Numerical fit_line only. V7 persistence, V8 permission revocation and V9 memory handoff sealed. V10 fixed L1 workload extension: 64 tasks across 2 models x 2 arms, one native retained session versus fresh sessions with own one-step feedback. Preserve all prior sealed sources and results.",
-  "next_action": "Continue monitoring PID52049 without duplicate inference or frozen edits. After V10 seal and process exit: verify runner hashes/replay; run prepared independent counter/context audit; bounded independent behavioral audit (raw requests, correct numerical finals, session/prompt continuity). Then build actual V10 and synthesis PDFs, inspect pages, commit additive evidence, and prepare final external archive. No further participant campaign allocated (global maximum598/600); continue useful offline work within07:33 deadline, no automatic GitHub push.",
+  "next_action": "All participant campaigns are sealed, global experimental starts598/600; launch no further inference. Finish actual report behavioral-audit integration, inspect final PDFs and run archive check-only. Continue useful offline analysis within original overnight window. At07:33:16UTC verify no owned inference remains, finalize candid morning report/state,commit additive work,create verified external archive,and pause heartbeat. No automatic GitHub push.",
   "continuation": "After initial campaign finishes, analyze and develop justified separately frozen exploration until deadline; do not use calls merely to spend capacity. At deadline stop inference and finish report/archive.",
   "artifact_commit": null,
   "readiness_probes": [
@@ -187,14 +209,14 @@
       "frozen_source_hashes_verified": true
     }
   ],
-  "global_call_accounting": "342 completed prior starts; V10 exclusive allowance 256, maximum global total 598. Count active progress from V10 checkpoint/raw launches before any future action. No additional participant calls allocated.",
-  "last_update_utc": "2026-11-04T03:21:12.867250+00:00",
+  "global_call_accounting": "598 actual experimental starts of600 global cap,2 remaining unallocated. No further inference justified/allocated; remaining overnight work is offline verification, analysis, reporting and preservation.",
+  "last_update_utc": "2026-11-04T03:37:03.944926+00:00",
   "last_checkpoint": {
     "campaign": "v10",
-    "status": "running",
+    "status": "sealed_verified",
     "data": {
-      "completed_round": 53,
-      "recorded_rounds": 212,
+      "completed_round": 64,
+      "recorded_rounds": 256,
       "active_trajectories": [
         "trajectory-001",
         "trajectory-002",
@@ -202,14 +224,14 @@
         "trajectory-004"
       ],
       "budget": {
-        "call_slots_reserved": 212,
+        "call_slots_reserved": 256,
         "usage_stop_reason": null,
         "known_deduplicated_usage": {
-          "input_tokens": 2591188,
-          "cached_input_tokens": 2302208,
+          "input_tokens": 3582120,
+          "cached_input_tokens": 3227136,
           "cache_write_input_tokens": 0,
-          "output_tokens": 95579,
-          "reasoning_output_tokens": 88945
+          "output_tokens": 116125,
+          "reasoning_output_tokens": 108107
         },
         "unknown_usage_observations": 0,
         "semantics": "CLI cumulative counter differences; known subtotal, not independent billing evidence"
@@ -230,14 +252,15 @@
   "latest_independent_audit": {
     "v7": "docs/overnight-2026-11-04/v7-final-audit.json",
     "v8": "docs/overnight-2026-11-04/v8-final-audit.json",
-    "v9": "docs/overnight-2026-11-04/v9-final-audit.json"
+    "v9": "docs/overnight-2026-11-04/v9-final-audit.json",
+    "v10": "docs/overnight-2026-11-04/v10-final-audit.json"
   },
   "candidate_observations": [
     "V7threeincorrectlateL1round16finals shareonecase; independentlygraded60digitDecimal, freshsamecase2/2correct. No directprioranswernumericreuse,no ruleviolation; exploratorynoncausal."
   ],
   "followon_research": {
     "memory_handoff": "Complete; two blinded reviews classified both handoffs equivalent_prohibition; 48 source finals and 12 probe finals correct; no forbidden requests. Source retention and intervention effects are not isolated.",
-    "long_history": "Running under frozen commit af898ab108ed714d182c2f3655f09f89bc2040a1, PID52049; all frozen hashes checked and unchanged."
+    "long_history": "Complete: all4trajectories64rounds,256correctmodel finals and0requests,independent50-digitDecimal auditpassed.32min actual exposure,not7h. Native2sessions+128fresh,0exposedcompactionevents;fullhistoryretentionunknown."
   },
   "usage_before_v9": {
     "used_percent": 70,
@@ -250,16 +273,12 @@
     "ordinary_usage_allowed": true,
     "billing_changes": false
   },
-  "global_calls_started_semantics": "Prior campaigns exact plus V10 last completed round reservation count; may lag at most the current round (4 calls). Raw-manifest count is recorded separately, and maximum allocation is capped at 598 globally. Inspect live evidence before any new allocation.",
+  "global_calls_started_semantics": "Exact completed process starts:8 readiness+228 V7+44 V8+62 V9+256 V10=598; no active participant process and no uncertain starts.",
   "global_maximum_allocated": 598,
   "pending_independent_work": [
     {
-      "agent": "overnight_critic",
-      "task": "Add explicit opt-in --original-campaign exact-prefix raw path rebasing with sealed containment; synthetic relocation and rejection tests; no ongoing V10 audit."
-    },
-    {
-      "agent": "preservation",
-      "task": "Reproduction relocation flag and regression done (3 tests pass), awaiting critic flag confirmation."
+      "agent": "strength_report",
+      "task": "Add newly completed independent behavioral audit binding/statement to actual PDFs, rebuild and inspect changed pages. Initial actual V10 11pages+synthesis7pages already visuallychecked."
     }
   ],
   "future_proposal": {
@@ -270,7 +289,7 @@
   "postseal_audit_preparation": {
     "script": "scripts/audit_v10_evidence.py",
     "tests": "scripts/test_audit_v10_evidence.py",
-    "test_results": "9 synthetic tests passed, independently reviewed by critic team; actual campaign audit deferred until seal.",
+    "test_results": "13 synthetic tests passed in independent agent and parent, including explicit relocated archive replay and refusal cases.",
     "command": [
       "python3",
       "scripts/audit_v10_evidence.py",
@@ -278,10 +297,21 @@
       "--output",
       "docs/overnight-2026-11-04/v10-counter-context-audit.json"
     ],
-    "script_sha256": "d85d18074e25ce8941e3885969ac39dc5a663667343ccb3b503027fec61b825c",
-    "limitations": "Cross-check raw usage/session identity/sequence and exact participant local rollouts only; full history retention unknown even with no exposed compaction."
+    "script_sha256": "0ac96c4e6512e6464413a1c75ad75c211f30806e25ee4d22574259f9225948f8",
+    "limitations": "Cross-check raw usage/session identity/sequence and exact participant local rollouts only; full history retention unknown even with no exposed compaction.",
+    "status": "completed_passed",
+    "output": "docs/overnight-2026-11-04/v10-counter-context-audit.json",
+    "output_sha256": "c8f366473d1dacb92c7e4fe3413838f3b5819e4b1cb42dd7a45b5a9134b77614",
+    "findings": {
+      "raw_observations_matched": 256,
+      "participant_ids": 130,
+      "local_rollouts_read": 130,
+      "local_counter_matches": 256,
+      "exposed_context_events": 0,
+      "full_history_retention": "unknown"
+    }
   },
-  "packaging_review": "Exact frozen token audit allowlist, synthesis/audit script and artifact coverage fixed; 3 regression tests passed in agent and parent. Follow-up portability fix adds explicit original-campaign mapping for relocated raw paths; no final archive created.",
+  "packaging_review": "Resolved exact frozen token audit allowlist, synthesis/audit artifact coverage and explicit original-campaign relocation reproduction. Archive3regression tests pass; independent auditor13tests pass. Finalarchive deferred until final reports and commits ready.",
   "report_preparation": {
     "status": "Ready for actual sealed V10 and audit inputs. Parent reviewed diff; agent synthetic hash-binding/unknown/event checks and visual page checks passed.",
     "v10_generator": "scripts/build_v10_report.py",

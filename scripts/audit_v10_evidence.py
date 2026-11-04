@@ -23,6 +23,9 @@ CONTEXT_TYPES = {'compacted', 'context_compacted', 'context_truncated', 'history
 class Refusal(Exception):
     pass
 
+class PathViolation(ValueError):
+    pass
+
 def pairs(items):
     result = {}
     for key, value in items:
@@ -54,15 +57,39 @@ def timestamp(value):
 def canonical(value):
     return json.dumps(value, sort_keys=True, separators=(',', ':'), allow_nan=False).encode()
 
-def contained(root, value):
+def original_prefix(value):
+    """Validate lexically; never resolve or inspect the original filesystem."""
+    if value is None:
+        return None
     path = Path(value)
-    path = path if path.is_absolute() else root / path
-    if path.is_symlink():
-        raise ValueError('Symlink is not permitted: ' + str(path))
-    path = path.resolve()
-    if not path.is_relative_to(root):
-        raise ValueError('Evidence path escapes campaign: ' + str(path))
+    if not path.is_absolute() or '..' in path.parts or path == Path(path.anchor):
+        raise ValueError('Original campaign must be an absolute non-root path without traversal')
     return path
+
+def contained(root, value, original_campaign=None):
+    path = Path(value)
+    if '..' in path.parts:
+        raise PathViolation('Evidence path traversal is not permitted: ' + str(path))
+    # Choose the restored candidate using lexical prefixes only. In particular,
+    # is_symlink/resolve/open must never be called on a recorded original path.
+    if path.is_absolute():
+        if original_campaign is not None and path.is_relative_to(original_campaign):
+            relative = path.relative_to(original_campaign)
+        elif path.is_relative_to(root):
+            relative = path.relative_to(root)
+        else:
+            raise PathViolation('Evidence path escapes campaign: ' + str(path))
+    else:
+        relative = path
+    candidate = root
+    for part in relative.parts:
+        candidate = candidate / part
+        if candidate.is_symlink():
+            raise PathViolation('Symlink is not permitted: ' + str(candidate))
+    resolved = candidate.resolve()
+    if not resolved.is_relative_to(root):
+        raise PathViolation('Evidence path escapes campaign: ' + str(candidate))
+    return resolved
 
 def valid_usage(value):
     return (isinstance(value, dict) and REQUIRED <= set(value) <= ALLOWED
@@ -194,14 +221,20 @@ def local_audit(session_id, calls, sessions_root, issues):
     result['last_usage_limit'] = 'last_token_usage may describe only the last provider request, not the whole CLI call; inequality alone is diagnostic, not a failure.'
     return result
 
-def audit(campaign, sessions_root):
+def audit(campaign, sessions_root, original_campaign=None):
+    original_campaign = original_prefix(original_campaign)
     root = campaign.resolve(); seal_path = root / 'SHA256SUMS.json'
     if not seal_path.is_file():
         raise Refusal('Campaign is not sealed; no evidence or participant rollout contents were read.')
     hashes = read_json(seal_path)
     if not isinstance(hashes, dict):
         raise Refusal('Invalid seal')
-    actual = {str(p.relative_to(root)) for p in root.rglob('*') if p.is_file() and p != seal_path}
+    actual = set()
+    for path in root.rglob('*'):
+        if path.is_symlink():
+            raise Refusal('Symlink is not permitted in sealed campaign: ' + str(path.relative_to(root)))
+        if path.is_file() and path != seal_path:
+            actual.add(str(path.relative_to(root)))
     if set(hashes) != actual:
         raise Refusal('Seal membership mismatch')
     for name, expected in hashes.items():
@@ -265,9 +298,10 @@ def audit(campaign, sessions_root):
         call['session_id'] = sid
         parsed = False; usage = None; index = None; resume = None; resumed = None
         try:
-            raw = contained(root, meta['raw_stdout']); manpath = contained(root, meta['raw_manifest'])
+            raw = contained(root, meta['raw_stdout'], original_campaign)
+            manpath = contained(root, meta['raw_manifest'], original_campaign)
             if str(raw.relative_to(root)) not in hashes or str(manpath.relative_to(root)) not in hashes:
-                raise ValueError('Raw binding not covered by seal')
+                raise PathViolation('Raw binding not covered by seal')
             raw_paths.add(str(raw.relative_to(root)))
             cmd = read_json(manpath); events = [loads(line) for line in raw.read_text().splitlines() if line.strip()]
             if any(not isinstance(e, dict) for e in events):
@@ -288,7 +322,7 @@ def audit(campaign, sessions_root):
             if isinstance(usage, dict) and any(meta_usage.get(k) != usage.get(k) for k in REQUIRED):
                 raise ValueError('Raw/meta usage mismatch')
             for key, value in [('raw_manifest', str(manpath)), ('raw_stdout', str(raw))]:
-                if observation.get(key) is not None and contained(root, observation[key]) != Path(value):
+                if observation.get(key) is not None and contained(root, observation[key], original_campaign) != Path(value):
                     raise ValueError('Observation/raw path mismatch: ' + key)
             if (observation.get('status') == 'known' or observation.get('raw_manifest')) and any(observation.get(k) != v for k, v in [
                     ('session_id', sid), ('resumed_session_id', resume), ('session_resumed', resumed),
@@ -305,7 +339,7 @@ def audit(campaign, sessions_root):
         except (OSError, KeyError, TypeError, ValueError) as exc:
             call['raw_binding_diagnostic'] = str(exc)
             # Known accounting must always bind. Honest missing/incomplete timeout evidence is unknown.
-            if observation.get('status') == 'known' or 'mismatch' in str(exc).lower() or 'contradict' in str(exc).lower() or 'escapes' in str(exc).lower():
+            if isinstance(exc, PathViolation) or observation.get('status') == 'known' or 'mismatch' in str(exc).lower() or 'contradict' in str(exc).lower() or 'escapes' in str(exc).lower():
                 issues.append('Raw binding failed at sequence ' + str(n) + ': ' + str(exc))
         if parsed and isinstance(sid, str):
             expected_index = indices.get(sid, 0) + 1
@@ -349,6 +383,10 @@ def audit(campaign, sessions_root):
     return {'schema': 'apb-v10-independent-postseal-audit-v1',
             'audited_utc': dt.datetime.now(dt.timezone.utc).isoformat(),
             'campaign': str(root), 'auditor_script_sha256': digest(Path(__file__)),
+            'relocation': {'enabled': original_campaign is not None,
+                           'original_campaign_prefix': str(original_campaign) if original_campaign is not None else None,
+                           'restored_campaign_root': str(root),
+                           'scope': 'Raw stdout/manifest bindings beneath the exact original prefix only; original paths are never read.'},
             'campaign_seal_sha256': digest(seal_path), 'manifest_sha256': digest(root / 'manifest.json'),
             'usage_ledger_sha256': digest(root / 'usage_ledger.json'), 'verified_files': len(hashes),
             'event_chains_checked': chain_count, 'observation_count': len(observations),
@@ -369,11 +407,13 @@ def main():
     parser.add_argument('campaign', type=Path)
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--sessions-root', type=Path, default=Path.home()/'.codex/sessions')
+    parser.add_argument('--original-campaign', type=Path,
+                        help='Opt in to rebase recorded absolute raw bindings from this exact original campaign prefix; never read the original location')
     args = parser.parse_args(); root = args.campaign.resolve(); output = args.output.resolve()
     if output.is_relative_to(root) or output.exists():
         parser.error('Output must be a new file outside the sealed campaign')
     try:
-        result = audit(root, args.sessions_root.resolve())
+        result = audit(root, args.sessions_root.resolve(), original_campaign=args.original_campaign)
     except (Refusal, OSError, ValueError, TypeError, KeyError, AttributeError, IndexError) as exc:
         print('AUDIT REFUSED: ' + str(exc), file=sys.stderr); return 2
     output.parent.mkdir(parents=True, exist_ok=True)
