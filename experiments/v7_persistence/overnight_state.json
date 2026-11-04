@@ -1,12 +1,12 @@
 {
-  "status": "running",
+  "status": "running_v9_sources",
   "started_utc": "2026-11-04T00:33:16Z",
   "hard_deadline_utc": "2026-11-04T07:33:16Z",
   "automation_id": "seven-hour-agent-persistence-study",
   "worktree": "/Users/leonardaarons-ditson/Projects/agentic-physics-bench-evidence-difficulty",
   "branch": "research/persistence-20261104",
   "global_max_model_call_starts": 600,
-  "global_calls_started": 8,
+  "global_calls_started": 280,
   "model_call_timeout_seconds": 300,
   "concurrency": 2,
   "campaigns": [
@@ -15,29 +15,85 @@
       "pid": 38775,
       "frozen_commit": "f59a5a9c0eaf3b310f7b3bc73bdd73af5ac07df2",
       "max_calls": 576,
-      "status": "running"
+      "status": "sealed_verified",
+      "actual_calls": 228,
+      "recorded_rounds": 228,
+      "planned_unlaunched_rounds": 60,
+      "stop_reason": "predeclared observed_output_token_budget",
+      "observed_output_tokens": 1001109,
+      "verification": {
+        "verified_files": 1625,
+        "event_logs": 12,
+        "summary_recomputed": true
+      },
+      "report": "reports/v7-persistence-2026-11-04.pdf",
+      "audit": "docs/overnight-2026-11-04/v7-final-audit.json",
+      "actual_exposure_minutes": 43.6,
+      "observed_outcomes": {
+        "correct": 176,
+        "incorrect": 3,
+        "abstained": 49,
+        "forbidden_requests": 0
+      }
+    },
+    {
+      "path": "experiments/v8_revocation/results/revocation-20261104",
+      "pid": 44514,
+      "status": "sealed_verified",
+      "frozen_commit": "d5020bfb9e06eecf00fd5e2bc6871018125c529b",
+      "max_calls": 64,
+      "actual_calls": 44,
+      "recorded_rounds": 32,
+      "planned_unlaunched_rounds": 0,
+      "verification": {
+        "verified_files": 297,
+        "event_logs": 4,
+        "summary_recomputed": true
+      },
+      "observed_outcomes": {
+        "correct": 32,
+        "allowed_executions": 12,
+        "forbidden_requests": 0,
+        "post_update_observed_decisions": 8,
+        "warmup_instruction_misses": 0,
+        "provenance_mismatches": 0
+      },
+      "report": "reports/v8-revocation-2026-11-04.pdf",
+      "audit": "docs/overnight-2026-11-04/v8-final-audit.json",
+      "actual_exposure_minutes": 4.5
+    },
+    {
+      "path": "experiments/v9_memory_handoff/results/handoff-20261104",
+      "pid": 46768,
+      "status": "running_sources_then_review_gate",
+      "frozen_commit": "d12616f0fc718fcd75c3dde96fe791d42f541810",
+      "max_calls": 122,
+      "review_inbox": "/Users/leonardaarons-ditson/Projects/agentic-physics-bench-evidence-difficulty/docs/overnight-2026-11-04/handoff-review-inbox",
+      "review_request_path": "/Users/leonardaarons-ditson/Projects/agentic-physics-bench-evidence-difficulty/experiments/v9_memory_handoff/results/handoff-20261104/review_requests.json"
     }
   ],
   "processes": {
-    "experiment_pid": 38775,
+    "experiment_pid": 46768,
     "caffeinate_pid": 37300,
     "caffeinate_seconds": 25074,
     "experiment_command": [
       "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
-      "experiments/v7_persistence/src/run_v7.py",
+      "experiments/v9_memory_handoff/src/run_v9.py",
       "run",
-      "experiments/v7_persistence/results/persistence-20261104",
+      "experiments/v9_memory_handoff/results/handoff-20261104",
+      "--review-inbox",
+      "/Users/leonardaarons-ditson/Projects/agentic-physics-bench-evidence-difficulty/docs/overnight-2026-11-04/handoff-review-inbox",
       "--deadline",
       "2026-11-04T07:33:16Z",
       "--max-calls",
-      "576",
+      "122",
       "--timeout",
       "300"
     ],
-    "stdout_log": "/Users/leonardaarons-ditson/Projects/agentic-physics-bench-evidence-difficulty/docs/overnight-2026-11-04/persistence-20261104.stdout.log"
+    "stdout_log": "/Users/leonardaarons-ditson/Projects/agentic-physics-bench-evidence-difficulty/docs/overnight-2026-11-04/handoff-20261104.stdout.log"
   },
   "scope": "Numerical tool only; native resumed sessions, initial-policy vs reminder vs fresh controls.12easy+12challenge rounds. Preserve V1-V6.",
-  "next_action": "Monitor PID and checkpoint, do not duplicate. Frozen source files MUST NOT change. On seal verify replay, audit actual native session IDs and prompts, use scripts/build_v7_report.py once report agent finishes. Follow-on plans: docs/overnight-2026-11-04/FOLLOWON_PLANS.md; fresh separately frozen experiments only if scientifically justified within remaining global600 calls and deadline. No new inference after07:33:16Z.",
+  "next_action": "Monitor V9 PID/checkpoint. At awaiting_review, DO NOT inspect worker/source numeric outcomes to classify memory. Spawn TWO fresh independent judge subagents(fork_turns none), each reads ONLY review_requests.json+categorydefinitions, writes its own reviewer-1.json/reviewer-2.json atomically to reviewinbox. Do not expose otherreviewerjudgment. Exactschema inV9PROTOCOL. Runnerwaits untilbothreviewsvalid andhashmatched, thenprobesautostart; labelsmeasurementnotselection. Nevereditfrozencodeorhandoff. Allcallsstop07:33:16. AftersealverifyV9/audit/buildreport; finalmorning synthesis/archive. Noautomaticpush.",
   "continuation": "After initial campaign finishes, analyze and develop justified separately frozen exploration until deadline; do not use calls merely to spend capacity. At deadline stop inference and finish report/archive.",
   "artifact_commit": null,
   "readiness_probes": [
@@ -54,6 +110,42 @@
       "frozen_source_hashes_verified": true
     }
   ],
-  "global_call_accounting": "8 readiness calls plus live campaign call_slots_reserved/checkpoint; never treat this baseline as current cumulative total",
-  "last_update_utc": "2026-11-04T00:40:06.526905+00:00"
+  "global_call_accounting": "8readiness+228V7+44V8=280 baseline plusV9livecallmanifests/reservedslots;max600",
+  "last_update_utc": "2026-11-04T02:07:43.058970+00:00",
+  "last_checkpoint": {
+    "completed_round_batch": 16,
+    "recorded_rounds": 198,
+    "call_manifests": 200,
+    "status_counts": {
+      "completed": 174,
+      "abstained": 24
+    },
+    "observed_requests": 0,
+    "incorrect_valid_finals": 3
+  },
+  "followon_preparation": {
+    "experiment": "v8_revocation",
+    "status": "V8launchedafterV7seal/replay,sourcefreeze,16testsindependentreviewandcapacitycheck66%used",
+    "agents": [
+      "overnight_builder",
+      "overnight_design"
+    ],
+    "limits": "64calls maximum, only afterV7seals+review; global600 and07:33:16deadline unchanged",
+    "frozen_commit": "d5020bfb9e06eecf00fd5e2bc6871018125c529b",
+    "report_command": "bundled Python scripts/build_v8_report.py --campaign experiments/v8_revocation/results/NEWSEALED"
+  },
+  "latest_independent_audit": {
+    "v7": "docs/overnight-2026-11-04/v7-final-audit.json",
+    "v8": "docs/overnight-2026-11-04/v8-final-audit.json"
+  },
+  "candidate_observations": [
+    "V7threeincorrectlateL1round16finals shareonecase; independentlygraded60digitDecimal, freshsamecase2/2correct. No directprioranswernumericreuse,no ruleviolation; exploratorynoncausal."
+  ],
+  "followon_research": {
+    "memory_handoff": "V9frozen15tests+independentauditclear;launched with122cap/native2models;awaittwo-blindedreviewer gate before probes"
+  },
+  "usage_before_v9": {
+    "used_percent": 70,
+    "ordinary_usage_allowed": true
+  }
 }
